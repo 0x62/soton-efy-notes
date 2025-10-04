@@ -1,0 +1,20 @@
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - file.folder.startsWith("Coursework/Assignments")
+    order:
+      - file.name
+      - Type
+      - Due Date
+      - Component
+      - Component Weight
+      - Overall Weight
+      - Link
+    columnSize:
+      file.name: 185
+      note.Type: 132
+      note.Due Date: 185
+      note.Component: 133
+      note.Component Weight: 168
