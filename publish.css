@@ -1,0 +1,13 @@
+.internal-embed.markdown-embed {
+    padding-left: 1.5em;
+}
+
+.markdown-embed-content h2:first-of-type {
+  margin-top: var(--p-spacing);
+}
+
+.site-footer {
+  display: none;
+}
+
+
