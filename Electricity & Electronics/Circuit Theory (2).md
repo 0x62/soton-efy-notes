@@ -203,11 +203,13 @@ $$
 $$
 I_{t}=I_{R1}+I_{R2}=\frac{V}{R_{1}}+\frac{V}{R_{2}}
 $$
+
 **3. Solve for V**
 
 $$
 V=\frac{I_{t}}{\frac{1}{R_{1}}+\frac{1}{R_{1}}}
 $$
+
 **4. Substitute back into** $I_{R1}=\frac{V}{R_{1}}$
 
 $$
