@@ -1,4 +1,10 @@
-
+---
+tags:
+  - circuit-theory
+module: Electricity & Electronics
+component: Circuit Theory
+permalink: electricity-electronics/circuit-theory-1
+---
 ## Atoms
 Outermost electron shell is called the valence shell, and the number of electrons in this shell is the valence. 
 
@@ -29,6 +35,18 @@ In formulas, current typically uses the letter $I$.
 * Given [[Circuit Theory (1)#Resistance|Resistance]] and [[Circuit Theory (1)#Voltage|Voltage]]: $I = \frac{R}{V}$ 
 * Given [[Circuit Theory (1)#Power|Power]] and [[Circuit Theory (1)#Voltage|Voltage]]: $I=\frac{P}{V}$
 
+Current only flows when there is a **potential difference** – eg, the voltage on one side is different to the voltage on the other. **In the following circuit, the current through the resistor will be zero!**
+
+```mermaid
+graph LR
+    A[12V] --> B[10 Ohm]
+    B --> C[12V]
+    
+    style A fill:#e1f5ff,stroke:#333,stroke-width:2px
+    style B fill:#d4edda,stroke:#333,stroke-width:2px
+    style C fill:#e1f5ff,stroke:#333,stroke-width:2px
+```
+
 ## Charge
 Charge is the strength of how a particle interacts with electromagnetic fields, measured with the unit of Coulomb ($C$). A single electron carries a charge of $-1.6 \times 10^{-19}C$ while protons carry the same charge but positive.
 
@@ -53,7 +71,7 @@ In formulas, energy typically uses the letter $E$.
 * Given [[Circuit Theory (1)#Voltage|Voltage]] and [[Circuit Theory (1)#Charge|Charge]]: $E=V \times Q$
 
 ## Voltage
-Voltage is the measure of electrical potential energy between two points in a circuit, measured in Volts ($V$). One volt is defined as $1J$ transferred per coulomb of charge:  $1\ V=1\ \frac{J}{C}$
+Voltage is the measure of electrical potential energy between two points in a circuit, measured in Volts ($V$). One volt is defined as $1J$ transferred per coulomb of charge:  $1\ V= \frac{1J}{1C}$
 
 In formulas, voltage typically uses the letter $V$.
 
@@ -63,7 +81,7 @@ In formulas, voltage typically uses the letter $V$.
 * Given [[Circuit Theory (1)#Power|Power]] and [[Circuit Theory (1)#Current|Current]]: $V=\frac{P}{I}$
 
 ## Resistance
-Resistance is the property of a material or component that opposes the flow of electric current, measured in Ohms ($\Omega$). One ohm is defined as the resistance that allows $1A$ of current to flow when $1V$ is applied across it: $1\Omega=1\frac{V}{A}$
+Resistance is the property of a material or component that opposes the flow of electric current, measured in Ohms ($\Omega$). One ohm is defined as the resistance that allows $1A$ of current to flow when $1V$ is applied across it: $1\Omega=\frac{1V}{1A}$
 
 Resistance determines how much a component "resists" the movement of charge - higher resistance means less current flows for a given voltage. It's analogous to friction in mechanical systems: just as friction opposes motion and dissipates energy as heat, resistance opposes current flow and dissipates electrical energy as heat.
 
@@ -88,5 +106,9 @@ If energy is the ability to do work, then power is the rate of doing work.
 
 In formulas, power typically uses the letter $P$.
 
+Sometimes $I$ or $V$ is not known – use [[Circuit Theory (2)#Ohm's Law|Ohm's Law]] ($V=IR$) to find alternatives.
+
 **Related Formulas**
 * Given [[Circuit Theory (1)#Current|Current]] and [[Circuit Theory (1)#Voltage|Voltage]]: $P = I \times V$
+* Given [[Circuit Theory (1)#Voltage|Voltage]] and [[Circuit Theory (1)#Resistance|Resistance]]: $P=\frac{V^2}{R}$
+* Given [[Circuit Theory (1)#Current|Current]] and [[Circuit Theory (1)#Resistance|Resistance]]: $P = I^2 \times R$

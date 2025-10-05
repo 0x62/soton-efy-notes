@@ -30,6 +30,7 @@ If you found these notes helpful, you're welcome to [buy me a coffee/beer](https
 ### Electricity & Electronics
 
 * [[Circuit Theory (1)]]
+* [[Circuit Theory (2)]]
 * [[Annotated Formula Book]]
 
 ### Mechanical Science
@@ -43,3 +44,26 @@ If you found these notes helpful, you're welcome to [buy me a coffee/beer](https
 ### Coursework
 
 * [[Due Dates.base|Overview & Due Dates]]
+
+## Tags
+
+### Topics
+
+Most topics in each module get their own tag, so you can find related notes across multiple sections. A non-exhaustive list of tags are below.
+
+| Module                    | Topic             | Tag             |
+| ------------------------- | ----------------- | --------------- |
+| –                         | Required Formulas | #formula        |
+| Electricity & Electronics | Circuit Theory    | #circuit-theory |
+| Mechanical Science        | Elasticity        | #elasticity     |
+### Raw Notes
+
+My lecture notes first go in Unsorted Notes before I rewrite and categorise them. Generally they're named according to the date, and tagged by module. These notes are likely to be pretty low quality.
+
+| Tag                 | Module                    |
+| ------------------- | ------------------------- |
+| #raw-electricity    | Electricity & Electronics |
+| #raw-eng-principles | Engineering Principles    |
+| #raw-rts            | Routes to Success         |
+| #raw-mech           | Mechanical Science        |
+| #raw-coursework     | Coursework                |

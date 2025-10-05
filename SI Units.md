@@ -1,7 +1,7 @@
 
 SI (Système International) units form the standard measurement system used in engineering. The base units relevant to electrical engineering include the meter (m), kilogram (kg), second (s), ampere (A), and kelvin (K).
 
-### Common SI Units
+## Common SI Units
 
 | Property                                      | SI Unit | Unit Symbol | Property Symbol |
 | --------------------------------------------- | ------- | ----------- | --------------- |
@@ -16,7 +16,7 @@ SI (Système International) units form the standard measurement system used in e
 | Frequency                                     | hertz   | $Hz$        | $f$             |
 | Inductance                                    | henry   | $H$         | $L$             |
 
-### SI Prefixes
+## SI Prefixes
 
 SI prefixes allow us to express very large or small quantities concisely by scaling the base unit by powers of ten.
 
@@ -46,3 +46,20 @@ SI prefixes allow us to express very large or small quantities concisely by scal
 ### Converting Between Prefixes
 
 To convert between prefixes, determine the power of 10 difference and multiply accordingly.
+
+### Assumptions on Ranges
+
+In electrical engineering, using the correct SI units and knowing the typical ranges is essential. It helps check if your answer makes sense.
+
+| Property                                      | Unit   | Typical Values                            | Description                                                              |
+| --------------------------------------------- | ------ | ----------------------------------------- | ------------------------------------------------------------------------ |
+| [[Circuit Theory (1)#Current\|Current]]       | Amps   | $A,\ mA,\ \micro A$                       | Power grid currents in $kA$ down to sensors in $\micro A$                |
+| [[Circuit Theory (1)#Voltage\|Voltage]]       | Volts  | $kV,\ V,\ mV$                             | High-voltage transmission vs digital signals                             |
+| [[Circuit Theory (1)#Resistance\|Resistance]] | Ohms   | $M \Omega,\ k \Omega,\ \Omega,\ m \Omega$ | Insulators in $M \Omega$, resistors in $k \Omega$, busbars in $m \Omega$ |
+| Capacitance                                   | Farads | $\micro F,\ nF,\ pF$                      | Power supply capacitors in $\micro F$, digital in $nF,\ pF$              |
+| Inductance                                    | Henrys | $mH,\ \micro H$                           | Transformers in $mH$, high-frequency chokes in $\micro H$                |
+| [[Circuit Theory (1)#Power\|Power]]           | Watts  | $MW, kW, W, mW$                           | Power stations in $MW$, household devices in $kW$, circuits in $mW$      |
+
+> [!TIP] If you get 100 MV across a resistor in a lab, something is wrong!
+> Always check your units and magnitude
+
