@@ -5,7 +5,7 @@ module: Electricity & Electronics
 component: Circuit Theory
 permalink: electricity-electronics/circuit-theory-2
 ---
-![[SI Units#Assumptions on Ranges]]
+![[SI Units#Assumptions on Ranges [ 1]]
 
 ![[Circuit Theory (1)#Power]]
 
@@ -72,6 +72,7 @@ The bigger the resistance, the bigger the share of voltage it drops. By adding u
 $$
 V_{s}=V_{R1}+V_{R2}+V_{R3}+\dots
 $$
+
 ### Resistors in Parallel
 
 ```mermaid
@@ -99,7 +100,7 @@ $$
 I_{R1}=\frac{V}{R_{1}} \qquad I_{R2}=\frac{V}{R_{2}}
 $$
 
-Remember that the total current is equal to the sum of branch currents:
+Remember that the total current is equal to the sum of branch currents ([[Circuit Theory (2)#Kirchhoff's Current Law|Kirchhoff's Current Law]]):
 
 $$
 I_{t}=I_{1}+I_{2}+I_{3}+\dots
@@ -107,9 +108,21 @@ $$
 
 As a result, the total resistance of a parallel network is always less than the smallest resistor, because multiple paths make it easier for current to flow.
 
+> [!TIP] You can derive [[Circuit Theory (2)#Current Divider Formula|an alternative formula]] to calculate $I_{R1}$  without knowing the voltage
 
-> [!TIP] Calculate $I_{R1}$ without voltage
-> You can derive [[Circuit Theory (2)#Current Divider Formula|an alternative formula]] to calculate $I_{R1}$  without knowing the voltage
+The formula for calculating resistance in parallel is:
+
+$$
+\frac{1}{R_{t}} = \frac{1}{R_{1}}+\frac{1}{R_{2}}+\frac{1}{R_{3}}+\dots
+$$
+
+Which can be rearranged for $R_{t}$ as:
+
+$$
+R_{t}=\frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\frac{1}{R_{3}}+\dots}
+$$
+
+> [!WARNING] Only the $\frac{1}{R_{t}}$ form is provided in the formula book
 
 ## Ohm's Law
 
@@ -119,8 +132,17 @@ $$
 V=IR
 $$
 
-> [!INFO] Formula book gives different arrangement
-> Ohm's Law is included in the formula book, but arranged as $R=\frac{V}{I}$
+> [!INFO] Included in the formula book, but arranged as $R=\frac{V}{I}$
+
+## Kirchhoff's Current Law
+
+Kirchhoff's Current Law states that the total current flowing into a node (junction) in a circuit equals the total current flowing out of that node.
+
+$$
+I_{t}=I_{1}+I_{2}+I_{3}+\dots
+$$
+
+> [!WARNING] Not included in the formula book
 
 ## Short Circuit
 
@@ -160,7 +182,7 @@ $$
 I=\frac{V}{R_{1} + R_{2}}
 $$
 
-The voltage is shared, so can calculate $V_{out}$ with:
+The voltage is shared, so you can calculate $V_{out}$ with:
 
 $$
 V_{out}=V_{s} \times \frac{R_{2}}{R_{1} + R_{2}}
@@ -187,7 +209,7 @@ graph LR
 
 Two resistors $R_{1}$ and $R_2$ are in parallel. There is the same voltage $V$ across both resistors, while total current $I_{t}$ splits into $I_{R1}$ and $I_{R2}$. 
 
-> [!WARNING] The formula for calculating $I_{Rx}$ without $V$ is not included in the formula book!
+> [!WARNING] The formula for calculating $I_{Rx}$ without $V$ is not included in the formula book
 
 ### Current Divider Formula
 There is an alternative formula for calculating $I_{R1}$ without $V$ which can be derived through substitution.
@@ -198,7 +220,7 @@ $$
 I_{R1} = \frac{V}{R_{1}} \qquad I_{R2} = \frac{V}{R_{2}}
 $$
 
-**2. Total current (Kirchhoff's Current Law)**
+**2. Total current ([[Circuit Theory (2)#Kirchhoff's Current Law|Kirchhoff's Current Law]])**
 
 $$
 I_{t}=I_{R1}+I_{R2}=\frac{V}{R_{1}}+\frac{V}{R_{2}}
@@ -207,7 +229,7 @@ $$
 **3. Solve for V**
 
 $$
-V=\frac{I_{t}}{\frac{1}{R_{1}}+\frac{1}{R_{1}}}
+V=\frac{I_{t}}{\frac{1}{R_{1}}+\frac{1}{R_{2}}}
 $$
 
 **4. Substitute back into** $I_{R1}=\frac{V}{R_{1}}$

@@ -17,7 +17,7 @@ $$
 
 ![[Circuit Theory (1)#Current]]
 
-
+---
 
 $$
 I = nAve \qquad J = \frac{I}{A}
@@ -33,13 +33,30 @@ $$
 R = \frac{V}{I} 
 $$
 
-![[Circuit Theory (1)#Resistance]]
-
 ![[Circuit Theory (2)#Ohm's Law]]
 
+![[Circuit Theory (1)#Resistance]]
+
+---
+
 $$
-R = \frac{\rho \ell}{a} \qquad R_s = R_1 + R_2 + R_3 \qquad \frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
-\qquad R_p = \frac{R_1 \times R_2}{R_1 + R_2}
+R_s = R_1 + R_2 + R_3
+$$
+
+![[Circuit Theory (2)#Resistors in Series]]
+
+---
+
+$$
+\frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
+$$
+
+![[Circuit Theory (2)#Resistors in Parallel]]
+
+---
+
+$$
+R = \frac{\rho \ell}{a} \qquad R_p = \frac{R_1 \times R_2}{R_1 + R_2}
 $$
 
 > [!WARNING] TODO
@@ -52,6 +69,8 @@ P = V \times I \qquad P = I^2 \times R \qquad P = \frac{V^2}{R}
 $$
 
 ![[Circuit Theory (1)#Power]]
+
+---
 
 $$
 W = V \times l \times t

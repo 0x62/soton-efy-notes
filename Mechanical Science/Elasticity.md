@@ -1,10 +1,12 @@
 ---
 tags:
   - elasticity
+  - formula
 module: Mechanical Science
 component: Elasticity
+permalink: mechanical-science/elasticity
 ---
-## Hooke's Law #formula 
+## Hooke's Law
 
 ### Overview
 
@@ -57,4 +59,79 @@ The total force is: $F_{total} = F_1 + F_2 + F_3 + ...$
 * Springs in parallel create a stronger (harder to stretch) system
 * For $n$ identical springs in parallel: $k_{eff} = n \times k$
 
- 
+
+## Young Modulus
+
+**Young Modulus** $E$ is a measure of how stiff a material is – how much it stretches/compresses when it is loaded. It is calculated in terms of **strain** and **stress**.  It uses the same units as stress, $N/m^2$.
+
+$$
+E=\frac{Stress}{Strain}=\frac{\sigma}{\epsilon}
+$$
+
+### Strain
+
+**Strain** $\epsilon$ is a measure of how much a material has stretched. It is dimension less, as it is just a ratio of the change in length to the original length.
+
+$$
+\epsilon = \frac{Change\ in\ length}{Length} = \frac{\Delta x}{L}
+$$
+
+> [!figure] ![[Strain definition.png]]
+> © University of Southampton [^1]
+
+### Stress
+
+**Stress** $\sigma$ is a measure of the intensity of force acting normal to an area. It is measured in $N/m^2$ (or equivalent SI units for force by area).
+
+$$
+\sigma=\frac{Force}{Area}=\frac{F}{A}
+$$
+
+### Calculating extension/contraction
+
+Young Modulus enables us to calculate the extension or contraction of a body if we are given it's dimensions (length, cross-sectional area), it's Young's Modulus $E$ and the tensile force applied. To derive the formula to calculate $\Delta x$:
+
+**1. Solve for** $\sigma$:
+
+$$
+\sigma=\epsilon A
+$$
+**2. Substitue stress and strain:**
+
+$$
+\frac{F}{A}=E \times \frac{\Delta x}{L}
+$$
+**3. Solve for** $\Delta L$:
+
+$$
+\Delta x=\frac{FL}{AE}
+$$
+
+### Combining Hooke's Law & Young Modulus
+
+Both Hooke's Law and Young Modulus can be solved for $F$:
+
+$$
+F=k\Delta x
+$$
+$$
+F=\frac{EA}{L} \ \times \Delta x
+$$
+
+By substitution, we can derive $k$ in terms of $E$, $A$ and $L$:
+
+$$
+k\Delta x=\frac{EA}{L} \times \Delta x
+$$
+$$
+k=\frac{EA}{L}
+$$
+
+This gives us $k$, the spring constant, in terms of $E$ and geometric factors area/length.
+
+
+> [!TIP] This is useful because $E$ **is a property of the material, not the spring geometry**. We can look up $E$ for a material in a data book, but if we tried to keep a table of values for $k$ we would need one for every possible shape and size of spring.
+
+
+
+[^1]: https://blackboard.soton.ac.uk/ultra/courses/_232721_1/outline/edit/document/_7456109_1?courseId=_232721_1&view=content&state=view

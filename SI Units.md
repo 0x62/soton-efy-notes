@@ -47,7 +47,7 @@ SI prefixes allow us to express very large or small quantities concisely by scal
 
 To convert between prefixes, determine the power of 10 difference and multiply accordingly.
 
-### Assumptions on Ranges
+### Assumptions on Ranges [^1]
 
 In electrical engineering, using the correct SI units and knowing the typical ranges is essential. It helps check if your answer makes sense.
 
@@ -61,5 +61,5 @@ In electrical engineering, using the correct SI units and knowing the typical ra
 | [[Circuit Theory (1)#Power\|Power]]           | Watts  | $MW, kW, W, mW$                           | Power stations in $MW$, household devices in $kW$, circuits in $mW$      |
 
 > [!TIP] If you get 100 MV across a resistor in a lab, something is wrong!
-> Always check your units and magnitude
 
+[^1]: Content from UoS slides, © Josh Robertson

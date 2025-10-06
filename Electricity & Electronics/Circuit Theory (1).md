@@ -22,8 +22,9 @@ Semiconductors have 4 electrons in their outer shell. They may act as conductors
 ## Electricity
 Electricity and electrical circuits are like a water pipe. [[Circuit Theory (1)#Voltage|Voltage]] is the pressure of the water, [[Circuit Theory (1)#Current|Current]] is the dimension of the pipe and [[Circuit Theory (1)#Resistance|Resistance]] is like sand or rocks in the pipe.
 
-![[Electricity water hose.png]]
-Source: https://www.freeingenergy.com/understanding-the-basics-of-electricity-by-thinking-of-it-as-water/
+
+> [!figure] ![[Electricity water hose.png]]
+> © freeingenergy.com [^1]
 
 ## Current
 When electrons flow through a complete circuit, this movement is called an electric current.. Current is measured in amperes ($A$), $1A$ is equal to one coulomb of charge passing a point each second.
@@ -48,7 +49,7 @@ graph LR
 ```
 
 ## Charge
-Charge is the strength of how a particle interacts with electromagnetic fields, measured with the unit of Coulomb ($C$). A single electron carries a charge of $-1.6 \times 10^{-19}C$ while protons carry the same charge but positive.
+Charge is the strength of how a particle interacts with electromagnetic fields, measured with the unit of **Coulomb** ($C$). A single electron carries a charge of $-1.6 \times 10^{-19}C$ while protons carry the same charge but positive.
 
 Because electrons are so small, it is more useful to talk about large groups of the – one coulomb of charge is equal to $6.25 \times 10^{18}$  electrons. 
 
@@ -61,17 +62,20 @@ If current flows for a certain time, the total charge can be calculated as $Curr
 * Given [[Circuit Theory (1)#Energy|Energy]] and [[Circuit Theory (1)#Voltage|Voltage]]: $Q = \frac{E}{V}$
 
 ## Energy
-Energy is the capacity to cause change in a system - the ability to do work by moving something against a force or transferring heat. Energy is measured in Joules ($J$), both in electronics and mechanical systems. 
+Energy is the capacity to cause change in a system - the ability to do work by moving something against a force or transferring heat. Energy is measured in **Joules** ($J$), both in electronics and mechanical systems. 
 
 One joule is the energy transferred when a force of $1N$ moves an object through $1M$. 
 
-In formulas, energy typically uses the letter $E$.
+In formulas, energy typically uses the letter $E$, but also uses $W$.
+
+> [!WARNING] Be careful, this isn't the same $W$ as in Watt
 
 **Related Formula**
 * Given [[Circuit Theory (1)#Voltage|Voltage]] and [[Circuit Theory (1)#Charge|Charge]]: $E=V \times Q$
+* Given [[Circuit Theory (1)#Voltage|Voltage]], [[Circuit Theory (1)#Current|Current]] and Time: $E=V \times I \times t$
 
 ## Voltage
-Voltage is the measure of electrical potential energy between two points in a circuit, measured in Volts ($V$). One volt is defined as $1J$ transferred per coulomb of charge:  $1\ V= \frac{1J}{1C}$
+Voltage is the measure of electrical potential energy between two points in a circuit, measured in **Volts** ($V$). One volt is defined as $1J$ transferred per coulomb of charge:  $1\ V= \frac{1J}{1C}$
 
 In formulas, voltage typically uses the letter $V$.
 
@@ -81,7 +85,7 @@ In formulas, voltage typically uses the letter $V$.
 * Given [[Circuit Theory (1)#Power|Power]] and [[Circuit Theory (1)#Current|Current]]: $V=\frac{P}{I}$
 
 ## Resistance
-Resistance is the property of a material or component that opposes the flow of electric current, measured in Ohms ($\Omega$). One ohm is defined as the resistance that allows $1A$ of current to flow when $1V$ is applied across it: $1\Omega=\frac{1V}{1A}$
+Resistance is the property of a material or component that opposes the flow of electric current, measured in **Ohms** ($\Omega$). One ohm is defined as the resistance that allows $1A$ of current to flow when $1V$ is applied across it: $1\Omega=\frac{1V}{1A}$
 
 Resistance determines how much a component "resists" the movement of charge - higher resistance means less current flows for a given voltage. It's analogous to friction in mechanical systems: just as friction opposes motion and dissipates energy as heat, resistance opposes current flow and dissipates electrical energy as heat.
 
@@ -95,12 +99,12 @@ In formulas, resistance typically uses the letter $R$.
 ## Electromotive Force
 Electromotive Force (EMF) is the property of an energy source that drives electrical charge around a circuit. It is the "push" inside a battery/generator that makes electrons move.
 
-Although it is called a force, EMF is actually measured as potential difference in volts. In practice, EMF represents the maximum voltage a source can provide when no current is flowing. Once a load is connected and current flows, some of the source voltage is lost to internal resistance, but the EMF is the origin of all current in the circuit.
+Although it is called a force, EMF is actually measured as potential difference in **volts**. In practice, EMF represents the maximum voltage a source can provide when no current is flowing. Once a load is connected and current flows, some of the source voltage is lost to internal resistance, but the EMF is the origin of all current in the circuit.
 
 It is measured across the terminals of the source when no current is flowing.
 
 ## Power
-Electrical components are given a power rating, measured in watts ($W$).  This shows the maximum rate at which the component can convert electrical energy into other forms such as heat, light or motion.
+Electrical components are given a power rating, measured in **Watts** ($W$).  This shows the maximum rate at which the component can convert electrical energy into other forms such as heat, light or motion.
 
 If energy is the ability to do work, then power is the rate of doing work.
 
@@ -112,3 +116,5 @@ Sometimes $I$ or $V$ is not known – use [[Circuit Theory (2)#Ohm's Law|Ohm's L
 * Given [[Circuit Theory (1)#Current|Current]] and [[Circuit Theory (1)#Voltage|Voltage]]: $P = I \times V$
 * Given [[Circuit Theory (1)#Voltage|Voltage]] and [[Circuit Theory (1)#Resistance|Resistance]]: $P=\frac{V^2}{R}$
 * Given [[Circuit Theory (1)#Current|Current]] and [[Circuit Theory (1)#Resistance|Resistance]]: $P = I^2 \times R$
+
+[^1]: https://www.freeingenergy.com/understanding-the-basics-of-electricity-by-thinking-of-it-as-water/

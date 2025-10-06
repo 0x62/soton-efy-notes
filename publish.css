@@ -161,4 +161,17 @@ body {
   display: none;
 }
 
+.callout[data-callout="figure"] {
+	--callout-icon: none;
+  background-color: transparent;
 
+  .callout-content {
+  		--p-spacing: 0.5rem;
+      font-size: 0.75em; 
+      text-align: center;
+  }
+
+  .callout-title-inner {
+  	margin: 0 auto;
+  }
+ }
