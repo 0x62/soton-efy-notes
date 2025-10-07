@@ -16,7 +16,7 @@ $$
 x=\frac{F}{k}
 $$
 
-where $k$ is the spring constant. The spring constant is an specific value unique to each spring based on it's size and composition.
+where $k$ is the spring constant measured in $N/m$ (newtons per meter). The spring constant is an specific value unique to each spring based on it's size and composition.
 
 If you apply double the force, you will get double the extension *while remaining within elastic limits*. At some critical point, the spring will begin to deform *plastically*, and will no longer return to it's original length.
 
@@ -70,7 +70,7 @@ $$
 
 ### Strain
 
-**Strain** $\epsilon$ is a measure of how much a material has stretched. It is dimension less, as it is just a ratio of the change in length to the original length.
+**Strain** $\epsilon$ is a measure of how much a material has stretched. It is dimensionless, as it is just a ratio of the change in length to the original length.
 
 $$
 \epsilon = \frac{Change\ in\ length}{Length} = \frac{\Delta x}{L}
@@ -81,7 +81,7 @@ $$
 
 ### Stress
 
-**Stress** $\sigma$ is a measure of the intensity of force acting normal to an area. It is measured in $N/m^2$ (or equivalent SI units for force by area).
+**Stress** $\sigma$ is a measure of the intensity of force acting normal to an area. It is measured in $N/m^2$ (newtons per meter square). It can also be measured in Pascal, $1\ N/m^2 = 1\ Pascal$, as pascal is also force by area.
 
 $$
 \sigma=\frac{Force}{Area}=\frac{F}{A}
@@ -94,14 +94,14 @@ Young Modulus enables us to calculate the extension or contraction of a body if 
 **1. Solve for** $\sigma$:
 
 $$
-\sigma=\epsilon A
+\sigma=\epsilon E
 $$
 **2. Substitue stress and strain:**
 
 $$
 \frac{F}{A}=E \times \frac{\Delta x}{L}
 $$
-**3. Solve for** $\Delta L$:
+**3. Solve for** $\Delta x$:
 
 $$
 \Delta x=\frac{FL}{AE}
@@ -127,10 +127,11 @@ $$
 k=\frac{EA}{L}
 $$
 
-This gives us $k$, the spring constant, in terms of $E$ and geometric factors area/length.
+This gives us $k$, the spring constant, in terms of $E$ and area/length.
 
 
-> [!TIP] This is useful because $E$ **is a property of the material, not the spring geometry**. We can look up $E$ for a material in a data book, but if we tried to keep a table of values for $k$ we would need one for every possible shape and size of spring.
+> [!TIP] Useful because $E$ is a property of the material, not geometry
+> We can look up $E$ for a material in a data book, but if we tried to keep a table of values for $k$ we would need one for every possible shape and size of spring.
 
 
 

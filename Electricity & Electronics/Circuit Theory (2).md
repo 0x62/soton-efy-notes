@@ -22,6 +22,14 @@ permalink: electricity-electronics/circuit-theory-2
 
 Many low power devices (relative to appliances like heaters, cookers, kettles etc) take in AC from mains but immediately convert to DC.
 
+## Short Circuit
+
+A short circuit happens when current takes an unintended path with little or no resistance. THis usually occurs if two points in a circuit that should be separate accidentally touch - for example because of faulty wiring or wrong connection. 
+
+Because there is almost no resistance, the current can rise dramatically. This excessive current generates heat, which can damage components, melt wires and even cause fires.
+
+Short circuits are a serious fault, and why protective devices like fuses and circuit breakers are essential in electrical systems.
+
 ## Resistors
 
 Resistors are one of the most common components – they resist the flow of electrical current by turning some of the energy into heat. This helps you control how much current moves through different parts of a circuit. [[Circuit Theory (1)#Resistance|Resistance]] is measured in Ohms ($\Omega$).
@@ -143,14 +151,6 @@ I_{t}=I_{1}+I_{2}+I_{3}+\dots
 $$
 
 > [!WARNING] Not included in the formula book
-
-## Short Circuit
-
-A short circuit happens when current takes an unintended path with little or no resistance. THis usually occurs if two points in a circuit that should be separate accidentally touch - for example because of faulty wiring or wrong connection. 
-
-Because there is almost no resistance, the current can rise dramatically. This excessive current generates heat, which can damage components, melt wires and even cause fires.
-
-Short circuits are a serious fault, and why protective devices like fuses and circuit breakers are essential in electrical systems.
 
 ## Voltage Divider
 

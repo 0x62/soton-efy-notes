@@ -153,7 +153,7 @@ The amplitude of the vibration of the atoms in the metal at the fire end become 
 Consider a slab of face area $A$ and thickness $L$, whose faces are maintained at temperatures $T_{H}$ and $T_{C}$ by a hot reservoir and a cold reservoir.
 
 > [!figure] ![[Heat transfer through slab.png]]
-> © Fundamentals of Physics; Halliday, Resnick Walker - fig. 18.6.1
+> © Fundamentals of Physics; Halliday, Resnick & Walker - fig. 18.6.1
 
 Let $Q$ be the energy that is transferred as heat through the slab, from its hot face to its cold face, in time $t$. The **conduction rate** $P_{cond}$ (amount of energy per unit time) is:
 
