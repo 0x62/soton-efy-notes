@@ -171,7 +171,7 @@ graph LR
     
     style Vs fill:#e1f5ff,stroke:#333,stroke-width:2px
     style R1 fill:#d4edda,stroke:#333,stroke-width:2px
-    style Vout fill:#ff6b6b,stroke:#333,stroke-width:2px
+    style Vout fill:#ff6b6b,stroke:#333,stroke-width:2px,color:#ffffff
     style R2 fill:#d4edda,stroke:#333,stroke-width:2px
     style GND fill:#e1f5ff,stroke:#333,stroke-width:2px
 ```

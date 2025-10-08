@@ -47,7 +47,7 @@ If you found these notes helpful, you're welcome to [buy me a coffee/beer](https
 *  [Lecture Notes & Exercises](https://spakula.github.io/fyA/)
 * [[Algebraic Fraction Manipulation]]
 
-## Routes to Success
+### Routes to Success
 
 - [[Problem Solving Skills]]
 
