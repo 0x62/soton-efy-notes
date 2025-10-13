@@ -81,6 +81,18 @@ $$
 V_{s}=V_{R1}+V_{R2}+V_{R3}+\dots
 $$
 
+We can get $V_{R1}$ from Ohm's law, so:
+
+$$
+V_{s}=IR_{R1}+IR_{R2}+IR_{R3}+\dots
+$$
+
+**Key Points:**
+
+- You can calculate total **resistance** by summing each individual resistance
+- **Current** remains the same across every resistor
+- **Voltage** drops over each resistor
+
 ### Resistors in Parallel
 
 ```mermaid
@@ -131,6 +143,12 @@ R_{t}=\frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\frac{1}{R_{3}}+\dots}
 $$
 
 > [!WARNING] Only the $\frac{1}{R_{t}}$ form is provided in the formula book
+
+**Key Points:**
+
+- You can calculate total **current** by summing the current of each branch
+- **Voltage** remains the same across every resistor
+- **Current** splits over each resistor
 
 ## Ohm's Law
 
@@ -188,6 +206,12 @@ $$
 V_{out}=V_{s} \times \frac{R_{2}}{R_{1} + R_{2}}
 $$
 
+$V_{out}$ is the voltage across $R_{2}$. You could also calculate the voltage across $R_{1}$:
+
+$$
+R_{1}= V_{s} \times \frac{R_{1}}{R_{1}+R_{2}}
+$$
+
 ## Current Divider
 
 ```mermaid
@@ -211,7 +235,28 @@ Two resistors $R_{1}$ and $R_2$ are in parallel. There is the same voltage $V$ a
 
 > [!WARNING] The formula for calculating $I_{Rx}$ without $V$ is not included in the formula book
 
-### Current Divider Formula
+### Current with Ohm's Law
+
+As the same voltage is present across both resistors, you can calculate current with Ohm's Law.
+
+$$
+I_{R1}=\frac{V}{R_{1}} \qquad I_{R2}=\frac{V}{R_{2}}
+$$
+
+$$
+I_{t}=\frac{V}{R_{1}}+\frac{V}{R_{2}}
+$$
+
+$$
+V=I_{t}(\frac{1}{R_{1}}+\frac{1}{R_{2}})^{-1}=I_{t}\frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}}
+$$
+$$
+V=I_{t}\frac{R_{1}R_{2}}{R_{1}+R_{2}}
+$$
+
+> [!WARNING] Not included in the formula book
+
+### $I$ across node without $V$
 There is an alternative formula for calculating $I_{R1}$ without $V$ which can be derived through substitution.
 
 **1. Current through R1 and R2**

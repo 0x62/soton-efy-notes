@@ -9,25 +9,38 @@ permalink: mechanical-science/elasticity
 ## Summary
 
 **[[Elasticity#Hooke's Law|Hooke's Law]]**
+Extension/contraction of springs and solid bodies
+
 $$
-x = \frac{F}{k}
+x = \frac{F}{k} \qquad k=\frac{EA}{L}
 $$
+
 **[[Elasticity#Tensile & Compressive Stress|Normal Stress]], [[Elasticity#Shear Stress|Shear Stress]], [[Elasticity#Bulk Stress|Bulk Stress]]**
+Force per unit area
 
 $$
 Stress=\frac{Force}{Area} \qquad \sigma=\frac{F}{A} \qquad \tau=\frac{F}{A} \qquad P=\frac{F}{A}
 $$
 
 **[[Elasticity#Tensile & Compressive Strain|Normal Strain]], [[Elasticity#Shear Strain|Shear Strain]], [[Elasticity#Bulk Strain|Bulk Strain]]**
+Magnitude of change under forces
 
 $$
 Strain = \frac{Change}{Original\ State} \qquad \epsilon=\frac{\Delta x}{L} \qquad \tan \gamma=\frac{\Delta x}{L} \qquad \epsilon_{v}=\frac{\Delta V}{V}
 $$
 
 **[[Elasticity#Young Modulus|Young Modulus]], [[Elasticity#Shear Modulus|Shear Modulus]], [[Elasticity#Bulk Modulus|Bulk Modulus]]**
+Relationship between force and magnitude of change
 
 $$
-Modulus=\frac{Stress}{Strain} \qquad E=\frac{\sigma}{\epsilon} \qquad G=\frac{\tau}{\gamma} \qquad B=\frac{P}{\Delta V \div V}
+Modulus=\frac{Stress}{Strain} \qquad E=\frac{\sigma}{\epsilon} \qquad G=\frac{\tau}{\gamma} \qquad B=\frac{P}{\epsilon_{v}}
+$$
+
+**[[Elasticity#Ultimate Tensile Strength|Ultimate Tensile Strength]], [[Elasticity#Factors of Safety|Factors of Safety]]**
+Designing safe systems
+
+$$
+FoS=\frac{UTS}{Max\ allowed\ stress}
 $$
 
 ## Hooke's Law
@@ -90,9 +103,11 @@ The total force is: $F_{total} = F_1 + F_2 + F_3 + ...$
 - **Shear:** where force is applied *parallel* to the surface
 - **Bulk:** where force is applied equally, in all directions, but perpendicular to the surface
 
-**Stress** $\sigma$ is a measure of the intensity of the force, while **strain** $\epsilon$ is a measure of how *much* a material deforms under stress. A soft metal bar (e.g lead) will deform more than a steel bar. It is a dimensionless quality, as it is essentially a ratio of unloaded size to stressed size.
+**Stress** $\sigma$ is a measure of the intensity of the force per unit area. It is measured in $N/m^2$ or pascals ($1\ N/m^2 = 1\ Pa$). 
 
-Each type of stress has it's own modulus, which allows you to calculate how a given material will deform under that kind of stress, but they all use the same units – $N/m^2$ or pascals ($1\ N/m^2 = 1\ Pa$). 
+**Strain** $\epsilon$ is a measure of how *much* a material deforms under stress. A soft metal bar (e.g lead) will deform more than a steel bar. It is a dimensionless quality, as it is essentially a ratio of original state to stressed state.
+
+Each type of stress has it's own modulus, which allows you to calculate how a given material will deform under that kind of stress.
 
 | Stress                                                               | Modulus                                     | Symbol |
 | -------------------------------------------------------------------- | ------------------------------------------- | ------ |
@@ -148,11 +163,13 @@ Young Modulus enables us to calculate the extension or contraction of a body if 
 $$
 \sigma=\epsilon E
 $$
+
 **2. Substitue stress and strain:**
 
 $$
 \frac{F}{A}=E \times \frac{\Delta x}{L}
 $$
+
 **3. Solve for** $\Delta x$:
 
 $$
@@ -211,7 +228,6 @@ $$
 \tau=\frac{F}{A}
 $$
 
-
 > [!NOTE] The definition is the same as [[Elasticity#Tensile & Compressive Stress|Normal Stress]], but parallel to the cross-sectional area
 
 #### Shear Modulus
@@ -222,7 +238,7 @@ $$
 G=\frac{F}{A} \div \frac{\Delta x}{L}=\frac{\tau}{\tan \gamma}
 $$
 
-For small $\gamma$, $\tan \gamma \approx \gamma$, therefore:
+For small $\gamma$ (e.g $0.001 \textdegree$), $\tan \gamma \approx \gamma$, therefore:
 
 $$
 G=\frac{\tau}{\gamma}
@@ -289,7 +305,7 @@ $$
 Like the other stress modulus, bulk modulus $B$ is a stress per strain:
 
 $$
-B=\frac{P}{\frac{\Delta V}{V}}
+B=\frac{P}{\frac{\Delta V}{V}}=\frac{P}{\epsilon_{v}}
 $$
 
 ### Ultimate Tensile Strength

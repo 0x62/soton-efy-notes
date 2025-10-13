@@ -31,6 +31,7 @@ If you found these notes helpful, you're welcome to [buy me a coffee/beer](https
 
 * [[Circuit Theory (1)]]
 * [[Circuit Theory (2)]]
+* [[Circuit Theory (3)]]
 * [[Annotated Formula Book]]
 
 ### Mechanical Science
