@@ -48,20 +48,24 @@ $$
 P=\frac{V^2 \times R_{l}}{(R_{s}+R_{l})^2}
 $$
 
-Using calculus, we can prove $P_{max}$ is reached when $R_{s}=R_{l}$. Take the derivative of $P$ with respect to $R_l$ and set it equal to zero:
+Using calculus, we can prove $P_{max}$ is reached when $R_{s}=R_{l}$.
+
+Take the derivative of $P$ with respect to $R_l$ and set it equal to zero:
 
 $$
 \frac{dP}{dR_l} = 0
 $$
 
-Using the quotient rule:
+Using the quotient rule: 
 
 $$
 \frac{d}{dx}\left(\frac{u}{v}\right) = \frac{v\frac{du}{dx} - u\frac{dv}{dx}}{v^2}
 $$
 
+Where $u = V^2 R_L$ and $v = (R_s + R_L)^2$
+
 $$
-\frac{dP}{dR_l} = V^2 \cdot \frac{(R_s + R_l)^2 \cdot 1 - R_L=l \cdot 2(R_s + R_l) \cdot 1}{(R_s + R_l)^4}
+\frac{dP}{dR_l} = \frac{(R_s + R_l)^2 \cdot V^2 - V^2 R_l \cdot 2(R_s + R_l)}{(R_s + R_l)^4}
 $$
 
 Simplifying the numerator:
