@@ -7,6 +7,8 @@ generatedAt: "2025-10-13T20:27:36.745Z"
 
 ---
 
-Measure resistance only when the component is disconnected from the circuit; alternatively measure $V$ and $I$ and compute $$R=\dfrac{V}{I}$$.
+Measure resistance only when the component is disconnected from the circuit; alternatively measure $V$ and $I$ and compute:
+
+$$R=\dfrac{V}{I}$$
 
 Measuring in-circuit yields the net effective resistance across connected branches, not the isolated component's resistance.

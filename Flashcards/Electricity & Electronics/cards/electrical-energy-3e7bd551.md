@@ -3,7 +3,7 @@ id: 3e7bd551291d685bb1d2805b551dc082
 noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
 generatedAt: "2025-10-13T20:31:03.468Z"
 ---
-## What is electrical energy $W$ in terms of voltage, current and time? (note: the note shows $W = V \times l \times t$)
+## What is electrical energy $W$ in terms of voltage, current and time?
 
 ---
 

@@ -17,5 +17,4 @@ generatedAt: "2025-10-13T20:21:07.388Z"
 - Nano: $\text{n}$ = $10^{-9}$
 - Pico: $\text{p}$ = $10^{-12}$
 
-
 Use these prefixes to compactly express very large or very small quantities (e.g., $1\ \text{M}\Omega = 10^{6}\ \Omega$).

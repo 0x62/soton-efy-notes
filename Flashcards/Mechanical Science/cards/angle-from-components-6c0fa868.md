@@ -9,6 +9,4 @@ generatedAt: "2025-10-13T20:22:16.326Z"
 
 $$\theta=\tan^{-1}\left(\frac{A_y}{A_x}\right)$$
 
-Notes:
-
 This gives the reference angle, but you must consider the signs of $A_x$ and $A_y$ to determine the correct quadrant. In practice use $\operatorname{atan2}(A_y,A_x)$ to get the full-range angle.

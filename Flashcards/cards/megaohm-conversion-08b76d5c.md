@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.389Z"
 
 $1\ \text{M}\Omega = 10^{6}\ \Omega = 1\,000\,000\ \Omega$
 
-
 Mega ($\text{M}$) is $10^{6}$, commonly used for insulators or very large resistances.

@@ -9,6 +9,8 @@ images:
 
 ---
 
-The bridge is balanced when $$V_{out}=0\,\mathrm{V}$$ (no potential difference between the midpoints).
+The bridge is balanced when there is no potential difference between the midpoints
+
+$$V_{out}=0\,\mathrm{V}$$
 
 Practical use: measure small changes in resistance (e.g., from transducers like thermistors, strain gauges) by converting resistance changes into measurable voltage changes when slightly unbalanced.

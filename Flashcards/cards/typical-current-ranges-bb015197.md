@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.390Z"
 
 Typical current ranges: from kiloamperes ($\text{kA}$) for power grids down to microamperes ($\mu\text{A}$) for sensors.
 
-
 Use these ranges to sanity-check calculations: e.g., if a small sensor circuit yields kiloamp currents, the result is likely erroneous.

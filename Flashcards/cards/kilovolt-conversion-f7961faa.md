@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.389Z"
 
 $1\ \text{kV} = 10^{3}\ \text{V} = 1000\ \text{V}$
 
-
 Kilo ($\text{k}$) is $10^{3}$, used for high-voltage transmission levels.

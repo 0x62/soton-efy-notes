@@ -5,8 +5,6 @@ generatedAt: "2025-10-13T20:31:03.468Z"
 ---
 ## What is the equivalent resistance of resistors in series?
 
-$R_s = R_1 + R_2 + R_3$
-
 ---
 
 $$R_s = R_1 + R_2 + R_3$$

@@ -5,8 +5,6 @@ generatedAt: "2025-10-13T20:31:03.466Z"
 ---
 ## What is electrical current in terms of charge and time?
 
-$I = \frac{Q}{t}$
-
 ---
 
 $$I = \frac{Q}{t}$$

@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.387Z"
 
 Volt, symbol $\text{V}$ (property symbol $V$)
 
-
 A volt represents electric potential difference; common multiples are $\text{kV}$ (kilovolt) and submultiples $\text{mV}$ (millivolt).

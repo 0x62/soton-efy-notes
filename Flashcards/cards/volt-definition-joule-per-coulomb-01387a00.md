@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.390Z"
 
 $1\ \text{V} = 1\ \text{J}\,\text{C}^{-1}$
 
-
 A volt is one joule of energy per coulomb of charge. Therefore if $Q$ coulombs move across a potential difference $V$, the energy change is $E=Q\,V$.

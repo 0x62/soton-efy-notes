@@ -11,6 +11,4 @@ images:
 
 $$|A|=\sqrt{A_{x}^2+A_{y}^2+A_{z}^2}$$
 
-Derivation:
-
 Apply Pythagoras in two steps: first find magnitude in the $xy$-plane $\sqrt{A_x^2+A_y^2}$, then treat that as one leg with $A_z$ as the other leg and apply Pythagoras again.

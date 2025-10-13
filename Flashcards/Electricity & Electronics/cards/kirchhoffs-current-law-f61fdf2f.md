@@ -14,6 +14,6 @@ The total current entering a junction equals the total current leaving it; algeb
 
 Example: if $I_1$ enters and $I_2,I_3$ leave then
 
-$I_1+(-I_2)+(-I_3)=0$$
+$$I_1+(-I_2)+(-I_3)=0$$
 
 Equivalently $I_{\text{entering}}=I_{\text{leaving}}$.

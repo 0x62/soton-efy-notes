@@ -5,8 +5,6 @@ generatedAt: "2025-10-13T20:31:03.468Z"
 ---
 ## What is the relation $R = \dfrac{\rho \ell}{a}$ and what do the symbols represent?
 
-$R = \frac{\rho \ell}{a}$
-
 ---
 
 $$R = \frac{\rho \ell}{a}$$

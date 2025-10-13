@@ -215,7 +215,7 @@ $$
 
 ![[KVL example.png]]
 
-**Another way to look at it is the sum of potential differences in any loop must equal 0V**. We can use this to get to [[Circuit Theory (2)#Ohm's Law|Ohm's Law]] from KVL.
+Another way to look at it is the **sum of potential differences in any loop must equal 0V**. We can use this to get to [[Circuit Theory (2)#Ohm's Law|Ohm's Law]] from KVL.
 
 $$
 V_{R1}=I\times R_{1} \qquad V_{R2}=I\times R_{2}

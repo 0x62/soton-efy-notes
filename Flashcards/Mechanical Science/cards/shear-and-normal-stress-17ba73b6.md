@@ -3,7 +3,7 @@ id: 17ba73b638020705c14bf288d0ec560a
 noteFile: "[[Mechanical Science/Elasticity.md]]"
 generatedAt: "2025-10-13T20:23:13.009Z"
 ---
-## Write the formulas for tensile/compressive stress $\sigma$, shear stress $\tau$ and bulk stress (pressure) $P$.
+## Write the formulas for tensile/compressive stress $\sigma$, shear stress $\tau$ and bulk stress (pressure) $P$
 
 ---
 

@@ -5,8 +5,6 @@ generatedAt: "2025-10-13T20:31:03.468Z"
 ---
 ## What are the equivalent formulas for electrical power?
 
-$P = V I\qquad P = I^2 R\qquad P = \frac{V^2}{R}$
-
 ---
 
 $$P = V I\qquad P = I^2 R\qquad P = \frac{V^2}{R}$$

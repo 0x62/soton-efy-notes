@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.389Z"
 
 $P$ is power in watts ($\text{W}$), $I$ is current in amperes ($\text{A}$), $V$ is voltage in volts ($\text{V}$).
 
-
 The equation $P=IV$ gives electrical power as the product of current and voltage. Use consistent SI units to compute power in watts.

@@ -3,7 +3,7 @@ id: 4d3688e31f5f56911678748d01ff22e8
 noteFile: "[[Mechanical Science/Elasticity.md]]"
 generatedAt: "2025-10-13T20:23:13.008Z"
 ---
-## Define stress and give the formula for normal (tensile/compressive) stress $\sigma$.
+## Define stress and give the formula for normal (tensile/compressive) stress $\sigma$
 
 ---
 

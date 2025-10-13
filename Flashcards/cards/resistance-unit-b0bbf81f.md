@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.387Z"
 
 Ohm, symbol $\Omega$ (property symbol $R$)
 
-
 Resistance values are commonly expressed as $\Omega$, $\text{k}\Omega$, or $\text{M}\Omega$ depending on magnitude.

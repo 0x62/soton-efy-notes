@@ -9,5 +9,4 @@ generatedAt: "2025-10-13T20:21:07.390Z"
 
 $1\ \text{J} = 1\ \text{W}\cdot\text{s}$
 
-
 Energy (joules) equals power (watts) multiplied by time (seconds). For example, a $2\ \text{W}$ device running for $3\ \text{s}$ uses $6\ \text{J}$.

@@ -5,8 +5,6 @@ generatedAt: "2025-10-13T20:31:03.468Z"
 ---
 ## What is the equivalent resistance for two resistors $R_1$ and $R_2$ in parallel?
 
-$R_p = \frac{R_1 R_2}{R_1 + R_2}$
-
 ---
 
 $$R_p = \frac{R_1 R_2}{R_1 + R_2}$$

@@ -10,5 +10,4 @@ generatedAt: "2025-10-13T20:21:07.388Z"
 Energy: joule, symbol $\text{J}$ (property symbol $E$)
 Power: watt, symbol $\text{W}$ (property symbol $P$)
 
-
 Relationship: $1\ \text{W} = 1\ \text{J}\,\text{s}^{-1}$, so energy in joules equals power in watts multiplied by time in seconds.

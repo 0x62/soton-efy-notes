@@ -9,4 +9,4 @@ generatedAt: "2025-10-13T20:28:51.728Z"
 
 $$V_{out}=V_{s}\times\dfrac{R_{2}}{R_{1}+R_{2}}$$
 
-Derivation: the series current is $I=\dfrac{V_{s}}{R_{1}+R_{2}}$. The voltage across $R_{2}$ is $V_{out}=I\,R_{2}=\dfrac{V_{s}}{R_{1}+R_{2}}\,R_{2}$.
+Derivation: the series current is $I=\dfrac{V_{s}}{R_{1}+R_{2}}$. The voltage across $R_{2}$ is $V_{out}=I\,R_{2}=\dfrac{V_{s}}{R_{1}+R_{2}}\,R_{2}$
