@@ -1,12 +1,11 @@
 ---
 tags:
   - elasticity
-  - formula
 module: Mechanical Science
 component: Elasticity
 permalink: mechanical-science/elasticity
 ---
-## Summary
+## Elasticity Formula
 
 **[[Elasticity#Hooke's Law|Hooke's Law]]**
 Extension/contraction of springs and solid bodies
@@ -19,28 +18,28 @@ $$
 Force per unit area
 
 $$
-Stress=\frac{Force}{Area} \qquad \sigma=\frac{F}{A} \qquad \tau=\frac{F}{A} \qquad P=\frac{F}{A}
+\text{Stress}=\frac{\text{Force}}{\text{Area}} \qquad \sigma=\frac{F}{A} \qquad \tau=\frac{F}{A} \qquad P=\frac{F}{A}
 $$
 
 **[[Elasticity#Tensile & Compressive Strain|Normal Strain]], [[Elasticity#Shear Strain|Shear Strain]], [[Elasticity#Bulk Strain|Bulk Strain]]**
 Magnitude of change under forces
 
 $$
-Strain = \frac{Change}{Original\ State} \qquad \epsilon=\frac{\Delta x}{L} \qquad \tan \gamma=\frac{\Delta x}{L} \qquad \epsilon_{v}=\frac{\Delta V}{V}
+\text{Strain} = \frac{\text{Change}}{\text{Original State}} \qquad \epsilon=\frac{\Delta x}{L} \qquad \tan \gamma=\frac{\Delta x}{L} \qquad \epsilon_{v}=\frac{\Delta V}{V}
 $$
 
 **[[Elasticity#Young Modulus|Young Modulus]], [[Elasticity#Shear Modulus|Shear Modulus]], [[Elasticity#Bulk Modulus|Bulk Modulus]]**
 Relationship between force and magnitude of change
 
 $$
-Modulus=\frac{Stress}{Strain} \qquad E=\frac{\sigma}{\epsilon} \qquad G=\frac{\tau}{\gamma} \qquad B=\frac{P}{\epsilon_{v}}
+\text{Modulus}=\frac{\text{Stress}}{\text{Strain}} \qquad E=\frac{\sigma}{\epsilon} \qquad G=\frac{\tau}{\gamma} \qquad B=\frac{P}{\epsilon_{v}}
 $$
 
 **[[Elasticity#Ultimate Tensile Strength|Ultimate Tensile Strength]], [[Elasticity#Factors of Safety|Factors of Safety]]**
 Designing safe systems
 
 $$
-FoS=\frac{UTS}{Max\ allowed\ stress}
+\text{FoS}=\frac{\text{UTS}}{\text{Max allowed stress}}
 $$
 
 ## Hooke's Law

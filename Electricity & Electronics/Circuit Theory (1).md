@@ -60,6 +60,7 @@ If current flows for a certain time, the total charge can be calculated as $Curr
 
 * Given [[Circuit Theory (1)#Current|Current]] and Time: $Q=I \times t$
 * Given [[Circuit Theory (1)#Energy|Energy]] and [[Circuit Theory (1)#Voltage|Voltage]]: $Q = \frac{E}{V}$
+* Given [[Circuit Theory (5)#Capacitance|Capacitance]] and [[Circuit Theory (1)#Voltage|Voltage]]: $Q=CV$
 
 ## Energy
 Energy is the capacity to cause change in a system - the ability to do work by moving something against a force or transferring heat. Energy is measured in **Joules** ($J$), both in electronics and mechanical systems. 
@@ -83,6 +84,7 @@ In formulas, voltage typically uses the letter $V$.
 * Given [[Circuit Theory (1)#Energy|Energy]] and [[Circuit Theory (1)#Charge|Charge]]: $V=\frac{E}{Q}$
 * Given [[Circuit Theory (1)#Current|Current]] and [[Circuit Theory (1)#Resistance|Resistance]]: $V=I \times R$
 * Given [[Circuit Theory (1)#Power|Power]] and [[Circuit Theory (1)#Current|Current]]: $V=\frac{P}{I}$
+* Given [[Circuit Theory (1)#Charge|Charge]] and [[Circuit Theory (5)#Capacitance|Capacitance]]: $V=\frac{Q}{C}$
 
 ## Resistance
 Resistance is the property of a material or component that opposes the flow of electric current, measured in **Ohms** ($\Omega$). One ohm is defined as the resistance that allows $1A$ of current to flow when $1V$ is applied across it: $1\Omega=\frac{1V}{1A}$

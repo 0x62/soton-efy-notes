@@ -20,6 +20,8 @@ $$
 V = EMF-Ir
 $$
 
+
+
 > [!TIP] When there is no current $I=0$ and $EMF = V$. When there is current, $V < EMF$
 
 ## Maximum Power Transfer
@@ -131,6 +133,8 @@ Resistance can only be accurately measured across components when they are **dis
 
 ## Wheatstone Bridge
 
+> [!ERROR] This was removed from the curriculum and won't be in the exam!
+
 A Wheatstone Bridge is an alternative method of measuring resistance by using two [[Circuit Theory (2)#Voltage Divider|voltage dividers]]:
 
 * One has two precisely known fixed resistors, $R_{1}$ and $R_{2}$
@@ -183,7 +187,7 @@ The Wheatstone Bridge is often used with **transducers** to measure physical qua
 For example, to measure/use the change in resistance of a thermistor (a type of resistor whose resistance is dependant on temperature) by converting it to a change in voltage.
 
 
-## Kirchhoff's Current Law
+## Kirchhoff's Current Law #circuit-theory/kcl 
 
 We briefly touched on Kirchhoff's Current Law (KCL) in [[Circuit Theory (2)#Kirchhoff's Current Law|week 2]]. To recap:
 
@@ -201,7 +205,7 @@ $$
 I_{1}+(-I_{2})+(-I_{3})=0
 $$
 
-## Kirchhoff's Voltage Law
+## Kirchhoff's Voltage Law #circuit-theory/kvl
 
 KVL states that the sum of voltages in a loop is equal to the [[Circuit Theory (1)#Electromotive Force|EMF]] of that loop. Put formally:
 
@@ -236,3 +240,5 @@ $$
 $$
 V_{s}=IR_{t}
 $$
+
+![[Circuit Theory (4)#Branch Current Method]]

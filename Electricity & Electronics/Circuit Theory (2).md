@@ -30,7 +30,7 @@ Because there is almost no resistance, the current can rise dramatically. This e
 
 Short circuits are a serious fault, and why protective devices like fuses and circuit breakers are essential in electrical systems.
 
-## Resistors
+## Resistors #circuit-theory/resistors 
 
 Resistors are one of the most common components – they resist the flow of electrical current by turning some of the energy into heat. This helps you control how much current moves through different parts of a circuit. [[Circuit Theory (1)#Resistance|Resistance]] is measured in Ohms ($\Omega$).
 
@@ -128,7 +128,7 @@ $$
 
 As a result, the total resistance of a parallel network is always less than the smallest resistor, because multiple paths make it easier for current to flow.
 
-> [!TIP] You can derive [[Circuit Theory (2)#Current Divider Formula|an alternative formula]] to calculate $I_{R1}$  without knowing the voltage
+> [!TIP] You can derive [[Circuit Theory (2)#$I$ across node without $V$|an alternative formula]] to calculate $I_{R1}$  without knowing the voltage
 
 The formula for calculating resistance in parallel is:
 
@@ -142,7 +142,19 @@ $$
 R_{t}=\frac{1}{\frac{1}{R_{1}}+\frac{1}{R_{2}}+\frac{1}{R_{3}}+\dots}
 $$
 
-> [!WARNING] Only the $\frac{1}{R_{t}}$ form is provided in the formula book
+#### Special cases & simplifications
+
+There is a simplified version of the parallel resistance formula if you have **exactly 2 resistors.**
+
+$$
+R_p = \frac{R_1 \times R_2}{R_1 + R_2}
+$$
+
+If all $N$ resistors are the same value, you can use the shortcut
+
+$$
+R_{p}=\frac{R}{N}
+$$
 
 **Key Points:**
 
@@ -160,7 +172,7 @@ $$
 
 > [!INFO] Included in the formula book, but arranged as $R=\frac{V}{I}$
 
-## Kirchhoff's Current Law
+## Kirchhoff's Current Law #circuit-theory/kcl 
 
 Kirchhoff's Current Law states that the total current flowing into a node (junction) in a circuit equals the total current flowing out of that node.
 
@@ -209,7 +221,7 @@ $$
 $V_{out}$ is the voltage across $R_{2}$. You could also calculate the voltage across $R_{1}$:
 
 $$
-R_{1}= V_{s} \times \frac{R_{1}}{R_{1}+R_{2}}
+V_{R1}= V_{s} \times \frac{R_{1}}{R_{1}+R_{2}}
 $$
 
 ## Current Divider

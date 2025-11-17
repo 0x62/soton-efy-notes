@@ -95,7 +95,8 @@ $$
 Where $T_{i}$ and $T_{f}$ are the initial and final temperatures. Heat capacity $C$ has the unit of energy per degree or energy per kelvin. For example, the heat capacity of a marble slab might be $179\ cal/C\textdegree$ or $179\ cal/K$ or $749 J/K$.
 
 
-> [!WARNING] The word *Capacity* can be misleading as it implies there is a limit to heat transfer. There is not, provided the temperature difference is maintained
+> [!WARNING] The word *capacity* can be misleading as it implies there is a limit to heat transfer
+>There is not, provided the temperature difference is maintained
 
 ### Specific Heat
 

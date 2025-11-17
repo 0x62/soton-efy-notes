@@ -35,21 +35,35 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 * [[Circuit Theory (1)]]
 * [[Circuit Theory (2)]]
 * [[Circuit Theory (3)]]
+* [[Circuit Theory (4)]]
+* [[Circuit Theory (5)]]
+* [[Circuit Theory (6)]]
+* [[Circuit Theory (7)]]
+* [[Electronics (1)]]
 * [[Annotated Formula Book]]
 
 ### Mechanical Science
 
 - [[Elasticity]]
 - [[Vectors]]
+- [[Statics]]
+- [[Motion]]
+- [[Formula Book]]
+- Problem Sheets
+	- [[Problem Sheet 2]]
+	- [[Problem Sheet 3]]
+	- [[Problem Sheet 4]]
 
 ### Engineering Principles
 
 - [[Heat]]
 - [[Gases]]
+- [[Units]]
 
 ### Mathematics A
 
 *  [Lecture Notes & Exercises](https://spakula.github.io/fyA/)
+* [[Week 1]]
 * [[Algebraic Fraction Manipulation]]
 
 ### Routes to Success
@@ -58,7 +72,8 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 
 ### Coursework
 
-* [[Due Dates.base|Overview & Due Dates]]
+- Python
+	- [[Quiz 1 Examples]]
 
 ## Flashcards
 
@@ -82,9 +97,12 @@ Most topics in each module get their own tag, so you can find related notes acro
 | Module                    | Topic             | Tag             |
 | ------------------------- | ----------------- | --------------- |
 | –                         | Required Formulas | #formula        |
+| –                         | Problem Sheets    | #problem-sheet  |
 | Electricity & Electronics | Circuit Theory    | #circuit-theory |
 | Mechanical Science        | Elasticity        | #elasticity     |
 | Mechanical Science        | Vectors           | #vectors        |
+| Mechanical Science        | Statics           | #statics        |
+| Mechanical Science        | Motion            | #motion         |
 | Engineering Principles    | Heat              | #heat           |
 | Engineering Principles    | Gases             | #gases          |
 ### Raw Notes

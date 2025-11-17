@@ -48,7 +48,7 @@ $$
 ---
 
 $$
-\frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3}
+\frac{1}{R_p} = \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} \qquad R_p = \frac{R_1 \times R_2}{R_1 + R_2}
 $$
 
 ![[Circuit Theory (2)#Resistors in Parallel]]
@@ -56,7 +56,7 @@ $$
 ---
 
 $$
-R = \frac{\rho \ell}{a} \qquad R_p = \frac{R_1 \times R_2}{R_1 + R_2}
+R = \frac{\rho \ell}{a}
 $$
 
 > [!WARNING] TODO
@@ -73,8 +73,18 @@ $$
 ---
 
 $$
-W = V \times l \times t
+W = V \times I \times t
 $$
 
-> [!WARNING] TODO
-> Above formula have not been covered yet
+![[Electricity & Electronics/Circuit Theory (1)#Energy]]
+
+## Electrical Circuits
+
+$$
+V=E-Ir
+$$
+
+![[Circuit Theory (3)#Terminal Voltage]]
+
+***
+
