@@ -1,7 +1,7 @@
 ---
 id: ed9e9a2c5cdd5aa7e52d8f19cf8e7c70
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.468Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.468Z
 ---
 ## What is the equivalent resistance of resistors in series?
 

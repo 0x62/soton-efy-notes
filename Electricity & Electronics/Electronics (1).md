@@ -61,9 +61,12 @@ Digital electronics often come as integrated circuits (ICs), meaning all resisto
 We will likely be dealing with DIP packages, as they are convenient for breadboards, but most modern PCBs use SMD packages like QFN, BGA etc, but these packages are not convenient for prototyping.
 
 > [!figure] ![[QFN-16 package.jpeg]]
-> Battery management IC ([BQ24074](https://www.ti.com/product/BQ24074)) I use in lots of handheld projects, 16-pin QFN package (3x3mm). Good luck using this on a breadboard!
+> A 16-pin QFN battery management IC that I use in lots of personal projects ([BQ24074](https://www.ti.com/product/BQ24074)). Good luck connecting this on a breadboard!
 
+**Side note**: resistors, capacitors and other passive components we've seen are also more commonly used in SMD packages, like this $10k\ \Omega$ resistor in an 0402 package...
 
+> [!figure] ![[Resistor 0402 package.jpeg]]
+> $10k\ \Omega$ resistor in an 0402 package (this isn't even the smallest size!)
 ## Logic Gates
 
 Logic gates are the basic building block of all digital electronics and microprocessors. Basic logic gates perform the logical operations of AND, OR and NOT on binary numbers.

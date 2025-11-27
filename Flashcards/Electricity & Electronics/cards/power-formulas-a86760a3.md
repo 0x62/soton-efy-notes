@@ -1,7 +1,7 @@
 ---
 id: a86760a3c9707971e058611f5f3956b7
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.468Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.468Z
 ---
 ## What are the equivalent formulas for electrical power?
 

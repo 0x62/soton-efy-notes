@@ -1,7 +1,7 @@
 ---
 id: 9b3e2bbd2d1eb3746e3e247ad279de67
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.466Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.466Z
 ---
 ## What is electrical current in terms of charge and time?
 

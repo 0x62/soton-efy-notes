@@ -1,7 +1,7 @@
 ---
 id: bde946edbe262e2d0b35931057809985
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.468Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.468Z
 ---
 ## What is the relation $R = \dfrac{\rho \ell}{a}$ and what do the symbols represent?
 

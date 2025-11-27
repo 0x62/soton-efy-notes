@@ -447,5 +447,4 @@ $$
 
 
 [^1]: https://blackboard.soton.ac.uk/ultra/courses/_232721_1/outline/edit/document/_7456121_1?courseId=_232721_1&view=content&state=view
-
 [^2]: https://blackboard.soton.ac.uk/ultra/courses/_232721_1/outline/edit/document/_7456127_1?courseId=_232721_1&view=content&state=view

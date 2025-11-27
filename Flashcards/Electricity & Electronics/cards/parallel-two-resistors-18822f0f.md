@@ -1,7 +1,7 @@
 ---
 id: 18822f0f98d658193dc28430bb5483b6
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.468Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.468Z
 ---
 ## What is the equivalent resistance for two resistors $R_1$ and $R_2$ in parallel?
 

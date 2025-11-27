@@ -40,7 +40,8 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 * [[Circuit Theory (6)]]
 * [[Circuit Theory (7)]]
 * [[Electronics (1)]]
-* [[Annotated Formula Book]]
+* [[Electronics (2)]]
+* [[Electricity & Electronics/Annotated Formula Book|Annotated Formula Book]]
 
 ### Mechanical Science
 
@@ -49,6 +50,8 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 - [[Statics]]
 - [[Motion]]
 - [[Formula Book]]
+- Simulators
+	- [Projectile Motion](https://labs.bl.je/projectiles)
 - Problem Sheets
 	- [[Problem Sheet 2]]
 	- [[Problem Sheet 3]]
@@ -74,6 +77,13 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 
 - Python
 	- [[Quiz 1 Examples]]
+
+
+## Simulators
+
+To help learn some of the practical questions, especially in Mechanical Science, I've started doing some simulation tools to generate random questions for practice. You can find these here:
+
+- [Projectile Motion](https://labs.bl.je/projectiles)
 
 ## Flashcards
 

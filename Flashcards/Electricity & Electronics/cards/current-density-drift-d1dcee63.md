@@ -1,7 +1,7 @@
 ---
 id: d1dcee63495b346ca7fbfbc2f5215f2d
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.467Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.467Z
 ---
 ## What are the relations $I = n A v e$ and $J = \frac{I}{A}$ and what do the symbols mean?
 

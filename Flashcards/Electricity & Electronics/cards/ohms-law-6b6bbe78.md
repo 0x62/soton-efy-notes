@@ -1,7 +1,7 @@
 ---
 id: 6b6bbe783db3e1a8339d8ab9967f7b81
-noteFile: "[[Electricity & Electronics/Annotated Formula Book.md]]"
-generatedAt: "2025-10-13T20:31:03.467Z"
+noteFile: "[[Electricity & Electronics/Annotated Formula Book]]"
+generatedAt: 2025-10-13T20:31:03.467Z
 ---
 ## What is Ohm's law?
 
