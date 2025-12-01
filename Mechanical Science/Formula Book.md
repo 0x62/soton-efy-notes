@@ -12,3 +12,5 @@ permalink: mechanical-science/formula-book
 ![[Statics#Statics Formula]]
 
 ![[Motion#Motion Formula]]
+
+![[Dynamics#Dynamics Formula]]

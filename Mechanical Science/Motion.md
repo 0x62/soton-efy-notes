@@ -80,6 +80,12 @@ $$
 \alpha=\frac{1}{r}\left(\frac{ v_{2}-v_{1}}{t_{2}-t_{1}} \right) \qquad a_{t}=r\alpha \qquad a_{c} = \omega^2 r
 $$
 
+**[[#Converting Degree to Radians|Converting Degrees & Radians]]**
+To convert from degrees to radians, multiple the angle by
+
+$$
+\text{rad}=\frac{\pi}{180}\times \text{degrees} \qquad \text{degrees}=\text{rad} \times \frac{180}{\pi}
+$$
 
 ## Kinematics
 

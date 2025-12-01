@@ -214,4 +214,4 @@ $$
 P_{net}=\sigma\epsilon A(T^4_{env} - T^4)
 $$
 
-$P_{net}$ is positive if net energy is being absorbed, and negative is energy is being lost by radition.
+$P_{net}$ is positive if net energy is being absorbed, and negative is energy is being lost by radiation.

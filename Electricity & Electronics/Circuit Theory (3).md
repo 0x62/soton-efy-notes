@@ -5,7 +5,6 @@ module: Electricity & Electronics
 component: Circuit Theory
 permalink: electricity-electronics/circuit-theory-3
 ---
-
 ## Terminal Voltage
 
 All voltage sources have two parts – a source of electrical energy that has an [[Circuit Theory (1)#Electromotive Force|electromotive force]] (EMF), and an internal [[Circuit Theory (1)#Resistance|resistance]] $r$.

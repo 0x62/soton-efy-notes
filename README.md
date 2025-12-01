@@ -41,6 +41,7 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 * [[Circuit Theory (7)]]
 * [[Electronics (1)]]
 * [[Electronics (2)]]
+* [[Electronics (3)]]
 * [[Electricity & Electronics/Annotated Formula Book|Annotated Formula Book]]
 
 ### Mechanical Science
@@ -49,6 +50,7 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 - [[Vectors]]
 - [[Statics]]
 - [[Motion]]
+- [[Dynamics]]
 - [[Formula Book]]
 - Simulators
 	- [Projectile Motion](https://labs.bl.je/projectiles)
