@@ -1,3 +1,4 @@
+> [!NOTE] Content on this page is adapted from [lecture notes](https://spakula.github.io/fyA/index.html) provided by [Ján Špakula](https://spakula.github.io)
 
 ## Inequalities
 

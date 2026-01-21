@@ -89,7 +89,7 @@ If we write our vectors in terms of components of vectors, then a body in equili
 
 ### Weight
 
-The weight of an object on Earth's surface is the gravitational force exerted on ti by the Earth, $W=mg$. **Weight and mass are different!**
+The weight of an object on Earth's surface is the gravitational force exerted on it by the Earth, $W=mg$. **Weight and mass are different!**
 
 Weight is a gravitational force, measured in Newtons ($N$), while mass is a measure of the inertia of an object, and is given in kilograms ($kg$). These are [[SI Units]].
 

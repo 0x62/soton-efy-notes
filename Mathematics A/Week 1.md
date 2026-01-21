@@ -5,7 +5,12 @@ tags:
 module: Mathematics A
 permalink: maths-a/week-1
 ---
+
+> [!NOTE] Content on this page is adapted from [lecture notes](https://spakula.github.io/fyA/index.html) provided by [Ján Špakula](https://spakula.github.io)
+
 ## Simultaneous Linear Equations
+
+**[Ján's notes](https://spakula.github.io/fyA/simeq.html)**
 
 A linear equation in one variable (or unknown) is an equation in the form $ax=b$ where $a$ and $b$ are constant numbers and $a\ne 0$, for example, $10x=15$. A linear equation in two unknowns is in the form $ax+by=c$ where $a,b \ne 0$. If $c=0$ it is called *homogeneous*. For example, $3x-2y=4$.
 
@@ -45,6 +50,8 @@ $$
 
 ## Cartesian Coordinates
 
+**[Ján's notes](https://spakula.github.io/fyA/rectangular-cartesian-coordinates.html)**
+
 The graph of a function in the form $f(x)=mx+c$ is a straight line, where $m$ is called the *slope* and $c$ is called the *intercept*. Note that $c=f(0)$. 
 
 Given two points $P_{1}$ and $P_{2}$, you can calculate $m$ as the ratio of **rise over run** (vertical change over horizontal change, or gradient)
@@ -57,6 +64,8 @@ m=\frac{y_{2}\ -\ y_{1}}{x_{2}\ -\ x_{1}}
 $$
 
 ## Factorisation
+
+**[Ján's notes](https://spakula.github.io/fyA/factorising.html)**
 
 Factors are the individual constituents of a product expression. For example:
 

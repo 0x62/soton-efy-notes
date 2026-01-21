@@ -46,7 +46,7 @@ $$
 m=\rho V=\rho Ah
 $$
 
-> [!figure] ![[Screenshot 2025-12-01 at 13.14.36@2x.png]]
+> [!figure] ![[Pressure in a liquid.png]]
 > © University of Southampton [^1]
 
 Substituting this into our pressure equation, it simplified to the product of density, height and gravity (as both area terms cancel). 
@@ -62,7 +62,7 @@ $$
 P=P_{0}+\rho gh
 $$
 
-> [!figure] ![[Screenshot 2025-12-01 at 13.53.10@2x.png]]
+> [!figure] ![[Pressure on object in a liquid.png]]
 > © University of Southampton [^1]
 
 ### Measuring Pressure
@@ -72,7 +72,7 @@ $$
 The weight of a liquid can be used to balance its own pressure. Support a liquid in a pipe has pressure P. If a hole is made in the top of the pipe and a vertical tube affixed to it, the liquid will rise up the tube until it's weight balances the force due to pressure.
 
 
-> [!figure] ![[Screenshot 2025-12-01 at 13.56.53@2x.png]]
+> [!figure] ![[Piezometer.png]]
 > © University of Southampton [^1]
 
 Let the cross-sectional area of the tube be A. The force upwards on the bottom of the liquid in the tube is:
@@ -95,7 +95,7 @@ $$
 
 #### Barometer
 
-![[Screenshot 2025-12-01 at 14.07.03@2x.png]]
+![[Barometer.png]]
 
 A barometer is a device for measuring atmospheric pressure. Is a vertical tube like the piezometer, but sealed at the top. The barometer equation is:
 
@@ -107,7 +107,7 @@ $\rho_{mercury}$ is the density of mercury, which is approximately $13600\ kgm^{
 
 #### U-tube Manometer
 
-> [!figure] ![[Screenshot 2025-12-01 at 14.27.37@2x.png]]
+> [!figure] ![[U-tube manometer.png]]
 > © University of Southampton [^1]
 
 A U-tube manometer consists of a U-shaped tube partially filled with a liquid. A gas pressure is applied to one side of the tube, and the other is open to the atmosphere. The pressure difference is calculated from the height difference of the liquid surface. 
@@ -120,7 +120,7 @@ The liquid is chosen according to the range of pressures expected. Mercury is of
 
 #### Spring
 
-> [!figure] ![[Screenshot 2025-12-01 at 14.30.46@2x.png]]
+> [!figure] ![[Spring.png]]
 > © University of Southampton [^1]
 
 The simplest pressure gauge has a piston backed by a spring. The force exerted on the piston by the gas is $F_{1}=PA$, while the force exerted by the spring is given by $F_{2}=k(x_{0}-x)$ where $k$ is a spring stiffness constant and $x_{0}$ is the unstretched length of the spring (see [[Mechanical Science/Elasticity#Hooke's Law|Elasticity]]).

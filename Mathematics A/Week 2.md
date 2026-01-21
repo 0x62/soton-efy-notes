@@ -3,7 +3,11 @@ tags: quadratic-equations
 module: Mathematics A
 permalink: maths-a/week-2
 ---
+> [!NOTE] Content on this page is adapted from [lecture notes](https://spakula.github.io/fyA/index.html) provided by [Ján Špakula](https://spakula.github.io)
+
 ## Quadratic Equations
+
+**[Ján's notes](https://spakula.github.io/fyA/quadratic-equations.html)**
 
 A *quadratic polynomial* is an expression in the form $ax^2+bx+c$ where $a,b,c$ are constants and $a\ne0$. Any value of $x$ that solves the equation $ax^2+bx+c=0$ is called a *root*. 
 
@@ -19,6 +23,16 @@ You can then use the quadratic equation to calculate the roots:
 
 $$
 x_{1,2}=\frac{-b\pm \sqrt{ b^2-4ac }}{2a}
+$$
+
+For example, finding the roots of $x^2+3x+1$:
+
+$$
+x_{1,2}=\frac{-3\pm\sqrt{ 3^2-4\cdot 1 \cdot 1 }}{2 \cdot 1}
+$$
+
+$$
+x_{1,2}=-\frac{3}{2} \pm \frac{1}{2}\sqrt{ 5 }
 $$
 
 ### Roots by Factorisation

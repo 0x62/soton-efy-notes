@@ -67,18 +67,11 @@ If you found these notes helpful, you're welcome to buy me a coffee/beer:
 
 ### Mathematics A
 
-*  [Lecture Notes & Exercises](https://spakula.github.io/fyA/)
-* [[Week 1]]
-* [[Algebraic Fraction Manipulation]]
+> [!NOTE]
+>  [Ján Špakula](https://spakula.github.io) provides excellent online [lecture notes](https://spakula.github.io/fyA/index.html). You should consider the Mathematics notes here to be supplemental. 
 
-### Routes to Success
-
-- [[Problem Solving Skills]]
-
-### Coursework
-
-- Python
-	- [[Quiz 1 Examples]]
+* [Lecture Notes & Exercises](https://spakula.github.io/fyA/)
+* [[Cheat Sheet]]
 
 
 ## Simulators
