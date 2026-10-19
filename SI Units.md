@@ -6,12 +6,12 @@ SI (Système International) units form the standard measurement system used in e
 | Property                                      | SI Unit | Unit Symbol | Property Symbol |
 | --------------------------------------------- | ------- | ----------- | --------------- |
 | Time                                          | second  | $s$         | $t$             |
-| [[Circuit Theory (1)#Current\|Current]]       | ampere  | $A$         | $I$             |
-| [[Circuit Theory (1)#Voltage\|Voltage]]       | volt    | $V$         | $V$             |
-| [[Circuit Theory (1)#Resistance\|Resistance]] | ohm     | $\Omega$    | $R$             |
-| [[Circuit Theory (1)#Energy\|Energy]]         | joule   | $J$         | $E$             |
-| [[Circuit Theory (1)#Power\|Power]]           | watt    | $W$         | $P$             |
-| [[Circuit Theory (1)#Charge\|Charge]]         | coulomb | $C$         | $Q$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Current\|Current]]       | ampere  | $A$         | $I$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Voltage\|Voltage]]       | volt    | $V$         | $V$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Resistance\|Resistance]] | ohm     | $\Omega$    | $R$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Energy\|Energy]]         | joule   | $J$         | $E$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Power\|Power]]           | watt    | $W$         | $P$             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Charge\|Charge]]         | coulomb | $C$         | $Q$             |
 | Capacitance                                   | farad   | $F$         | $C$             |
 | Frequency                                     | hertz   | $Hz$        | $f$             |
 | Inductance                                    | henry   | $H$         | $L$             |
@@ -53,12 +53,12 @@ In electrical engineering, using the correct SI units and knowing the typical ra
 
 | Property                                      | Unit   | Typical Values                            | Description                                                              |
 | --------------------------------------------- | ------ | ----------------------------------------- | ------------------------------------------------------------------------ |
-| [[Circuit Theory (1)#Current\|Current]]       | Amps   | $A,\ mA,\ \micro A$                       | Power grid currents in $kA$ down to sensors in $\micro A$                |
-| [[Circuit Theory (1)#Voltage\|Voltage]]       | Volts  | $kV,\ V,\ mV$                             | High-voltage transmission vs digital signals                             |
-| [[Circuit Theory (1)#Resistance\|Resistance]] | Ohms   | $M \Omega,\ k \Omega,\ \Omega,\ m \Omega$ | Insulators in $M \Omega$, resistors in $k \Omega$, busbars in $m \Omega$ |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Current\|Current]]       | Amps   | $A,\ mA,\ \micro A$                       | Power grid currents in $kA$ down to sensors in $\micro A$                |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Voltage\|Voltage]]       | Volts  | $kV,\ V,\ mV$                             | High-voltage transmission vs digital signals                             |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Resistance\|Resistance]] | Ohms   | $M \Omega,\ k \Omega,\ \Omega,\ m \Omega$ | Insulators in $M \Omega$, resistors in $k \Omega$, busbars in $m \Omega$ |
 | Capacitance                                   | Farads | $\micro F,\ nF,\ pF$                      | Power supply capacitors in $\micro F$, digital in $nF,\ pF$              |
 | Inductance                                    | Henrys | $mH,\ \micro H$                           | Transformers in $mH$, high-frequency chokes in $\micro H$                |
-| [[Circuit Theory (1)#Power\|Power]]           | Watts  | $MW, kW, W, mW$                           | Power stations in $MW$, household devices in $kW$, circuits in $mW$      |
+| [[Foundation Year/Electricity & Electronics/Circuit Theory (1)#Power\|Power]]           | Watts  | $MW, kW, W, mW$                           | Power stations in $MW$, household devices in $kW$, circuits in $mW$      |
 
 > [!TIP] If you get 100 MV across a resistor in a lab, something is wrong!
 
