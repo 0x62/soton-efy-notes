@@ -10,9 +10,10 @@ permalink: y1/elec1311/circuit-basics
 	- [[#Kirchhoff's Current Law (KCL)]]
 	- [[#Kirchhoff's Voltage Law (KVL)]]
 - [[#Ideal Sources]] (both constant and [[#Time-varying sources|time-varying]])
-- [[#Resistance]]
+- [[#Resistors|Resistance]]
 - [[#Power]]
 - [[#Capacitors]]
+	- [[#Example: a current ramp followed by constant current|Piecewise current integration]]
 
 | **Symbol** | **Name** | **Unit**    | **Foundation Year**            |
 | ---------- | -------- | ----------- | ------------------------------ |
@@ -28,12 +29,12 @@ Conceptual equations linking charge, time and work.
 $$
 I=\frac{dQ}{dt} \qquad V=\frac{dW}{dQ}
 $$
-**[[#Resistance]]**
+**[[#Resistors|Resistance]]**
 For a PCB trace, given resistance of the track, length and cross-sectional area 
 $$
 R=\frac{\rho\times l}{A} \qquad R=\frac{V}{I}
 $$
-**[[#Power & sign convention|Power]]**
+**[[#Power]]**
 Deriving the power equation
 $$
 P=\frac{dW}{dt}=\frac{dW}{dq}\times \frac{dq}{dt}=VI
@@ -106,7 +107,7 @@ Charge cannot be created or destroyed. Along a single wire, the current is the s
 
 ### Kirchhoff's Current Law (KCL)
 
-Also see [[Circuit Theory (2)#Kirchhoff's Current Law|Circuit Theory (2)]] and [[Circuit Theory (3)#Kirchhoff's Current Law circuit-theory/kcl|Circuit Theory (3)]] from FY, and tag #circuit-theory/kcl  
+Also see [[Circuit Theory (2)#Kirchhoff's Current Law|Circuit Theory (2)]] and [[Circuit Theory (3)#Kirchhoff's Current Law|Circuit Theory (3)]] from FY, and tag #circuit-theory/kcl
 
 Kirchhoff's current law states that **the algebraic sum of currents entering a node is zero.** 
 
@@ -157,7 +158,7 @@ Ideal voltage sources provide a steady voltage, regardless of the load. The curr
 > [!figure] ![[Screenshot 2026-09-21 at 21.40.38@2x.png]]
 > Model of a real voltage source &middot; © University of Southampton [^1]
 
-The above circuit model is also relevant for [[Circuit Theory (7)#Thevenin's Theorem|Thevenin's Theorem]] which allows you to simplify any linear circuit into a voltage source, series resistance, and load resistance as shown above (this will no doubt be covered later in the module).
+The above circuit model is also relevant for [[Circuit Theory (7)#Thevenin's Theorem|Thevenin's Theorem]] which allows you to simplify any linear circuit into a voltage source, series resistance, and load resistance as shown above.
 
 We can also model real current sources, by using a parallel resistor:
 
@@ -412,4 +413,48 @@ $$
 
 
 
+
+#### Example: a current ramp followed by constant current
+
+Consider a current which rises linearly from zero to $I_1$ over time $T_1$, then remains at $I_1$.[^2]
+
+Assume $v(0)=V_0$ and current enters the positive terminal:
+$$
+i(t)=
+\begin{cases}
+\displaystyle \frac{I_1}{T_1}t, & 0\le t\le T_1,\\[4pt]
+I_1, & t>T_1.
+\end{cases}
+$$
+For the first interval:
+$$
+v(t)=V_0+\frac{1}{C}\int_0^t\frac{I_1}{T_1}\tau\,d\tau
+=V_0+\frac{I_1t^2}{2CT_1}.
+$$
+At the boundary, retain the accumulated voltage:
+$$
+v(T_1)=V_0+\frac{I_1T_1}{2C}.
+$$
+For the next interval, start the new integral at $T_1$, not at zero:
+$$
+v(t)=v(T_1)+\frac{1}{C}\int_{T_1}^{t}I_1\,d\tau
+=V_0+\frac{I_1T_1}{2C}+\frac{I_1}{C}(t-T_1).
+$$
+The first section is **quadratic** because the charging current is increasing; the second is **linear** because the current is constant. It is not exponential: exponential charging arises when the surrounding resistor circuit makes the current decrease with capacitor voltage, as in [[RC Transients]].
+
+For a concrete example, take $C=0.5\,\mathrm{F}$, initially discharged, current ramping from 0 to $1\,\mathrm{A}$ during the first second, remaining at $1\,\mathrm{A}$ during the second, then switching off.[^3] With $t$ in seconds, the voltage in volts is:
+$$
+v(t)=
+\begin{cases}
+t^2, & 0\le t\le1,\\
+1+2(t-1)=2t-1, & 1<t\le2,\\
+3, & t>2.
+\end{cases}
+$$
+The boundary values are $v(1)=1\,\mathrm{V}$ and $v(2)=3\,\mathrm{V}$. Once the current becomes zero, **the voltage stays at 3 V**, not zero: $i=0$ means $dv/dt=0$. Restarting either interval from zero would incorrectly discard the stored charge.
+
+[^2]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=0a226b70-8c2e-4aa7-af84-b4d300e6aede (Daniel Spencer, DCS L3 28-Sept-2026, 31:09–32:48 qualitative shape; 38:10–44:41 piecewise integration. Auto-generated captions checked against the capacitor equation.)
+
 [^1]: https://moodle.ecs.soton.ac.uk/pluginfile.php/95038/mod_resource/content/1/ELEC1311_1_Electric_Circuits.pdf
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=db939b1a-8117-481f-a528-b4d500943396 (Daniel Spencer, Lecture #5 30-Sep-2026, 6:23–17:12 worked ramp/constant/zero-current example); see also the dated board notes https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44748.

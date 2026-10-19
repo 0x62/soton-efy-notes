@@ -11,6 +11,23 @@ permalink: y1/elec1313/computer-arithmetic
 	- [[#Converting hexadecimal to decimal]]
 	- [[#Converting hexadecimal to binary]]
 
+- [[#Binary Coded Decimal (BCD)]]
+
+**[[#Positional number systems|Positional value in base b]]**
+$$
+N=\sum_i d_i b^i
+$$
+
+**[[#Converting hexadecimal to binary|One hexadecimal digit is four bits]]**
+$$
+16=2^4
+$$
+
+**[[#Binary Coded Decimal (BCD)|BCD encodes decimal digits separately]]**
+$$
+141_{10}=10001101_2=0001\;0100\;0001_{\mathrm{BCD}}
+$$
+
 ## Number Systems
 
 ### Positional number systems
@@ -63,11 +80,14 @@ e.g convert $141_{10}$ to binary:
 
 Giving us the result of $10001101_{2}$.
 
+> [!WARNING] Keep going to the units bit
+> In the largest-power method, continue through every position down to $2^0$, even if the remainder reaches zero earlier. The remaining positions must still be written as zeros.[^3] For example, $12=8+4$ gives $1100_2$, not $11_2$: dropping the final two zeros changes the value from 12 to 3. Leading zeros do not change an unsigned value, but trailing zeros do.
+
 **Successive division**
 
 e.g convert $90_{10}$ to binary:
 
-|     | Result        | Remainder (MSB to LSB) |
+|     | Result        | Remainder (LSB to MSB) |
 | --- | ------------- | ---------------------- |
 | 90  | $90\div 2=45$ | 0                      |
 | 45  | $45\div 2=22$ | 1                      |
@@ -81,14 +101,14 @@ Giving us a result of $1011010_{2}$.
 
 #### Binary representation
 
-A **word** is a number represented using multiple **bits**. A 4-bit work is a **nibble** (one hexadecimal digit), and an 8-bit word is a byte.
+A **nibble** is four bits (one hexadecimal digit), and a **byte** is eight bits. A **word** is a group of bits whose length depends on the computer architecture; it is not universally four, eight or 64 bits.[^3]
 
 > [!figure] ![[Screenshot 2026-09-22 at 09.26.09@2x.png]]
 > © University of Southampton [^1]
 
 #### Binary Addition
 
-Same as usual long addition, with a carry bit:
+Same as usual long addition, with a carry bit. Align the **least significant bits** first, then work from right to left: $1+1=10_2$ means write 0 and carry 1 into the next column.[^3]
 
 > [!figure] ![[Screenshot 2026-09-25 at 12.10.03@2x.png]]
 > © University of Southampton [^1]
@@ -108,7 +128,7 @@ Hexadecimal is a **base 16** number system.
 | 5       | 0101   | 5   |
 | 6       | 0110   | 6   |
 | 7       | 0111   | 7   |
-| 8       | 1000   | 9   |
+| 8       | 1000   | 8   |
 | 9       | 1001   | 9   |
 | 10      | 1010   | A   |
 | 11      | 1011   | B   |
@@ -119,7 +139,7 @@ Hexadecimal is a **base 16** number system.
 
 #### Converting decimal to hexadecimal
 
-We use successive devision, like for binary, however we start with the LSB and end with the MSB. For example, converting $2703_{10}$ to hexadecimal:
+We use successive division, like for binary: remainders are produced from LSB to MSB, so read them in reverse order for the final answer. For example, converting $2703_{10}$ to hexadecimal:
 
 |      | Result            | Remainder (LSB to MSB) |
 | ---- | ----------------- | ---------------------- |
@@ -128,6 +148,8 @@ We use successive devision, like for binary, however we start with the LSB and e
 | 10   | $10\div 16=0$     | 10 (A)                 |
 
 This gives the result $A8F_{16}$.
+
+Each step must satisfy $N=16q+r$ with integer remainder $0\le r<16$. A remainder of 16 or more means that the quotient is too small; it is not an extra hexadecimal digit.[^3] More generally, division by base $b$ must give $0\le r<b$.
 
 #### Converting hexadecimal to decimal
 
@@ -151,9 +173,47 @@ $$
 
 As $16=2^4$, each hex digit can be treated individually and then combined.
 
+In the reverse direction, split an unsigned binary integer into four-bit groups **starting at the LSB (right-hand end)**, then convert each group to one hexadecimal digit.[^3] If the leftmost group is short, pad it on the **left** with zeros. For example:
+$$
+1011010_2=0101\;1010_2=5A_{16}
+$$
+Do not pad the right-hand end: that changes the value by shifting its place weights.
+
 > [!figure] ![[Screenshot 2026-09-22 at 12.37.46@2x.png]]
 > © University of Southampton [^1]
 
 
+## Binary Coded Decimal (BCD)
+
+**Binary coded decimal (BCD)** encodes each decimal digit separately using four bits.
+
+For $141_{10}$:
+
+| Decimal digit | Four-bit BCD group |
+| --- | --- |
+| 1 | 0001 |
+| 4 | 0100 |
+| 1 | 0001 |
+
+So the BCD representation is $0001\;0100\;0001$, while ordinary unsigned binary is $10001101_2$. Both encode the same decimal number, but use different interpretation rules.
+
+> [!WARNING] Do not read a BCD word as one straight-binary integer
+> $000101000001_2$ interpreted as ordinary binary is $321_{10}$, not $141_{10}$. In BCD, the groups mean the decimal digits 1, 4 and 1.
+
+Only $0000$ to $1001$ are valid ordinary 8421 BCD digit codes. The six patterns $1010$ through $1111$ do not represent decimal digits. A BCD representation uses four bits per decimal digit, which makes the digits explicit but uses more bits than straight binary for many values.
+
+BCD is useful at the interface with people: each four-bit group represents one decimal digit, so it can feed the decoder for one **seven-segment display**.[^3] The BCD bits are not themselves the seven segment-control signals; decoding determines which segments light for that digit. This is a reason to preserve decimal digit boundaries even though ordinary binary is often more compact.
+
+#### Example: encode and decode
+
+For example:
+
+- $59_{10}$ becomes $0101\;1001_{\mathrm{BCD}}$ by encoding 5 and 9 separately.
+- $0010\;0111_{\mathrm{BCD}}$ represents 27, not $39_{10}$ (the straight-binary interpretation).
+- $0010\;1100$ is not a valid two-digit BCD value because $1100$ is not a decimal digit code.
+
+[^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36325 (Geoff Merrett, Computer Arithmetic Part I: Number Representation, “Base 2 Codes”).
 
 [^1]: https://moodle.ecs.soton.ac.uk/pluginfile.php/85703/mod_resource/content/2/L1%20Computer%20Arithmetic%20Part%201%20-%20Number%20Systems%20PRINT.pdf
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=049cb9f8-3bad-4445-921a-b4d000b547a8 (Geoff Merrett, Number Systems continuation, recorded 25 September 2026: 10:31–10:49 trailing-zero trap; 15:05 leading zeros; 16:38–16:51 word length; 22:25 addition alignment; 42:48–42:55 remainder range; 45:31–46:11 binary-to-hex grouping; 48:02–48:43 BCD displays. Auto-generated captions checked against the slides and arithmetic.)
