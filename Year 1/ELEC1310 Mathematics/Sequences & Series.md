@@ -27,7 +27,9 @@ $$
 
 ## Sequences
 
-Week 1, lecture 2, Philip Calado. Core sequences/series material is in slides 49–59 and lecture-note sections 9–11; extensions and supplemental slides are separated below.[^1][^2]
+Week 1 assigned reading, Philip Calado. The 22 September recording explicitly assigns this week's sequences/series notes as homework at 46:02–46:18 and says the topic will be revisited later. It was **not delivered in that live lecture**. It belongs in this week's notes because it was assigned, not because all uploaded slides were covered orally.[^3]
+
+The main assigned material is in slides 49–59 and lecture-note sections 9–11; optional extension and supplemental slides are separated below and are not claimed as live teaching.[^1][^2]
 
 A **sequence** is an ordered list $a_1,a_2,a_3,\ldots$; a **series** adds its terms. The first $N$ terms have partial sum
 $$
@@ -152,3 +154,5 @@ The engineering point is to replace a difficult expression with a manageable pol
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44402 — Lecture 2 slides, Functions, Sequences and Series. Core: slides 49–59; binomial/application extensions: slides 72–73; power-series supplemental material: slides 87–91.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44793 — Lecture 2 explanatory notes, sections 9–11. Original worked examples are used here; convergence terminology is stated consistently even where the source summary is loose.
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5b366901-c2b9-4fa7-9ab1-b4cd0107afe7 — Functions recording, 22 September 2026, 0:20–0:28 and 46:02–46:18: focus on functions, sequences/series assigned for independent study and a later return to the topic.

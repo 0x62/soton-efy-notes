@@ -21,7 +21,7 @@ A clock-cycle budget is not an instruction count: instructions and peripheral op
 
 ## Programs and machine instructions
 
-First-week taught content from Lecture 1, Introduction, credited to Steve Gunn and Xu Fang.[^1] Lecture 2 is also included in this week's notes because the final task slide assigns that recording for the remainder of the same week. The files establish this first-week grouping, but do not independently establish an exact calendar date.
+Week 1 (21–25 September 2026): Lecture 1, Introduction, delivered by Steve Gunn on 21 September, plus Xu Fang's assigned recording, Programming in C.[^1][^3][^4] The live introduction explicitly assigns the second recording within the same week (31:06–31:31 and 43:54–44:03), so its lecture number does not imply a second teaching week.
 
 **Programming** expresses a task as instructions a machine can execute. Machines are useful for repeated operations, but the programmer must specify the operations and their order precisely.
 
@@ -41,6 +41,8 @@ A text-printing C program may be compiled for two different computers. The sourc
 - Software can change behaviour without redesigning the whole circuit, but execution time and memory are finite resources.
 - FPGAs and CPLDs provide configurable logic. A microcontroller usually changes behaviour by executing different software on an existing processor. These are different forms of flexibility, not interchangeable architectures.
 
+The spoken explanation (6:11–6:59) describes an FPGA **bitstream** configuring the device's internal logic and connections. Different configurations can implement different digital circuits, including a processor design. Configuring logic is distinct from supplying machine instructions to an already implemented CPU.[^3]
+
 The useful question is not simply which option is fastest, but whether the design meets its timing, cost, power, memory and update requirements.
 
 #### Example 2
@@ -56,13 +58,17 @@ The lectures motivate C as a relatively high-level language that still connects 
 - It can work with relatively little runtime infrastructure, useful on constrained devices.
 - Learning its program structure and translation process helps explain what the processor actually executes.
 
+Steve Gunn connects low-level access to **memory-mapped peripherals** (10:10–11:25): a peripheral's registers can be accessed through designated addresses, for example reading a register associated with an ADC result. These addresses and meanings are device-specific. This is not permission to read or overwrite arbitrary memory; accessing memory incorrectly can break a program.[^3]
+
 These are capabilities, not automatic guarantees. A C program can still be inefficient or incorrect; access to low-level details makes understanding the program more important.
 
 Lecture 2 uses a self-balancing robot as motivation: sensor readings and motor updates are needed approximately every $10\,\mathrm{ms}$. That is an update rate of
 $$
 f=\frac1{0.010\,\mathrm{s}}=100\,\mathrm{Hz}.
 $$
-The point is predictable, sufficiently fast responses, not just eventually producing the right answer.
+The recording explains the feedback mechanism (4:45–5:54): sensors report the robot's angle and acceleration, the controller uses those measurements to decide on a correction, and motors move the wheels to counter a tilt.[^4]
+
+The point is predictable, sufficiently fast responses, not just eventually producing the right answer. At 6:11–6:51, the lecturer contrasts a motor command taking $2\,\mathrm{ms}$ on one occasion and $10\,\mathrm{ms}$ on another. This variation is **timing jitter**: even accurate sensing is not enough if corrections arrive inconsistently. The example motivates timing guarantees, rather than the simplistic claim that choosing C alone guarantees real-time behaviour.[^4]
 
 ## Hosted and embedded systems
 
@@ -78,7 +84,12 @@ The same language can serve both settings, but the available input/output, start
 
 The introductory deck's AVR example lists a $12\,\mathrm{MHz}$ clock, 64 K of program memory, 4 K of SRAM, Harvard architecture, a RISC instruction set and peripherals such as ADCs, timers and serial interfaces.[^1] These are the example platform's specifications, not properties of all microcontrollers.
 
-- **Program memory** stores instructions; **SRAM** holds working data.
+The live architecture explanation (7:38–9:05) adds how these pieces fit together:[^3]
+
+- **Program memory** stores instructions; **SRAM** holds working data. Flash program memory is nonvolatile, so its contents survive power-off; this does not imply that all working data survives.
+- The **program counter** tracks instruction execution, while **registers** hold small amounts of readily accessible processor data.
+- The **ALU** performs arithmetic and logic operations.
+- **I/O ports** connect digital inputs and outputs, such as switches and indicators.
 - **Harvard architecture** separates instruction and data storage/access paths conceptually.
 - An **ADC** converts an analogue measurement into a digital value.
 - Timers and serial interfaces provide hardware support for timing and communication.
@@ -105,3 +116,6 @@ The problem and execution environment guide the choice. The next topic, [[C Prog
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36211 — Lecture 1, Introduction. Taught concepts: slides 3–9, 22, 25–27; first-week Lecture 2 assignment: slides 23 and 34. Administrative and laboratory tasks are excluded from these notes.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44022 — Lecture 2, Programming in C, Dr Xu Fang, based on Klaus-Peter Zauner's slides; C motivation and robot example: slides 2–3. Worked calculations here are original explanations, not laboratory solutions.
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2cdd445d-36c4-490f-82a4-b4cc00f86721 — Lecture 1: Introduction, 21 September 2026, Steve Gunn. Spoken explanations and first-week mapping are identified by timestamps above.
+[^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=db9ffe17-c2c1-431e-8ace-b4cb013c2d0a — ELEC1312_Week1, Xu Fang's second lecture recording, explicitly identified as recorded in September 2026 (1:17–1:21). Robot feedback and timing discussion: 3:08–7:36. Automatic captions were interpreted alongside the slides, not copied literally.

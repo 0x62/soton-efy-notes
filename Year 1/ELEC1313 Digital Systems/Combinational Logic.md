@@ -9,6 +9,7 @@ permalink: y1/elec1313/combinational-logic
 - [[#From a function to hardware]]
 - [[#NAND and NOR]]
 - [[#Making an inverter from NAND]]
+- [[#Making an inverter from NOR]]
 - [[#Checking an implementation]]
 
 **[[#Boolean expressions and truth tables|Basic operations]]**
@@ -27,7 +28,7 @@ $$
 $$
 
 > [!NOTE] Coverage
-> Completes the missing Boolean/combinational strand of week 1, beginning 21 September 2026, using Jize Yan's first two lecture decks.[^1][^2] The published draft lecture schedule places these sessions on Friday 25 September; it is a planned sequence rather than a record of actual delivery. Number representation is in [[Computer Arithmetic]]. Algebraic minimisation, Karnaugh maps and sequential circuit design are outside this week's scope.
+> Completes the missing Boolean/combinational strand of week 1, beginning 21 September 2026, using Jize Yan's first two lecture decks.[^1][^2] Panopto recording dates confirm both sessions on Friday 25 September 2026; the recordings supplement the decks.[^3][^4] Number representation is in [[Computer Arithmetic]]. Algebraic minimisation, Karnaugh maps and sequential circuit design are outside this week's scope.
 
 ## Combinational versus sequential logic
 
@@ -132,13 +133,26 @@ Y=\overline{AA}=\overline A
 $$
 When $A=0$, the NAND sees $(0,0)$ and outputs 1; when $A=1$, it sees $(1,1)$ and outputs 0.
 
+The full gate truth table still defines NAND, but wiring $A=B$ makes the $(0,1)$ and $(1,0)$ rows **unreachable**. Only two possible input combinations remain. This is why a two-input gate can implement a one-input function: the inputs are no longer independent.[^3]
+
 **Hold one input at logic 1:**
 $$
 Y=\overline{A\cdot1}=\overline A
 $$
 This works because AND with 1 preserves the other input. Holding the spare input at 0 would instead force the NAND output permanently to 1.
 
+Fixing $B=1$ similarly leaves only the $(0,1)$ and $(1,1)$ rows, which give the NOT truth table.[^3]
+
 The existing Foundation Year diagrams for these constructions are in [[Electronics (2)#NOT function]]. Other universal-gate constructions are linked from [[Electronics (2)#Universal Logic]], but are not expanded here beyond the first week's deck.
+
+## Making an inverter from NOR
+
+The same restricted-input reasoning applies to NOR.[^3] Reuse the gate definitions in [[Electronics (1)#Logic Gates]] and test the two possible values of $A$:
+
+- **Tie both inputs together:** $Y=\overline{A+A}=\overline A$.
+- **Hold the spare input at 0:** $Y=\overline{A+0}=\overline A$.
+
+Both produce 1 when $A=0$ and 0 when $A=1$. Holding the spare input at 1 would force the NOR output to 0 instead. The required constant therefore differs: **NAND uses 1, NOR uses 0**.
 
 ## Checking an implementation
 
@@ -151,3 +165,7 @@ The existing Foundation Year diagrams for these constructions are in [[Electroni
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36304 (Jize Yan, Introduction to Combinational Logic / Boolean Algebra).
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36305 (Combinational Logic Implementation).
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6f670132-5f02-4773-99cb-b4d000f81429 (Jize Yan, JY 2 Lecture: 23:55–26:33 restricting NAND inputs; 29:19–29:36 NOR analogy; 37:14–37:19 NOR with one input fixed at zero. Auto-generated captions checked against the gate truth tables.)
+
+[^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=86ac05f9-e60c-4201-9ba3-b4d000e69820 (Jize Yan, JY 1 Lecture, recorded 25 September 2026; recording date verified in the Panopto listing).

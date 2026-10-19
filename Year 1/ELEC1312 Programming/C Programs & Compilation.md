@@ -21,7 +21,7 @@ Source → preprocessing → compilation → assembly → linking → executable
 
 ## Anatomy of a C program
 
-Lecture 2, Programming in C, Dr Xu Fang, based on Klaus-Peter Zauner's slides.[^1] Lecture 1 explicitly assigns this recording for the remainder of its first week, so it belongs with the introduction rather than being assumed to be week 2.[^2]
+Lecture 2, Programming in C, Dr Xu Fang, based on Klaus-Peter Zauner's slides.[^1] The live introduction on 21 September explicitly assigns this recording for the remainder of week 1 (21–25 September), so it belongs with the introduction rather than being assumed to be week 2.[^2][^3][^4]
 
 This original illustration uses only the basic program structure introduced in the lecture. It is not a laboratory answer.
 
@@ -104,6 +104,8 @@ The slide diagram shows larger programs divided into source files that can be co
 
 A **declaration** tells the compiler about a function's interface. A **definition** supplies its implementation. Including the appropriate header allows the compiler to check calls, while linking connects the calls to implementations.
 
+The recording explains the practical benefit of separate compilation (23:26–24:00): if just one implementation changes, rebuild its object file and then relink it with the unchanged objects. You need not translate every source file again. A shared header change can affect multiple source files, however, so every dependent unit must be rebuilt; reuse is safe only when the relevant inputs have not changed.[^3]
+
 An object file is not generally a complete runnable program. It can still contain unresolved references that require other objects or libraries.
 
 ## Cross-compilation
@@ -126,9 +128,14 @@ A useful cycle is:
 4. Run the new executable and compare actual output with the expected result.
 5. Make one change and repeat.
 
-As an original diagnostic example, deleting the semicolon after `printf(...)` creates a syntax error. The compiler may point to the next token rather than the exact place the semicolon should have been. Inspect the surrounding statement instead of treating the highlighted token as the only possible fault.
+As an original diagnostic example, deleting the semicolon after `printf(...)` creates a syntax error. The compiler may point to the next token rather than the exact place the semicolon should have been. Inspect the surrounding statement instead of treating the highlighted token as the only possible fault. This reflects the recording's warning (30:31–30:53) that the reported line may be later than the original mistake.[^3]
+
+In the introduction (18:29–19:04), Steve Gunn emphasises writing programs so that mistakes are caught during compilation where possible, rather than emerging only when the executable runs. Warnings and clear declarations are useful checks, but cannot prove the entire program correct.[^4]
 
 A successful build proves only that the translation checks passed. A program can still compute the wrong result or perform the wrong task, so testing and understanding remain necessary. Keep these illustrative examples separate from assessed work and write your own solutions in accordance with module guidance.
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44022 — Lecture 2, Programming in C. Program anatomy: slides 4–5; translation and files: slides 6–13; development advice: slide 14. This note covers taught concepts, not the lab walkthrough or assessment tasks.
-[^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36211 — Lecture 1, Introduction. Tools: slide 11; first-week recording assignment: slides 23 and 34. The introductory pair's exact calendar dates are not printed in these files.
+[^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36211 — Lecture 1, Introduction. Tools: slide 11; first-week recording assignment: slides 23 and 34. The live recording confirms the 21 September introduction and assignment of the companion recording within the same week.
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=db9ffe17-c2c1-431e-8ace-b4cb013c2d0a — ELEC1312_Week1, Xu Fang. Separate compilation: 23:26–24:00; diagnostic locations: 30:31–30:53. The laboratory walkthrough is excluded.
+[^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2cdd445d-36c4-490f-82a4-b4cc00f86721 — Lecture 1: Introduction, 21 September 2026, Steve Gunn. Compile-time checking: 18:29–19:04; same-week recording assignment: 31:06–31:31 and 43:54–44:03.

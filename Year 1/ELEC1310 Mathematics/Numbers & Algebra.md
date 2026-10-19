@@ -29,7 +29,7 @@ $$
 
 ## Number sets and intervals
 
-Week 1, Numbers and Algebra, Philip Calado. Based on lecture 1 and its accompanying explanatory notes; the associated powers/logarithms rules are grouped with algebra.[^1][^2]
+Week 1, Numbers and Algebra, Philip Calado. Based on lecture 1 and its accompanying explanatory notes.[^1][^2] The 21 September recording ends during fractions; powers, logarithms and expressions/equations were continued in the 22 September lecture (9:14–20:40). They stay together here as one algebra topic.[^3][^4]
 
 A **set** is a collection of distinct elements. $x\in A$ means that $x$ belongs to $A$; $x\notin A$ means it does not. $A\subseteq B$ permits equality, while $A\subset B$ here means a proper subset.
 
@@ -61,6 +61,8 @@ $\sqrt9=3$ is natural, integer, rational, real and complex. $\sqrt3$ is real but
 
 In $5+3x-2x^2y$, $5$ is a constant term, $x,y$ are variables and $3,-2$ are coefficients. Terms are separated by addition/subtraction at the outermost level. An **expression** represents a value; an **equation** asserts that two expressions are equal.
 
+An **implicit equation** relates variables without isolating the chosen output; an **explicit equation** expresses that output directly. For example, $v^3+2=x$ can be written explicitly as $v=\sqrt[3]{x-2}$. Some engineering equations cannot be conveniently rearranged into a closed-form expression, so a numerical solver is used instead. This distinction was emphasised in lecture 2 (18:54–20:08).[^4]
+
 Only like terms combine: $3x+5x=8x$, but $3x+5x^2$ cannot be combined into one term. The exponent is part of what identifies a term.
 
 The **independent variable** is the chosen input; the **dependent variable** changes in response. With a fixed resistance, $I(V)=V/R$ describes current as a function of voltage. Usually the independent variable is on the horizontal axis.
@@ -76,6 +78,10 @@ $$
 Subtraction and division are not: $8-3\neq3-8$ and $(12/6)/2\neq12/(6/2)$.
 
 Evaluate parentheses first, then powers, then multiplication/division at equal precedence from left to right, then addition/subtraction at equal precedence from left to right. Explicit brackets remove ambiguity.
+
+The lecturer linked these rules to programming (47:14–48:13): check the language's own operator rules rather than assuming every mathematical symbol behaves identically. He also stressed that scalar multiplication rules should not automatically be carried over to matrix/vector operations (43:05–43:26).[^3]
+
+For a chain such as $a/b\times c$, rewrite division as multiplication by the reciprocal: $a(1/b)c$, with $b\neq0$. The factors can then be regrouped without changing the result. Similarly, subtraction is addition of a negative quantity. Do not use this to ignore existing brackets: $a/(bc)$ is a different expression. This was the explanation at 49:47–50:29.[^3]
 
 #### Example 2
 
@@ -159,6 +165,8 @@ $$
 $$
 For $x>0$, $\log_{10}(30x)-\log_{10}(3x)=\log_{10}10=1$.
 
+The spoken explanation highlighted an easy scientific-notation mistake (13:09–13:41): squaring a product squares its numerical coefficient as well as its power of ten. Thus $(3\times10^4)^2=9\times10^8$, not $3\times10^8$. Logarithms then turn multiplication/division into addition/subtraction, which explains their usefulness beyond memorising the rules (15:43–16:01).[^4]
+
 To solve $2^{3x}=10$, take logarithms on both sides:
 $$
 3x\ln2=\ln10\quad\Rightarrow\quad x=\frac{\ln10}{3\ln2}.
@@ -181,3 +189,6 @@ Logarithms also describe power ratios: $G_{\rm dB}=10\log_{10}(P_o/P_i)$. A tenf
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44401 — Lecture 1 slides, Numbers and Algebra, 21 September 2026.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44792 — Lecture 1 explanatory notes. These notes paraphrase the taught material; worked examples here are original.
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=29ca14fd-1911-47c7-9186-b4cc01086c83 — Numbers and Algebra recording, 21 September 2026. Spoken explanations reviewed against the slides; timestamps are given beside additions.
+[^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5b366901-c2b9-4fa7-9ab1-b4cd0107afe7 — Functions recording, 22 September 2026, including the algebra continuation at 9:14–20:40. Automatic captions were checked against the mathematical source material rather than copied literally.

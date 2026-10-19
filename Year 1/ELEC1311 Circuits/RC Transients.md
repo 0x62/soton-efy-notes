@@ -9,6 +9,8 @@ permalink: y1/elec1311/rc-transients
 	- [[#Source-free discharge]]
 	- [[#Charging from a DC source]]
 - [[#Time constant and response]]
+	- [[#Why the exponential trial works]]
+	- [[#Steady value plus transient]]
 - [[#Approximating the response in time steps]]
 - [[#Checking a solution]]
 
@@ -29,7 +31,7 @@ $$
 Here $V_0=v_C(0^+)$; set $V_S=0$ for discharge through $R$.
 
 > [!NOTE] Coverage
-> Continues [[Circuit Basics]] for teaching week 2, 28 September–2 October 2026. The dated board notes show capacitor combinations and the charging/discharging differential equations.[^1][^2] The response formula and time-step explanation below connect these equations to the RC material in the shared lecture deck; that deck also serves later teaching, so its RL and later sections are not included.[^3]
+> Continues [[Circuit Basics]] for teaching week 2, 28 September–2 October 2026. The dated board notes and recordings confirm capacitor combinations and numerical RC steps on 30 September, followed by differential equations, exponential solutions and the steady-plus-transient form on 2 October.[^1][^2][^4][^5] The shared deck also serves later teaching. Finding the constants for more complicated networks is explicitly deferred to the next lecture; that material and RL circuits are not included.[^3][^5]
 
 ## Capacitor combinations
 
@@ -134,6 +136,37 @@ i_C(t)=\frac{V_S-V_0}{R}e^{-t/(RC)}
 $$
 An initially uncharged capacitor has $V_0=0$. A source-free discharge has $V_S=0$. If $V_0>V_S$, the voltage falls towards the supply instead of rising.[^3]
 
+### Why the exponential trial works
+
+The 2 October lecture distinguishes **forming** the circuit equation with KCL/KVL from **solving** it to predict the response.[^5] For source-free discharge, substitute $v=Ae^{\lambda t}$ into $dv/dt+v/(RC)=0$:
+$$
+\lambda Ae^{\lambda t}+\frac{Ae^{\lambda t}}{RC}
+=Ae^{\lambda t}\left(\lambda+\frac{1}{RC}\right)=0.
+$$
+For a nonzero initial voltage, $A\ne0$, and the exponential is nonzero at finite time, so the bracket must vanish:
+$$
+\lambda=-\frac{1}{RC},\qquad A=v(0)=V_0.
+$$
+The equation determines the **shape and decay rate**; the initial condition determines its **amplitude**. The special case $V_0=0$ gives the identically zero source-free response, not a charging curve.
+
+The alternative separation-of-variables method gives the same result: for a nonzero discharge voltage,
+$$
+\int_{V_0}^{v(t)}\frac{du}{u}=-\frac{1}{RC}\int_0^t ds
+\quad\Rightarrow\quad
+\ln\left|\frac{v(t)}{V_0}\right|=-\frac{t}{RC}.
+$$
+The sign remains that of $V_0$, hence $v(t)=V_0e^{-t/(RC)}$. The lecturer presents integration as a way to justify the result, while favouring the exponential trial as the simpler method.[^5]
+
+### Steady value plus transient
+
+The closing comparison writes both charging and discharging responses as
+$$
+v_C(t)=A+Be^{-t/\tau}.
+$$
+Here $A=v_C(\infty)$ is the **steady value**, and $B=v_C(0^+)-A$ is the initial difference from it. For the simple series circuit already solved, $A=V_S$, $B=V_0-V_S$ and $\tau=RC$. A source-free discharge has $A=0$; charging from zero has $B=-V_S$.[^5]
+
+These $A$ and $B$ belong to the steady-plus-transient form; the $A$ in the source-free trial above was its single exponential amplitude. Do not mix constants from different trial expressions. The 2 October lecture motivates applying this form to larger circuits, but leaves their practical constant-finding method to the following week.
+
 ![[Circuit Theory (6)#RC Time Constant]]
 
 More generally, after one time constant the **difference from the final value** has fallen to $e^{-1}\approx36.8\%$ of its initial value. It is not necessarily 63.2% of the final voltage if the capacitor started precharged. After $5\tau$, about 0.67% of the initial difference remains.
@@ -151,7 +184,7 @@ At $t=1\,\mathrm{s}$, the exact values are approximately $3.93\,\mathrm{V}$ and 
 
 ## Approximating the response in time steps
 
-The deck first builds intuition by holding the current constant for a short interval, then recalculating it.[^3] At step $n$:
+The 30 September lecture first builds intuition by holding the current constant for a short interval, then recalculating it.[^3][^4] At step $n$:
 $$
 i_n=\frac{V_S-v_n}{R},\qquad v_{n+1}\approx v_n+\frac{i_n}{C}\Delta t
 $$
@@ -178,3 +211,6 @@ The approximation overestimates charging because it holds each interval's initia
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44748 (30 September 2026 board notes); capacitor-combination derivations also appear in https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43962 (Electric Circuits, final slides).
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44770 (2 October 2026 board notes).
 [^3]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43963 (The Complete Response of RC & RL Circuits, Dr Daniel Spencer; RC sections only).
+
+[^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=db939b1a-8117-481f-a528-b4d500943396 (Daniel Spencer, Lecture #5 30-Sep-2026, 19:37–29:33 capacitor combinations; 31:12–41:51 numerical charging and time-step size; 42:03–44:13 discharge).
+[^5]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=36a18691-b55e-4052-a15a-b4d700842930 (Daniel Spencer, DCS Lecture #6 02-Oct-2026, 5:08–20:44 signs and circuit equations; 21:18–27:04 integration; 27:10–35:29 exponential trial and initial condition; 36:04–39:30 steady-plus-transient form; 43:00–43:31 next-lecture boundary. Auto-generated captions checked against the lecture deck and dated board notes.)

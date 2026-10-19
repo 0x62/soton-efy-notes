@@ -32,11 +32,19 @@ $$
 
 ## Inputs and outputs
 
-Week 1, lecture 2, Philip Calado: Functions, Sequences and Series. This file covers the functions portion; sequences are in [[Sequences & Series]]. The slide deck includes separately labelled extension and supplemental material, distinguished below.[^1][^2]
+Week 1, lecture 2, Philip Calado: Functions, Sequences and Series. This file covers the functions portion; sequences are in [[Sequences & Series]]. The slide deck includes separately labelled extension and supplemental material, distinguished below.[^1][^2] The 22 September recording confirms that the main live topic was functions; hyperbolic functions were briefly introduced then assigned for independent study, while sequences/series were assigned reading rather than delivered in that session.[^3]
 
 A **function** assigns exactly one output to each allowed input. Different inputs may share an output, but one input cannot have two outputs. $f(x)$ means “the output of $f$ at $x$”, not multiplication of $f$ by $x$.
 
 A graph represents $y$ as a function of $x$ if any vertical line intersects it at most once. Thus $y=x^2$ is a function; the full circle $x^2+y^2=1$ is not a single-valued function of $x$.
+
+A function need not be continuous. In the graph discussion (23:01–23:37), the lecturer stressed that a jump does not disqualify a function. An original example is
+$$
+f(x)=\begin{cases}0,&x\leq0,\\1,&x>0.\end{cases}
+$$
+It jumps at zero, but every real input has exactly one output. The conditions must make clear which branch owns the boundary.[^3]
+
+Functional notation can also show several independent variables. Writing $J(V,T)$ identifies voltage and temperature as inputs while treating other model parameters as fixed. This was the point of the diode-equation illustration at 25:33–26:27, rather than a full semiconductor-physics derivation.[^3]
 
 #### Example 1
 
@@ -74,6 +82,10 @@ An inverse function requires a one-to-one mapping on the chosen domain. $x^2$ on
 > [!WARNING] Inverse is not reciprocal
 > $f^{-1}(x)$ denotes an inverse function, whereas $1/f(x)$ denotes a reciprocal. They are generally different.
 
+A useful live example (28:14–29:19) was the reciprocal function: $f(x)=1/x$ for $x\neq0$ is its **own inverse**, because $1/(1/x)=x$. That does not make inverse-function notation synonymous with a reciprocal.[^3]
+
+Geometrically, a function and its inverse have graphs reflected in the line $y=x$: the coordinate pair $(a,b)$ becomes $(b,a)$. The recording discusses this at 44:15–44:50; the correct reflection line is $y=x$, not either coordinate axis.[^3]
+
 ## Composition
 
 $(g\circ h)(x)=g(h(x))$ means apply $h$ first, then apply $g$ to the result. In general $g\circ h\neq h\circ g$.
@@ -109,6 +121,8 @@ A **root** satisfies $p(x)=0$. Reuse the Foundation Year methods and worked exam
 
 For Year 1, connect the algebra to the function: real roots are horizontal-axis intercepts. The discriminant $b^2-4ac$ distinguishes two distinct real roots, one repeated real root, and no real roots for positive, zero, and negative discriminant respectively. Having no real roots does not stop the polynomial being a real-valued function.
 
+The lecturer's explanation of why roots matter (33:32–34:40) is that an equation $L(x)=R(x)$ can be rewritten as $L(x)-R(x)=0$. Root finding therefore provides a common form for many different problems, including ones solved numerically. For example, finding where $e^x=3x$ means finding zeros of $e^x-3x$; no claim is made here that this has a simple algebraic solution.[^3]
+
 ## Trigonometric and periodic functions
 
 The Foundation Year identity toolkit remains useful:
@@ -135,6 +149,12 @@ For $v(t)=4\sin(100\pi t+\pi/6)\,\mathrm V$, the amplitude is $4\,\mathrm V$, fr
 
 In $a^x$, the variable is the exponent; in $x^n$, it is the base. For $a>1$, $a^x$ grows with $x$; for $0<a<1$ it decays. The natural exponential uses $e\approx2.71828$.
 
+The key spoken preview (42:44–43:35) was that $e^x$ is its own derivative:
+$$
+\frac{d}{dx}e^x=e^x.
+$$
+At input $x=a$, the tangent slope is $e^a$, equal to the function's height there, **not** $a$. This is a motivation for later differentiation, not a full treatment of calculus in this week.[^3]
+
 The inverse of $e^x$ is $\ln x$:
 $$
 \ln(e^x)=x,\qquad e^{\ln x}=x\quad(x>0).
@@ -148,6 +168,8 @@ $$
 At $t=0$ the voltage is zero; at $t=RC$ it is $(1-e^{-1})V_0\approx0.632V_0$; it approaches $V_0$ as time grows. The exponent is dimensionless because $RC$ has units of time.
 
 ## Hyperbolic functions
+
+The lecturer briefly described these at 45:01–45:30, then directed independent study rather than working through them fully.[^3]
 
 Hyperbolic functions combine exponentials rather than describing rotation around a circle:
 $$
@@ -189,3 +211,5 @@ For $f(x)=2x^2+3x$, the even part is $2x^2$ and the odd part is $3x$.
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44402 — Lecture 2 slides, Functions, Sequences and Series. Functions: slides 17–44; extensions/appendices/supplemental sections are labelled in the deck.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44793 — Lecture 2 explanatory notes, sections 1–8. New worked examples are original illustrations; embedded Foundation Year examples retain the existing notes.
+
+[^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5b366901-c2b9-4fa7-9ab1-b4cd0107afe7 — Functions recording, 22 September 2026. Timestamps alongside additions identify spoken explanations. Mathematical statements are cross-checked with the slides and corrected where automatic captions are loose.
