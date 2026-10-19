@@ -11,6 +11,23 @@ permalink: y1/elec1313/computer-arithmetic
 	- [[#Converting hexadecimal to decimal]]
 	- [[#Converting hexadecimal to binary]]
 
+- [[#Binary Coded Decimal (BCD)]]
+
+**[[#Positional number systems|Positional value in base b]]**
+$$
+N=\sum_i d_i b^i
+$$
+
+**[[#Converting hexadecimal to binary|One hexadecimal digit is four bits]]**
+$$
+16=2^4
+$$
+
+**[[#Binary Coded Decimal (BCD)|BCD encodes decimal digits separately]]**
+$$
+141_{10}=10001101_2=0001\;0100\;0001_{\mathrm{BCD}}
+$$
+
 ## Number Systems
 
 ### Positional number systems
@@ -67,7 +84,7 @@ Giving us the result of $10001101_{2}$.
 
 e.g convert $90_{10}$ to binary:
 
-|     | Result        | Remainder (MSB to LSB) |
+|     | Result        | Remainder (LSB to MSB) |
 | --- | ------------- | ---------------------- |
 | 90  | $90\div 2=45$ | 0                      |
 | 45  | $45\div 2=22$ | 1                      |
@@ -108,7 +125,7 @@ Hexadecimal is a **base 16** number system.
 | 5       | 0101   | 5   |
 | 6       | 0110   | 6   |
 | 7       | 0111   | 7   |
-| 8       | 1000   | 9   |
+| 8       | 1000   | 8   |
 | 9       | 1001   | 9   |
 | 10      | 1010   | A   |
 | 11      | 1011   | B   |
@@ -155,5 +172,33 @@ As $16=2^4$, each hex digit can be treated individually and then combined.
 > © University of Southampton [^1]
 
 
+## Binary Coded Decimal (BCD)
+
+The final number-representation topic in the week-1 lecture is **binary coded decimal**.[^2] Unlike straight binary, BCD encodes each decimal digit separately using four bits.
+
+For $141_{10}$:
+
+| Decimal digit | Four-bit BCD group |
+| --- | --- |
+| 1 | 0001 |
+| 4 | 0100 |
+| 1 | 0001 |
+
+So the BCD representation is $0001\;0100\;0001$, while ordinary unsigned binary is $10001101_2$. Both encode the same decimal number, but use different interpretation rules.
+
+> [!WARNING] Do not read a BCD word as one straight-binary integer
+> $000101000001_2$ interpreted as ordinary binary is $321_{10}$, not $141_{10}$. In BCD, the groups mean the decimal digits 1, 4 and 1.
+
+Only $0000$ to $1001$ are valid ordinary 8421 BCD digit codes. The six patterns $1010$ through $1111$ do not represent decimal digits. A BCD representation uses four bits per decimal digit, which makes the digits explicit but uses more bits than straight binary for many values.
+
+#### Example: encode and decode
+
+An original check of the method:
+
+- $59_{10}$ becomes $0101\;1001_{\mathrm{BCD}}$ by encoding 5 and 9 separately.
+- $0010\;0111_{\mathrm{BCD}}$ represents 27, not $39_{10}$ (the straight-binary interpretation).
+- $0010\;1100$ is not a valid two-digit BCD value because $1100$ is not a decimal digit code.
+
+[^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36325 (Geoff Merrett, Computer Arithmetic Part I: Number Representation, “Base 2 Codes”).
 
 [^1]: https://moodle.ecs.soton.ac.uk/pluginfile.php/85703/mod_resource/content/2/L1%20Computer%20Arithmetic%20Part%201%20-%20Number%20Systems%20PRINT.pdf
