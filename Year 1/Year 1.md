@@ -31,6 +31,10 @@ permalink: y1
 
 ![[AC Impedance#AC Impedance]]
 
+![[From Impedance Triangles to Complex Numbers#From Impedance Triangles to Complex Numbers]]
+
+![[From Capacitor Formulas to Calculus#From Capacitor Formulas to Calculus]]
+
 ### ELEC1312 - Programming
 
 ![[Programming & Computer Systems#Programming & Computer Systems]]
