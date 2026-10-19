@@ -7,8 +7,8 @@ permalink: y1/elec1310/sequences-series
 - [[#Arithmetic sequences and sums]]
 - [[#Geometric sequences and sums]]
 - [[#Limits and infinite sums]]
-- [[#Extension - binomial expansion]]
-- [[#Supplemental - power series]]
+- [[#Binomial expansion]]
+- [[#Power series]]
 
 **[[#Arithmetic sequences and sums|Arithmetic progression]]**
 $$
@@ -26,10 +26,6 @@ S_\infty=\frac{a_1}{1-r}\qquad (|r|<1)
 $$
 
 ## Sequences
-
-Week 1 assigned reading, Philip Calado. The 22 September recording explicitly assigns this week's sequences/series notes as homework at 46:02–46:18 and says the topic will be revisited later. It was **not delivered in that live lecture**. It belongs in this week's notes because it was assigned, not because all uploaded slides were covered orally.[^3]
-
-The main assigned material is in slides 49–59 and lecture-note sections 9–11; optional extension and supplemental slides are separated below and are not claimed as live teaching.[^1][^2]
 
 A **sequence** is an ordered list $a_1,a_2,a_3,\ldots$; a **series** adds its terms. The first $N$ terms have partial sum
 $$
@@ -111,9 +107,9 @@ After five terms, $S_5=4(1-(1/2)^5)/(1-1/2)=7.75$. The remaining tail is $8-7.75
 > [!WARNING] Bounded does not mean convergent
 > $1,-1,1,-1,\ldots$ is bounded but has no single limit. Its partial sums also oscillate. Do not classify oscillation as a third alternative to convergence/divergence: failure to converge is divergence.
 
-## Extension - binomial expansion
+## Binomial expansion
 
-The lecture deck's extension section introduces finite series expansions.[^1] For nonnegative integer $n$:
+For nonnegative integer $n$:[^1]
 $$
 (x+y)^n=\sum_{k=0}^{n}\binom nkx^{n-k}y^k,\qquad
 \binom nk=\frac{n!}{k!(n-k)!},\qquad0!=1.
@@ -122,7 +118,7 @@ The existing expansion method supplies the basics:
 
 ![[Mathematics A Cheat Sheet#Rules of Binomial Expansion]]
 
-The new notation $\binom nk$ gives the coefficients directly without constructing Pascal's triangle.
+The notation $\binom nk$ gives the coefficients directly without constructing Pascal's triangle.
 
 #### Example 4
 
@@ -132,15 +128,15 @@ $$
 $$
 
 
-## Supplemental - power series
+## Power series
 
-The final slides provide a preview of approximation methods, not a full week of calculus. A power series represents a function using powers of its argument. Taylor expansion about $a$ takes the form
+A power series represents a function using powers of its argument. Taylor expansion about $a$ takes the form
 $$
 f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n
 $$
 where the series converges to the function. Merely possessing derivatives does not guarantee that equality everywhere. Maclaurin expansion is the special case $a=0$.
 
-The deck lists
+Important Maclaurin series include
 $$
 e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots,
 $$
@@ -150,7 +146,7 @@ $$
 $$
 These three series converge for every real $x$. Truncating gives an approximation, not exact equality; the trigonometric arguments must be in radians. For example, $e^{0.1}\approx1+0.1+0.1^2/2=1.105$ using terms through second order.
 
-The engineering point is to replace a difficult expression with a manageable polynomial near the expansion point. The notes also introduce Fourier series conceptually: periodic signals can be represented using sums of sinusoidal components. Detailed Fourier analysis belongs to later teaching.
+The engineering point is to replace a difficult expression with a manageable polynomial near the expansion point. In a Fourier series, periodic signals can be represented using sums of sinusoidal components.
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44402 — Lecture 2 slides, Functions, Sequences and Series. Core: slides 49–59; binomial/application extensions: slides 72–73; power-series supplemental material: slides 87–91.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44793 — Lecture 2 explanatory notes, sections 9–11. Original worked examples are used here; convergence terminology is stated consistently even where the source summary is loose.

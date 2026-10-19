@@ -11,6 +11,7 @@ permalink: y1/elec1313/combinational-logic
 - [[#Making an inverter from NAND]]
 - [[#Making an inverter from NOR]]
 - [[#Checking an implementation]]
+- [[#Decoders and multiplexers]]
 
 **[[#Boolean expressions and truth tables|Basic operations]]**
 $$
@@ -26,9 +27,6 @@ $$
 $$
 \overline{AA}=\overline A \qquad \overline{A\cdot1}=\overline A
 $$
-
-> [!NOTE] Coverage
-> Completes the missing Boolean/combinational strand of week 1, beginning 21 September 2026, using Jize Yan's first two lecture decks.[^1][^2] Panopto recording dates confirm both sessions on Friday 25 September 2026; the recordings supplement the decks.[^3][^4] Number representation is in [[Computer Arithmetic]]. Algebraic minimisation, Karnaugh maps and sequential circuit design are outside this week's scope.
 
 ## Combinational versus sequential logic
 
@@ -70,7 +68,7 @@ A reliable sequence is:
 
 #### Example: an enabled device with two ways to request operation
 
-This is an original worked example applying the lecture method. Let $E$ mean the device is enabled, $M$ mean a manual request, and $A$ mean an automatic request. The device runs only if enabled and at least one request is active:
+Let $E$ mean the device is enabled, $M$ mean a manual request, and $A$ mean an automatic request. The device runs only if enabled and at least one request is active:
 $$
 Y=E(M+A)
 $$
@@ -95,7 +93,7 @@ All clauses must still hold, so a fault forces the result to zero regardless of 
 
 ## From a function to hardware
 
-A **logic function** is the rule. A **logic gate** is a circuit that implements the rule. Digital electronics represents 0 and 1 using voltage levels; the lecture's $0\,\mathrm{V}$ and $5\,\mathrm{V}$ example is one possible convention, not a requirement that all digital circuits use a 5 V supply.[^2]
+A **logic function** is the rule. A **logic gate** is a circuit that implements the rule. Digital electronics represents 0 and 1 using voltage levels; a $0\,\mathrm{V}$ and $5\,\mathrm{V}$ convention is one possible convention, not a requirement that all digital circuits use a 5 V supply.[^2]
 
 As a useful physical analogy:
 
@@ -125,7 +123,7 @@ A NAND is low only when all its inputs are high. A NOR is high only when all its
 
 ## Making an inverter from NAND
 
-The second lecture gives two constructions.[^2]
+There are two ways to configure a two-input NAND as an inverter.[^2]
 
 **Connect both inputs to the same signal:**
 $$
@@ -143,7 +141,7 @@ This works because AND with 1 preserves the other input. Holding the spare input
 
 Fixing $B=1$ similarly leaves only the $(0,1)$ and $(1,1)$ rows, which give the NOT truth table.[^3]
 
-The existing Foundation Year diagrams for these constructions are in [[Electronics (2)#NOT function]]. Other universal-gate constructions are linked from [[Electronics (2)#Universal Logic]], but are not expanded here beyond the first week's deck.
+The existing Foundation Year diagrams for these constructions are in [[Electronics (2)#NOT function]]. Other universal-gate constructions are in [[Electronics (2)#Universal Logic]].
 
 ## Making an inverter from NOR
 
@@ -163,9 +161,28 @@ Both produce 1 when $A=0$ and 0 when $A=1$. Holding the spare input at 1 would f
 - Two inversions cancel: $\overline{\overline X}=X$. An AND followed by two NOT gates therefore has the original AND truth table.
 - If a NOR output is 1, every input must be 0; use such constraints to reason backwards through a circuit.
 
+## Decoders and multiplexers
+
+![[Electronics (2)#Digital Decoders]]
+
+A decoder converts a binary input code into a selected output. For an active-high 2-to-4 decoder with input order $A,B$,
+$$D_0=\bar A\bar B,\quad D_1=\bar AB,\quad D_2=A\bar B,\quad D_3=AB.$$
+Exactly one output is high for each valid input combination. Device enables or active-low outputs can change the external convention, so signal polarity is part of the specification.
+
+A **multiplexer** selects one data input and passes it to a common output. A 4-to-1 multiplexer with select inputs $A,B$ gives
+$$Y=\bar A\bar BC_0+\bar ABC_1+A\bar BC_2+ABC_3.$$
+The select code $00,01,10,11$ chooses $C_0,C_1,C_2,C_3$ respectively. A decoder selects an output line; a multiplexer selects an input signal. Their roles are related but not interchangeable.[^3]
+
+For a 2-to-1 multiplexer,
+$$Y=\bar S D_0+SD_1.$$
+This is useful for choosing between alternative next values of a register, as well as routing ordinary combinational data. See [[Logic & Latches]] and [[Registers]].
+
+
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36304 (Jize Yan, Introduction to Combinational Logic / Boolean Algebra).
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36305 (Combinational Logic Implementation).
 
 [^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6f670132-5f02-4773-99cb-b4d000f81429 (Jize Yan, JY 2 Lecture: 23:55–26:33 restricting NAND inputs; 29:19–29:36 NOR analogy; 37:14–37:19 NOR with one input fixed at zero. Auto-generated captions checked against the gate truth tables.)
 
 [^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=86ac05f9-e60c-4201-9ba3-b4d000e69820 (Jize Yan, JY 1 Lecture, recorded 25 September 2026; recording date verified in the Panopto listing).
+
+[^3]: [Circuits and devices](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36307), decoder and multiplexer sections.

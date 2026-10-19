@@ -185,7 +185,7 @@ Do not pad the right-hand end: that changes the value by shifting its place weig
 
 ## Binary Coded Decimal (BCD)
 
-The final number-representation topic in the week-1 lecture is **binary coded decimal**.[^2] Unlike straight binary, BCD encodes each decimal digit separately using four bits.
+**Binary coded decimal (BCD)** encodes each decimal digit separately using four bits.
 
 For $141_{10}$:
 
@@ -206,7 +206,7 @@ BCD is useful at the interface with people: each four-bit group represents one d
 
 #### Example: encode and decode
 
-An original check of the method:
+For example:
 
 - $59_{10}$ becomes $0101\;1001_{\mathrm{BCD}}$ by encoding 5 and 9 separately.
 - $0010\;0111_{\mathrm{BCD}}$ represents 27, not $39_{10}$ (the straight-binary interpretation).

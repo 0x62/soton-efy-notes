@@ -30,9 +30,6 @@ $$
 $$
 Here $V_0=v_C(0^+)$; set $V_S=0$ for discharge through $R$.
 
-> [!NOTE] Coverage
-> Continues [[Circuit Basics]] for teaching week 2, 28 September–2 October 2026. The dated board notes and recordings confirm capacitor combinations and numerical RC steps on 30 September, followed by differential equations, exponential solutions and the steady-plus-transient form on 2 October.[^1][^2][^4][^5] The shared deck also serves later teaching. Finding the constants for more complicated networks is explicitly deferred to the next lecture; that material and RL circuits are not included.[^3][^5]
-
 ## Capacitor combinations
 
 The physical capacitor relation and integration of a prescribed current are already in [[Circuit Basics#Capacitors]]. Here the current is determined by the surrounding circuit rather than supplied as a known graph.
@@ -79,7 +76,7 @@ Use the passive reference direction: current entering the capacitor's labelled p
 $$
 i_C=C\frac{dv_C}{dt}
 $$
-Reversing the reference current arrow gives $i=-C\,dv_C/dt$. This is a change of reference, not a different capacitor law. The 2 October board notes derive the same discharge equation using both choices.[^2]
+Reversing the reference current arrow gives $i=-C\,dv_C/dt$. This is a change of reference, not a different capacitor law. Both choices give the same discharge equation when used consistently.[^2]
 
 > [!TIP] Initial and final are different calculations
 > At the instant after switching, use the known capacitor voltage. In DC steady state, $dv_C/dt=0$, so capacitor current is zero. Do not replace the capacitor with an open circuit throughout the transient.
@@ -138,7 +135,7 @@ An initially uncharged capacitor has $V_0=0$. A source-free discharge has $V_S=0
 
 ### Why the exponential trial works
 
-The 2 October lecture distinguishes **forming** the circuit equation with KCL/KVL from **solving** it to predict the response.[^5] For source-free discharge, substitute $v=Ae^{\lambda t}$ into $dv/dt+v/(RC)=0$:
+**Forming** the circuit equation with KCL/KVL and **solving** it are separate steps.[^5] For source-free discharge, substitute $v=Ae^{\lambda t}$ into $dv/dt+v/(RC)=0$:
 $$
 \lambda Ae^{\lambda t}+\frac{Ae^{\lambda t}}{RC}
 =Ae^{\lambda t}\left(\lambda+\frac{1}{RC}\right)=0.
@@ -155,17 +152,17 @@ $$
 \quad\Rightarrow\quad
 \ln\left|\frac{v(t)}{V_0}\right|=-\frac{t}{RC}.
 $$
-The sign remains that of $V_0$, hence $v(t)=V_0e^{-t/(RC)}$. The lecturer presents integration as a way to justify the result, while favouring the exponential trial as the simpler method.[^5]
+The sign remains that of $V_0$, hence $v(t)=V_0e^{-t/(RC)}$. The exponential trial avoids explicit integration.[^5]
 
 ### Steady value plus transient
 
-The closing comparison writes both charging and discharging responses as
+Both charging and discharging responses can be written as
 $$
 v_C(t)=A+Be^{-t/\tau}.
 $$
 Here $A=v_C(\infty)$ is the **steady value**, and $B=v_C(0^+)-A$ is the initial difference from it. For the simple series circuit already solved, $A=V_S$, $B=V_0-V_S$ and $\tau=RC$. A source-free discharge has $A=0$; charging from zero has $B=-V_S$.[^5]
 
-These $A$ and $B$ belong to the steady-plus-transient form; the $A$ in the source-free trial above was its single exponential amplitude. Do not mix constants from different trial expressions. The 2 October lecture motivates applying this form to larger circuits, but leaves their practical constant-finding method to the following week.
+These $A$ and $B$ belong to the steady-plus-transient form; the $A$ in the source-free trial above was its single exponential amplitude. Do not mix constants from different trial expressions.
 
 ![[Circuit Theory (6)#RC Time Constant]]
 
@@ -173,7 +170,7 @@ More generally, after one time constant the **difference from the final value** 
 
 #### Example: charging towards 10 V
 
-The lecture deck uses a $10\,\mathrm{V}$ source, $10\,\Omega$ resistor and $0.2\,\mathrm{F}$ capacitor.[^3] For an initially uncharged capacitor:
+Consider a $10\,\mathrm{V}$ source, $10\,\Omega$ resistor and $0.2\,\mathrm{F}$ capacitor.[^3] For an initially uncharged capacitor:
 $$
 \tau=10(0.2)=2\,\mathrm{s}
 $$
@@ -184,7 +181,7 @@ At $t=1\,\mathrm{s}$, the exact values are approximately $3.93\,\mathrm{V}$ and 
 
 ## Approximating the response in time steps
 
-The 30 September lecture first builds intuition by holding the current constant for a short interval, then recalculating it.[^3][^4] At step $n$:
+A numerical approximation holds the current constant for a short interval, then recalculates it.[^3][^4] At step $n$:
 $$
 i_n=\frac{V_S-v_n}{R},\qquad v_{n+1}\approx v_n+\frac{i_n}{C}\Delta t
 $$

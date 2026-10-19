@@ -21,10 +21,6 @@ Source → preprocessing → compilation → assembly → linking → executable
 
 ## Anatomy of a C program
 
-Lecture 2, Programming in C, Dr Xu Fang, based on Klaus-Peter Zauner's slides.[^1] The live introduction on 21 September explicitly assigns this recording for the remainder of week 1 (21–25 September), so it belongs with the introduction rather than being assumed to be week 2.[^2][^3][^4]
-
-This original illustration uses only the basic program structure introduced in the lecture. It is not a laboratory answer.
-
 ```c
 /* A small hosted program that prints a status message. */
 #include <stdio.h>
@@ -67,19 +63,19 @@ Expected output is one line:
 Ready to learn C.
 ```
 
-On Windows, the executable commonly has an `.exe` suffix and the invocation differs by shell; the lecture demonstrates Windows Command Prompt. The central distinction is unchanged: **editing**, **building** and **running** are separate actions. Rebuild after editing, or you may run an old executable.
+On Windows, the executable commonly has an `.exe` suffix and the invocation differs by shell; Windows Command Prompt is one example. The central distinction is unchanged: **editing**, **building** and **running** are separate actions. Rebuild after editing, or you may run an old executable.
 
-As an additional checking practice, the example was compiled with warnings enabled:
+Enable warnings to catch likely mistakes:
 
 ```sh
 gcc -std=c11 -Wall -Wextra -Werror -pedantic message.c -o message
 ```
 
-These options select C11 and treat the enabled warnings as errors; they are a checking aid here, not a claim that these exact options were assigned in the lecture.
+These options select C11 and treat the enabled warnings as errors.
 
 ## Four translation stages
 
-The word **compilation** is often used for the entire build. More precisely, the lecture separates four stages:[^1]
+The word **compilation** is often used for the entire build. More precisely, there are four stages:[^1]
 
 1. **Preprocessing:** processes directives such as `#include`, expands macros such as `SUCCESS` and removes comments from the token stream.
 2. **Compilation:** analyses the C code and translates it into target assembly instructions.
@@ -92,7 +88,7 @@ For the example, preprocessing makes `return SUCCESS;` effectively `return 0;`. 
 
 ## Headers and separate files
 
-The slide diagram shows larger programs divided into source files that can be compiled separately before linking.
+Larger programs can be divided into source files that are compiled separately before linking.
 
 | File type | Role |
 | --- | --- |
@@ -104,7 +100,7 @@ The slide diagram shows larger programs divided into source files that can be co
 
 A **declaration** tells the compiler about a function's interface. A **definition** supplies its implementation. Including the appropriate header allows the compiler to check calls, while linking connects the calls to implementations.
 
-The recording explains the practical benefit of separate compilation (23:26–24:00): if just one implementation changes, rebuild its object file and then relink it with the unchanged objects. You need not translate every source file again. A shared header change can affect multiple source files, however, so every dependent unit must be rebuilt; reuse is safe only when the relevant inputs have not changed.[^3]
+If just one implementation changes, rebuild its object file and then relink it with the unchanged objects. You need not translate every source file again. A shared header change can affect multiple source files, however, so every dependent unit must be rebuilt; reuse is safe only when the relevant inputs have not changed.[^3]
 
 An object file is not generally a complete runnable program. It can still contain unresolved references that require other objects or libraries.
 
@@ -112,13 +108,13 @@ An object file is not generally a complete runnable program. It can still contai
 
 The **host** is the system running the compiler. The **target** is the system that will run the compiled program.
 
-A normal desktop build often targets the same kind of system as the host. A **cross-compiler** instead produces code for a different target, for example building AVR firmware on a PC. The introductory slides name `avr-gcc` alongside desktop `gcc`.[^2]
+A normal desktop build often targets the same kind of system as the host. A **cross-compiler** instead produces code for a different target, for example building AVR firmware on a PC. `avr-gcc` targets AVR processors, whereas a desktop `gcc` installation normally targets its host platform.[^2]
 
 This changes the translation target, not the meaning of host and target. Hardware-specific code and available libraries also matter: successfully building a hosted `printf` example does not establish that the same program can use an embedded board's output devices unchanged.
 
 ## Writing and checking small programs
 
-The lecture recommends understanding the task, planning small steps, making code readable, compiling frequently and reading diagnostics carefully.[^1]
+Understand the task, plan small steps, make code readable, compile frequently and read diagnostics carefully.[^1]
 
 A useful cycle is:
 
@@ -128,11 +124,11 @@ A useful cycle is:
 4. Run the new executable and compare actual output with the expected result.
 5. Make one change and repeat.
 
-As an original diagnostic example, deleting the semicolon after `printf(...)` creates a syntax error. The compiler may point to the next token rather than the exact place the semicolon should have been. Inspect the surrounding statement instead of treating the highlighted token as the only possible fault. This reflects the recording's warning (30:31–30:53) that the reported line may be later than the original mistake.[^3]
+Deleting the semicolon after `printf(...)` creates a syntax error. The compiler may point to the next token rather than the exact place the semicolon should have been. Inspect the surrounding statement instead of treating the highlighted token as the only possible fault. The reported line may be later than the original mistake.[^3]
 
-In the introduction (18:29–19:04), Steve Gunn emphasises writing programs so that mistakes are caught during compilation where possible, rather than emerging only when the executable runs. Warnings and clear declarations are useful checks, but cannot prove the entire program correct.[^4]
+Write programs so that mistakes are caught during compilation where possible, rather than emerging only when the executable runs. Warnings and clear declarations are useful checks, but cannot prove the entire program correct.[^4]
 
-A successful build proves only that the translation checks passed. A program can still compute the wrong result or perform the wrong task, so testing and understanding remain necessary. Keep these illustrative examples separate from assessed work and write your own solutions in accordance with module guidance.
+A successful build proves only that the translation checks passed. A program can still compute the wrong result or perform the wrong task, so testing and understanding remain necessary.
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44022 — Lecture 2, Programming in C. Program anatomy: slides 4–5; translation and files: slides 6–13; development advice: slide 14. This note covers taught concepts, not the lab walkthrough or assessment tasks.
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36211 — Lecture 1, Introduction. Tools: slide 11; first-week recording assignment: slides 23 and 34. The live recording confirms the 21 September introduction and assignment of the companion recording within the same week.

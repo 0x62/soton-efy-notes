@@ -158,7 +158,7 @@ Ideal voltage sources provide a steady voltage, regardless of the load. The curr
 > [!figure] ![[Screenshot 2026-09-21 at 21.40.38@2x.png]]
 > Model of a real voltage source &middot; © University of Southampton [^1]
 
-The above circuit model is also relevant for [[Circuit Theory (7)#Thevenin's Theorem|Thevenin's Theorem]] which allows you to simplify any linear circuit into a voltage source, series resistance, and load resistance as shown above (this will no doubt be covered later in the module).
+The above circuit model is also relevant for [[Circuit Theory (7)#Thevenin's Theorem|Thevenin's Theorem]] which allows you to simplify any linear circuit into a voltage source, series resistance, and load resistance as shown above.
 
 We can also model real current sources, by using a parallel resistor:
 
@@ -416,7 +416,7 @@ $$
 
 #### Example: a current ramp followed by constant current
 
-The 28 September lecture finishes by integrating a current which rises linearly from zero to $I_1$ over time $T_1$, then remains at $I_1$.[^2] This extends the integral form above rather than introducing a new capacitor law.
+Consider a current which rises linearly from zero to $I_1$ over time $T_1$, then remains at $I_1$.[^2]
 
 Assume $v(0)=V_0$ and current enters the positive terminal:
 $$
@@ -442,7 +442,7 @@ v(t)=v(T_1)+\frac{1}{C}\int_{T_1}^{t}I_1\,d\tau
 $$
 The first section is **quadratic** because the charging current is increasing; the second is **linear** because the current is constant. It is not exponential: exponential charging arises when the surrounding resistor circuit makes the current decrease with capacitor voltage, as in [[RC Transients]].
 
-The 30 September lecture works a concrete version with $C=0.5\,\mathrm{F}$, initially discharged, current ramping from 0 to $1\,\mathrm{A}$ during the first second, remaining at $1\,\mathrm{A}$ during the second, then switching off.[^3] With $t$ in seconds, the voltage in volts is:
+For a concrete example, take $C=0.5\,\mathrm{F}$, initially discharged, current ramping from 0 to $1\,\mathrm{A}$ during the first second, remaining at $1\,\mathrm{A}$ during the second, then switching off.[^3] With $t$ in seconds, the voltage in volts is:
 $$
 v(t)=
 \begin{cases}
