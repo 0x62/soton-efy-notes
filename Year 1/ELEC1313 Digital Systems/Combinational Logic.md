@@ -171,7 +171,7 @@ Exactly one output is high for each valid input combination. Device enables or a
 
 A **multiplexer** selects one data input and passes it to a common output. A 4-to-1 multiplexer with select inputs $A,B$ gives
 $$Y=\bar A\bar BC_0+\bar ABC_1+A\bar BC_2+ABC_3.$$
-The select code $00,01,10,11$ chooses $C_0,C_1,C_2,C_3$ respectively. A decoder selects an output line; a multiplexer selects an input signal. Their roles are related but not interchangeable.[^3]
+The select code $00,01,10,11$ chooses $C_0,C_1,C_2,C_3$ respectively. A decoder selects an output line; a multiplexer selects an input signal. Their roles are related but not interchangeable.[^5]
 
 For a 2-to-1 multiplexer,
 $$Y=\bar S D_0+SD_1.$$
@@ -185,4 +185,4 @@ This is useful for choosing between alternative next values of a register, as we
 
 [^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=86ac05f9-e60c-4201-9ba3-b4d000e69820 (Jize Yan, JY 1 Lecture, recorded 25 September 2026; recording date verified in the Panopto listing).
 
-[^3]: [Circuits and devices](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36307), decoder and multiplexer sections.
+[^5]: [Circuits and devices](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36307), decoder and multiplexer sections.

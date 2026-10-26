@@ -37,7 +37,15 @@ With $T=0$ it holds; with $T=1$ it toggles. This can be implemented using a D fl
 
 A ripple counter clocks only the first stage directly from the input clock. Each later stage is clocked by a transition from the preceding stage. The state changes therefore **ripple** through the chain, rather than all stages responding to one common clock edge.[^counters]
 
-For example, connect toggling **falling-edge** flip-flops so that each stage's $Q$ clocks the next stage. A falling transition of the lowest bit advances the next bit. With suitable initialisation, the settled outputs form a binary up-count. Changing the triggering edge or using $\overline Q$ instead changes which transitions advance the next stage; do not assume every cascade counts in the same direction.
+For a three-bit rising-edge implementation, connect each $D_i=\overline{Q_i}$ and use
+$$\mathrm{clk}_0=\mathrm{clk},\qquad
+\mathrm{clk}_1=\overline{Q_0},\qquad
+\mathrm{clk}_2=\overline{Q_1}.$$
+The external rising edge toggles $Q_0$. A **falling** edge of $Q_0$ is a **rising** edge of $\overline{Q_0}$, so it toggles $Q_1$; a falling edge of $Q_1$ similarly toggles $Q_2$. These are the connections in the three-bit handwritten circuit.[^whiteboard]
+
+Starting at $000$, the settled count is $000,001,010,011,100,101,110,111,000$. Eight distinct states means **modulus 8**, not a largest stored value of 8: the largest value is 7.
+
+An alternative uses falling-edge flip-flops with each stage's $Q$ clocking the next stage. The relevant transition of the preceding **count bit** is still falling. Changing only the triggering edge or only the output polarity changes the sequence; the edge symbol and the choice of $Q$ versus $\overline Q$ must be read together.
 
 For a full binary sequence, bit $Q_i$ divides the input frequency by $2^{i+1}$:
 $$f_{Q_0}=\frac{f_{\mathrm{clk}}}{2},\qquad
@@ -59,6 +67,23 @@ when the transition propagates through every stage and the stages have equal del
 ## Synchronous counters
 
 All storage elements in a synchronous counter share the same clock. Combinational logic computes each next-state input from the present state. The flip-flops then capture these values together at the active edge.[^counters]
+
+### Two-bit synchronous counter
+
+For two rising-edge D flip-flops on a common clock,
+$$D_0=\overline{Q_0},\qquad D_1=Q_1\oplus Q_0.$$
+The XOR holds $Q_1$ when the old $Q_0=0$ and complements it when the old $Q_0=1$. Evaluating both inputs from the **same old state** gives:[^whiteboard]
+
+| Present $Q_1Q_0$ | $D_1=Q_1\oplus Q_0$ | $D_0=\overline{Q_0}$ | Next $Q_1Q_0$ |
+| --- | --- | --- | --- |
+| 00 | 0 | 1 | 01 |
+| 01 | 1 | 0 | 10 |
+| 10 | 1 | 1 | 11 |
+| 11 | 0 | 0 | 00 |
+
+At $01\to10$, $D_1$ is already 1 before the edge. It does not wait for $Q_0$ to fall. Updating $Q_0$ first on paper and then using its **new** value to calculate $D_1$ would describe the wrong circuit.
+
+### Enabled binary counter
 
 For a three-bit binary up-counter with enable $E$:
 $$\begin{aligned}
@@ -123,6 +148,8 @@ A single-XOR path is shorter and does not determine this bound. Parallel AND ter
 
 This is an idealised setup-limited calculation using the stated delay bounds. A practical operating frequency also allows for the specified clock uncertainties and verifies all hold paths.
 
-[^counters]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), including ripple/synchronous-counter topics, the toggle-flip-flop supplementary topic and the enabled-counter circuit on page 12. Explicit state sequences and equations above develop these circuit principles. The [published module schedule](https://moodle.ecs.soton.ac.uk/pluginfile.php/85680/mod_label/intro/Screenshot%202026-09-21%20at%2013.08.01.png) places this material on 23 October 2026; its recording was not yet available when these notes were prepared. Whiteboard-only worked examples are not transcribed here.
+[^counters]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), including ripple/synchronous-counter topics, the toggle-flip-flop supplementary topic and the enabled-counter circuit on page 12. Explicit state sequences and equations develop these circuit principles.
 [^timing]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), pages 6 and 9. The minimum-delay hold inequality states the corresponding zero-skew timing condition explicitly.
 [^timingexample]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), page 10: circuit image and numerical delay specification; calculation derived from its longest AND–OR path.
+
+[^whiteboard]: Geoff Merrett, [L5 Counters handwritten notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45559), pp. 1, 3, 5 and 7: three-bit ripple circuit and timing; two-bit synchronous circuit and timing. [Replacement recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5c1cddeb-c819-4cb9-b9b6-b4ec01149560), 16:24–18:06, 20:26–23:42 and 29:10–33:24. This recording is explicitly from 2025–26, supplied for the failed 23 October 2026 capture in the [lecturer’s announcement](https://moodle.ecs.soton.ac.uk/mod/forum/discuss.php?d=2523); the handwritten pages are from the current lectures.
