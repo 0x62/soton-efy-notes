@@ -21,6 +21,8 @@ permalink: y1
 
 ![[Applications of Derivatives#Applications of Derivatives]]
 
+![[Integration#Integration]]
+
 ### ELEC 1311 - Circuits
 
 ![[Circuit Basics#Circuit Basics]]
@@ -30,6 +32,8 @@ permalink: y1
 ![[RL and Complete Response#RL and Complete Response]]
 
 ![[AC Impedance#AC Impedance]]
+
+![[AC Power#AC Power]]
 
 ![[From Impedance Triangles to Complex Numbers#From Impedance Triangles to Complex Numbers]]
 
@@ -50,6 +54,8 @@ permalink: y1
 ![[Structures & Dynamic Memory#Structures & Dynamic Memory]]
 
 ![[Modular Programs & Command Line#Modular Programs & Command Line]]
+
+![[Embedded Programming & Architecture#Embedded Programming & Architecture]]
 
 ### ELEC1313 - Digital Systems
 

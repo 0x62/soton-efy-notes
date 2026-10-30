@@ -229,6 +229,6 @@ $$
 for constant permittivity $\varepsilon$. A piecewise quadratic potential therefore corresponds to a piecewise linear electric field and piecewise constant charge density. The minus sign means the field points toward decreasing potential.[^1]
 
 [^1]: University of Southampton, ELEC1310, Philip Calado, *An Introduction to Derivatives*, [notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45013); [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45181), including slide 87 for the junction example.
-[^2]: University of Southampton, ELEC1310, Philip Calado, [Applications of Derivatives 1 notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44799), sections 2–4 and 13; [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=42825).
+[^2]: University of Southampton, ELEC1310, Philip Calado, [Lecture 9: Differentiation Techniques notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45472), sections 2–4 and 13; [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45419).
 
 [^3]: Philip Calado, [Introduction to Derivatives recording, 13 October 2026](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9e301411-9437-4c05-9cec-b4e201067422), 6:55–7:26, 20:10–21:19, 39:31–40:59 and 44:17–45:01.

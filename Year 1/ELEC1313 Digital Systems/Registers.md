@@ -50,6 +50,30 @@ The first inserted bit reaches $Q_0$ on the fourth edge. The pattern illustrates
 
 With zero fill, shifting an unsigned word toward its least significant end divides it by two and discards any remainder. Shifting toward the most significant end multiplies by two only if the discarded high bit does not cause overflow. A shift is fundamentally a bit movement; its numerical interpretation depends on the representation and fill bit.
 
+### Serial input at the least significant end
+
+For the opposite wiring, where the serial input enters $Q_0$ and each stage feeds the next higher-indexed stage,
+$$Q_0^+=\mathrm{in},\quad Q_1^+=Q_0,\quad Q_2^+=Q_1,\quad Q_3^+=Q_2.$$
+This is the convention in the handwritten four-bit shift register. Always distinguish the **left-to-right placement on a circuit diagram** from the numerical bit order $Q_3Q_2Q_1Q_0$.[^registerwhiteboard]
+
+Starting at $0000$, sample the input sequence $1,1,0,0,0,1,0,0,0$ at nine rising edges:
+
+| Edge | Sampled input | New $Q_3Q_2Q_1Q_0$ |
+| --- | --- | --- |
+| 1 | 1 | 0001 |
+| 2 | 1 | 0011 |
+| 3 | 0 | 0110 |
+| 4 | 0 | 1100 |
+| 5 | 0 | 1000 |
+| 6 | 1 | 0001 |
+| 7 | 0 | 0010 |
+| 8 | 0 | 0100 |
+| 9 | 0 | 1000 |
+
+A short input pulse wholly between the sixth and seventh active edges is **not captured**. The pulse's existence is not enough: its value at the sampling edge, with setup and hold satisfied, is what matters. The waveform therefore cannot be traced simply by copying every input transition into the first stage.
+
+After four captures, the first of those four serial bits is at $Q_3$ and the newest is at $Q_0$. Reading all four outputs together converts serial data to a parallel word. A continuing stream overwrites the oldest bit on each edge; a word boundary must therefore be defined by the surrounding system.
+
 ## Bidirectional shifting
 
 A bidirectional shift register selects the source for each stage according to a direction control. Define $\mathrm{dir}=0$ as shifting toward $Q_0$ and $\mathrm{dir}=1$ as shifting toward $Q_3$:
@@ -75,4 +99,5 @@ At an end, the missing neighbour is replaced by the appropriate serial input. Th
 
 For $Q=1010$, a shift toward $Q_0$ with input 1 gives $1101$. A subsequent shift toward $Q_3$ with input 0 gives $1010$. Using already-updated bit values within one edge would incorrectly duplicate bits and lose the simultaneous-update behaviour.
 
-[^registers]: Geoff Merrett, [Sequential Logic Part 3: Registers](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36336), especially the parallel-register schematic and shift/bidirectional-register topics. Shift equations and worked patterns here make the stated direction conventions explicit. The published [module schedule](https://moodle.ecs.soton.ac.uk/pluginfile.php/85680/mod_label/intro/Screenshot%202026-09-21%20at%2013.08.01.png) places continuation in the week beginning 19 October 2026; no recording of that continuation was available when these notes were prepared.
+[^registers]: Geoff Merrett, [Sequential Logic Part 3: Registers](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36336), parallel, shift and bidirectional register circuits.
+[^registerwhiteboard]: Geoff Merrett, [L4 Registers handwritten notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45558), pp. 1–3: parallel register, serial-input-at-$Q_0$ circuit and sampled waveform. [23 October 2026 registers recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=0feb236c-9e6e-48d2-a171-b4ec00b591f1). Recording 41:19–45:26 explains sampling and the missed between-edge pulse; 46:22–46:48 explains serial-to-parallel conversion. The word table follows the input samples in the handwritten waveform, using the stated $Q_3Q_2Q_1Q_0$ display order.

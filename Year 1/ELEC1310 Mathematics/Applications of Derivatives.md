@@ -174,6 +174,17 @@ $$
 $$
 Choose an initial estimate, calculate the next estimate, and repeat until a suitable residual tolerance such as $|f(x_n)|<\varepsilon$ is met. A small residual measures equation error; it need not imply a small position error when the slope is tiny.
 
+For $f(x)=x^2-2$, Newton's iteration simplifies to
+$$
+x_{n+1}=x_n-\frac{x_n^2-2}{2x_n}
+=\frac12\left(x_n+\frac2{x_n}\right).
+$$
+Starting with $x_0=1$ gives
+$$
+x_1=1.5,\qquad x_2\approx1.4166667,\qquad x_3\approx1.4142157.
+$$
+At the third iterate, the residual is $x_3^2-2\approx6.01\times10^{-6}$. Compare the residual with the chosen tolerance rather than relying on the number of displayed decimal places. A step-size condition such as $|x_{n+1}-x_n|<\varepsilon_x$ checks a different quantity; robust implementations also limit iterations and guard against a near-zero denominator.
+
 The method is not guaranteed to converge. It can fail at zero derivative, jump far from the root when the derivative is small, cycle, or approach a different root. For $f(x)=-x^3+4x^2-4$, starting at $x_0=0$ fails immediately because $f'(0)=0$ while $f(0)=-4$.
 
 ## State-dependent devices
@@ -186,5 +197,5 @@ where $w$ evolves with time. Its response therefore depends on its state as well
 
 This motivates multivariable descriptions and partial derivatives. Neuromorphic computing uses electronic devices to represent neural-network operations such as a weighted sum $z=\sum_k w_kx_k+b$, with weights $w_k$ and bias $b$.
 
-[^1]: University of Southampton, ELEC1310, Philip Calado, [Applications of Derivatives 1 notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=44799), sections 5–13; [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=42825). Rolle's theorem and the mean value theorem are marked non-examinable in the notes.
-[^2]: University of Southampton, ELEC1310, Philip Calado, [Applications of Derivatives 2 slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=42824), pp. 4–56, linked in [Week 5](https://moodle.ecs.soton.ac.uk/course/section.php?id=13655).
+[^1]: University of Southampton, ELEC1310, Philip Calado, [Lecture 9: Differentiation Techniques notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45472), sections 5–13; [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45419). Rolle's theorem and the mean value theorem are marked non-examinable in the notes.
+[^2]: University of Southampton, ELEC1310, Philip Calado, [Lecture 10: Applications of Derivatives notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45484), §§2–5; [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45565); [lecture recording, 23 October 2026](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=22ceb36f-8495-4f8d-8cee-b4ec00f64c14), 9:51–19:13 and 31:03–46:10. State-dependent-device context: [Applications of Derivatives 2 slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=42824).
