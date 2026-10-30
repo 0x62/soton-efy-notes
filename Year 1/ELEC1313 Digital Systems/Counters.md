@@ -41,7 +41,7 @@ For a three-bit rising-edge implementation, connect each $D_i=\overline{Q_i}$ an
 $$\mathrm{clk}_0=\mathrm{clk},\qquad
 \mathrm{clk}_1=\overline{Q_0},\qquad
 \mathrm{clk}_2=\overline{Q_1}.$$
-The external rising edge toggles $Q_0$. A **falling** edge of $Q_0$ is a **rising** edge of $\overline{Q_0}$, so it toggles $Q_1$; a falling edge of $Q_1$ similarly toggles $Q_2$. These are the connections in the three-bit handwritten circuit.[^whiteboard]
+The external rising edge toggles $Q_0$. A **falling** edge of $Q_0$ is a **rising** edge of $\overline{Q_0}$, so it toggles $Q_1$; a falling edge of $Q_1$ similarly toggles $Q_2$.[^whiteboard]
 
 Starting at $000$, the settled count is $000,001,010,011,100,101,110,111,000$. Eight distinct states means **modulus 8**, not a largest stored value of 8: the largest value is 7.
 

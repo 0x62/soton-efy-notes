@@ -42,6 +42,17 @@ For in-phase sinusoids of $8\,\mathrm V$ peak and $4\,\mathrm A$ peak,
 $$p(t)=32\cos^2\omega t=16(1+\cos2\omega t)\,\mathrm W.$$
 Thus instantaneous power ranges from $0$ to $32\,\mathrm W$, while the average is $16\,\mathrm W$. Multiplying the two peak amplitudes gives the maximum instantaneous power in this in-phase example, **not** the average.
 
+### Why the oscillating term averages to zero
+
+Let $\alpha=\theta_v+\theta_i$ and use $T=2\pi/\omega$. Integrating the oscillating term explicitly gives
+$$\int_0^T\cos(2\omega t+\alpha)\,dt
+=\left[\frac{\sin(2\omega t+\alpha)}{2\omega}\right]_0^T
+=\frac{\sin(4\pi+\alpha)-\sin\alpha}{2\omega}=0.$$
+The two sine values are equal because their arguments differ by two complete cycles. The constant term instead gives
+$$\frac1T\int_0^T\cos\phi\,dt
+=\frac{T\cos\phi-0}{T}=\cos\phi.$$
+Thus the average retains the phase-difference term, not the double-frequency term. This derivation is for a single-frequency sinusoidal steady state; the integral definition of average power still applies to other waveforms.[^4]
+
 ## Complex power and RMS phasors
 
 ![[AC Theory (3)#Power components]]
@@ -51,7 +62,16 @@ The component picture uses RMS current magnitude. The sign of the quadrature com
 The complex-power description retains the distinction between irreversible energy transfer and reversible energy storage. With RMS phasors,
 $$\underline V=V_{\mathrm{rms}}e^{j\theta_v},\qquad \underline I=I_{\mathrm{rms}}e^{j\theta_i},$$
 $$S=\underline V\underline I^*=V_{\mathrm{rms}}I_{\mathrm{rms}}e^{j(\theta_v-\theta_i)}=P+jQ.$$
-The conjugate is essential: it produces the **phase difference**, not the phase sum.
+The conjugate is essential: it produces the **phase difference**, not the phase sum. In rectangular form, $(a+jb)^*=a-jb$; in polar form, $(I\angle\theta)^*=I\angle(-\theta)$.
+
+For example, with $\underline V=10+j0\,\mathrm V$ RMS and $\underline I=3-j4\,\mathrm A$ RMS:
+
+1. Conjugate the current: $\underline I^*=3+j4$.
+2. Multiply: $S=10(3+j4)=30+j40\,\mathrm{VA}$.
+3. Read off $P=30\,\mathrm W$ and $Q=40\,\mathrm{var}$.
+4. Find $|S|=\sqrt{30^2+40^2}=50\,\mathrm{VA}$ and $\mathrm{PF}=30/50=0.6$, lagging.
+
+$S$ is a complex summary of power; it is **not** the instantaneous waveform $p(t)$ and is not inserted into $\Re\{S e^{j\omega t}\}$ to obtain power. The real instantaneous power generally contains a constant part and a component at $2\omega$.[^5]
 
 | Quantity | Expression | Unit | Meaning |
 |---|---|---|---|
@@ -69,7 +89,7 @@ The factor of $1/2$ disappears only when **both** phasors are RMS. These sinusoi
 
 ## Worked sinusoidal example
 
-Consider the lecture example
+Consider
 $$v(t)=120\cos(377t+\pi/4)\,\mathrm V,\qquad i(t)=10\cos(377t-\pi/18)\,\mathrm A.$$
 The phase angles are $45^\circ$ and $-10^\circ$, so the phase difference is $55^\circ$:
 $$V_{\mathrm{rms}}=\frac{120}{\sqrt2},\qquad I_{\mathrm{rms}}=\frac{10}{\sqrt2},$$
@@ -89,6 +109,44 @@ Its average is $344.15\,\mathrm W$. The instantaneous power becomes negative dur
 | Capacitor | Lags by $90^\circ$ | $0$ | $-V_{\mathrm{rms}}I_{\mathrm{rms}}$ |
 
 A resistor converts electrical energy into heat. An ideal inductor stores magnetic energy $W_L=Li^2/2$; an ideal capacitor stores electric energy $W_C=Cv^2/2$. Each returns its stored energy later in the cycle. **Zero average power does not mean zero current, zero instantaneous power or zero stored energy.** Real components can also dissipate power through resistance and other losses.[^1]
+
+### Deriving the component power waveforms
+
+Choose the same cosine voltage reference $v(t)=V_m\cos\omega t$ in each case. The component equations determine the current; all amplitudes below are **peak** values.
+
+**Resistor**
+
+1. $i(t)=v(t)/R=(V_m/R)\cos\omega t$, so $I_m=V_m/R$.
+2. Multiply: $p_R(t)=V_mI_m\cos^2\omega t$.
+3. Use $\cos^2x=(1+\cos2x)/2$:
+   $$p_R(t)=\frac{V_mI_m}{2}(1+\cos2\omega t).$$
+4. Therefore $P_R=V_mI_m/2=V_{\mathrm{rms}}^2/R$ and $Q_R=0$. The waveform never becomes negative.
+
+**Capacitor**
+
+1. $i(t)=C\,dv/dt=-\omega CV_m\sin\omega t$.
+2. Since $-\sin x=\cos(x+90^\circ)$, the current leads voltage and $I_m=\omega CV_m$.
+3. Multiply and use $2\sin x\cos x=\sin2x$:
+   $$p_C(t)=-\frac{V_mI_m}{2}\sin2\omega t.$$
+4. Its average is zero; $Q_C=-V_mI_m/2=-\omega C V_{\mathrm{rms}}^2$.
+
+**Inductor**
+
+1. $v=L\,di/dt$, so the steady-state current is $i(t)=V_m\sin\omega t/(\omega L)$.
+2. Since $\sin x=\cos(x-90^\circ)$, the current lags voltage and $I_m=V_m/(\omega L)$.
+3. Therefore
+   $$p_L(t)=+\frac{V_mI_m}{2}\sin2\omega t.$$
+4. Its average is zero; $Q_L=+V_mI_m/2=V_{\mathrm{rms}}^2/(\omega L)$.
+
+The signs of the sine expressions above use this explicitly chosen **voltage** reference. Shifting the time origin changes the displayed waveform phase, but not the average power or the sign of $Q$. Positive and negative areas of an ideal reactive component's power waveform are equal over a cycle.[^1]
+
+### Energy check
+
+For the capacitor,
+$$\frac{d}{dt}\left(\frac12Cv^2\right)=Cv\frac{dv}{dt}=vi=p_C.$$
+For the inductor,
+$$\frac{d}{dt}\left(\frac12Li^2\right)=Li\frac{di}{dt}=vi=p_L.$$
+Positive power increases stored energy; negative power decreases it. After a full steady-state cycle the stored energy has returned to its initial value, so net absorbed energy and average real power are zero.
 
 ## Power from impedance or admittance
 
@@ -121,6 +179,18 @@ The derivative changes from positive to negative at $R_L=R_s$, giving
 $$\boxed{Z_L=Z_s^*,\qquad P_{L,\max}=\frac{|\underline V_s|^2}{4R_s}.}$$
 The source voltage is RMS here. With a **peak** source amplitude $V_{s,m}$, the maximum is $V_{s,m}^2/(8R_s)$.[^1]
 
+### Worked complex matching example
+
+Let $\underline V_s=20\angle0^\circ\,\mathrm V$ RMS and $Z_s=4+j3\,\Omega$.
+
+1. Cancel the reactance and match the resistance: $Z_L=4-j3\,\Omega$.
+2. Total impedance is $(4+j3)+(4-j3)=8\,\Omega$.
+3. Current is $\underline I=20/8=2.5\angle0^\circ\,\mathrm A$ RMS.
+4. Load power is $P_L=|\underline I|^2R_L=2.5^2(4)=25\,\mathrm W$.
+5. Check the maximum-power expression: $20^2/(4\times4)=25\,\mathrm W$.
+
+The load's complex power is $S_L=2.5^2(4-j3)=25-j18.75\,\mathrm{VA}$. The source impedance absorbs $25+j18.75\,\mathrm{VA}$, so the reactive powers cancel while both resistances dissipate real power.
+
 ### Worked resistive matching example
 
 A source has a $10\,\mathrm V$ **peak** amplitude and $R_s=8\,\Omega$, with no source reactance. For a resistive load,
@@ -134,6 +204,17 @@ $$V_{L,m}=10\frac{R_L}{8+R_L},\qquad P_L=\frac{V_{L,m}^2}{2R_L}.$$
 | $16\,\Omega$ | $6.67\,\mathrm V$ | $1.39\,\mathrm W$ |
 
 A larger load voltage need not mean larger load power: increasing resistance also reduces current. Matching maximises delivered power for this fixed source model, not efficiency. At the matched point equal real power is dissipated in $R_s$ and $R_L$, so the load receives half the total resistive dissipation. The conjugate-match result assumes both load resistance and reactance can be selected; it cannot be applied unchanged when the load is constrained to be purely resistive and $X_s\ne0$.[^1]
+
+### When only the load resistance is adjustable
+
+If the load must be purely resistive, set $X_L=0$ from the start. Then
+$$P_L=\frac{|\underline V_s|^2R_L}{(R_s+R_L)^2+X_s^2}.$$
+Differentiation gives a numerator proportional to
+$$(R_s+R_L)^2+X_s^2-2R_L(R_s+R_L)
+=R_s^2+X_s^2-R_L^2.$$
+Therefore the optimum is $R_L=\sqrt{R_s^2+X_s^2}=|Z_s|$, not generally $R_s$. This is a different constraint from conjugate matching.
+
+**Voltage transfer is a different objective.** A high input impedance can preserve a signal voltage by drawing very little current. That is not maximum-power matching. Likewise, an amplifier's permitted speaker impedance is a design/rating constraint; it should not automatically be equated to the amplifier's small-signal output impedance.
 
 ## Decibels and the half-power point
 
@@ -156,6 +237,19 @@ For the [[AC Impedance#Frequency response|RL high-pass response]], the cutoff am
 $$20\log_{10}\frac1{\sqrt2}=-3.0103\,\mathrm{dB}.$$
 The squared amplitude ratio is $1/2$: this is the **half-power** point relative to the passband under the same power-reference conditions. Half the voltage is instead approximately $-6\,\mathrm{dB}$. A negative gain in dB means attenuation, not negative physical power.[^2][^3]
 
-[^1]: Neil White, [AC Power](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43977), pp. 3–10, 14–35, published under [Week 6: AC Power](https://moodle.ecs.soton.ac.uk/course/section.php?id=13905). Week-wide source coverage, not a claim that all sections were delivered on 26 October.
+### Converting a dB value back to a ratio
+
+Undo the logarithm with a power of ten:
+$$\frac{P_o}{P_i}=10^{G_P/10},\qquad
+\left|\frac{V_o}{V_i}\right|=10^{G_V/20}.$$
+For $G_V=-12\,\mathrm{dB}$, the amplitude ratio is $10^{-12/20}=0.2512$. A $4\,\mathrm V$ RMS input therefore gives approximately $1.005\,\mathrm V$ RMS output. Under equal-resistance power-reference conditions, the power ratio is $0.2512^2=0.0631$, also $10^{-12/10}$.
+
+Zero dB means a ratio of one, not zero volts or zero watts. An **absolute** decibel level requires a stated reference; a bare gain in dB is a ratio.[^2]
+
+[^1]: Neil White, [AC Power](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43977), pp. 3–10, 14–35, published under [Week 6: AC Power](https://moodle.ecs.soton.ac.uk/course/section.php?id=13905). Published Week 6 material.
 [^2]: [Decibels](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43978), one-page power/voltage gain and half-power explanation; AC Power slides 11–13.
 [^3]: [23 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6648bca7-8084-44fc-bfe4-b4ec0083b0a1), 18:25–32:17 RL frequency response, 32:17–39:41 decibels; formulas aligned with the accompanying slides.
+
+[^4]: [26 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1bcca3da-14f4-474a-bc82-b4ef00f72c61), 12:09–30:40 instantaneous/average-power derivation, 30:46–38:26 complex-power and RMS conventions, 38:34–45:37 decibels.
+
+[^5]: [28 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=71c6e62d-4081-42de-a7fa-b4f100aaf13f), 0:44–6:54 real/reactive power, 7:13–17:37 time-domain example, 17:42–21:31 resistor power and waveform distinction; equations checked against AC Power slides.

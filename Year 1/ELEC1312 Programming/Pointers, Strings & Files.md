@@ -51,6 +51,20 @@ Pointer arithmetic is defined within an array and up to one position past its en
 
 Use an index or a pointer with an explicit end condition; do not assume a pointer remembers the length of its array.
 
+For example:
+
+```c
+int values[3] = {10, 20, 30};
+int *p = values;
+```
+
+- `p[0]` is `10`; `*(p + 2)` is `30`.
+- `sizeof values` is `3 * sizeof(int)` because `values` is an array here.
+- `sizeof p` is the size of an `int *`, not the size of the array.
+- If `p` instead pointed to one standalone `int`, only `p[0]` would access that object. Indexing syntax does not create additional elements.
+
+Thus a pointer is **not automatically an array**. Indexing is valid only when the pointer and index refer to storage that actually exists with the appropriate type and lifetime.
+
 ## Changing a caller's object
 
 C always passes arguments by value. Passing an address copies a pointer value, allowing the function to reach the original object through that pointer.
@@ -88,6 +102,8 @@ char label[] = "Valve";
 The array contains six elements: `V`, `a`, `l`, `v`, `e`, `\0`. Its capacity is six bytes; its string length is five. A character literal such as `'V'` is distinct from a string literal such as `"V"`, which includes a terminator.
 
 An array initialised from a string literal can be edited within its bounds. A string literal itself must not be modified, so use `const char *label = "Valve";` when storing a pointer to literal text.
+
+`char` indexing accesses C bytes, not necessarily complete human-readable characters. In UTF-8, one Unicode code point can occupy several bytes, so `strlen` measures bytes before `\0`, not displayed characters. Splitting a UTF-8 string at an arbitrary byte can split an encoded character. The encoding and any Unicode-aware processing must be handled separately from ordinary byte-array indexing.
 
 Functions that expect strings generally search for the terminator. If a buffer has no terminator within its bounds, passing it as a string can read beyond the buffer. Keep capacity, current length and termination separate in reasoning.
 

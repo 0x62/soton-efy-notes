@@ -54,7 +54,7 @@ With zero fill, shifting an unsigned word toward its least significant end divid
 
 For the opposite wiring, where the serial input enters $Q_0$ and each stage feeds the next higher-indexed stage,
 $$Q_0^+=\mathrm{in},\quad Q_1^+=Q_0,\quad Q_2^+=Q_1,\quad Q_3^+=Q_2.$$
-This is the convention in the handwritten four-bit shift register. Always distinguish the **left-to-right placement on a circuit diagram** from the numerical bit order $Q_3Q_2Q_1Q_0$.[^registerwhiteboard]
+Always distinguish the **left-to-right placement on a circuit diagram** from the numerical bit order $Q_3Q_2Q_1Q_0$.[^registerwhiteboard]
 
 Starting at $0000$, sample the input sequence $1,1,0,0,0,1,0,0,0$ at nine rising edges:
 

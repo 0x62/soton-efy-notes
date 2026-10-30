@@ -12,6 +12,7 @@ permalink: y1/elec1313/combinational-logic
 - [[#Making an inverter from NOR]]
 - [[#Checking an implementation]]
 - [[#Decoders and multiplexers]]
+- [[#Implementing a function with a mux or decoder]]
 
 **[[#Boolean expressions and truth tables|Basic operations]]**
 $$
@@ -178,6 +179,42 @@ $$Y=\bar S D_0+SD_1.$$
 This is useful for choosing between alternative next values of a register, as well as routing ordinary combinational data. See [[Logic & Latches]] and [[Registers]].
 
 
+## Implementing a function with a mux or decoder
+
+A truth table fixes the output for every input combination. A mux and a decoder offer two systematic ways to implement that table.[^feedback]
+
+### Set the mux data inputs to the truth-table outputs
+
+For a 4-to-1 mux, use $A,B$ as selectors. The output is whichever constant is connected to $C_0,C_1,C_2,C_3$ for select codes 00, 01, 10 and 11:
+
+| Function required | $C_0$ (00) | $C_1$ (01) | $C_2$ (10) | $C_3$ (11) |
+| --- | --- | --- | --- | --- |
+| $A+B$ | 0 | 1 | 1 | 1 |
+| $AB$ | 0 | 0 | 0 | 1 |
+| $A\oplus B$ | 0 | 1 | 1 | 0 |
+
+For XOR, substitute those constants into the mux equation:
+$$\begin{aligned}
+Y&=\overline A\overline B(0)+\overline AB(1)+A\overline B(1)+AB(0)\\
+&=\overline AB+A\overline B=A\oplus B.
+\end{aligned}$$
+The mux routes **data**, but when those data inputs are fixed constants it becomes a programmable truth table of its select inputs. An $n$-select, $2^n$-input mux can implement any single-output Boolean function of those $n$ selectors this way.
+
+### OR together the selected decoder outputs
+
+Suppose $F=1$ for three-bit input words 001, 100 and 111, and zero otherwise. An active-high 3-to-8 decoder generates all eight minterms. Connect outputs 1, 4 and 7 to an OR gate:
+$$F=D_1+D_4+D_7=\overline A\overline BC+A\overline B\overline C+ABC.$$
+
+The steps are:
+
+1. Convert each selected input word to its zero-based output number: 001 is 1, 100 is 4 and 111 is 7.
+2. For each minterm, complement a variable if its required input is 0; leave it uncomplemented if 1.
+3. OR together precisely the selected outputs.
+4. Check a selected row and an unselected row. Input 100 makes $D_4=1$, so $F=1$; input 010 selects only $D_2$, which is not connected, so $F=0$.
+
+The direct gate version uses three three-input AND terms feeding a three-input OR (plus the required inversions). The decoder version reuses a standard circuit that generates every minterm. Active-low decoders require a corresponding polarity change; do not copy the active-high OR connection without checking the device convention.
+
+
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36304 (Jize Yan, Introduction to Combinational Logic / Boolean Algebra).
 [^2]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36305 (Combinational Logic Implementation).
 
@@ -186,3 +223,5 @@ This is useful for choosing between alternative next values of a register, as we
 [^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=86ac05f9-e60c-4201-9ba3-b4d000e69820 (Jize Yan, JY 1 Lecture, recorded 25 September 2026; recording date verified in the Panopto listing).
 
 [^5]: [Circuits and devices](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36307), decoder and multiplexer sections.
+
+[^feedback]: Jize Yan, [27 October 2026 problem-sheet feedback recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=88e0c45f-57da-46de-8ed8-b4f000946804), 23:45–42:44: decoder minterms, mux truth-table implementation and sum-of-products reasoning. Explicit equations checked independently against each binary input row.
