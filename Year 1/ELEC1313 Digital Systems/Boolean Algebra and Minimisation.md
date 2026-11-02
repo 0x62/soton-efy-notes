@@ -132,6 +132,5 @@ Boolean minimisation reduces expression size, but practical optimisation also co
 [^4]: [Introduction to Karnaugh Maps](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36312); [Application of Karnaugh Maps](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36315).
 [^5]: [Combinational design](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36309).
 [^6]: [Magnitude comparator design](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36316).
-
 [^7]: [9 October comparator explanation](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5b56fe2e-a63e-4820-a7fb-b4de00f73c02), 32:23–34:58, multiplexer implementation and Shannon expansion.
 [^8]: [9 October K-map applications](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cfa9ce9f-e86c-47b8-942f-b4de00e70a28), 6:38–10:04, area, power and delay.
