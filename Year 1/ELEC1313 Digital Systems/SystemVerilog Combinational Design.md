@@ -5,6 +5,7 @@ permalink: y1/elec1313/systemverilog-combinational-design
 
 - [[#Modules and ports]]
 - [[#Combinational procedural descriptions]]
+- [[#Multiplexers and complete assignment]]
 - [[#Structural descriptions]]
 - [[#Full-adder dataflow]]
 - [[#Concurrency and checking]]
@@ -45,6 +46,62 @@ The bitwise operators correspond directly to gates:
 These are not the same as the logical operators `!`, `&&` and `||` when operands have multiple bits. Parentheses make the intended gate grouping explicit.
 
 Use blocking assignment `=` for these combinational calculations and ensure every output receives a value for every possible input path. Otherwise, retaining an old value can imply storage rather than the intended combinational circuit. Do not drive the same output from several procedural blocks.[^1]
+
+## Multiplexers and complete assignment
+
+A two-input multiplexer selects a signal rather than calculating a numerical result. With $s=0$ it passes $a$; with $s=1$ it passes $b$:
+$$y=\overline{s}a+sb.$$
+The selection rule can be described directly without spelling out its individual gates:[^mux]
+
+```systemverilog
+module mux2 (
+    output logic y,
+    input  logic a, b, s
+);
+    always_comb
+        if (s)
+            y = b;
+        else
+            y = a;
+endmodule
+```
+
+The `if` belongs inside the procedural `always_comb` block. Parentheses enclose the condition; `=` assigns a value, whereas `==` compares values. No `endif` keyword is used. A multi-statement branch would use `begin` and `end`.
+
+### Why omitting `else` changes the hardware
+
+Consider the incomplete description:
+
+```systemverilog
+always_comb
+    if (s)
+        y = b;       // no assignment when s is 0
+```
+
+When $s=0$, nothing assigns a new value to `y`; it retains its previous value. This is **storage**, not the required combinational selection of `a`. A tool may diagnose inferred latch behaviour or reject the incomplete `always_comb` description. The keyword is not a substitute for assigning every output on every path.
+
+For example:
+
+| Step | $a$ | $b$ | $s$ | Correct mux $y$ | Incomplete description $y$ |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 0 | 1 | 1 | 1 | 1 |
+| 2 | 0 | 1 | 0 | 0 | 1 (retained) |
+| 3 | 1 | 0 | 0 | 1 | 1 (retained) |
+| 4 | 0 | 0 | 0 | 0 | 1 (retained) |
+
+Step 3 happens to agree, but that does not make the model correct: its output depends on the earlier selected value of `b`. Testing only one input combination can hide the unwanted memory. An uninitialised retained value may also remain unknown.
+
+An equivalent complete style gives a default assignment and overrides it:
+
+```systemverilog
+always_comb begin
+    y = a;
+    if (s)
+        y = b;
+end
+```
+
+Here the default executes on every evaluation, so the unselected branch never needs to remember an old output. Both versions describe the same selection for binary input values. This is a functional hardware description, not a processor repeatedly executing an `if` instruction.
 
 ## Structural descriptions
 
@@ -99,3 +156,5 @@ For example, $A=B=C_{in}=1$ gives numerical total 3, represented by carry 1 and 
 Useful checks include matching port order, declaring all internal signals, using the intended bit widths, and confirming that every combinational output has exactly one driver and a defined assignment. Functional truth-table checking complements, rather than replaces, syntax checking and simulation.
 
 [^1]: [Mark Zwolinski, SystemVerilog for Combinational Design (1)](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36355), pp. 24–36.
+
+[^mux]: Mark Zwolinski, [SystemVerilog for Combinational Design (2)](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36359), two-input multiplexer model, p. 3; [MZ L2, 20 October 2026](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=f21a7659-c43d-4e9c-83fe-b4e90083def8), 37:06–42:26 (selection and syntax), 42:33–45:28 (omitted `else` and unintended storage).

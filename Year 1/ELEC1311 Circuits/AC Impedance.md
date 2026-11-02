@@ -143,10 +143,14 @@ $$|H|=\frac{\omega L}{\sqrt{R^2+(\omega L)^2}}=\frac1{\sqrt{1+(R/\omega L)^2}}\q
 
 This is a **high-pass filter**. The cutoff is specified in radians per second by $\omega_c=R/L$, or in hertz by $f_c=R/(2\pi L)$. At cutoff, the output amplitude is not half the input: its square is half. The phase is
 $$\arg H=90^\circ-\tan^{-1}(\omega L/R),$$
-so the output leads the input by $45^\circ$ at cutoff.[^1]
+so the output leads the input by $45^\circ$ at cutoff.[^1][^4]
+
+In decibels this amplitude ratio is $20\log_{10}(1/\sqrt2)=-3.0103\,\mathrm{dB}$. [[AC Power#Decibels and the half-power point|Decibels and the half-power point]] distinguishes the voltage-amplitude ratio from the corresponding power ratio.
 
 [^1]: [ELEC1311, Phasor impedances](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43975), pp. 1–23; [AC Circuits](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43974).
 
 [^2]: [Neil White, AC Circuits](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43974); [RMS derivation](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43976).
 
 [^3]: [14 October AC analysis](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=efc3e99a-0872-4db4-a084-b4e3009443ae), sinusoidal RL derivation and time/frequency examples; [16 October phasor derivation](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7438f6b2-daa3-459c-9044-b4e50083b039), complex exponential cancellation, magnitude and phase.
+
+[^4]: [23 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6648bca7-8084-44fc-bfe4-b4ec0083b0a1), 18:25–32:17, RL frequency response and cutoff; 32:17–39:41, decibels.
