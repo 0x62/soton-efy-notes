@@ -80,6 +80,8 @@ Here `READY` is a state-dependent output. `BEGIN` depends on both being in `IDLE
 6. **Derive one Boolean expression for each next-state bit and output.** Use truth tables, algebra or Karnaugh maps.
 7. **Implement and check.** Connect next-state expressions to D inputs, share the clock, define reset, and trace complete input sequences.[^asm]
 
+The output columns in a transition table describe the **present** state and current inputs, not the outputs of the next state. For example, a transition from 00 to 01 does not make the present-state LSB output 1 before the clock edge.[^friday]
+
 State codes and output values are different concepts. An output may equal a state bit in a convenient encoding, but this is not required.
 
 ## Worked binary counter
@@ -165,6 +167,21 @@ D_0&=\overline{Q_1}\,\overline{Q_0}\,\overline M+Q_1\overline{Q_0}M\\
 Check the valid-state cycles using these expressions. At state 10 with $M=1$, $D_1=0$ and $D_0=1$, so it counts down to 01. At unused state 11, the leading factors force both outputs to zero for either $M$.
 
 Treating unused states as don't-cares during minimisation can yield simpler logic, but then their behaviour must be checked after minimisation. A reset provides a known starting state; it does not prove that an unused state could never be entered after a disturbance.
+
+### Minimise using unused-state don't-cares
+
+If the specification leaves state 11 undefined, its two rows may instead be marked as don't-cares. With Karnaugh-map columns $Q_1Q_0=00,01,11,10$ and rows $M=0,1$:
+
+- For $D_1$, group the 1 at $(M,Q_1Q_0)=(0,01)$ with the don't-care at $(0,11)$, giving $\overline M Q_0$. The remaining isolated 1 at $(1,00)$ gives $M\overline{Q_1}\overline{Q_0}$.
+- For $D_0$, group the 1 at $(1,10)$ with the don't-care at $(1,11)$, giving $M Q_1$. The isolated 1 at $(0,00)$ gives $\overline M\overline{Q_1}\overline{Q_0}$.
+
+Thus another valid implementation is[^friday]
+$$D_1=M\overline{Q_1}\overline{Q_0}+\overline M Q_0,$$
+$$D_0=\overline M\overline{Q_1}\overline{Q_0}+M Q_1.$$
+
+These equations agree with the earlier recovery-to-00 design on all six valid-state/input combinations. They behave differently in unused state 11: $M=0$ gives next state 10, while $M=1$ gives 01. Both enter a valid state after one edge, but neither implements the earlier explicit 11-to-00 requirement. A don't-care is permission to choose behaviour during minimisation, not a physical third logic value.
+
+For a readable hardware schematic, place labelled rails for $M,\overline M,Q_1,\overline{Q_1},Q_0,\overline{Q_0}$ alongside the AND terms, combine each set through an OR gate, and feed the result into its corresponding D input. Keep both flip-flops on the same clock and take the count outputs from Q, not D. This layout makes connections easier to trace than crossing feedback wires through the gate network.[^friday]
 
 ## Moore and Mealy outputs
 
@@ -287,3 +304,5 @@ If the button remains pressed when the timed phase ends, this simple model can s
 [^outputs]: [ASM Design](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36344), pp. 26–31. Physical timing caveats distinguish the ideal state model from propagation effects.
 [^parity]: [ASM Design](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36344), pp. 21–31, especially the complete tables/circuits on pp. 30–31. These establish that `FAIL=1` represents odd parity; the repeated “even” in the final bullet on p. 24 is a typographical error. The Mealy sampling example makes the timing of the supplied $\mathrm{FAIL}=Q_n$ circuit explicit.
 [^crossing]: [ASM Design](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36344), pp. 32–38, button-controlled and timed pedestrian-controller specifications and timed solution.
+
+[^friday]: [30 October 2026 ASM Part 2](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dd15ee6c-a9f9-40c7-9c48-b4f300f74909), 13:27–14:36 present-state outputs, 33:10–38:06 unused-state minimisation (equations checked against the handwriting at 37:47), 38:26–42:33 structured schematic. [Part 1](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ee563343-ce08-42f4-8ebf-b4f300c5f78f), 20:11–44:56, covers the state model and binary-counter derivation. October 30 teaching ends at the modulo-three counter; Part 2 at 43:27–43:35 defers parity to the following week. The subsequent Moore/Mealy, parity and pedestrian sections above develop the published slides rather than material verified as taught on October 30.
