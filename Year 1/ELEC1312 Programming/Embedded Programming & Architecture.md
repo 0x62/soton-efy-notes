@@ -5,9 +5,12 @@ permalink: y1/elec1312/embedded-programming-architecture
 
 - [[#Hosted and embedded programs]]
 - [[#Microcontroller architecture]]
+- [[#CPU registers and memory-mapped I/O]]
+- [[#Choosing pins and peripheral functions]]
 - [[#Harvard memory organisation]]
 - [[#SRAM layout and capacity]]
 - [[#Clock frequency and execution time]]
+- [[#Bootloader and reset]]
 - [[#Build and deployment cycle]]
 
 **[[#Hosted and embedded programs|Firmware]]** A program that performs a specific control function within a larger system, usually remaining active to respond to events.
@@ -42,7 +45,7 @@ A **polling** loop checks for work in program order. An **interrupt** allows an 
 
 ## Microcontroller architecture
 
-A microcontroller integrates a processor, memory and peripherals on one device. The course hardware uses an AVR with a 12 MHz clock, 64 KiB program memory, 4 KiB SRAM and 3.3 V CMOS logic levels. The introductory memory map identifies the ATmega644P/PA family.[^1]
+A microcontroller integrates a processor, memory and peripherals on one device. The course hardware uses an AVR with a 12 MHz clock, 64 KiB program memory, 4 KiB SRAM and 3.3 V CMOS logic levels. The device is in the ATmega644P/PA family.[^1]
 
 Its principal parts are:
 - A CPU that fetches, decodes and executes instructions.
@@ -54,11 +57,37 @@ Its principal parts are:
 
 AVR is a **RISC** architecture: machine instructions operate on the device's registers and memory according to its instruction set. C expressions are translated into those instructions; one C statement is not necessarily one machine instruction.
 
+## CPU registers and memory-mapped I/O
+
+The CPU's **arithmetic logic unit (ALU)** performs arithmetic and logical operations. The **program counter** identifies the instruction to fetch; the instruction is decoded and executed using operands in registers or memory. The AVR core has **32 eight-bit general-purpose registers**, not 32-bit-wide registers.[^2]
+
+Distinguish two meanings of *register*:
+
+- CPU registers hold working operands close to the ALU.
+- Peripheral control/status registers configure hardware or report its state.
+
+The peripheral registers occupy documented locations in the data address space. Writing a configuration register can change hardware behaviour; reading a status or data register can obtain a peripheral result. Such an access is not just reading or changing an ordinary software variable. Some registers have side effects, so the datasheet's read/write rules matter.
+
+AVR headers provide symbolic names for these registers. Use the definitions for the selected device rather than guessed addresses. The appropriate header and cross-compiler connect C expressions to the actual hardware; C syntax alone does not identify which physical pin or peripheral is affected.
+
+## Choosing pins and peripheral functions
+
+The ATmega644P/PA groups its 32 general-purpose I/O pins into four eight-pin ports, A–D. Pins also have **alternate functions**: a pin may be used as GPIO or assigned to a peripheral. For example, the analogue inputs are on port A; serial and programming interfaces occupy particular pins on other ports.[^2]
+
+Choose pins in this order:
+
+1. List the required hardware interfaces, such as ADC inputs, UART or SPI.
+2. Identify their fixed or selectable pins from the device pinout and board schematic.
+3. Reserve pins already used by board hardware, programming or debugging interfaces.
+4. Allocate the remaining suitable pins to ordinary digital inputs and outputs.
+
+A connector being physically available does not mean every attached pin is free. Likewise, a 3.3 V logic signal is not a power supply for an arbitrary load: check output-current and voltage limits. A load requiring more current needs an appropriate driver, rather than connection directly to a GPIO.
+
 ## Harvard memory organisation
 
-The AVR uses a **Harvard architecture**, separating program and data memory. The memory diagram distinguishes:[^1]
+The AVR uses a **Harvard architecture**, separating program and data memory. The memory spaces are:[^1]
 
-| Memory | Purpose | ATmega644P/PA range shown |
+| Memory | Purpose | ATmega644P/PA address range |
 |---|---|---|
 | Program flash | Application instructions and bootloader | Word addresses `0x0000`–`0x7FFF` |
 | Data address space | CPU registers, I/O registers and SRAM | SRAM at byte addresses `0x0100`–`0x10FF` |
@@ -69,9 +98,9 @@ $$
 (\mathtt{0x7FFF}-\mathtt{0x0000}+1)\times2
 =32768\times2=65536\text{ bytes}=64\text{ KiB}.
 $$
-The multiplier is essential: the slide's program addresses count **16-bit words**, not bytes. EEPROM contains $2048$ bytes, or $2$ KiB.
+The multiplier is essential: these program addresses count **16-bit words**, not bytes. EEPROM contains $2048$ bytes, or $2$ KiB.
 
-Flash retains its contents without power. SRAM does not. EEPROM provides persistent data storage distinct from program flash and ordinary runtime variables. Equal numerical addresses in these different spaces do not identify the same storage.
+Flash retains its contents without power. SRAM does not. EEPROM provides persistent data storage distinct from program flash and ordinary runtime variables. It suits infrequently changed settings or calibration values that are read many times. Its write endurance is finite: do not use it as a replacement for frequently updated SRAM variables.[^2] Equal numerical addresses in these different spaces do not identify the same storage.
 
 The flash also includes a boot section. A **bootloader** is a program that supports loading an application into flash; it consumes part of the device's program-memory capacity. The application cannot assume that the entire advertised flash capacity is free for its own instructions.
 
@@ -88,7 +117,7 @@ Within SRAM:
 - The **heap** provides dynamically allocated storage.
 - The **stack** supports calls, return information and automatic storage as required by the compiled program.
 
-The heap grows towards higher addresses and the stack towards lower addresses in the diagram. Both use the same finite SRAM: free space between them must accommodate runtime use. Successful compilation alone does not prove that worst-case stack use is safe.
+The heap grows towards higher addresses and the stack towards lower addresses in this memory arrangement. Both use the same finite SRAM: free space between them must accommodate runtime use. Successful compilation alone does not prove that worst-case stack use is safe.
 
 For example, a buffer of 1000 `uint16_t` samples requires $1000\times2=2000$ bytes. It occupies about $48.8\%$ of a 4096-byte SRAM before other variables, stack or heap overhead. At 2000 samples the payload alone is 4000 bytes, leaving only 96 bytes for everything else—an unsuitable budget for most real applications.
 
@@ -106,6 +135,21 @@ $$
 $$
 This calculation starts from a **cycle count**, not a C statement count. Instruction timing, branches and peripheral waiting determine the actual count. Compiler optimisation can change generated instructions, so an arbitrary empty loop is not automatically a reliable delay.
 
+## Bootloader and reset
+
+A bootloader is firmware already stored in a reserved flash region. **Installing the bootloader** and **using it to load an application** are different operations.[^2]
+
+For the configured Il Matto board:
+
+1. Initial programming uses the ISP interface to install the bootloader and configure the required fuses.
+2. On reset, execution enters the configured boot section.
+3. The supplied bootloader checks the reset cause. A reset-button event enters the application-download path; ordinary power-on proceeds to the application.
+4. The application remains in flash, so switching power off does not erase it.
+
+The AVR does not contain a dedicated USB peripheral. The supplied bootloader implements the necessary USB behaviour in software using the board's connections and clock. Having a USB connector therefore does not by itself imply that the chip has native USB hardware.
+
+This reset behaviour belongs to the **supplied bootloader and fuse configuration**, not to every AVR program. A reset button is also not an erase button. Changing fuse settings or replacing the bootloader can change the startup path.
+
 ## Build and deployment cycle
 
 The embedded development cycle separates building an executable from installing it on the target:[^1]
@@ -121,4 +165,6 @@ The embedded development cycle separates building an executable from installing 
 
 A program compiled for a desktop CPU is not interchangeable with one compiled for AVR. The compiler target, selected device, clock assumptions and peripheral definitions must agree with the hardware. Datasheets define the hardware interface; the AVR C library documents the software facilities available for that target.
 
-[^1]: Steve Gunn, ELEC1312, [Lecture 7: Introduction to Embedded Programming](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45429), *Week 6 – EmbeddedIntro*, published lecture slides (not a completed-lecture transcript), pp. 2, 7–10 and 15–19; especially the ATmega644P/PA memory diagram on p. 18.
+[^1]: Steve Gunn, ELEC1312, [Lecture 7: Introduction to Embedded Programming](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45429), *Week 6 – EmbeddedIntro*, pp. 2, 7–10 and 15–19; especially the ATmega644P/PA memory diagram on p. 18.
+
+[^2]: Steve Gunn, [Week 6 — 26 October 2026 recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2162fa3b-e37f-4d61-8973-b4ef01082623): hosted/embedded contrast 3:58–7:30; architecture and cross-compilation 16:41–20:03; pin functions 23:34–25:51; CPU and memory 30:47–37:09; reset and bootloader 37:17–42:25. Automatic captions checked against the architecture and memory-map diagrams in the slides.

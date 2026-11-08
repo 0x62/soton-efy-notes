@@ -8,6 +8,7 @@ permalink: y1/elec1312/structures-dynamic-memory
 - [[#Enumerated states]]
 - [[#Memory layout]]
 - [[#Allocating an array]]
+- [[#malloc and calloc]]
 - [[#Ownership and lifetime]]
 - [[#Two-dimensional storage]]
 
@@ -132,6 +133,39 @@ This prints `Last value: 2.5`. The multiplication check avoids wrapping the requ
 
 The expression `sizeof *values` is based on the pointed-to type; it does not read uninitialised allocated data. Keeping the allocation tied to the pointer's type avoids accidentally allocating the size of the pointer instead of the elements.
 
+## malloc and calloc
+
+Both functions obtain dynamic storage and return `NULL` on failure. Neither returns the array length; keep that separately.[^2]
+
+| Call | Arguments | Initial contents |
+| --- | --- | --- |
+| `malloc(n * sizeof *p)` | One total byte count | Uninitialised: assign values before reading |
+| `calloc(n, sizeof *p)` | Element count and bytes per element | All allocated bytes set to zero |
+
+For an integer array, `calloc` therefore gives initial integer values of zero:
+
+```c
+size_t count = 10;
+int *samples = calloc(count, sizeof *samples);
+if (samples == NULL) {
+    return EXIT_FAILURE;
+}
+samples[3] = 7;  /* Other elements are still zero. */
+free(samples);
+```
+
+This fragment belongs inside a function with `<stdlib.h>` included. `calloc` zeroes the **bytes**; do not generalise that to a portable guarantee of null pointers or floating-point `0.0` on every C implementation. Explicit assignment is appropriate when those representations matter. On the usual course targets, zero bytes represent floating-point zero, but type-aware initialisation avoids that assumption.
+
+Step by step, requesting ten integers means:
+
+1. `sizeof *samples` gives the size of one `int` on this target.
+2. `calloc` reserves room for ten such objects and clears their bytes.
+3. `samples` stores the address of element zero, not all ten values inside the pointer itself.
+4. Valid indices are `0` to `9`; the allocation does not perform bounds checking.
+5. `free(samples)` releases the allocation once it is no longer needed.
+
+Choose `malloc` when each element will be assigned before use; choose `calloc` when zero-initialisation is useful. Both allocations are released with `free`.
+
 ## Ownership and lifetime
 
 The pointer variable and allocated object have different lifetimes. A local pointer variable disappears when a function returns, but dynamically allocated storage persists until it is freed. A function can therefore return a pointer to allocated storage, provided the caller takes responsibility for releasing it.
@@ -165,6 +199,49 @@ Alternatively, `int **grid` can point to an array of row pointers, each of which
 
 These layouts are not interchangeable: a flat `int *` allocation cannot simply be cast to `int **` and indexed as rows. It does not contain the required row pointers.
 
+A complete example of the separate-row layout is:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    const size_t rows = 3, columns = 4;
+    int **grid = malloc(rows * sizeof *grid);
+    if (grid == NULL) {
+        return EXIT_FAILURE;
+    }
+    size_t built = 0;
+    for (; built < rows; built++) {
+        grid[built] = calloc(columns, sizeof *grid[built]);
+        if (grid[built] == NULL) {
+            break;
+        }
+    }
+    if (built != rows) {
+        for (size_t r = 0; r < built; r++) {
+            free(grid[r]);
+        }
+        free(grid);
+        return EXIT_FAILURE;
+    }
+    grid[1][2] = 7;
+    printf("Element: %d\n", grid[1][2]);
+    for (size_t r = 0; r < rows; r++) {
+        free(grid[r]);
+    }
+    free(grid);
+    return EXIT_SUCCESS;
+}
+```
+
+This prints `Element: 7`. The sizes are small constants; input-derived sizes need the overflow checks described above. The first allocation holds **three pointers**, using `sizeof *grid`. Each later allocation holds **four integers**, using `sizeof *grid[built]`. `grid[1][2]` first retrieves row 1's pointer, then accesses integer 2 in that row. In this example there are four allocations, so successful execution needs four frees.
+
+The outer allocation must remain alive until all row pointers have been used for cleanup. Freeing it first makes subsequent `grid[r]` accesses invalid, even if the old addresses appear unchanged. Separate rows do not guarantee better performance: indirection, allocation overhead and cache locality matter; the contiguous representation is often preferable for a rectangular numerical matrix.
+
 For separate rows, release each successfully allocated row before releasing the row-pointer array. If allocation fails partway through, release the rows already created as well. A contiguous block needs only one release and keeps neighbouring rows together in memory.
 
 [^1]: https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36216 — Data Structures & Dynamic Memory Allocation, Steve Gunn, structures and dynamic allocation sections.
+
+[^2]: Steve Gunn, [Week 5 — 19 October 2026 recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=850012bc-558e-4a40-a7e3-b4e800f7537e), structures 5:49–13:44; allocation 15:49–20:06; flat and row-pointer matrices 27:50–35:20; allocation lifetime and `calloc` 35:27–37:21.

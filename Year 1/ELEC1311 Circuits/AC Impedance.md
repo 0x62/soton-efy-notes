@@ -9,9 +9,11 @@ permalink: y1/elec1311/ac-impedance
 - [[#Deriving the sinusoidal RL response]]
 - [[#Time and frequency descriptions]]
 - [[#Component impedances]]
+- [[#Deriving capacitor and inductor impedance]]
 - [[#Combining impedances]]
 - [[#Admittance]]
 - [[#Complex voltage division]]
+- [[#Worked RLC and dependent-source circuits]]
 - [[#Frequency response]]
 
 **[[#RMS and sinusoidal measurements|RMS]]**
@@ -95,6 +97,39 @@ $R$ is resistance and $X$ is reactance, both in ohms. The imaginary part describ
 
 For ideal components, the low-frequency limits are an inductor short circuit and capacitor open circuit. At very high frequency these roles reverse. These are limiting models, not permission to ignore finite impedance at an arbitrary frequency.[^1]
 
+## Deriving capacitor and inductor impedance
+
+Use $\widetilde v(t)=\underline V e^{j\omega t}$ and $\widetilde i(t)=\underline I e^{j\omega t}$ for the complex waveforms. The underlined quantities are **constant phasors**, not functions of time. The physical voltage/current are their real parts. The tilde distinguishes this temporary complex representation from the real waveform $v(t)$.
+
+### Capacitor
+
+Start with $i=C\,dv/dt$. Linearity allows the same equation for the complex waveforms:
+
+1. Substitute the voltage representation:
+   $$\widetilde i(t)=C\frac{d}{dt}\left(\underline V e^{j\omega t}\right).$$
+2. $C$ and $\underline V$ are constant, so take them outside the derivative:
+   $$\widetilde i(t)=C\underline V\frac{d}{dt}e^{j\omega t}.$$
+3. Apply the chain rule. The derivative of the exponent $j\omega t$ is $j\omega$:
+   $$\widetilde i(t)=j\omega C\underline V e^{j\omega t}.$$
+4. Substitute $\widetilde i(t)=\underline I e^{j\omega t}$ and cancel the common nonzero exponential:
+   $$\underline I e^{j\omega t}=j\omega C\underline V e^{j\omega t}
+   \quad\Rightarrow\quad\underline I=j\omega C\underline V.$$
+5. Impedance is voltage phasor divided by current phasor:
+   $$\boxed{Z_C=\frac{\underline V}{\underline I}=\frac1{j\omega C}=-\frac{j}{\omega C}.}$$
+
+Multiplication by $j$ gives the current a $+90^\circ$ phase relative to voltage. The impedance consequently has a $-90^\circ$ phase.
+
+### Inductor
+
+Start with $v=L\,di/dt$:
+$$\underline V e^{j\omega t}
+=L\frac{d}{dt}(\underline I e^{j\omega t})
+=j\omega L\underline I e^{j\omega t}.$$
+Cancel the exponential, then divide by $\underline I$:
+$$\underline V=j\omega L\underline I
+\quad\Rightarrow\quad\boxed{Z_L=j\omega L}.$$
+Here voltage has the $+90^\circ$ phase relative to current. The cancellation removes common time dependence, not voltage/current phase information.[^1][^3]
+
 ## Combining impedances
 
 KVL and KCL still apply to complex phasors. Series components carry the same current:
@@ -128,6 +163,73 @@ $$|\underline V_L|=\frac{100}{116.62}\times20=17.15\,\mathrm V,$$
 $$\arg\underline V_L=90^\circ-59.04^\circ-15^\circ=15.96^\circ.$$
 Hence $\underline V_L=17.15e^{j15.96^\circ}\,\mathrm V$. With peak, cosine-reference phasors, this is $v_L(t)=17.15\cos(\omega t+15.96^\circ)\,\mathrm V$.[^1]
 
+## Worked RLC and dependent-source circuits
+
+### Rectangular to polar form: check the quadrant
+
+For $\underline V=-4+j3\,\mathrm V$:
+
+1. Magnitude: $|\underline V|=\sqrt{(-4)^2+3^2}=5\,\mathrm V$.
+2. The real part is negative and imaginary part positive, so the point lies in quadrant II.
+3. The reference angle is $\tan^{-1}(3/4)=36.87^\circ$.
+4. Therefore $\theta=180^\circ-36.87^\circ=143.13^\circ$ and
+   $$\underline V=5\angle143.13^\circ\,\mathrm V.$$
+
+A calculator's $\tan^{-1}(3/(-4))=-36.87^\circ$ alone selects the wrong quadrant. Use $\operatorname{atan2}(3,-4)$ or explicitly correct the angle. Keep a calculator in the appropriate degree/radian mode.[^5]
+
+### Series RLC: from source waveform to current waveform
+
+Let $v_s(t)=12\cos(1000t+15^\circ)\,\mathrm V$, $R=30\,\Omega$, $L=65\,\mathrm{mH}$ and $C=40\,\mu\mathrm F$ in series.
+
+1. Read $\omega=1000\,\mathrm{rad\,s^{-1}}$ from the waveform. It is **not** $1000\,\mathrm{Hz}$.
+2. Replace each component by its impedance:
+   $$Z_R=30,\quad Z_L=j(1000)(0.065)=j65,\quad
+   Z_C=\frac{-j}{1000(40\times10^{-6})}=-j25\quad[\Omega].$$
+3. Add them: $Z=30+j65-j25=30+j40=50\angle53.13^\circ\,\Omega$.
+4. The peak voltage phasor is $\underline V_s=12\angle15^\circ\,\mathrm V$. Divide magnitudes and **subtract** angles:
+   $$\underline I=\frac{12\angle15^\circ}{50\angle53.13^\circ}
+   =0.24\angle(-38.13^\circ)\,\mathrm A.$$
+5. Return to the time domain:
+   $$\boxed{i(t)=0.24\cos(1000t-38.13^\circ)\,\mathrm A.}$$
+
+The current lags the source by $53.13^\circ$, not $38.13^\circ$: the latter is its phase relative to the chosen time origin. The net positive reactance is an independent check on the lag.[^5]
+
+### Series inductor feeding a parallel RC load
+
+Let $v_s(t)=48\cos(500t+75^\circ)\,\mathrm V$. A $100\,\mathrm{mH}$ inductor is in series with a parallel combination of $R=80\,\Omega$ and $C=25\,\mu\mathrm F$. Find the voltage $v_o$ across the parallel combination.
+
+1. $Z_L=j(500)(0.1)=j50\,\Omega$ and $Z_C=-j/[500(25\times10^{-6})]=-j80\,\Omega$.
+2. Both parallel elements have voltage $\underline V_o$. KCL at the junction gives
+   $$\underline I=\frac{\underline V_o}{80}+\frac{\underline V_o}{-j80}
+   =\frac{1+j}{80}\underline V_o.$$
+3. KVL around the source–inductor–load loop gives
+   $$48\angle75^\circ=j50\underline I+\underline V_o.$$
+4. Substitute the KCL expression:
+   $$48\angle75^\circ=\left[1+\frac{j50(1+j)}{80}\right]\underline V_o
+   =(0.375+j0.625)\underline V_o.$$
+5. The coefficient has magnitude $\sqrt{0.375^2+0.625^2}=0.72887$ and phase $59.04^\circ$. Thus
+   $$\underline V_o=65.86\angle15.96^\circ\,\mathrm V,$$
+   $$\boxed{v_o(t)=65.86\cos(500t+15.96^\circ)\,\mathrm V.}$$
+
+An internal reactive-circuit voltage can exceed the source amplitude without creating energy. Voltage gain alone is not power gain. The $100\,\mathrm{mH}$ value used here is explicit; substituting $10\,\mathrm{mH}$ describes a different circuit and gives a different answer.[^5]
+
+### A current-controlled voltage source
+
+A source $v_s(t)=12\cos(1000t+45^\circ)\,\mathrm V$ is connected across a $25\,\Omega$ input resistor. Its downward current is $i_1$. A dependent voltage source, positive at its upper terminal, has voltage $100i_1$ and drives a separate series $25\,\Omega$ resistor and $20\,\mu\mathrm F$ capacitor. The output is across the capacitor, positive at the upper terminal.
+
+1. The control current is $\underline I_1=12\angle45^\circ/25=0.48\angle45^\circ\,\mathrm A$.
+2. The dependent-source voltage is $100\underline I_1=48\angle45^\circ\,\mathrm V$. The factor 100 has units $\mathrm{V/A}=\Omega$.
+3. $Z_C=-j/[1000(20\times10^{-6})]=-j50\,\Omega$.
+4. Output-loop KVL gives
+   $$100\underline I_1=(25-j50)\underline I_2.$$
+5. Since $25-j50=55.902\angle(-63.435^\circ)\,\Omega$,
+   $$\underline I_2=0.85865\angle108.435^\circ\,\mathrm A.$$
+6. Multiply by the capacitor impedance:
+   $$\underline V_o=(-j50)\underline I_2=42.933\angle18.435^\circ\,\mathrm V.$$
+7. Therefore $v_o(t)=42.933\cos(1000t+18.435^\circ)\,\mathrm V$.
+
+The dependent source remains active: its value is calculated from the controlling quantity, not set to zero. The controlling current and output-loop current are different variables.[^5]
+
 ## Frequency response
 
 ![[AC Theory (4)#Filter Bands]]
@@ -154,3 +256,5 @@ In decibels this amplitude ratio is $20\log_{10}(1/\sqrt2)=-3.0103\,\mathrm{dB}$
 [^3]: [14 October AC analysis](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=efc3e99a-0872-4db4-a084-b4e3009443ae), sinusoidal RL derivation and time/frequency examples; [16 October phasor derivation](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7438f6b2-daa3-459c-9044-b4e50083b039), complex exponential cancellation, magnitude and phase.
 
 [^4]: [23 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6648bca7-8084-44fc-bfe4-b4ec0083b0a1), 18:25–32:17, RL frequency response and cutoff; 32:17–39:41, decibels.
+
+[^5]: [Week 6 supplementary Problems](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=43979), pp. 2–10. The series-RLC current phase is $-38.13^\circ$ as the handwritten correction indicates. The parallel-RC example explicitly uses $100\,\mathrm{mH}$, consistent with its annotated correction and $j50\,\Omega$ calculation; the printed $10\,\mathrm{mH}$ diagram is inconsistent. Examples re-derived with stated values and polarities.

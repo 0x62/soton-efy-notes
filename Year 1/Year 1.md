@@ -76,3 +76,5 @@ permalink: y1
 ![[Registers#Registers]]
 
 ![[Counters#Counters]]
+
+![[Algorithmic State Machines#Algorithmic State Machines]]
