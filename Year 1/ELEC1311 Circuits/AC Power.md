@@ -108,7 +108,7 @@ Its average is $344.15\,\mathrm W$. The instantaneous power becomes negative dur
 | Inductor | Leads by $90^\circ$ | $0$ | $+V_{\mathrm{rms}}I_{\mathrm{rms}}$ |
 | Capacitor | Lags by $90^\circ$ | $0$ | $-V_{\mathrm{rms}}I_{\mathrm{rms}}$ |
 
-A resistor converts electrical energy into heat. An ideal inductor stores magnetic energy $W_L=Li^2/2$; an ideal capacitor stores electric energy $W_C=Cv^2/2$. Each returns its stored energy later in the cycle. **Zero average power does not mean zero current, zero instantaneous power or zero stored energy.** Real components can also dissipate power through resistance and other losses.[^1]
+A resistor converts electrical energy into heat. An ideal inductor stores magnetic energy $W_L=Li^2/2$; an ideal capacitor stores electric energy $W_C=Cv^2/2$. Each returns its stored energy later in the cycle. **Zero average power does not mean zero current, zero instantaneous power or zero stored energy.** Real components can also dissipate power through resistance and other losses. A physical inductor also has winding resistance and inter-winding capacitance, so its behaviour is not described by an ideal inductance alone.[^1][^friday]
 
 ### Deriving the component power waveforms
 
@@ -253,3 +253,5 @@ Zero dB means a ratio of one, not zero volts or zero watts. An **absolute** deci
 [^4]: [26 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1bcca3da-14f4-474a-bc82-b4ef00f72c61), 12:09–30:40 instantaneous/average-power derivation, 30:46–38:26 complex-power and RMS conventions, 38:34–45:37 decibels.
 
 [^5]: [28 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=71c6e62d-4081-42de-a7fa-b4f100aaf13f), 0:44–6:54 real/reactive power, 7:13–17:37 time-domain example, 17:42–21:31 resistor power and waveform distinction; equations checked against AC Power slides.
+
+[^friday]: [30 October 2026 Circuits lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=1d8017ee-7b21-4e81-9c45-b4f300947f0d), 1:42–14:52 resistor/capacitor/inductor power and practical parasitics, 17:06–25:17 impedance/admittance power formulas, and 25:44–43:05 conjugate matching. Remaining worked examples were deferred to 2 November at 43:15–43:26.
