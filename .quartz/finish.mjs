@@ -1,4 +1,5 @@
-import { writeFile } from "node:fs/promises";
+import { writeFile, readFile, readdir, copyFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 const out = resolve(process.argv[2] ?? ".quartz/engine/public");
@@ -11,3 +12,15 @@ await writeFile(
 );
 await writeFile(resolve(out, "robots.txt"), "User-agent: *\nDisallow: /\n");
 await writeFile(resolve(out, ".nojekyll"), "");
+
+// Pages/CDN/browser caches can otherwise mix newly deployed HTML with old CSS.
+// A content-addressed stylesheet keeps every page on the matching design.
+const css = await readFile(resolve(out, "index.css"));
+const cssName = `index.${createHash("sha256").update(css).digest("hex").slice(0, 12)}.css`;
+await copyFile(resolve(out, "index.css"), resolve(out, cssName));
+for (const entry of await readdir(out, { recursive: true })) {
+  if (!entry.endsWith(".html")) continue;
+  const path = resolve(out, entry);
+  const html = await readFile(path, "utf8");
+  await writeFile(path, html.replace(/(href="[^"]*)index\.css"/g, `$1${cssName}"`));
+}
