@@ -120,3 +120,50 @@ for (const entry of await readdir(out, { recursive: true })) {
   }
 }
 console.log(`Verified ${imageReferences} local image references`);
+
+const covers = JSON.parse(
+  await readFile(resolve(out, "social-covers.json"), "utf8"),
+);
+assert(covers.length > 90, "Missing per-page social covers");
+for (const cover of covers) {
+  const html = await readFile(resolve(out, cover.page), "utf8");
+  const png = await readFile(resolve(out, cover.image));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+  assert(
+    html.includes(cover.image),
+    `Social metadata missing for ${cover.page}`,
+  );
+  assert(
+    !html.includes(
+      'content="https://0x62.github.io/soton-efy-notes/static/og-image.png"',
+    ),
+    "Stock image metadata remains",
+  );
+  assert.equal(
+    (html.match(/property="og:image"/g) ?? []).length,
+    1,
+    "Duplicate image metadata",
+  );
+}
+const postscript = await readFile(resolve(out, "postscript.js"), "utf8");
+assert(postscript.includes("G-D40KX3W54H"), "Verified GA tag missing");
+assert(postscript.includes("send_page_view"), "SPA analytics setup missing");
+console.log(
+  `Verified ${covers.length} social-cover metadata/image pairs and existing GA measurement ID`,
+);
+
+const homeSocial = covers.find((item) => item.page === "README.html");
+assert.equal(
+  covers.find((item) => item.page === "index.html").image,
+  homeSocial.image,
+);
+assert.equal(
+  covers.find((item) => item.page === "fy.html").image,
+  covers.find((item) => item.page === "Foundation-Year/Foundation-Year.html")
+    .image,
+);
+assert.deepEqual(
+  await readFile(resolve(out, "static/og-image.png")),
+  await readFile(resolve(out, homeSocial.image)),
+);

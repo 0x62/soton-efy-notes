@@ -22,5 +22,8 @@ for (const entry of await readdir(out, { recursive: true })) {
   if (!entry.endsWith(".html")) continue;
   const path = resolve(out, entry);
   const html = await readFile(path, "utf8");
-  await writeFile(path, html.replace(/(href="[^"]*)index\.css"/g, `$1${cssName}"`));
+  await writeFile(
+    path,
+    html.replace(/(href="[^"]*)index\.css"/g, `$1${cssName}"`),
+  );
 }

@@ -43,8 +43,7 @@ frontmatter creates alias redirects (including `fy` and `y1`). Obsidian wikilink
 section transclusions, callouts, KaTeX, syntax highlighting and Mermaid use
 Quartz's native support. Referenced attachments retain their source paths.
 
-The home URL redirects to README. The title and footer use Ben’s branding; analytics
-are disabled, and the preview has a disallow-all robots file with no sitemap or
+The home URL redirects to README. The title and footer use Ben’s branding; Google Analytics uses the existing site’s verified `G-D40KX3W54H` property, and the preview has a disallow-all robots file with no sitemap or
 RSS. This discourages indexing, but is **not access control**: Pages is public.
 
 The current GitHub notes may be newer than the Obsidian published snapshot.
@@ -63,6 +62,7 @@ npm ci
 npx tsc --noEmit
 npx quartz build
 node ../finish.mjs public
+node ../social-covers.mjs public
 node ../verify.mjs public
 # Optional local development server:
 npx quartz build --serve
@@ -74,3 +74,20 @@ the workflow and this document, then rerun build, typecheck and browser QA.
 
 To stop the experiment, disable this workflow or stop pushing its branch. Do
 not delete or change the production Obsidian site as part of that cleanup.
+
+
+## Social previews and analytics
+
+`social-covers.mjs` uses Vercel Satori (from the pinned Quartz lockfile) to render
+1200×630 SVGs and PNGs for each output page, with its title and section. Bundled
+DejaVu fonts and their license keep the build independent of font services.
+Open Graph/Twitter tags use content-addressed image URLs; the stock fallback is
+also replaced. No external image-rendering service receives the notes.
+
+The Google Analytics measurement ID `G-D40KX3W54H` was verified from the rendered
+Google tag script on https://uni.bl.je/README on 9 November 2026. Quartz’s native
+GA integration records an initial page view and subsequent SPA navigations,
+with automatic duplicate page views disabled. These visits go to the existing
+Google Analytics property and may be distinguished by the preview hostname.
+No credentials or Analytics account settings are changed. Existing visitor
+privacy/consent obligations still apply; this does not install a consent manager.

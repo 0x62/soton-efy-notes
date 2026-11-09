@@ -48,6 +48,7 @@ jobs:
           npx tsc --noEmit
           npx quartz build
           node ../finish.mjs public
+          node ../social-covers.mjs public
           node ../verify.mjs public
       - uses: actions/upload-pages-artifact@v3
         with:
