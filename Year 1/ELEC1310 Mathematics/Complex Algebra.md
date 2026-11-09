@@ -75,6 +75,10 @@ $$
 \frac{3+2j}{2-j}=\frac{(3+2j)(2+j)}5=\frac45+\frac75j.
 $$
 
+![[maths-argand-operations.svg]]
+
+Conjugation reflects a point across the real axis. Multiplication by $j$ instead rotates it anticlockwise by $90^\circ$, preserving its distance from the origin. The plotted coordinates use equal axis scales.
+
 ## Polar and exponential forms
 
 ![[Mathematics A Cheat Sheet#Rules of Coordinate Geometry]]

@@ -150,6 +150,10 @@ Two D latches with opposite transparency phases can isolate input sampling from 
 
 For example, a positive-level latch with $Q=0$ can change $0\to1\to0$ during one high clock interval if $D$ makes those changes. A rising-edge flip-flop sees only the data at the rising edge and does not follow the later changes in that same high interval.
 
+![[Attachments/diagrams/digital-latch-edge-timing.svg]]
+
+The highlighted intervals are transparent for the latch. The vertical guides mark the only sampling instants for the rising-edge flip-flop. Input transitions are separated from those edges in this ideal example.
+
 [^gvm2]: Geoff Merrett, [Sequential Logic Part 1: Introduction and Latches](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36328); [16 October 2026 recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=960ae95d-cca9-4d21-8135-b4e500e6e4bb), approximately 04:05–37:50.
 [^gvm3]: Geoff Merrett, [16 October 2026 continuation](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=65d7c3d4-e160-4102-98af-b4e500f8476e), approximately 00:39–17:50 for latch behaviour and 20:49–37:39 for clocks, timing and terminology.
 [^gvm3notes]: Geoff Merrett, [Sequential Logic Part 2: Flip-Flops](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36332). The [16 October recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=65d7c3d4-e160-4102-98af-b4e500f8476e), 37:39–41:23, introduces the two-latch arrangement but stops before completing its timing analysis.

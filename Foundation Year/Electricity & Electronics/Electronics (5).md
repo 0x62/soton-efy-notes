@@ -61,6 +61,20 @@ Here is the sequence as a truth table:
 | 4     | 1              | 1              | 0    | 1              | None, output still 0 |
 | 5     | 0              | 0              | 1 ⚠️ | 1 ⚠️           |                      |
 
+### Active-low NAND latch: state transitions
+
+```mermaid
+stateDiagram-v2
+    state "Reset: Q = 0" as Reset
+    state "Set: Q = 1" as Set
+    Reset --> Set: Sbar = 0, Rbar = 1
+    Set --> Reset: Sbar = 1, Rbar = 0
+    Reset --> Reset: Sbar = 1, Rbar = 1
+    Set --> Set: Sbar = 1, Rbar = 1
+```
+
+Here Sbar and Rbar mean $\overline{S}$ and $\overline{R}$. With both inputs at 1, the latch remembers its previous state. The forbidden combination $(0,0)$ forces both outputs to 1 and is deliberately excluded from the valid-state diagram. Releasing both inputs together from that condition does not give a reliably determined next state.
+
 ### Sequence Step 1
 
 - As $\overline{S}=0$, the output (Q) of the upper NAND gate must be logic 1

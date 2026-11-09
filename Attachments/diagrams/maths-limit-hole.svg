@@ -1,0 +1,224 @@
+<ns0:svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" width="444.790625pt" height="287.32925pt" viewBox="0 0 444.790625 287.32925" version="1.1" role="img" aria-labelledby="maths-limit-hole.svg-title maths-limit-hole.svg-desc">
+ <ns0:title id="maths-limit-hole.svg-title">Limit at a missing point</ns0:title><ns0:desc id="maths-limit-hole.svg-desc">The graph y=x+2 has a hole at x=2 and y=4. Both sides approach 4, although the original quotient is undefined at 2.</ns0:desc><ns0:metadata>
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:date>2026-11-09T10:56:28.433352</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </ns0:metadata>
+ <ns0:defs>
+  <ns0:style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</ns0:style>
+ </ns0:defs>
+ <ns0:g id="figure_1">
+  <ns0:g id="patch_1">
+   <ns0:path d="M 0 287.32925  L 444.790625 287.32925  L 444.790625 0  L 0 0  z " style="fill: #ffffff" />
+  </ns0:g>
+  <ns0:g id="axes_1">
+   <ns0:g id="patch_2">
+    <ns0:path d="M 37.44875 245.90175  L 428.04875 245.90175  L 428.04875 24.14175  L 37.44875 24.14175  z " style="fill: #ffffff" />
+   </ns0:g>
+   <ns0:g id="matplotlib.axis_1">
+    <ns0:g id="xtick_1">
+     <ns0:g id="line2d_1">
+      <ns0:defs>
+       <ns0:path id="m07a97498c8" d="M 0 0  L 0 3.5  " style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="37.44875" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_1">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="37.44875" y="262.019875" transform="rotate(-0 37.44875 262.019875)">0.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_2">
+     <ns0:g id="line2d_2">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="86.27375" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_2">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="86.27375" y="262.019875" transform="rotate(-0 86.27375 262.019875)">0.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_3">
+     <ns0:g id="line2d_3">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="135.09875" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_3">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="135.09875" y="262.019875" transform="rotate(-0 135.09875 262.019875)">1.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_4">
+     <ns0:g id="line2d_4">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="183.92375" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_4">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="183.92375" y="262.019875" transform="rotate(-0 183.92375 262.019875)">1.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_5">
+     <ns0:g id="line2d_5">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="232.74875" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_5">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="232.74875" y="262.019875" transform="rotate(-0 232.74875 262.019875)">2.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_6">
+     <ns0:g id="line2d_6">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="281.57375" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_6">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="281.57375" y="262.019875" transform="rotate(-0 281.57375 262.019875)">2.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_7">
+     <ns0:g id="line2d_7">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="330.39875" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_7">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="330.39875" y="262.019875" transform="rotate(-0 330.39875 262.019875)">3.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_8">
+     <ns0:g id="line2d_8">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="379.22375" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_8">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="379.22375" y="262.019875" transform="rotate(-0 379.22375 262.019875)">3.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="xtick_9">
+     <ns0:g id="line2d_9">
+      <ns0:g>
+       <ns0:use ns4:href="#m07a97498c8" x="428.04875" y="245.90175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_9">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle" x="428.04875" y="262.019875" transform="rotate(-0 428.04875 262.019875)">4.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="text_10">
+     <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle; fill: #17212b" x="232.74875" y="277.633625" transform="rotate(-0 232.74875 277.633625)">x</ns0:text>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="matplotlib.axis_2">
+    <ns0:g id="ytick_1">
+     <ns0:g id="line2d_10">
+      <ns0:defs>
+       <ns0:path id="m68df3a82aa" d="M 0 0  L -3.5 0  " style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns4:href="#m68df3a82aa" x="37.44875" y="223.72575" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_11">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="30.44875" y="228.284812" transform="rotate(-0 30.44875 228.284812)">2</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="ytick_2">
+     <ns0:g id="line2d_11">
+      <ns0:g>
+       <ns0:use ns4:href="#m68df3a82aa" x="37.44875" y="179.37375" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_12">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="30.44875" y="183.932813" transform="rotate(-0 30.44875 183.932813)">3</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="ytick_3">
+     <ns0:g id="line2d_12">
+      <ns0:g>
+       <ns0:use ns4:href="#m68df3a82aa" x="37.44875" y="135.02175" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_13">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="30.44875" y="139.580813" transform="rotate(-0 30.44875 139.580813)">4</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="ytick_4">
+     <ns0:g id="line2d_13">
+      <ns0:g>
+       <ns0:use ns4:href="#m68df3a82aa" x="37.44875" y="90.66975" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_14">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="30.44875" y="95.228813" transform="rotate(-0 30.44875 95.228813)">5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="ytick_5">
+     <ns0:g id="line2d_14">
+      <ns0:g>
+       <ns0:use ns4:href="#m68df3a82aa" x="37.44875" y="46.31775" style="stroke: #000000; stroke-width: 0.8" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="text_15">
+      <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: end" x="30.44875" y="50.876812" transform="rotate(-0 30.44875 50.876812)">6</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="text_16">
+     <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle; fill: #17212b" x="16.318125" y="135.02175" transform="rotate(-90 16.318125 135.02175)">f(x)</ns0:text>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="line2d_15">
+    <ns0:path d="M 37.44875 223.72575  L 428.04875 46.31775  L 428.04875 46.31775  " clip-path="url(#p9ec32ae1ed)" style="fill: none; stroke: #176b9b; stroke-width: 2; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="line2d_16">
+    <ns0:defs>
+     <ns0:path id="mb1243e39d5" d="M 0 5.5  C 1.458617 5.5 2.857689 4.920485 3.889087 3.889087  C 4.920485 2.857689 5.5 1.458617 5.5 0  C 5.5 -1.458617 4.920485 -2.857689 3.889087 -3.889087  C 2.857689 -4.920485 1.458617 -5.5 0 -5.5  C -1.458617 -5.5 -2.857689 -4.920485 -3.889087 -3.889087  C -4.920485 -2.857689 -5.5 -1.458617 -5.5 0  C -5.5 1.458617 -4.920485 2.857689 -3.889087 3.889087  C -2.857689 4.920485 -1.458617 5.5 0 5.5  z " style="stroke: #176b9b; stroke-width: 2" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#p9ec32ae1ed)">
+     <ns0:use ns4:href="#mb1243e39d5" x="232.74875" y="135.02175" style="fill: #ffffff; stroke: #176b9b; stroke-width: 2" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="line2d_17">
+    <ns0:path d="M 232.74875 245.90175  L 232.74875 24.14175  " clip-path="url(#p9ec32ae1ed)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #697988; stroke-width: 1.5" />
+   </ns0:g>
+   <ns0:g id="line2d_18">
+    <ns0:path d="M 37.44875 135.02175  L 428.04875 135.02175  " clip-path="url(#p9ec32ae1ed)" style="fill: none; stroke-dasharray: 1.5,2.475; stroke-dashoffset: 0; stroke: #697988; stroke-width: 1.5" />
+   </ns0:g>
+   <ns0:g id="patch_3">
+    <ns0:path d="M 37.44875 245.90175  L 37.44875 24.14175  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="patch_4">
+    <ns0:path d="M 37.44875 245.90175  L 428.04875 245.90175  " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="patch_5">
+    <ns0:path d="M 138.50753 74.073721  Q 184.789782 104.005549 230.133223 133.330226  " style="fill: none; stroke: #000000; stroke-linecap: round" />
+    <ns0:path d="M 227.405997 128.708296  L 230.133223 133.330226  L 224.799343 132.738849  " style="fill: none; stroke: #000000; stroke-linecap: round" />
+   </ns0:g>
+   <ns0:g id="text_17">
+    <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #17212b" transform="translate(61.86125 55.056375)">Hole at (2, 4)</ns0:text>
+    <ns0:text style="font-size: 12px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; fill: #17212b" transform="translate(61.86125 68.49375)">No value at x = 2</ns0:text>
+   </ns0:g>
+   <ns0:g id="text_18">
+    <ns0:text style="font-size: 14.4px; font-family: 'DejaVu Sans', 'Bitstream Vera Sans', 'Computer Modern Sans Serif', 'Lucida Grande', 'Verdana', 'Geneva', 'Lucid', 'Arial', 'Helvetica', 'Avant Garde', sans-serif; text-anchor: middle; fill: #17212b" x="232.74875" y="18.14175" transform="rotate(-0 232.74875 18.14175)">A limit can exist at a missing point</ns0:text>
+   </ns0:g>
+  </ns0:g>
+ </ns0:g>
+ <ns0:defs>
+  <ns0:clipPath id="p9ec32ae1ed">
+   <ns0:rect x="37.44875" y="24.14175" width="390.6" height="221.76" />
+  </ns0:clipPath>
+ </ns0:defs>
+</ns0:svg>

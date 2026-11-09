@@ -68,6 +68,18 @@ In a feedback controller, sensors report the robot's angle and acceleration, the
 
 The point is predictable, sufficiently fast responses, not just eventually producing the right answer. Consider a motor command taking $2\,\mathrm{ms}$ on one occasion and $10\,\mathrm{ms}$ on another. This variation is **timing jitter**: even accurate sensing is not enough if corrections arrive inconsistently. The example motivates timing guarantees, rather than the simplistic claim that choosing C alone guarantees real-time behaviour.[^4]
 
+### The robot's feedback path
+
+```mermaid
+flowchart LR
+    S["Sensors measure angle and acceleration"] --> C["Controller computes a correction"]
+    C --> M["Motors move the wheels"]
+    M --> R["Robot motion changes"]
+    R --> S
+```
+
+Feedback means the output changes what is measured on the next update. A correct calculation is only part of the task: sensing, computation and actuation must also meet the timing budget. This conceptual loop does not imply that every block takes one clock cycle.
+
 ## Hosted and embedded systems
 
 A **hosted** program runs on a general-purpose computer with a supporting environment. A simple command-line program may perform a task and terminate, returning a status to that environment.

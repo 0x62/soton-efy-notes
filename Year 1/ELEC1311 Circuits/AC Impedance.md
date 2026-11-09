@@ -83,6 +83,16 @@ A time-domain plot shows how a signal varies with time. A frequency-domain spect
 
 This gives sinusoidal analysis a wider purpose: determine each frequency's amplitude and phase response separately, then combine the resulting time-domain components. A logarithmic frequency axis spreads out ratios rather than equal frequency differences, allowing a large frequency range to fit on one graph.[^3]
 
+```mermaid
+flowchart LR
+    A["Sinusoidal steady-state circuit"] --> B["Choose one frequency and a common sine or cosine reference"]
+    B --> C["Convert sources to phasors; replace R, L, C by impedances"]
+    C --> D["Apply KCL, KVL and complex algebra"]
+    D --> E["Convert the result back to a real sinusoid"]
+```
+
+Keep either peak or RMS magnitude consistently throughout the calculation. This phasor route describes the steady sinusoidal response; switching transients require a separate time-domain solution.
+
 ## Component impedances
 
 ![[AC Theory (1)#Reactance]]

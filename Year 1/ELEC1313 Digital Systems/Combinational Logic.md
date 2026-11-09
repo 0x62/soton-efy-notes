@@ -105,6 +105,18 @@ For $Y=E(M+A)$, an OR gate takes $M$ and $A$; its output feeds an AND gate toget
 
 A small circle, or **inversion bubble**, on a logic symbol denotes NOT. A triangle without the bubble is a buffer; adding a bubble at its output makes it an inverter.[^2]
 
+The enabled-request circuit has two logic levels along the request path, but only one along the enable path. Arrows are signal connections, not clocked execution steps.
+
+```mermaid
+flowchart LR
+    M["Manual M"] --> O["OR"]
+    A["Automatic A"] --> O
+    O -->|Q = M OR A| G["AND"]
+    E["Enable E"] --> G
+    G --> Y["Y = E AND Q"]
+```
+
+
 ## NAND and NOR
 
 NAND and NOR combine a basic gate with inversion of its output:

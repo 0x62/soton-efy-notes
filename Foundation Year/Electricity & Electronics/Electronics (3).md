@@ -20,6 +20,9 @@ $$
 \text{🚫 POS Form}=(\overline{A}+B+C).(A+\overline{B}+C).(A+B+\overline{C})
 $$
 
+> [!figure] ![[Attachments/diagrams/foundation-karnaugh-map.svg]]
+> Three-variable K-map for the SOP example above. Columns use Gray-code order $00,01,11,10$, so adjacent cells differ in one bit. The three 1s are isolated (including across the left/right boundary), so this example has no larger grouping that reduces the SOP expression.
+
 Next, we will create a truth table, such that it is arranged:
 
 - The number of output cells matches the number of rows in the truth table

@@ -252,6 +252,17 @@ Read it in order:
 
 Even a zero-delay functional model schedules events; checking an output in the same procedural instant as changing its input can read the old result. Allow combinational evaluation before checking.
 
+The testbench drives inputs and observes outputs. Its timed stimulus is part of the simulation environment, not a clock inside this combinational decoder.
+
+```mermaid
+flowchart LR
+    S["Testbench stimulus<br/>initial block"] -->|a: 2 bits| D["dut: decoder2to4<br/>combinational design"]
+    D -->|y: 4 bits| C["Testbench checker<br/>expected one-hot value"]
+    S -.->|selected test case| C
+```
+
+Allow the design to evaluate after each input change before the checker compares its output.
+
 ### Port association
 
 Named association makes the connections explicit:

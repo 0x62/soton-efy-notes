@@ -63,6 +63,18 @@ $$
 
 
 
+### Series RLC behaviour at a glance
+
+```mermaid
+flowchart TD
+    A["Compare reactances at the supply frequency"] --> B{"X_L compared with X_C?"}
+    B -->|"X_L greater"| C["Net inductive: current lags voltage"]
+    B -->|"Equal"| D["Resonance: Z = R; current and voltage in phase"]
+    B -->|"X_L smaller"| E["Net capacitive: current leads voltage"]
+```
+
+For the ideal series RLC model, the resistor sets the minimum impedance at resonance.
+
 ## Power in AC
 
 For a purely resistive AC circuit, voltage and current are in phase so electrical energy is continuously converted into heat. Therefore, the average power dissipated, $P$ is given by:
@@ -129,6 +141,9 @@ Therefore, power factor is equal to the cosine of the circuit phase angle. If th
 
 > [!WARNING] There will be a power factor question
 > Heavily hinted by Josh. Note that power factor equations are not given on the formula sheet.
+
+> [!figure] ![[Attachments/diagrams/foundation-power-triangle.svg]]
+> Power triangle for an inductive load: $P$ is horizontal, $Q$ is positive upwards, and $S$ is the hypotenuse. For a capacitive load, $Q$ points downwards; $S$ remains a positive magnitude.
 
 ## Bandwidth
 

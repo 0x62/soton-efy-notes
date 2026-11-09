@@ -110,6 +110,10 @@ Zero net area does not imply that the function is zero. For total geometric area
 
 Continuous functions, bounded monotone functions, and piecewise-continuous functions with finite one-sided limits on a closed interval are Riemann integrable. Integrability and having an antiderivative everywhere are different properties.
 
+![[maths-signed-area.svg]]
+
+For $\sin x$ over $[0,2\pi]$, the shaded signed contributions are $+2$ and $-2$. Taking absolute values before adding gives geometric area $4$, not zero.
+
 ## Integral properties
 
 For integrable functions and constants $\alpha,\beta$,[^1]

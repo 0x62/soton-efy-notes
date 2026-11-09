@@ -94,6 +94,10 @@ Grouping zeros instead gives $\bar F=A\bar C+\bar BC$, hence
 $$F=(\bar A+C)(B+\bar C).$$
 These expressions describe the same truth table even though their gate structures differ.
 
+![[Attachments/diagrams/digital-kmap-wrap.svg]]
+
+The blue pair uses horizontal wraparound; the green pair eliminates $A$ vertically. Together they show exactly the two SOP terms derived above.
+
 ## Design examples
 
 ### Seat-belt warning

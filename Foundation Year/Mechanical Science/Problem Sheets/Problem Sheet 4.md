@@ -31,6 +31,9 @@ R_{A}+R_{B}=1000
 >\boxed{R_{B}=400N} \qquad \boxed{R_{A}=600N}
 >$$
 
+> [!figure] ![[Attachments/diagrams/foundation-supported-pole.svg]]
+> Free-body diagram for Question 1. The light pole has negligible weight; the 1 kN load is 1.2 m from A and 1.8 m from B. Taking moments about A eliminates $R_A$ from the moment equation. Arrow lengths indicate directions only.
+
 ## Question 2
 
 >A man of mass 200 kg wants to weigh himself, but the bathroom scales only register up to 180 kg. However he has two sets of bathroom scales. So he arranges a plank, of mass 20 kg, with one set of scales under each end. However he stands on the plank only a quarter of the way along from the left-hand scales. What masses are measured on each set of scales?
