@@ -69,11 +69,11 @@ stateDiagram-v2
     state "Set: Q = 1" as Set
     Reset --> Set: Sbar = 0, Rbar = 1
     Set --> Reset: Sbar = 1, Rbar = 0
-    Reset --> Reset: Sbar = 1, Rbar = 1
-    Set --> Set: Sbar = 1, Rbar = 1
+    Reset --> Reset: Sbar = 1, Rbar = 1 or 0
+    Set --> Set: Rbar = 1, Sbar = 1 or 0
 ```
 
-Here Sbar and Rbar mean $\overline{S}$ and $\overline{R}$. With both inputs at 1, the latch remembers its previous state. The forbidden combination $(0,0)$ forces both outputs to 1 and is deliberately excluded from the valid-state diagram. Releasing both inputs together from that condition does not give a reliably determined next state.
+Here Sbar and Rbar mean $\overline{S}$ and $\overline{R}$. With both inputs at 1, the latch remembers its previous state. Asserting set while already set, or reset while already reset, also leaves that valid state unchanged. The forbidden combination $(0,0)$ forces both outputs to 1 and is deliberately excluded from the valid-state diagram. Releasing both inputs together from that condition does not give a reliably determined next state.
 
 ### Sequence Step 1
 
