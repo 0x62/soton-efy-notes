@@ -50,6 +50,9 @@ jobs:
           node ../finish.mjs public
           node ../social-covers.mjs public
           node ../verify.mjs public
+          node ../permalinks.mjs public
+          node ../verify-permalinks.mjs public
+          node --import tsx ../test-permalinks.mjs .
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .quartz/engine/public

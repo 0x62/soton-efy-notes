@@ -27,3 +27,15 @@ for (const entry of await readdir(out, { recursive: true })) {
     html.replace(/(href="[^"]*)index\.css"/g, `$1${cssName}"`),
   );
 }
+
+// Runtime routing must be deployed atomically with the new HTML too.
+for (const name of ['prescript', 'postscript']) {
+  const js = await readFile(resolve(out, name + '.js'));
+  const hashed = `${name}.${createHash('sha256').update(js).digest('hex').slice(0, 12)}.js`;
+  await copyFile(resolve(out, name + '.js'), resolve(out, hashed));
+  for (const entry of await readdir(out, { recursive: true })) {
+    if (!entry.endsWith('.html')) continue;
+    const path = resolve(out, entry);
+    await writeFile(path, (await readFile(path, 'utf8')).replaceAll(name + '.js"', hashed + '"'));
+  }
+}

@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, copyFile, writeFile, readFile } from "node:fs/promises";
 import { resolve, dirname, extname } from "node:path";
+import { installPermalinks } from "./permalinks.mjs";
 import { normalizeFigureImages } from "./figures.mjs";
 import { fileURLToPath } from "node:url";
 
@@ -67,3 +68,5 @@ await copyFile(
   resolve(root, ".quartz/custom.scss"),
   resolve(engine, "quartz/styles/custom.scss"),
 );
+
+await installPermalinks(engine, await Promise.all(files.filter(p => extname(p) === ".md").map(async p => [p, await readFile(resolve(root, p), "utf8")])));

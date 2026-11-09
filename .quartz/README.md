@@ -91,3 +91,21 @@ with automatic duplicate page views disabled. These visits go to the existing
 Google Analytics property and may be distinguished by the preview hostname.
 No credentials or Analytics account settings are changed. Existing visitor
 privacy/consent obligations still apply; this does not install a consent manager.
+
+## Canonical Obsidian permalinks
+
+The build publishes each source frontmatter `permalink` as its full content URL,
+not a redirect back to the filename. Source-file URLs (and matching folder
+landing pages) redirect to the permalink, preserving query strings and anchors.
+Source notes and content-index identities remain unchanged, preserving explorer
+ordering, search and graph data. Static links/assets are rebased during output;
+client navigation resolves source identities through the generated route map.
+Full-page canonical metadata is distinguished from redirect documents in Quartz's
+fetch helper. The pinned-engine patches fail fast if expected signatures change.
+
+The workflow verifies all configured routes, legacy redirects, cover metadata,
+assets, static links, and every pair of SPA routes. Script filenames are hashed
+so old cached navigation code cannot mix with new HTML. Local checks additionally
+run `node .quartz/permalinks.mjs ENGINE/public`,
+`node .quartz/verify-permalinks.mjs ENGINE/public`, and (from ENGINE)
+`node --import tsx /path/to/.quartz/test-permalinks.mjs .` after existing checks.
