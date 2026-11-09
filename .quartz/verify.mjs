@@ -82,3 +82,10 @@ assert(!filter(node("index", "index")));
 console.log(
   `Verified ${Object.keys(index).length} content pages, root/custom sidebar order, aliases and preview safeguards`,
 );
+
+assert(
+  (await readFile(resolve(out, "index.html"), "utf8")).includes(
+    'rel="canonical" href="./README.html"',
+  ),
+  "SPA home redirect missing canonical target",
+);
