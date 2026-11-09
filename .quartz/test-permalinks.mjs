@@ -50,3 +50,15 @@ assert(!home.includes('Powered by'));
 assert(!home.includes('Original notes site'));
 assert(home.includes('./y1/elec1310/functions#'));
 console.log('Verified embedded fragments, source immutability, sidebar controls, and source-file footer');
+let headingLinks = 0;
+for (const match of home.matchAll(/href="(\.\/y1\/[^"#]+)#([^"]+)"/g)) {
+  const target = await readFile(resolve(engine, 'public', match[1] + '.html'), 'utf8');
+  const anchor = decodeURIComponent(match[2]).replace(/&amp;/g, '&');
+  assert(target.includes(`id="${anchor}"`), `Missing embedded heading target: ${match[1]}#${anchor}`);
+  headingLinks++;
+}
+console.log(`Verified ${headingLinks} Year 1 embedded/cross-note heading destinations`);
+const { normalizeDisplayMath } = await import('./math.mjs');
+const codeFence = '```tex\n$$a\nb$$\n```\n';
+assert.equal(normalizeDisplayMath(codeFence), codeFence);
+assert(normalizeDisplayMath('   $$a\n   +b$$').includes('   $$\n   a\n   +b\n   $$'));

@@ -109,3 +109,9 @@ so old cached navigation code cannot mix with new HTML. Local checks additionall
 run `node .quartz/permalinks.mjs ENGINE/public`,
 `node .quartz/verify-permalinks.mjs ENGINE/public`, and (from ENGINE)
 `node --import tsx /path/to/.quartz/test-permalinks.mjs .` after existing checks.
+
+Embedded hash-only links are rebased to the original note before permalink
+mapping. Display-math delimiters are normalized in disposable build copies,
+retaining list indentation and fenced code, because Obsidian's same-line and
+multi-line delimiter syntax can otherwise swallow subsequent headings in
+remark-math. All 436 Year 1 cross-note heading destinations are tested.

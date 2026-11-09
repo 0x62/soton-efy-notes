@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, copyFile, writeFile, readFile } from "node:fs/promises";
 import { resolve, dirname, extname } from "node:path";
+import { normalizeDisplayMath } from "./math.mjs";
 import { installPermalinks } from "./permalinks.mjs";
 import { normalizeFigureImages } from "./figures.mjs";
 import { fileURLToPath } from "node:url";
@@ -39,7 +40,7 @@ for (const path of files) {
   await mkdir(dirname(target), { recursive: true });
   if (extname(path) === ".md") {
     const source = await readFile(resolve(root, path), "utf8");
-    await writeFile(target, normalizeFigureImages(source, path, files));
+    await writeFile(target, normalizeDisplayMath(normalizeFigureImages(source, path, files)));
   } else {
     await copyFile(resolve(root, path), target);
   }
