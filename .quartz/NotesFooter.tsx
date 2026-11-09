@@ -9,7 +9,7 @@ const NotesFooter: QuartzComponent = ({ displayClass, fileData, ctx }) => {
   return (
     <footer class={displayClass ?? ""}>
       <p>© {new Date().getFullYear()} Ben Lewis</p>
-      {sourceURL && <a href={sourceURL}>View on GitHub</a>}
+      {sourceURL && <a href={sourceURL} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
     </footer>
   );
 };

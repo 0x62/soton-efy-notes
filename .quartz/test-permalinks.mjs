@@ -62,3 +62,5 @@ const { normalizeDisplayMath } = await import('./math.mjs');
 const codeFence = '```tex\n$$a\nb$$\n```\n';
 assert.equal(normalizeDisplayMath(codeFence), codeFence);
 assert(normalizeDisplayMath('   $$a\n   +b$$').includes('   $$\n   a\n   +b\n   $$'));
+
+assert(/<a[^>]+href="https:\/\/github.com\/0x62\/soton-efy-notes\/blob\/master\/Year%201\/Year%201.md"[^>]+target="_blank"[^>]+rel="noopener noreferrer"/.test(home), "Source footer must open safely in a new tab");
