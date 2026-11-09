@@ -1,0 +1,55 @@
+@use "./base.scss";
+
+// Adapt the original Obsidian publish.css figure/caption treatment to Quartz.
+// Only figure callouts are affected; information and warning boxes stay intact.
+.callout[data-callout="figure"] {
+  --callout-icon: none;
+  --bg: transparent;
+  --border: transparent;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: 40rem;
+  margin: 1.5rem auto;
+  text-align: center;
+
+  > .callout-title {
+    justify-content: center;
+    padding: 0;
+    color: var(--darkgray);
+  }
+
+  .callout-icon {
+    display: none;
+  }
+
+  .callout-title-inner {
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .callout-title-inner > p {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  > .callout-content {
+    font-size: 0.75em;
+    text-align: center;
+    color: var(--darkgray);
+
+    > p,
+    > :first-child {
+      margin: 0.5rem 0 0;
+    }
+  }
+}

@@ -35,12 +35,15 @@ additions require an explicit entry in the navigation manifest.
 
 `prepare.mjs` copies Git-tracked Markdown and supported assets into a disposable
 Quartz checkout, never untracked notes, `.obsidian`, credentials or private
-folders. Source files and frontmatter are not edited. Existing `permalink`
+folders. Vault source files and frontmatter are not edited. Figure-title image wikilinks
+are normalized only in disposable build copies so @2x filenames render correctly.
+Figure styling follows the original publish.css, with centered captions, no box
+background or border, and a responsive 40rem maximum width. Existing `permalink`
 frontmatter creates alias redirects (including `fy` and `y1`). Obsidian wikilinks,
 section transclusions, callouts, KaTeX, syntax highlighting and Mermaid use
 Quartz's native support. Referenced attachments retain their source paths.
 
-The home URL redirects to README. Every page has a preview banner, analytics
+The home URL redirects to README. The title and footer use Ben’s branding; analytics
 are disabled, and the preview has a disallow-all robots file with no sitemap or
 RSS. This discourages indexing, but is **not access control**: Pages is public.
 

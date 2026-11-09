@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, access } from "node:fs/promises";
+import { readFile, access, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const out = resolve(process.argv[2] ?? ".quartz/engine/public");
@@ -7,7 +7,12 @@ const index = JSON.parse(
   await readFile(resolve(out, "static/contentIndex.json"), "utf8"),
 );
 const home = await readFile(resolve(out, "README.html"), "utf8");
-assert(home.includes("Experimental Quartz preview"), "Preview banner missing");
+assert(
+  !home.includes("Experimental Quartz preview"),
+  "Old preview banner remains",
+);
+assert(!home.includes("· Quartz preview"), "Old preview title remains");
+assert(home.includes("Ben Lewis</p>"), "Copyright attribution missing");
 assert(home.includes("data-data-fns="), "Explorer configuration missing");
 assert(
   !Object.keys(index).some((path) =>
@@ -89,3 +94,29 @@ assert(
   ),
   "SPA home redirect missing canonical target",
 );
+
+const arithmetic = await readFile(
+  resolve(out, "Year-1/ELEC1313-Digital-Systems/Computer-Arithmetic.html"),
+  "utf8",
+);
+assert(!arithmetic.includes("![["), "Unrendered figure image wikilinks");
+assert(
+  arithmetic.includes("Screenshot-2026-09-22-at-09.09.06@2x.png"),
+  "Retina figure image missing",
+);
+
+let imageReferences = 0;
+for (const entry of await readdir(out, { recursive: true })) {
+  if (!entry.endsWith(".html")) continue;
+  const html = await readFile(resolve(out, entry), "utf8");
+  for (const match of html.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g)) {
+    const src = decode(match[1]);
+    if (/^(?:[a-z]+:|\/\/)/i.test(src)) continue;
+    const path = decodeURIComponent(
+      new URL(src, "https://notes.invalid/" + entry).pathname,
+    );
+    await access(resolve(out, "." + path));
+    imageReferences++;
+  }
+}
+console.log(`Verified ${imageReferences} local image references`);

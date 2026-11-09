@@ -1,25 +1,19 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg";
 import * as Component from "./quartz/components";
 import { explorerOptions } from "./sidebar";
-import PreviewBanner from "./PreviewBanner";
+import NotesFooter from "./NotesFooter";
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [],
-  footer: Component.Footer({
-    links: {
-      "Notes on GitHub": "https://github.com/0x62/soton-efy-notes",
-      "Original notes site": "https://uni.bl.je",
-    },
-  }),
+  footer: NotesFooter,
 };
 
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
-    PreviewBanner,
     Component.ConditionalRender({
       component: Component.Breadcrumbs(),
       condition: (page) => page.fileData.slug !== "index",
@@ -51,11 +45,7 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [
-    PreviewBanner,
-    Component.Breadcrumbs(),
-    Component.ArticleTitle(),
-  ],
+  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle()],
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),

@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
-import { mkdir, copyFile, writeFile } from "node:fs/promises";
+import { mkdir, copyFile, writeFile, readFile } from "node:fs/promises";
 import { resolve, dirname, extname } from "node:path";
+import { normalizeFigureImages } from "./figures.mjs";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -35,14 +36,19 @@ const files = tracked.filter(
 for (const path of files) {
   const target = resolve(content, path);
   await mkdir(dirname(target), { recursive: true });
-  await copyFile(resolve(root, path), target);
+  if (extname(path) === ".md") {
+    const source = await readFile(resolve(root, path), "utf8");
+    await writeFile(target, normalizeFigureImages(source, path, files));
+  } else {
+    await copyFile(resolve(root, path), target);
+  }
 }
 for (const name of [
   "quartz.config.ts",
   "quartz.layout.ts",
   "sidebar.ts",
   "sidebar-order.json",
-  "PreviewBanner.tsx",
+  "NotesFooter.tsx",
 ]) {
   await copyFile(resolve(root, ".quartz", name), resolve(engine, name));
 }
@@ -56,3 +62,8 @@ await writeFile(
   JSON.stringify(files, null, 2) + "\n",
 );
 console.log(`Prepared ${files.length} tracked source files`);
+
+await copyFile(
+  resolve(root, ".quartz/custom.scss"),
+  resolve(engine, "quartz/styles/custom.scss"),
+);

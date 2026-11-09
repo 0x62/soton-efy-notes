@@ -6,7 +6,7 @@ await writeFile(
   resolve(out, "index.html"),
   `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><link rel="canonical" href="./README.html"><meta name="robots" content="noindex,nofollow">
-<meta http-equiv="refresh" content="0;url=./README.html"><title>Ben’s Notes · Quartz preview</title>
+<meta http-equiv="refresh" content="0;url=./README.html"><title>Ben’s Notes</title>
 </head><body><a href="./README.html">Open Ben’s Notes</a></body></html>\n`,
 );
 await writeFile(resolve(out, "robots.txt"), "User-agent: *\nDisallow: /\n");
