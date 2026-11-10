@@ -54,3 +54,42 @@
     }
   }
 }
+
+// Give the tree one bounded scroll area. In particular, the mobile overlay's
+// padding must not be added below a list sized to 100% of the viewport.
+.page #quartz-body .sidebar.left .explorer-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+
+  > .explorer-ul {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+    padding-bottom: 0.5rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 801px) {
+  .page #quartz-body .sidebar.left {
+    height: 100dvh;
+    min-height: 0;
+
+    > :not(.explorer) { flex-shrink: 0; }
+    > .explorer {
+      flex: 1 1 0;
+      min-height: 0;
+      > .explorer-content { flex: 1 1 0; }
+    }
+  }
+}
+
+.explorer-ul:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: -2px;
+}

@@ -167,3 +167,9 @@ assert.deepEqual(
   await readFile(resolve(out, "static/og-image.png")),
   await readFile(resolve(out, homeSocial.image)),
 );
+
+assert(/<ul\b[^>]*aria-label="Notes navigation"[^>]*>/.test(home), 'Named keyboard-scrollable explorer missing');
+assert(/<ul\b[^>]*tabindex="0"[^>]*>/.test(home), 'Explorer keyboard focus missing');
+const sidebarStyles = await readFile(resolve(out, 'index.css'), 'utf8');
+assert(sidebarStyles.includes('scrollbar-gutter:stable'), 'Bounded sidebar scroll styles missing');
+console.log('Verified focusable notes navigation and sidebar scroll stylesheet');

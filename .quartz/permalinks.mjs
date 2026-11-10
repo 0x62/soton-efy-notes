@@ -48,6 +48,7 @@ export async function installPermalinks(engine, sources) {
   let explorer = await readFile(explorerPath, 'utf8');
   explorer = explorer.replace(/        <button\s+type="button"\s+class="title-button explorer-toggle desktop-explorer"[\s\S]*?<\/button>/, '{/* Notes tree has no redundant desktop root toggle; mobile menu stays. */}');
   explorer = explorer.replace('import { i18n } from "../i18n"\n', '').replace('({ cfg, displayClass }: QuartzComponentProps)', '({ displayClass }: QuartzComponentProps)');
+  explorer = explorer.replace('<OverflowList class="explorer-ul" />', '<OverflowList class="explorer-ul" tabIndex={0} aria-label="Notes navigation" />');
   await writeFile(explorerPath, explorer);
   const path = resolve(engine, 'quartz/util/path.ts');
   let code = await readFile(path, 'utf8');
