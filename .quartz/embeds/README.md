@@ -16,8 +16,8 @@
    provide numeric table equivalents for canvas accessibility. No netlist editor.
 5. Share Tailwind controls and design tokens. Maths entries import JSXGraph through
    a lifecycle-safe adapter; the circuit must not fetch JSXGraph or its stylesheet.
-6. Integrate the first RC example only into the disposable Quartz build copy,
-   preserving the Obsidian note. Build embeds after canonical permalink processing.
+6. Author iframes directly in teaching notes. Build embeds after canonical
+   permalink processing and rewrite their URLs for the deployment base.
 7. Check simulator values against the analytic solution, URL validation, production
    bundle graphs, root/subpath serving, mobile layouts, theme and SPA cleanup.
 
@@ -38,8 +38,8 @@ cache headers on HTML. This toolkit uses native TypeScript SPICE, no WASM backen
 ## Integration and extension
 
 The first route is `/_embed/y1/elec1311/rc-transients/charging/`. The iframe
-is inserted after the worked mathematics by `.quartz/prepare.mjs`, only in its
-build copy. No teaching-note or `publish.css` changes are required.
+is authored directly after the worked mathematics in the Markdown note.
+`prepare.mjs` has no demo-specific insertion logic.
 
 For another entry, mirror the actual note directories under `demos/`, including
 spaces and capitalization, and add a demo folder with `index.tsx`. Import the
@@ -192,3 +192,24 @@ selected row indices, renders scoped column headers and is screen-reader-only.
 logic. `formatNumber` and SI formatters live in `toolkit/format.ts`. Tests exercise
 a frequency/gain table, worker success/error/abort/clone-failure cleanup and an
 independent note/permalink route, in addition to the resistor-divider simulation.
+
+## Imports and direct Markdown embeds
+
+`~` resolves to `.quartz/embeds`, the React project root, in Vite and TypeScript.
+The `tsx` test runner reads the same tsconfig paths. Use imports such as
+`~/toolkit/CircuitCard` and `~/toolkit/format`; keep local sibling imports relative.
+
+The initial experiment injected the iframe into Quartz’s disposable note copy to
+avoid editing the Obsidian source. This was not a Quartz requirement. The iframe
+now lives directly in the Markdown, where its placement is visible and editable.
+Obsidian documents native iframe HTML: https://obsidian.md/help/embed-web-pages.
+The note supplies an absolute published `src` so Obsidian can load it; it needs
+network access, and without the website host bridge it uses system theme and its
+fixed initial height. Native Obsidian rendering has not been verified here.
+
+Quartz preserves the iframe and its data attributes. `publish.mjs` generically
+rewrites `data-notes-embed` URLs relative to each output page and preserves the
+query in `src` (legacy `data-notes-params` remains supported). Thus local hosting,
+root domains and GitHub Pages subpaths stay same-origin. The host script remains
+on every page for SPA navigation, theme propagation and automatic resizing.
+The absolute Obsidian fallback must be updated if the published site moves.

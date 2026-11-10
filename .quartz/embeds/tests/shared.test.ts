@@ -5,10 +5,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import {
   AccessibleDataTable,
   nearestSampleIndices,
-} from "../toolkit/AccessibleDataTable";
-import { runWorker } from "../toolkit/worker-client";
-import { formatNumber } from "../toolkit/format";
-import { discoverRoutes } from "../routes.mjs";
+} from "~/toolkit/AccessibleDataTable";
+import { runWorker } from "~/toolkit/worker-client";
+import { formatNumber } from "~/toolkit/format";
+import { discoverRoutes } from "~/routes.mjs";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";

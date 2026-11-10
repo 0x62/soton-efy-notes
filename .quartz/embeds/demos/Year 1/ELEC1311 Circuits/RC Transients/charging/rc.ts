@@ -1,5 +1,5 @@
-import { runTransientWorker } from "../../../../../toolkit/worker-client";
-import type { simulateTransient } from "../../../../../toolkit/simulation";
+import { runTransientWorker } from "~/toolkit/worker-client";
+import type { simulateTransient } from "~/toolkit/simulation";
 import type { Values } from "./rc-params";
 export function netlist(v: Values) {
   const tau = v.resistance * v.capacitance;

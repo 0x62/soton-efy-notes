@@ -9,7 +9,10 @@
     "lib": ["ES2022", "DOM", "WebWorker"],
     "allowImportingTsExtensions": true,
     "noEmit": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+      "~/*": ["./*"]
+    }
   },
   "include": ["toolkit", "demos"]
 }

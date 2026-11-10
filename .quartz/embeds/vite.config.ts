@@ -7,6 +7,7 @@ const entries = generateEntries(process.cwd(), resolve("../.."));
 export default defineConfig({
   resolve: {
     alias: {
+      "~": resolve("."),
       "/demos": resolve("demos"),
       "jsxgraph/distrib/jsxgraph.css": resolve(
         "node_modules/jsxgraph/distrib/jsxgraph.css",

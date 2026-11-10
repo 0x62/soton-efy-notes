@@ -1,4 +1,4 @@
-import { readNumericParams } from "../../../../../toolkit/params";
+import { readNumericParams } from "~/toolkit/params";
 export const schema = {
   voltage: {
     default: 10,

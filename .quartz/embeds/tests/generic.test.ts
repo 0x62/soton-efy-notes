@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readNumericParams, writeParams } from "../toolkit/params";
-import { simulateTransient } from "../toolkit/simulation";
-import { chartDomains } from "../toolkit/ResponseChart";
+import { readNumericParams, writeParams } from "~/toolkit/params";
+import { simulateTransient } from "~/toolkit/simulation";
+import { chartDomains } from "~/toolkit/ResponseChart";
 import { readFileSync } from "node:fs";
 
 test("a resistor divider uses its own names, limits, netlist and three signals", async () => {

@@ -13,7 +13,7 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
   const { readParams } = await import(
     "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc-params"
   );
-  const { simulateTransient } = await import("../toolkit/simulation");
+  const { simulateTransient } = await import("~/toolkit/simulation");
   const result = await simulateTransient(request(readParams("")));
   const globals = {
     window,

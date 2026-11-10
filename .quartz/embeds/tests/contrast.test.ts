@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { chartPalette } from "../toolkit/palette";
+import { chartPalette } from "~/toolkit/palette";
 const luminance = (hex: string) => {
   const rgb = hex
     .slice(1)

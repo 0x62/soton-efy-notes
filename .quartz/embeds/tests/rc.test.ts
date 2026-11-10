@@ -1,9 +1,9 @@
-import { simulateTransient } from "../toolkit/simulation";
+import { simulateTransient } from "~/toolkit/simulation";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { request } from "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc";
-import { readParams } from "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc-params";
-import { writeParams } from "../toolkit/params";
+import { request } from "~/demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc";
+import { readParams } from "~/demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc-params";
+import { writeParams } from "~/toolkit/params";
 test("URL values are finite, bounded, SI quantities with stable roundtrip", () => {
   const defaults = readParams("");
   for (const input of [

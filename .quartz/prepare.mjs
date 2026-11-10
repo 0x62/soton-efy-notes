@@ -6,17 +6,6 @@ import { installPermalinks } from "./permalinks.mjs";
 import { normalizeFigureImages } from "./figures.mjs";
 import { fileURLToPath } from "node:url";
 
-function addNoteEmbed(source, path) {
-  if (path !== "Year 1/ELEC1311 Circuits/RC Transients.md") return source;
-  const marker = "## Approximating the response in time steps";
-  if (!source.includes(marker))
-    throw new Error("RC embed insertion heading changed");
-  return source.replace(
-    marker,
-    `<iframe data-notes-embed="y1/elec1311/rc-transients/charging" data-notes-params="voltage=10&resistance=10&capacitance=0.2" title="Interactive RC charging circuit, voltage and current" loading="lazy" height="1100" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>\n\n${marker}`,
-  );
-}
-
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const engine = resolve(process.argv[2] ?? resolve(root, ".quartz/engine"));
 const content = resolve(engine, "content");
@@ -54,7 +43,7 @@ for (const path of files) {
     await writeFile(
       target,
       normalizeDisplayMath(
-        normalizeFigureImages(addNoteEmbed(source, path), path, files),
+        normalizeFigureImages(source, path, files),
       ),
     );
   } else {

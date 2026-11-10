@@ -1,18 +1,18 @@
 import {
   AccessibleDataTable,
   nearestSampleIndices,
-} from "../../../../../toolkit/AccessibleDataTable";
-import { formatNumber as format } from "../../../../../toolkit/format";
-import { CircuitCard } from "../../../../../toolkit/CircuitCard";
-import { ResponseChart } from "../../../../../toolkit/ResponseChart";
+} from "~/toolkit/AccessibleDataTable";
+import { formatNumber as format } from "~/toolkit/format";
+import { CircuitCard } from "~/toolkit/CircuitCard";
+import { ResponseChart } from "~/toolkit/ResponseChart";
 import { schema } from "./rc-params";
 import { simulate, type Result } from "./rc";
 import {
   formatCurrent,
   formatVoltage,
   formatTime,
-} from "../../../../../toolkit/format";
-import { chartPalette } from "../../../../../toolkit/palette";
+} from "~/toolkit/format";
+import { chartPalette } from "~/toolkit/palette";
 export function RCTransientCircuit(
   props: { title?: string; description?: string } = {},
 ) {

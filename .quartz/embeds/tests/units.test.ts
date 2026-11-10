@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
-import { patchTransientUnits } from "../unit-patch.mjs";
+import { patchTransientUnits } from "~/unit-patch.mjs";
 test("SPICE transient renderer labels current axes and cursor values in A", async () => {
   const dir = new URL("../node_modules/@spice-ts/ui/dist/", import.meta.url);
   const name = (await readdir(dir)).find(

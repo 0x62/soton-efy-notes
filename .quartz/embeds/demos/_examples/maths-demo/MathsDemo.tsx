@@ -1,6 +1,6 @@
-import { MathsBoard } from "../../../toolkit/MathsBoard";
-import { Card } from "../../../toolkit/ui";
-import { useTheme } from "../../../toolkit/runtime";
+import { MathsBoard } from "~/toolkit/MathsBoard";
+import { Card } from "~/toolkit/ui";
+import { useTheme } from "~/toolkit/runtime";
 export function MathsDemo() {
   const theme = useTheme();
   const foreground = theme === "dark" ? "#d4d4d4" : "#4e4e4e";

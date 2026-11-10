@@ -17,10 +17,15 @@ for (const file of await readdir(out, { recursive: true })) {
   html = html.replace(
     /<iframe([^>]*?)data-notes-embed="([a-z0-9/-]+)"([^>]*?)>/g,
     (_, a, route, b) => {
+      const attributes = a + b;
+      const source = attributes
+        .match(/\s+src="([^"]*)"/)?.[1]
+        ?.replaceAll("&amp;", "&");
       const raw =
-        (a + b)
+        attributes
           .match(/data-notes-params="([^"]*)"/)?.[1]
-          ?.replaceAll("&amp;", "&") || "";
+          ?.replaceAll("&amp;", "&") ??
+        (source ? new URL(source, "https://notes.invalid/").search : "");
       const query = new URLSearchParams(raw)
         .toString()
         .replaceAll("&", "&amp;");
