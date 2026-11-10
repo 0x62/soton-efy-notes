@@ -13,8 +13,13 @@ for (const [mode, palette] of Object.entries(chartPalette)) {
   test(`${mode} chart trace has at least 3:1 non-text contrast`, () => {
     const values = [
       luminance(palette.background),
-      luminance(palette.trace),
+      luminance(palette.voltage),
     ].sort((a, b) => b - a);
     assert.ok((values[0] + 0.05) / (values[1] + 0.05) >= 3);
+    const current = [
+      luminance(palette.background),
+      luminance(palette.current),
+    ].sort((a, b) => b - a);
+    assert.ok((current[0] + 0.05) / (current[1] + 0.05) >= 3);
   });
 }

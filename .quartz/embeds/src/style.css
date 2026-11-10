@@ -57,3 +57,8 @@ td {
   padding: 0.4rem;
   text-align: right;
 }
+
+/* The wrapper supplies one tooltip for pointer, touch and keyboard use. */
+.schematic-renderer > div > div {
+  display: none;
+}
