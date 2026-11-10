@@ -253,3 +253,32 @@ check rendered path endpoints and the connected downward ground wire.
 
 The RL example fixes the source at the worked example's 20 V peak; only R, L and
 frequency are adjustable.
+
+## Maths cards and Limits & Continuity
+
+`MathsCard` uses the same `Card` shell as circuits, with optional headings and no
+mandatory inputs. Compose `MathsSlider` (slider-only by default, optional numeric
+input), `Choices`, `Reading` and `Approach` as the lesson needs. `useMathsModel`
+uses the shared bounded URL-parameter API; integer choices are normalized.
+`Reading` debounces screen-reader announcements while the visible values update.
+
+`MathsPlot` accepts a typed scene, values and bounding box. Scenes use callbacks
+to read current values, so moving controls updates one JSXGraph board rather than
+recreating it. A resize observer fits the container. Initialization is deferred
+until near the viewport; cleanup releases the board. Graphs are visual companions
+to semantic readings and keyboard controls, with no wheel zoom or panning that
+would intercept scrolling through notes. `Approach` is opt-in, one-shot animation;
+it stops when offscreen/hidden and becomes a discrete step with reduced motion.
+
+The twelve entries under `demos/Year 1/ELEC1310 Mathematics/Limits & Continuity/`
+cover nearby values, secants, one-sided limits, limit laws, factorisation,
+rationalisation, squeezing, sin(x)/x, asymptotes, continuity, IVT and epsilon-delta.
+Each entry imports only its scene, with shared JSXGraph/runtime chunks. Notes
+contain direct lazy iframes; no build-time content injection is involved.
+
+Pedagogical invariants: excluded points stay open; oscillation sequences are
+exact; poles have separate branches; trig angles are radians with the inequality
+restricted to its valid domain; IVT promises existence rather than uniqueness;
+epsilon-delta uses an analytic bound and a strict interior counterexample.
+Finite graphs are not proofs. Hidden high-frequency curve portions are explicitly
+identified. Tests check these models, controls, routing and production isolation.

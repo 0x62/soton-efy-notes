@@ -67,3 +67,40 @@ td {
 .schematic-renderer svg {
   opacity: 1 !important;
 }
+
+/* Maths and circuit cards share their shell, typography, controls and tokens. */
+.math-board {
+  width: 100%;
+  height: clamp(265px, 56vw, 330px);
+  border: 0;
+  overflow: hidden;
+  background: var(--light);
+  touch-action: pan-y;
+}
+.math-figure {
+  margin: 0;
+  min-width: 0;
+}
+.math-board .JXGtext {
+  font-family: var(--bodyFont), sans-serif !important;
+}
+.math-reading {
+  border-left: 3px solid var(--secondary);
+  padding: 0.35rem 0 0.35rem 0.8rem;
+  min-height: 3rem;
+}
+.math-choice[aria-pressed="true"] {
+  background: var(--secondary);
+  color: var(--light);
+  border-color: var(--secondary);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+  .math-board * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

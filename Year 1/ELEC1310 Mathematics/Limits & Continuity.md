@@ -40,11 +40,15 @@ has limit $4$ at $x=2$, although $f(2)$ is undefined. Changing or filling in the
 
 Numerical tables and graphs can suggest a limit, but finite samples cannot prove one: rapid oscillation and rounding can hide nearby behaviour. Algebra or a limiting argument establishes the result.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/approaching-a-limit/" data-notes-embed="y1/elec1310/limits-continuity/approaching-a-limit" title="Point values and the limit at a hole" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 A secant slope,
 $$
 \frac{f(a+h)-f(a)}h,
 $$
 measures an average rate over a non-zero interval. Its limit as $h\to0$ gives the instantaneous rate used in [[Differentiation#First principles|differentiation]].
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/secant-slope/" data-notes-embed="y1/elec1310/limits-continuity/secant-slope" title="Secant slopes approaching a tangent" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## One-sided limits and non-existence
 
@@ -55,6 +59,8 @@ For $f(x)=|x-2|/(x-2)$, the left limit is $-1$ and the right limit is $1$, so th
 Other ways a finite limit can fail:
 - **Unbounded growth:** $1/x^2\to+\infty$ as $x\to0$. Infinity describes growth, not a finite real limit.
 - **Persistent oscillation:** $\sin(1/x)$ moves between $-1$ and $1$ arbitrarily close to zero and approaches no single value.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/one-sided-limits/" data-notes-embed="y1/elec1310/limits-continuity/one-sided-limits" title="One-sided limits and oscillation sequences" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Limit laws
 
@@ -73,6 +79,8 @@ For example, to evaluate $\lim_{x\to1}e^{x^2-1}$, set $g(x)=x^2-1$. The limit la
 
 These conditions matter: a quotient law cannot be applied with a limiting denominator of zero. Polynomials are continuous everywhere, so direct substitution works; rational functions allow it where the denominator is non-zero.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/limit-laws/" data-notes-embed="y1/elec1310/limits-continuity/limit-laws" title="Combining limits and continuous composition" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ## Algebraic evaluation
 
 ![[Mathematics A Cheat Sheet#Simplifying algebraic fractions]]
@@ -87,6 +95,8 @@ $$
 $$
 Cancelling $x-5$ is valid for nearby $x\ne5$, which is sufficient for the limit. It does not make the original expression defined at $5$.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/factorisation/" data-notes-embed="y1/elec1310/limits-continuity/factorisation" title="Factorisation and the excluded point" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ### Rationalisation
 
 Multiply by a conjugate to use $(A-B)(A+B)=A^2-B^2$:
@@ -99,6 +109,8 @@ $$
 \lim_{h\to0}\frac{\sqrt{9+h}-3}{h}
 =\lim_{h\to0}\frac1{\sqrt{9+h}+3}=\frac16.
 $$
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/rationalisation/" data-notes-embed="y1/elec1310/limits-continuity/rationalisation" title="Rationalisation near a square root" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Squeeze theorem
 
@@ -114,6 +126,8 @@ $$
 $$
 The sine still oscillates, but its amplitude shrinks to zero. A bounded signal multiplied by an envelope tending to zero therefore tends to zero.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/squeeze-theorem/" data-notes-embed="y1/elec1310/limits-continuity/squeeze-theorem" title="An oscillation inside a shrinking envelope" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ### Fundamental trigonometric limit
 
 For angles in radians,
@@ -121,6 +135,8 @@ $$
 \lim_{x\to0}\frac{\sin x}{x}=1.
 $$
 For $0<x<\pi/2$, the geometric inequality $\sin x<x<\tan x$ gives $\cos x<\sin x/x<1$. The bounds tend to $1$; the ratio is even, so the same limit holds from the left. This is a limiting result even though the original ratio is undefined at zero.[^2]
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/trigonometric-limit/" data-notes-embed="y1/elec1310/limits-continuity/trigonometric-limit" title="Squeezing sine x over x in radians" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Infinite limits and asymptotes
 
@@ -142,6 +158,8 @@ V_C(t)=V_0(1-e^{-t/(RC)})\implies\lim_{t\to\infty}V_C(t)=V_0.
 $$
 The steady-state voltage is approached asymptotically rather than reached at a finite time in the ideal model.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/asymptotes/" data-notes-embed="y1/elec1310/limits-continuity/asymptotes" title="Infinite limits and horizontal asymptotes" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ## Continuity
 
 Continuity at $a$ requires all three conditions:[^1]
@@ -161,11 +179,15 @@ f(x)=\begin{cases}2x+1,&x<3,\\k,&x=3,\\x^2-2,&x>3,\end{cases}
 $$
 both side limits are $7$, so continuity requires $k=7$.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/continuity/" data-notes-embed="y1/elec1310/limits-continuity/continuity" title="Repairing a removable discontinuity" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ## Intermediate value theorem
 
 If $f$ is continuous on $[a,b]$, it takes every value between $f(a)$ and $f(b)$ somewhere on that interval. In particular, if the endpoint values have opposite signs, at least one root lies in $(a,b)$.[^2]
 
 For $f(x)=x^3-x-1$, $f(1)=-1$ and $f(2)=5$. Since a polynomial is continuous, a root exists between $1$ and $2$. The theorem guarantees existence, not the root's exact position or uniqueness. A discontinuous function can jump over zero, so opposite signs alone are insufficient.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/intermediate-value/" data-notes-embed="y1/elec1310/limits-continuity/intermediate-value" title="Intermediate value theorem and bisection" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Formal definition
 
@@ -182,6 +204,8 @@ $$
 0<|x-3|<\delta\implies |(2x+1)-7|<2\delta=\varepsilon.
 $$
 For a non-constant linear function $mx+b$, the same argument uses $\delta=\varepsilon/|m|$.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/epsilon-delta/" data-notes-embed="y1/elec1310/limits-continuity/epsilon-delta" title="An analytic epsilon-delta neighbourhood" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 [^1]: University of Southampton, ELEC1310, Philip Calado, *Limits and Continuity*, sections 1–12, [notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45151); [slides](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45116).
 

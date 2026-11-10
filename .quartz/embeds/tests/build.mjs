@@ -22,6 +22,9 @@ for (const route of [
   "y1/elec1311/rc-transients/charging",
   "y1/elec1311/ac-impedance/voltage-division",
   "maths-demo",
+  ...Object.keys(manifest)
+    .filter((k) => k.startsWith("y1/elec1310/limits-continuity/"))
+    .map((k) => k.replace("/index.html", "")),
 ]) {
   const html = await readFile(resolve(out, route, "index.html"), "utf8");
   for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
@@ -141,4 +144,34 @@ for (let i = 0; i < response.result.time.length; i++) {
 assert.ok(response.result.series.inductor.some((v) => v < 0));
 console.log(
   "PASS shared production worker runs RL differential probes and signed waveforms",
+);
+
+const lessonEntries = Object.entries(manifest).filter(([key]) =>
+  key.startsWith("y1/elec1310/limits-continuity/"),
+);
+assert.equal(lessonEntries.length, 12);
+function chunks(entry, seen = new Set()) {
+  if (seen.has(entry.file)) return seen;
+  seen.add(entry.file);
+  for (const key of entry.imports || []) chunks(manifest[key], seen);
+  return seen;
+}
+const sharedMaths = [...chunks(lessonEntries[0][1])].filter((file) =>
+  lessonEntries.every(([, e]) => chunks(e).has(file)),
+);
+assert.ok(
+  sharedMaths.some((file) => file.includes("jsxgraph")),
+  "Every lesson caches the same JSXGraph chunk",
+);
+for (const [key, entry] of lessonEntries) {
+  assert.ok(!assets(entry).includes(workerFile), key + " must not load SPICE");
+  for (const [, other] of lessonEntries)
+    if (other !== entry)
+      assert.ok(
+        !chunks(entry).has(other.file),
+        "A lesson must not eagerly load another lesson",
+      );
+}
+console.log(
+  "PASS twelve isolated maths entries share JSXGraph and exclude SPICE",
 );
