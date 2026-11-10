@@ -255,3 +255,13 @@ Phasors apply to common-frequency sinusoidal steady state. They do not by themse
 7. Check KVL/KCL with phasors and inspect limiting behaviour: does increasing frequency make an ideal capacitor's impedance smaller and an inductor's larger?
 
 The next bridge, [[From Capacitor Formulas to Calculus]], develops the derivative and integral laws without assuming that the calculus is already intuitive.
+
+```mermaid
+flowchart LR
+    A["Rectangular form: R + jX"] -->|"Magnitude and quadrant-aware angle"| B["Polar form: magnitude and angle"]
+    B -->|"Cosine and sine components"| A
+    A --> C["Convenient for adding impedances"]
+    B --> D["Convenient for multiplying or dividing phasors"]
+```
+
+Both forms represent the same quantity. Add real and imaginary components for sums; multiply or divide magnitudes and add or subtract angles for products and quotients. Conversion must preserve the quadrant.

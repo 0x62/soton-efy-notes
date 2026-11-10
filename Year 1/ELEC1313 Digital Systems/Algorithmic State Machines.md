@@ -46,6 +46,20 @@ If there are $N$ distinct states, choose enough bits that $2^n\geq N$:
 
 Each binary state bit requires a flip-flop. A different encoding, such as one-hot, can deliberately use more bits; the table gives the minimum, not the only possible implementation.
 
+The feedback path below separates stored state from the logic that calculates its next value. Only the register receives the clock; the other blocks respond combinationally.
+
+```mermaid
+flowchart LR
+    X["Inputs X"] --> N["Next-state logic<br/>D = f(Q, X)"]
+    N -->|D| R["State register<br/>D flip-flops"]
+    C["Clock"] -->|active edge| R
+    R -->|Q| N
+    R -->|Q| O["Output logic<br/>Y = g(Q) or g(Q, X)"]
+    X -.->|Mealy only| O
+    O --> Y["Outputs Y"]
+```
+
+
 ## Reading an ASM chart
 
 An ASM chart uses three principal shapes:[^asm]

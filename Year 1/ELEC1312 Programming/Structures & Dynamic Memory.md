@@ -182,6 +182,20 @@ Common faults:
 
 `free(NULL)` is allowed. Setting one pointer to `NULL` after freeing can prevent accidental reuse through that pointer, but does not repair other aliases still holding the old address.
 
+### Allocation lifetime and aliases
+
+```mermaid
+flowchart TD
+    A["Request storage with malloc"] --> N{"Returned NULL?"}
+    N -->|Yes| E["Handle failure; do not dereference"]
+    N -->|No| I["Initialise allocated objects"]
+    I --> U["Use through valid pointers"]
+    U --> F["After last use: free the allocation once"]
+    F --> X["Storage lifetime ended: no alias may access it"]
+```
+
+The successful allocation is the resource to track, not just the local variable holding its address. Copying that address creates another way to reach the same resource; it does not create another allocation to free.
+
 ## Two-dimensional storage
 
 A rectangular grid can use one contiguous allocation with row-major indexing:
@@ -196,6 +210,23 @@ size_t columns = 4;
 For row `1`, column `2`, the index is `1 * 4 + 2 = 6`. The valid conditions are `row < rows` and `column < columns`. Check both `rows * columns` and the subsequent byte-size multiplication for overflow when sizes come from input.
 
 Alternatively, `int **grid` can point to an array of row pointers, each of which points to its own separately allocated row. Then `grid[row][column]` uses two dereferences. This representation permits different row lengths but needs multiple allocations and cleanup steps.
+
+### Flat storage versus separate rows
+
+```mermaid
+flowchart TD
+    subgraph FLAT["One contiguous allocation"]
+        P["int *grid"] --> DATA["12 integers: row 0, then row 1, then row 2"]
+    end
+    subgraph ROWS["Four allocations in the example"]
+        PP["int **grid"] --> PTRS["Array of 3 row pointers"]
+        PTRS -->|"grid[0]"| R0["4 integers for row 0"]
+        PTRS -->|"grid[1]"| R1["4 integers for row 1"]
+        PTRS -->|"grid[2]"| R2["4 integers for row 2"]
+    end
+```
+
+For flat storage, `(row 1, column 2)` is integer index `6`. For separate rows, first follow `grid[1]`, then select integer `2` in that row. Only the allocated boxes need freeing: one integer block in the flat case; three row blocks followed by the pointer array in the separate-row case.
 
 These layouts are not interchangeable: a flat `int *` allocation cannot simply be cast to `int **` and indexed as rows. It does not contain the required row pointers.
 

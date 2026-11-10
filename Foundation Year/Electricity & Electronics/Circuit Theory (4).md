@@ -135,6 +135,20 @@ The result for $I_{3}$ is **negative**. This means out assumed direction of curr
 
 ![[Branch current step 4.png]]
 
+### Superposition workflow
+
+```mermaid
+flowchart TD
+    A["Linear circuit: choose a voltage or current and its positive direction"] --> B["Keep one independent source active"]
+    B --> C["Other ideal voltage sources: short circuit; other ideal current sources: open circuit"]
+    C --> D["Calculate this source contribution with its sign"]
+    D --> E{"All independent sources considered?"}
+    E -->|"No"| B
+    E -->|"Yes"| F["Add signed voltage or current contributions"]
+```
+
+Keep internal resistances and any dependent sources in the circuit. Superposition applies to voltages and currents, not directly to power.
+
 ## Superposition Theorem
 
 The superposition theorem states:

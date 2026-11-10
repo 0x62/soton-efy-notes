@@ -86,6 +86,25 @@ The `gcc` command acts as a driver for the toolchain, so one command can arrange
 
 For the example, preprocessing makes `return SUCCESS;` effectively `return 0;`. The compiler then translates the program's operations. Linking resolves the reference to `printf` using the standard library. On systems using dynamic libraries, some library resolution is completed when the program is loaded/run rather than copying every library into the executable.
 
+### Following one source file through the toolchain
+
+```mermaid
+flowchart TD
+    C["message.c: C source"] --> P["Preprocess: expand includes and macros"]
+    H["Headers and macro definitions"] --> P
+    P --> I["Preprocessed C"]
+    I --> CC["Compile: translate for the target"]
+    CC --> S["Assembly instructions"]
+    S --> A["Assemble"]
+    A --> O["message.o: object code"]
+    O --> L["Link: resolve references"]
+    LIB["Other objects and libraries"] --> L
+    L --> E["Executable"]
+    E --> R["Run separately on a compatible target"]
+```
+
+The arrows show translation and execution order, not extra commands that must be typed. A single `gcc` invocation can arrange the four build stages; running the result is still a separate step.
+
 ## Headers and separate files
 
 Larger programs can be divided into source files that are compiled separately before linking.

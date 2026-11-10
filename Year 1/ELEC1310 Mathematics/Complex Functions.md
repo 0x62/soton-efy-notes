@@ -55,6 +55,17 @@ For the half-infinite strip $x\le0$, $0\le y\le\pi$:
 
 The image has $0<|w|\le1$ and $\operatorname{Im}w\ge0$. The origin is approached as $x\to-\infty$, but never attained at finite $x$ because $e^x>0$.
 
+```mermaid
+flowchart LR
+    A["z = x + jy"] --> B["w = exp(x) times exp(jy)"]
+    B --> C["Real part x sets radius exp(x)"]
+    B --> D["Imaginary part y sets angle modulo 2 pi"]
+    C --> E["Fixed x, unrestricted y: full circle"]
+    D --> F["Fixed y, unrestricted x: full ray excluding origin"]
+```
+
+The last two boxes describe unrestricted coordinate lines. For the worked strip, a fixed $x\le0$ with $0\le y\le\pi$ gives only an upper semicircle of radius $e^x$; a fixed $y\in[0,\pi]$ with $x\le0$ gives a bounded radial segment with $0<|w|\le1$. Thus $x\le0$ bounds the radius by $1$, while $0\le y\le\pi$ selects the upper half-plane. No finite input maps to the origin.
+
 ## Frequency-response mapping
 
 A curve in an input plane can map to a frequency-response locus in an output plane. For $K>0$, $\omega>0$, consider[^2]

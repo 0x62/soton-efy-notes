@@ -107,6 +107,20 @@ Recipe lines begin with a tab. If only `interval.c` changes, rebuild `interval.o
 
 This avoids recompiling unrelated code while ensuring that changed interfaces are reflected in every dependent object.
 
+### Which outputs must be rebuilt?
+
+```mermaid
+flowchart LR
+    MC["main.c"] --> MO["main.o"]
+    H["interval.h"] --> MO
+    H --> IO["interval.o"]
+    IC["interval.c"] --> IO
+    MO --> E["intervals executable"]
+    IO --> E
+```
+
+An arrow means **the output depends on this input**. Follow arrows from a changed file: changing `interval.c` affects one object and the executable, while changing `interval.h` affects both objects and the executable. The header supplies declarations during compilation; it is not a separately linked object.
+
 ## Command-line arguments
 
 `argc` counts argument strings, normally including the program name. `argv` is an array of pointers to those strings, with `argv[argc] == NULL` as an end marker.

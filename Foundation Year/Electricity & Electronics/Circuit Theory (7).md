@@ -125,6 +125,19 @@ Thevenin's Theorem states that it is possible to simplify any linear circuit, no
 
 It is especially useful in the circuit analysis of power or battery systems, and other interconnected resistive circuits where it will have an effect on the adjoining part of the circuit.
 
+### Two separate calculations at the load terminals
+
+```mermaid
+flowchart TD
+    A["Remove the load and label its two terminals"] --> B["Sources active: find open-circuit voltage E_th"]
+    A --> C["Deactivate independent sources: find resistance R_th looking into terminals"]
+    B --> D["Equivalent: E_th in series with R_th"]
+    C --> D
+    D --> E["Reconnect load R: I = E_th / (R_th + R)"]
+```
+
+For the resistive circuits here, ideal independent voltage sources become shorts and ideal independent current sources become open circuits when finding $R_{th}$. Restore the sources when finding $E_{th}$. Dependent sources, if present, remain active and require a suitable test-source method.
+
 ### Applying Thevenin's Theorem
 
 1. Remove the load resistor $R$ from the branch where the current is to be found
