@@ -231,3 +231,24 @@ source uses SIN phase +75°, equivalent to COS phase −15°. Tests compare all
 samples with signed analytic waveforms, KVL and the note's amplitudes/phases,
 including low/high-reactance control extremes. Initial samples are explicitly
 supplied, as with the RC demo. Existing notes and RC behavior stay independent.
+
+
+### Teaching-note prose
+
+Do not overexplain demo controls or interface use. Readers can infer how inputs,
+sliders and reset work. Keep surrounding prose to essential physical assumptions,
+units, polarity and interpretation that are not evident from the figure.
+
+### Pinned schematic compatibility patch
+
+`patch-spice-ui.mjs` corrects the horizontal-only inductor symbol in
+`@spice-ts/ui@0.3.1`. Inductors now use vertical pins and a rotated symbol on
+vertical branches, while same-rank branches stay horizontal. Layout and React
+rendering share the correction; no circuit topology or simulation is changed.
+The idempotent install/build/test hook validates the version and exact upstream
+code before patching the ESM and CommonJS bundles. Remove it when upgrading to
+an upstream release with equivalent orientation support, retaining the geometry
+regression test.
+
+The RL example fixes the source at the worked example's 20 V peak; only R, L and
+frequency are adjustable.

@@ -173,7 +173,7 @@ $$|\underline V_L|=\frac{100}{116.62}\times20=17.15\,\mathrm V,$$
 $$\arg\underline V_L=90^\circ-59.04^\circ-15^\circ=15.96^\circ.$$
 Hence $\underline V_L=17.15e^{j15.96^\circ}\,\mathrm V$. With peak, cosine-reference phasors, this is $v_L(t)=17.15\cos(\omega t+15.96^\circ)\,\mathrm V$.[^1]
 
-The interactive example uses $f=50\,\mathrm{Hz}$ and $L=100/(2\pi f)\approx318.31\,\mathrm{mH}$ to realise the stated $j100\,\Omega$. The source is $20\,\mathrm V$ **peak** ($14.14\,\mathrm V$ RMS), with the same $-15^\circ$ cosine phase. The plot shows two steady-state cycles: $v_R$ is measured from the source to the R–L junction, and $v_L$ from that junction to ground, so $v_R+v_L=v_s$. Voltage across L leads voltage across R by $90^\circ$ (one quarter-cycle). Changing frequency or inductance changes $X_L=2\pi fL$; reset restores the worked example.
+The interactive example uses $f=50\,\mathrm{Hz}$ and $L=100/(2\pi f)\approx318.31\,\mathrm{mH}$ to realise the stated $j100\,\Omega$. The source is $20\,\mathrm V$ **peak** ($14.14\,\mathrm V$ RMS), with the same $-15^\circ$ cosine phase. The plot shows two steady-state cycles: $v_R$ is measured from the source to the R–L junction, and $v_L$ from that junction to ground, so $v_R+v_L=v_s$.
 
 <iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/voltage-division/" data-notes-embed="y1/elec1311/ac-impedance/voltage-division" title="Series RL circuit and steady-state resistor and inductor voltages" loading="lazy" height="1000" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 

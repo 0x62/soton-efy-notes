@@ -7,7 +7,11 @@
     "test": "node --import tsx --test tests/*.test.ts",
     "dev": "vite",
     "test:build": "node --experimental-vm-modules tests/build.mjs",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "postinstall": "node patch-spice-ui.mjs",
+    "prebuild": "node patch-spice-ui.mjs",
+    "pretest": "node patch-spice-ui.mjs",
+    "predev": "node patch-spice-ui.mjs"
   },
   "type": "module",
   "dependencies": {
