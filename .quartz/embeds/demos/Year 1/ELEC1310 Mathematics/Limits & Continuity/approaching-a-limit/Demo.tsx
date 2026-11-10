@@ -161,6 +161,7 @@ export function Demo() {
           As input distance shrinks, the remaining gap tends to |4 − L| ={" "}
           {n(errors.residual)}.
         </p>
+        <p className="text-xs">Passing this one strip is not a proof: a limit must meet every positive output tolerance.</p>
       </Reading>
       <Approach value={v.p} target={3} onChange={(x) => set("p", x)} />
     </MathsCard>

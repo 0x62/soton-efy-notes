@@ -78,7 +78,7 @@ const scene: Scene<V> = (b, v, c) => {
     c.fill,
     "",
     true,
-  );
+  ).setAttribute({ visible: () => v().mode === 1 });
 };
 export function Demo() {
   const { values: v, set, theme } = useMathsModel(schema),
