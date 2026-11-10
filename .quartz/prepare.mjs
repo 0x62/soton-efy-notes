@@ -6,6 +6,17 @@ import { installPermalinks } from "./permalinks.mjs";
 import { normalizeFigureImages } from "./figures.mjs";
 import { fileURLToPath } from "node:url";
 
+function addNoteEmbed(source, path) {
+  if (path !== "Year 1/ELEC1311 Circuits/RC Transients.md") return source;
+  const marker = "## Approximating the response in time steps";
+  if (!source.includes(marker))
+    throw new Error("RC embed insertion heading changed");
+  return source.replace(
+    marker,
+    `<iframe data-notes-embed="y1/elec1311/rc-transients/charging" data-notes-params="voltage=10&resistance=10&capacitance=0.2" title="Interactive RC charging circuit, voltage and current" loading="lazy" height="1100" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>\n\n${marker}`,
+  );
+}
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const engine = resolve(process.argv[2] ?? resolve(root, ".quartz/engine"));
 const content = resolve(engine, "content");
@@ -40,7 +51,12 @@ for (const path of files) {
   await mkdir(dirname(target), { recursive: true });
   if (extname(path) === ".md") {
     const source = await readFile(resolve(root, path), "utf8");
-    await writeFile(target, normalizeDisplayMath(normalizeFigureImages(source, path, files)));
+    await writeFile(
+      target,
+      normalizeDisplayMath(
+        normalizeFigureImages(addNoteEmbed(source, path), path, files),
+      ),
+    );
   } else {
     await copyFile(resolve(root, path), target);
   }
@@ -70,4 +86,11 @@ await copyFile(
   resolve(engine, "quartz/styles/custom.scss"),
 );
 
-await installPermalinks(engine, await Promise.all(files.filter(p => extname(p) === ".md").map(async p => [p, await readFile(resolve(root, p), "utf8")])));
+await installPermalinks(
+  engine,
+  await Promise.all(
+    files
+      .filter((p) => extname(p) === ".md")
+      .map(async (p) => [p, await readFile(resolve(root, p), "utf8")]),
+  ),
+);

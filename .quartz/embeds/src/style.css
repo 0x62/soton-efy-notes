@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@source "./**/*.{ts,tsx}";
+:root {
+  --light: #faf8f8;
+  --lightgray: #e5e5e5;
+  --gray: #b8b8b8;
+  --darkgray: #4e4e4e;
+  --dark: #2b2b2b;
+  --secondary: #284b63;
+  --tertiary: #84a59d;
+  --bodyFont: system-ui;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --light: #161618;
+  --lightgray: #393639;
+  --gray: #646464;
+  --darkgray: #d4d4d4;
+  --dark: #ebebec;
+  --secondary: #7b97aa;
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--bodyFont), sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+button,
+input {
+  font: inherit;
+  accent-color: var(--secondary);
+}
+button,
+input[type="number"] {
+  border: 1px solid var(--gray);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--light);
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+canvas,
+svg {
+  max-width: 100%;
+}
+th,
+td {
+  padding: 0.4rem;
+  text-align: right;
+}
