@@ -108,6 +108,24 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     await act(async () => chart.dispatchEvent(pointer));
     assert.ok(Number(chart.getAttribute("aria-valuenow")) < 10);
     assert.ok(doc.querySelector('[role="tooltip"]'));
+    const touchLeave = new window.MouseEvent("pointerout", {
+      bubbles: true,
+      relatedTarget: doc.body,
+    });
+    Object.defineProperty(touchLeave, "pointerType", { value: "touch" });
+    await act(async () => chart.dispatchEvent(touchLeave));
+    assert.ok(
+      doc.querySelector('[role="tooltip"]'),
+      "A touch reading remains visible after lifting the finger",
+    );
+    await act(async () =>
+      chart.dispatchEvent(new window.Event("pointercancel", { bubbles: true })),
+    );
+    assert.equal(
+      doc.querySelector('[role="tooltip"]'),
+      null,
+      "Page panning cancels a touch reading",
+    );
     await act(async () =>
       chart.dispatchEvent(
         new window.KeyboardEvent("keydown", { key: "Escape", bubbles: true }),

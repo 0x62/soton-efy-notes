@@ -12,7 +12,7 @@
    Only validated numbers enter generated netlists. Debounce controls, run SPICE in
    a worker, terminate superseded work and time out stuck simulations.
 4. Render schematic using @spice-ts/ui and actual @spice-ts/core transient results.
-   Plot capacitor voltage and charging current separately with explicit units;
+   Plot capacitor voltage and charging current on one chart with separate axes;
    provide numeric table equivalents for canvas accessibility. No netlist editor.
 5. Share Tailwind controls and design tokens. Maths entries import JSXGraph through
    a lifecycle-safe adapter; the circuit must not fetch JSXGraph or its stylesheet.
@@ -70,10 +70,10 @@ The preview workflow now performs these steps. For standalone development use
 
 ## Validation and known limits
 
-- Eleven tests cover defaults/invalid parameters, analytic RC agreement at 0.5, 1,
+- Twelve tests cover defaults/invalid parameters, analytic RC agreement at 0.5, 1,
   2 and 5 time constants across four parameter sets, structured-clone schematic
   rendering, current units, invalid-draft resets at unchanged defaults, and host
-  origin/source/height/theme/SPA handling, plus light/dark trace contrast.
+  origin/source/height/theme/SPA handling, plus light/dark trace contrast, minimal UI, dual axes and pointer/keyboard tooltips.
 - The production-worker smoke test executes the built worker in a browser-like
   VM context, checks returned numerical data and structured cloning, and verifies
   shared runtime imports plus relative asset resolution at root and Pages subpaths.
@@ -99,7 +99,8 @@ The preview workflow now performs these steps. For standalone development use
 - `@spice-ts/ui@0.3.1` hardcodes volts for transient axes/cursors. `unit-patch.mjs`
   applies a narrowly checked build transform so explicit `I(...)` probes use A.
   Tests exercise the patched renderer. An upstream layout change fails the build;
-  revisit this patch when upgrading SPICE UI. Mixed V/A plots should stay separate.
+  revisit this patch when upgrading SPICE UI. The RC card uses its own SVG dual-axis
+  renderer so it can show both units correctly and avoid chart zoom/scroll handlers.
 - Observed gzip sizes: shared React/runtime/UI ≈69 KB, circuit UI ≈23 KB,
   SPICE worker ≈312 KB, maths/JSXGraph ≈259 KB. The circuit HTML does not import
   JSXGraph or its stylesheet. SPICE's published core is a large bundled module;
@@ -115,3 +116,16 @@ The preview workflow now performs these steps. For standalone development use
 
 Published with explicit approval to the existing `experiment/quartz-pages` preview
 branch and PR #15. No merge or production-domain change was performed.
+
+## RC card presentation
+
+`CircuitCard` accepts optional `title` and `description`; both default to absent.
+The compact default shows controls, a netlist-derived schematic and a dual-axis
+SVG chart. Voltage is a solid blue trace (left axis); current is a dashed amber
+trace (right axis), with a visible legend. Charts do not intercept wheel events,
+zoom or pan. Pointer/touch inspection puts a tooltip next to the contact point;
+arrow keys and Home/End inspect the same data. Escape dismisses tooltips.
+`CircuitSchematic` wraps the pinned SPICE SVG with component-name/value tooltips
+and focusable component targets; its DOM-shape contract is regression tested.
+Numeric readings and simulation status are screen-reader-only. Physical touch
+hardware testing remains distinct from DOM pointer-event and browser emulation.

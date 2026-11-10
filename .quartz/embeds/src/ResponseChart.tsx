@@ -119,7 +119,10 @@ export function ResponseChart({
           e.currentTarget.focus();
           inspect(e.clientX, e.clientY);
         }}
-        onPointerLeave={() => setCursor(null)}
+        onPointerLeave={(event) => {
+          if (event.pointerType !== "touch") setCursor(null);
+        }}
+        onPointerCancel={() => setCursor(null)}
         onFocus={() => {
           if (!cursor) showAt(0);
         }}

@@ -80,7 +80,10 @@ export function CircuitSchematic({
       ref={ref}
       className="relative"
       onPointerMove={(e) => show(e.target, e.clientX, e.clientY)}
-      onPointerLeave={() => setTip(null)}
+      onPointerLeave={(event) => {
+        if (event.pointerType !== "touch") setTip(null);
+      }}
+      onPointerCancel={() => setTip(null)}
       onPointerDown={(e) => {
         show(e.target, e.clientX, e.clientY);
         (e.target as Element).closest<SVGElement>("[data-component]")?.focus();
