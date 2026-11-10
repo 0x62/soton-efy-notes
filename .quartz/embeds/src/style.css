@@ -62,3 +62,7 @@ td {
 .schematic-renderer > div > div {
   display: none;
 }
+/* Upstream fades the whole schematic to 55%, including keyboard outlines. */
+.schematic-renderer svg {
+  opacity: 1 !important;
+}

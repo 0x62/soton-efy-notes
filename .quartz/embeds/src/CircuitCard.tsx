@@ -6,18 +6,35 @@ import type { ComponentProps } from "react";
 import { useTheme } from "./runtime";
 import { Button, Card, Parameter } from "./ui";
 import { chartPalette } from "./palette";
-export type CircuitCardProps<S extends Record<string, NumericRule>, R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] }> = {
+export type CircuitCardProps<
+  S extends Record<string, NumericRule>,
+  R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] },
+> = {
   title?: string;
   description?: string;
   schema: S;
   createWorker: () => Worker;
-  renderResult: (result: R, values: Record<keyof S, number>, theme: "light" | "dark") => ReactNode;
+  renderResult: (
+    result: R,
+    values: Record<keyof S, number>,
+    theme: "light" | "dark",
+  ) => ReactNode;
   summary?: (values: Record<keyof S, number>) => ReactNode;
   debounceMs?: number;
   timeoutMs?: number;
 };
-export function CircuitCard<S extends Record<string, NumericRule>, R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] }>({
-  title, description, schema, createWorker, renderResult, summary, debounceMs = 200, timeoutMs = 10000,
+export function CircuitCard<
+  S extends Record<string, NumericRule>,
+  R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] },
+>({
+  title,
+  description,
+  schema,
+  createWorker,
+  renderResult,
+  summary,
+  debounceMs = 200,
+  timeoutMs = 10000,
 }: CircuitCardProps<S, R>) {
   const readParams = (query: string) => readNumericParams(schema, query);
   const keys = Object.keys(schema) as (keyof S & string)[];

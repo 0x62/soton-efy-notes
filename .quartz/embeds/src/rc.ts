@@ -17,9 +17,17 @@ export async function calculate(values: Values) {
       // SPICE source current is opposite the capacitor charging direction.
       { id: "current", quantity: "current", source: "V1", scale: -1 },
     ],
-    initial: { time: 0, values: { voltage: 0, current: values.voltage / values.resistance } },
+    initial: {
+      time: 0,
+      values: { voltage: 0, current: values.voltage / values.resistance },
+    },
   });
-  return { time: result.time, voltage: result.series.voltage, current: result.series.current, circuit: result.circuit };
+  return {
+    time: result.time,
+    voltage: result.series.voltage,
+    current: result.series.current,
+    circuit: result.circuit,
+  };
 }
 
 export type Result = Awaited<ReturnType<typeof calculate>>;
