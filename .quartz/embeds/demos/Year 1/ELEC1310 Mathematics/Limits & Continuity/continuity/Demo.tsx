@@ -49,7 +49,7 @@ const scene: Scene<V> = (b, v, c) => {
     c.amber,
     c.fill,
     "f(3)",
-  );
+  ).setAttribute({ layer: 11 });
   segment(
     b,
     () => [1.8, 7],

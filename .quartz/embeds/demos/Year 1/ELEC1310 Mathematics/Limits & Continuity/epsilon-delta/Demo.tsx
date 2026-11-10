@@ -66,7 +66,7 @@ const scene: Scene<V> = (b, v, c) => {
     () => 2 * counterexample(v().epsilon, v().delta) + 1,
     c.red,
     c.fill,
-    "counterexample",
+    "X",
   );
   bad.setAttribute({ visible: () => !epsilonWorks(v().epsilon, v().delta) });
   for (const s of [-1, 1])
@@ -132,8 +132,8 @@ export function Demo() {
           </p>
         ) : (
           <p>
-            Counterexample: x = {n(w)}, |x − 3| = {n(w - 3)} &lt; δ, but |f(x) −
-            7| = {n(2 * (w - 3))} &gt; ε.
+            Counterexample X: x = {n(w)}, |x − 3| = {n(w - 3)} &lt; δ, but |f(x)
+            − 7| = {n(2 * (w - 3))} &gt; ε.
           </p>
         )}
       </Reading>

@@ -33,7 +33,16 @@ export function useMathsModel<S extends Record<string, NumericRule>>(
   });
   const theme = useTheme();
   useEffect(() => {
-    history.replaceState(null, "", "?" + writeParams(values, location.search));
+    const timer = setTimeout(
+      () =>
+        history.replaceState(
+          null,
+          "",
+          "?" + writeParams(values, location.search),
+        ),
+      150,
+    );
+    return () => clearTimeout(timer);
   }, [values]);
   const set = (key: keyof S, value: number) => {
     const rule = schema[key];
@@ -176,9 +185,7 @@ export function Approach({
     media.addEventListener("change", update);
     return () => media.removeEventListener("change", update);
   }, []);
-  useEffect(() => {
-    if (playing && Math.abs(value - last.current) > 1e-8) setPlaying(false);
-  }, [value]);
+
   useEffect(() => {
     if (!playing || reduced) return;
     const from = value,
@@ -199,12 +206,19 @@ export function Approach({
     const observer = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) stop();
     });
-    observer.observe(ref.current!);
+    observer.observe(ref.current!.closest("section") ?? ref.current!);
+    const input = (event: Event) => {
+      if (event.target !== ref.current) stop();
+    };
+    document.addEventListener("pointerdown", input, true);
+    document.addEventListener("keydown", input, true);
     document.addEventListener("visibilitychange", hidden);
     frame = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
+      document.removeEventListener("pointerdown", input, true);
+      document.removeEventListener("keydown", input, true);
       document.removeEventListener("visibilitychange", hidden);
     };
   }, [playing, reduced, target]);

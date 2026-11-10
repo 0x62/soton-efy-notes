@@ -73,6 +73,7 @@ export function MathsPlot<V>({
       ticks: {
         strokeColor: c.ink,
         minorTicks: 0,
+        minTicksDistance: 55,
         label: { strokeColor: c.ink, fontSize: 11 },
         drawLabels: true,
       },
@@ -179,14 +180,19 @@ export function point(
 ) {
   return b.create("point", [x, y], {
     name,
-    size: 4,
+    size: open ? 5 : 4,
+    layer: open ? 10 : 9,
     strokeWidth: 2,
     strokeColor: color,
     fillColor: open ? fill : color,
     fixed: true,
     highlight: false,
     withLabel: !!name,
-    label: { strokeColor: color, fontSize: 12, offset: [8, 12] },
+    label: {
+      strokeColor: color,
+      fontSize: 12,
+      offset: name === "P" ? [-18, -18] : [8, 12],
+    },
   });
 }
 export function segment(

@@ -67,7 +67,7 @@ const scene: Scene<V> = (b, v, c) => {
     c.fill,
     "f(2)",
   );
-  dot.setAttribute({ visible: () => v().point !== 0 });
+  dot.setAttribute({ layer: 11, visible: () => v().point !== 0 });
   point(
     b,
     () => 2 - distance(v().p),

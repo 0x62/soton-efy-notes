@@ -31,4 +31,4 @@ export const oscillationPair = (n: number) =>
     1 / (Math.PI / 2 + 2 * Math.PI * n),
     1 / ((3 * Math.PI) / 2 + 2 * Math.PI * n),
   ] as const;
-export const n = (v: number) => Number(v.toPrecision(5)).toString();
+export const n = (v: number) => Number(v.toPrecision(8)).toString();

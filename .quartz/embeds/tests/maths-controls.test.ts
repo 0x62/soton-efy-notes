@@ -103,6 +103,10 @@ test("math controls are slider-first; animation respects reduced motion and stop
     await act(async () => w.document.querySelector("button")!.click());
     assert.equal(w.document.querySelector("button")!.textContent, "Pause");
     assert.ok(frame);
+    await act(async () => frame!(performance.now() + 1000));
+    assert.equal(w.document.querySelector("button")!.textContent, "Pause");
+    await act(async () => frame!(performance.now() + 2000));
+    assert.equal(w.document.querySelector("button")!.textContent, "Pause");
     await act(async () =>
       offscreen!(
         [{ isIntersecting: false } as IntersectionObserverEntry],
