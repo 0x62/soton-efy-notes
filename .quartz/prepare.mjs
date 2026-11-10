@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, copyFile, writeFile, readFile } from "node:fs/promises";
 import { resolve, dirname, extname } from "node:path";
+import { installCompactEmbedPreviews } from "./popover-embeds.mjs";
 import { normalizeDisplayMath } from "./math.mjs";
 import { installPermalinks } from "./permalinks.mjs";
 import { normalizeFigureImages } from "./figures.mjs";
@@ -83,3 +84,5 @@ await installPermalinks(
       .map(async (p) => [p, await readFile(resolve(root, p), "utf8")]),
   ),
 );
+
+await installCompactEmbedPreviews(engine);

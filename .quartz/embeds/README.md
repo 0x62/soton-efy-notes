@@ -282,3 +282,6 @@ restricted to its valid domain; IVT promises existence rather than uniqueness;
 epsilon-delta uses an analytic bound and a strict interior counterexample.
 Finite graphs are not proofs. Hidden high-frequency curve portions are explicitly
 identified. Tests check these models, controls, routing and production isolation.
+
+Quartz hover previews replace demo iframes with their titled links before inserting
+preview content, avoiding duplicate React/JSXGraph instances in hidden popovers.
