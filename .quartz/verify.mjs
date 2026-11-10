@@ -173,3 +173,4 @@ assert(/<ul\b[^>]*tabindex="0"[^>]*>/.test(home), 'Explorer keyboard focus missi
 const sidebarStyles = await readFile(resolve(out, 'index.css'), 'utf8');
 assert(sidebarStyles.includes('scrollbar-gutter:stable'), 'Bounded sidebar scroll styles missing');
 console.log('Verified focusable notes navigation and sidebar scroll stylesheet');
+assert(sidebarStyles.includes('overflow:clip') && sidebarStyles.includes('overscroll-behavior:auto'), 'Nested folders must allow wheel/touch scroll to reach the outer list');

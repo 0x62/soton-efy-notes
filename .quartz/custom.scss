@@ -93,3 +93,11 @@
   outline: 2px solid var(--secondary);
   outline-offset: -2px;
 }
+
+// Nested folder lists only clip the collapse animation; they must not become
+// scroll containers or stop wheel/touch scroll chaining over their links.
+.page #quartz-body .sidebar.left .explorer-content .folder-outer > ul {
+  min-height: 0;
+  overflow: clip;
+  overscroll-behavior: auto;
+}
