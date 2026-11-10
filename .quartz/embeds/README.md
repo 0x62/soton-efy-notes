@@ -241,7 +241,7 @@ units, polarity and interpretation that are not evident from the figure.
 ### Pinned schematic compatibility patch
 
 `patch-spice-ui.mjs` corrects the horizontal-only inductor symbol in
-`@spice-ts/ui@0.3.1`. Inductors now use vertical pins and a rotated symbol on
+`@spice-ts/ui@0.3.1`. Inductors now use vertical pins and a vertical coil path on
 vertical and grounded branches; non-grounded same-rank branches stay horizontal.
 Layout and React
 rendering share the correction; no circuit topology or simulation is changed.

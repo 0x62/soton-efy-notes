@@ -18,15 +18,19 @@ const edits = [
     `${marker}
 function inductorSymbol(horizontal = false) {
   if (!horizontal) {
-    const symbol = inductorSymbol(true);
+    // Match the height of other vertical two-terminal symbols. Generate actual
+    // path coordinates: SchematicView discards element transform attributes.
+    const width = GRID, height = GRID * 2, cx = width / 2;
+    const lead = height / 6, arcH = (height - 2 * lead) / 4;
+    let d = "M" + cx + ",0 L" + cx + "," + lead;
+    for (let i = 0; i < 4; i++)
+      d += " A5," + arcH / 2 + " 0 0,1 " + cx + "," + (lead + (i + 1) * arcH);
+    d += " L" + cx + "," + height;
     return {
-      elements: symbol.elements.map(element => ({
-        ...element,
-        attrs: { ...element.attrs, transform: \`translate(\${symbol.height},0) rotate(90) scale(0.6666666666666666,1)\` }
-      })),
-      pins: symbol.pins.map(pin => ({ dx: symbol.height - pin.dy, dy: pin.dx * 2 / 3 })),
-      width: symbol.height,
-      height: symbol.width * 2 / 3
+      elements: [{ tag: "path", attrs: { d, fill: "none" } }],
+      pins: [{ dx: cx, dy: 0 }, { dx: cx, dy: height }],
+      width,
+      height
     };
   }`,
   ],

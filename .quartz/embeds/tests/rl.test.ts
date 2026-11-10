@@ -76,3 +76,29 @@ test("series R and L have aligned vertical pins", async () => {
     inductor.pins.find((p) => p.net === "out")!.x,
   );
 });
+
+test("rendered inductor path reaches both vertical pins without SVG transforms", async () => {
+  const { createElement } = await import("react");
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { SchematicView } = await import("@spice-ts/ui/react");
+  const { layoutSchematic } = await import("@spice-ts/ui");
+  const { JSDOM } = await import("jsdom");
+  const { circuit } = await simulateTransient(request(defaults));
+  const coil = layoutSchematic(circuit).components.find(
+    (c) => c.component.name === "L1",
+  )!;
+  const doc = new JSDOM(
+    renderToStaticMarkup(createElement(SchematicView, { circuit })),
+  ).window.document;
+  const path = doc.querySelector(
+    `g[transform="translate(${coil.x},${coil.y})"] path`,
+  )!;
+  assert.ok(path);
+  const d = path.getAttribute("d")!;
+  assert.ok(
+    d.startsWith(`M${coil.pins[0].x - coil.x},${coil.pins[0].y - coil.y} `),
+  );
+  assert.ok(
+    d.endsWith(`L${coil.pins[1].x - coil.x},${coil.pins[1].y - coil.y}`),
+  );
+});
