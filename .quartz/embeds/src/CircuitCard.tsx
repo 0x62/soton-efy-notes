@@ -5,6 +5,7 @@ import { readParams, writeParams, keys, schema } from "./params";
 import type { Result } from "./rc";
 import { useTheme } from "./runtime";
 import { Button, Card, Parameter } from "./ui";
+import { chartPalette } from "./palette";
 export function CircuitCard() {
   const theme = useTheme(),
     [values, setValues] = useState(() => readParams(location.search)),
@@ -49,7 +50,7 @@ export function CircuitCard() {
   }, [values]);
   const plotTheme = {
     ...(theme === "dark" ? DARK_THEME : LIGHT_THEME),
-    background: theme === "dark" ? "#161618" : "#faf8f8",
+    background: chartPalette[theme].background,
     surface: theme === "dark" ? "#161618" : "#faf8f8",
     text: theme === "dark" ? "#ebebec" : "#2b2b2b",
     textMuted: theme === "dark" ? "#d4d4d4" : "#4e4e4e",
@@ -127,6 +128,7 @@ export function CircuitCard() {
             time={result.time}
             samples={result.voltage}
             theme={plotTheme}
+            traceColor={chartPalette[theme].trace}
           />
           <Plot
             title="Charging current (A)"
@@ -134,6 +136,7 @@ export function CircuitCard() {
             time={result.time}
             samples={result.current}
             theme={plotTheme}
+            traceColor={chartPalette[theme].trace}
           />
           <details>
             <summary className="cursor-pointer">
@@ -182,12 +185,14 @@ function Plot({
   time,
   samples,
   theme,
+  traceColor,
 }: {
   title: string;
   name: string;
   time: number[];
   samples: number[];
   theme: typeof LIGHT_THEME;
+  traceColor: string;
 }) {
   const [cursor, setCursor] = useState<{
     x: number;
@@ -199,6 +204,7 @@ function Plot({
       <TransientPlot
         data={[{ time, signals: new Map([[name, samples]]), label: "" }]}
         signals={[name]}
+        colors={{ [name]: traceColor }}
         theme={theme}
         height={230}
         onCursorMove={setCursor}
