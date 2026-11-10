@@ -104,3 +104,13 @@ button:disabled {
     transition: none !important;
   }
 }
+
+/* Intrinsic root size can grow AND shrink independently of the parent viewport. */
+#root { display: flow-root; min-width: 0; }
+html[data-notes-embedded="true"],
+html[data-notes-embedded="true"] body {
+  height: auto;
+  min-height: 0;
+  overflow: clip;
+}
+html[data-notes-embedded="true"] { touch-action: pan-y; }

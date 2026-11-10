@@ -81,6 +81,8 @@ export function MathsPlot<V>({
     const b = JXG.JSXGraph.initBoard(host.current!, {
       boundingbox: box.current,
       axis: false,
+      // All lesson interaction is in semantic controls; let touch gestures scroll the note.
+      registerEvents: false,
       showCopyright: false,
       showNavigation: false,
       pan: { enabled: false },

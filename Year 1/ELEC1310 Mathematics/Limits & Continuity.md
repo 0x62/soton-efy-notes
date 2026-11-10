@@ -13,24 +13,26 @@ permalink: y1/elec1310/limits-continuity
 - [[#Intermediate value theorem]]
 - [[#Formal definition]]
 
-Suppose a formula refuses to give an answer at one input. Does that mean we know nothing about what happens nearby? This is the question that will lead us through limits, continuity and eventually a precise definition of “nearby”.
+A limit describes what the values of a function approach. It is especially useful when direct substitution fails: a formula can be undefined at one input while its nearby values still approach a definite number.
 
-We will begin with a missing point on a simple graph. We will then ask whether both sides tell the same story, whether the missing point can be repaired, and how to justify what the graph suggests. Only after that will we use the ideas to locate a root and turn “getting close” into a guarantee.
+We will start with a fraction that gives $0/0$ at $x=2$. The same example will help distinguish a limit from a function value, explain continuity, and introduce the precise definition at the end. Along the way, other examples show where a limit fails and how algebra or bounds can establish one.
 
-The experiments are part of that argument. Before changing a value, make a prediction; afterwards, explain which feature changed and which stayed the same. A graph is evidence to interpret, not a substitute for a proof.
+The graphs make the nearby behaviour visible. The calculations beside them explain why it holds; a finite collection of plotted points cannot prove a limit.
 
 ## Meaning of a limit
 
-### A missing answer need not mean missing information
+<span id="a-missing-answer-need-not-mean-missing-information"></span>
+
+### The fraction at x = 2
 
 Consider $f(x)=(x^2-4)/(x-2)$. Substituting $x=2$ gives $0/0$, which is undefined. But $x=1.9$ gives $3.9$, $x=1.99$ gives $3.99$, and $x=2.01$ gives $4.01$. The missing answer at exactly $2$ has not stopped the surrounding outputs from pointing towards $4$.
 
-Here are two different questions:
+There are two quantities to keep separate:
 
-- **Point value:** what is the output at exactly $x=2$?
-- **Limit:** what output can we make the nearby values approach by taking $x$ sufficiently close to $2$, without using $x=2$ itself?
+- **Point value:** the output at exactly $x=2$, if it exists.
+- **Limit:** the number approached by outputs at nearby inputs, without using $x=2$ itself.
 
-Keep those questions separate. The first asks about one point; the second asks about an entire neighbourhood.
+The point value concerns a single input. The limit concerns the behaviour around it.
 
 $\lim_{x\to a}f(x)=L$ means that the output approaches $L$ as the input approaches $a$. It describes nearby behaviour, not necessarily the value at $a$.[^1]
 
@@ -40,13 +42,21 @@ f(x)=\frac{x^2-4}{x-2}=x+2\quad(x\ne2)
 $$
 has limit $4$ at $x=2$, although $f(2)$ is undefined. Changing or filling in the value at a single point does not change the limit there.
 
-**First investigation — can a wrong target be rescued by moving closer?** Start with the proposed limit $L=3$. The shaded strip marks outputs within $0.2$ of that target. Move the two sample inputs towards $2$. Then try $L=4$. Which target allows both sides to stay inside the strip as the inputs get closer? Finally, assign different values to $f(2)$: does that alter the nearby points?
+At the missing input itself,
+$$
+\frac{2^2-4}{2-2}=\frac00,
+$$
+so the original fraction has no value there. The open circle in the graph marks this missing point. The two other points show values on either side; the table keeps them distinguishable even when they look almost on top of the hole.
+
+The graph looks straight because the fraction equals $x+2$ wherever it is defined. That does **not** make it the same function as the complete line: the fraction excludes $x=2$. The useful result is that its limit is $4$ despite the failed substitution. We will justify the cancellation in [[#Algebraic evaluation]].
 
 Numerical tables and graphs can suggest a limit, but finite samples cannot prove one: rapid oscillation and rounding can hide nearby behaviour. Algebra or a limiting argument establishes the result.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/approaching-a-limit/" data-notes-embed="y1/elec1310/limits-continuity/approaching-a-limit" title="Point values and the limit at a hole" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/approaching-a-limit/" data-notes-embed="y1/elec1310/limits-continuity/approaching-a-limit" title="Point values and the limit at a hole" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
-The wrong target leaves a persistent gap. For the right target, the input distance and output error shrink together: $|f(x)-4|=|x-2|$ for $x\ne2$. That relationship explains why approaching works; the centre value plays no part in it. We will return to this “output strip” when we make the definition precise.
+Inputs $1.99$ and $2.01$ give outputs $3.99$ and $4.01$. Taking inputs ten times closer makes the output errors ten times smaller. In fact, $|f(x)-4|=|x-2|$ for $x\ne2$. This relationship will be useful again in the formal definition.
+
+Limits are not restricted to functions with missing points. For a continuous function such as $x^2$, the limit at $2$ is simply $4$, which is also its value there. The fraction is a useful starting example because it shows why the limit and the point value are separate ideas.
 
 ### Why a missing point is useful: instantaneous rate
 
@@ -56,7 +66,7 @@ $$
 $$
 At $h=0$ the average-velocity fraction is undefined: there is no elapsed time. Yet its values can approach a definite answer. The line through the two positions is a secant; the limiting line is the tangent.
 
-**Predict before shrinking $h$:** will approaching through negative intervals give the same slope as approaching through positive intervals? Look for what happens to the *slope*, not merely to the distance between the points.
+Positive intervals give slopes just above $2$; negative intervals give slopes just below it. As the interval shrinks from either side, the secant approaches the same tangent.
 
 A secant slope,
 $$
@@ -67,7 +77,7 @@ measures an average rate over a non-zero interval. Its limit as $h\to0$ gives th
 <details>
 <summary>Explore the average-to-instantaneous rate</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/secant-slope/" data-notes-embed="y1/elec1310/limits-continuity/secant-slope" title="Secant slopes approaching a tangent" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/secant-slope/" data-notes-embed="y1/elec1310/limits-continuity/secant-slope" title="Secant slopes approaching a tangent" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
@@ -77,29 +87,31 @@ The secant experiment gives slopes $2+h$, so both directions approach $2$. The m
 
 ### The two sides must agree
 
-Our first two examples happened to agree from both sides. That agreement was a condition, not a coincidence we can assume for every function. Imagine approaching a step: getting closer to its edge does not make its two heights meet.
+Both sides of the original fraction approached $4$. That agreement matters. A different fraction can have a left-hand limit and a right-hand limit that disagree, even at the same input $x=2$.
 
 $\lim_{x\to a^-}f(x)$ approaches from smaller inputs; $\lim_{x\to a^+}f(x)$ approaches from larger inputs. A finite two-sided limit exists only when both one-sided limits exist and agree.[^1]
 
 For $f(x)=|x-2|/(x-2)$, the left limit is $-1$ and the right limit is $1$, so there is no two-sided limit. At a domain endpoint, only the permitted side may be available: $\sqrt{x}\to0$ as $x\to0^+$.
 
-The experiment below translates the jump from $x=2$ to $x=0$ so that the jump, square-root endpoint and oscillation can share the same input scale. Translating the graph changes its location, not the reason the limit fails.
+The jump below stays at $x=2$, as in the opening example. Now the left-hand outputs remain at $-1$ and the right-hand outputs remain at $1$. Getting closer does not remove their disagreement.
 
-**Compare the failures:** a jump has two settled but different answers; an oscillation has no settled answer even from the right. In the oscillation experiment, the two marked sequences always give $+1$ and $-1$, however close their inputs get to zero. An endpoint is different again: for $\sqrt{x}$ there are no real inputs to test on the left. Its limit is understood through its domain, here from the right.
+A domain boundary and an oscillation need different explanations. For $\sqrt{x}$ at zero, there are no real inputs on the left, so the approach is through its domain, from the right. For $\sin(1/x)$, even the right-hand approach fails to settle. The two marked sequences in that example have outputs $+1$ and $-1$ however close their inputs get to zero.
 
 Other ways a finite limit can fail:
 - **Unbounded growth:** $1/x^2\to+\infty$ as $x\to0$. Infinity describes growth, not a finite real limit.
 - **Persistent oscillation:** $\sin(1/x)$ moves between $-1$ and $1$ arbitrarily close to zero and approaches no single value.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/one-sided-limits/" data-notes-embed="y1/elec1310/limits-continuity/one-sided-limits" title="One-sided limits and oscillation sequences" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/one-sided-limits/" data-notes-embed="y1/elec1310/limits-continuity/one-sided-limits" title="One-sided limits and oscillation sequences" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Continuity
 
-### Does the actual value agree with the nearby behaviour?
+<span id="does-the-actual-value-agree-with-the-nearby-behaviour"></span>
 
-We can now answer the question left open by our first experiment. The surrounding outputs approached $4$ whether the value at $2$ was absent, $1$, or $4$. Only the last assignment makes the function continuous there. **A limit describes an approach; continuity requires the actual value to match it.**
+### Filling the original hole
 
-This gives us a useful diagnosis: first find what the surrounding graph demands, and only then compare the centre value. A missing or misplaced centre point is repairable. A jump is not: no single point value can equal two different one-sided limits.
+Return to the original fraction. Its nearby outputs approach $4$, but it has no value at $2$. We can extend the function by assigning a value at that one input. Assigning $4$ fills the hole; assigning $1$ puts a point elsewhere and leaves the discontinuity. Neither assignment changes the limit. **Continuity requires the actual value to agree with the limit.**
+
+This is why a missing or misplaced centre point can be repaired, but a jump cannot. At a jump there are two different one-sided limits, and no single assigned value can equal both.
 
 Continuity at $a$ requires all three conditions:[^1]
 1. $f(a)$ is defined.
@@ -112,17 +124,17 @@ Continuity on $[a,b]$ means continuity at every interior point, right-continuity
 - **Jump discontinuity:** finite left and right limits differ. Changing one point cannot fix the jump.
 - **Infinite discontinuity:** unbounded behaviour near the point.
 
-For
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/continuity/" data-notes-embed="y1/elec1310/limits-continuity/continuity" title="Repairing a removable discontinuity" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
+The same reasoning applies when the two sides use different formulas. For
 $$
 f(x)=\begin{cases}2x+1,&x<3,\\k,&x=3,\\x^2-2,&x>3,\end{cases}
 $$
 both side limits are $7$, so continuity requires $k=7$.
 
-**A repair challenge:** first find the centre value that joins the two original pieces. Then raise the right-hand piece by $1$ in the experiment. Can any choice of $k$ repair that version? The extra case distinguishes a removable problem at one point from a disagreement throughout the surrounding neighbourhood.
+If the right-hand piece were raised by $1$, its limit would become $8$ while the left-hand limit stayed at $7$. No choice of $k$ could repair that jump. The difficulty would be in the nearby behaviour, not just in the centre value.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/continuity/" data-notes-embed="y1/elec1310/limits-continuity/continuity" title="Repairing a removable discontinuity" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
-
-The repair worked because the side limits agreed. Next we need ways to establish those limits without trusting a picture.
+In both removable examples, the side limits agree before the centre value is assigned. We now turn to calculating those limits reliably.
 
 ## Limit laws
 
@@ -130,7 +142,7 @@ The repair worked because the side limits agreed. Next we need ways to establish
 
 We now know what a limit is asking and what can go wrong. But checking points one by one cannot establish the behaviour of *all* nearby inputs. Calculation rules let us build a reliable answer from simpler limits, provided their conditions hold.
 
-Think of a formula as a small computation: find the limits of its pieces, then combine those answers. For example, as $x\to1$, $x^2-1\to0$ and $x+1\to2$. Their sum tends to $2$, their product to $0$, and their quotient to $0/2=0$. The same inputs drive both pieces; we are not independently choosing their outputs.
+We can often find the limits of the pieces of a formula and then combine them. For example, as $x\to1$, $x^2-1\to0$ and $x+1\to2$. Their sum tends to $2$, their product to $0$, and their quotient to $0/2=0$. The same inputs drive both pieces; we are not independently choosing their outputs.
 
 If $f(x)\to L$ and $g(x)\to M$, with finite $L,M$, then:[^1]
 $$
@@ -150,7 +162,7 @@ These conditions matter: a quotient law cannot be applied with a limiting denomi
 <details>
 <summary>Explore combinations of two limits</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/limit-laws/" data-notes-embed="y1/elec1310/limits-continuity/limit-laws" title="Combining limits and continuous composition" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/limit-laws/" data-notes-embed="y1/elec1310/limits-continuity/limit-laws" title="Combining limits and continuous composition" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
@@ -175,7 +187,7 @@ Start with substitution. An indeterminate result such as $0/0$ is not a limit va
 
 ### Factorisation
 
-The opening example becomes $x+2$ away from $2$. Now transfer the same idea to a new hole, at $5$. Before simplifying, predict whether the resulting line should have a missing point and where it should be.
+The opening example becomes $x+2$ away from $2$. The same calculation works for a hole at $5$, with a different limiting value.
 
 Since $x^2-25=(x-5)(x+5)$, we may divide out $x-5$ whenever $x\ne5$. We have changed the *expression used to calculate nearby values*, not retroactively defined the original fraction at $5$.
 
@@ -188,7 +200,7 @@ Cancelling $x-5$ is valid for nearby $x\ne5$, which is sufficient for the limit.
 <details>
 <summary>Test the same argument at a new hole</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/factorisation/" data-notes-embed="y1/elec1310/limits-continuity/factorisation" title="Factorisation and the excluded point" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/factorisation/" data-notes-embed="y1/elec1310/limits-continuity/factorisation" title="Factorisation and the excluded point" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
@@ -216,17 +228,19 @@ $$
 <details>
 <summary>Compare the two square-root examples</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/rationalisation/" data-notes-embed="y1/elec1310/limits-continuity/rationalisation" title="Rationalisation near a square root" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/rationalisation/" data-notes-embed="y1/elec1310/limits-continuity/rationalisation" title="Rationalisation near a square root" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
 ## Squeeze theorem
 
-### Can an oscillation have a limit after all?
+<span id="can-an-oscillation-have-a-limit-after-all"></span>
 
-Earlier, $\sin(1/x)$ failed because it kept reaching $-1$ and $1$ arbitrarily close to zero. What if those oscillations are multiplied by $x^2$? Their frequency still increases, but their height can no longer remain large.
+### A shrinking oscillation
 
-**Compare the same oscillation with and without the $x^2$ envelope.** Shrink the input strip in each case. Does the entire possible output range shrink too? The question is about every point inside the strip, including oscillations too fine for a screen to draw.
+Earlier, $\sin(1/x)$ kept reaching $-1$ and $1$ arbitrarily close to zero. Multiplying by $x^2$ changes this: the oscillations become faster near zero, but their height is forced to shrink.
+
+The two versions below use the same oscillation. Without the envelope, its output range stays at $[-1,1]$. With the envelope, narrowing the input interval also narrows the range of possible outputs. The bound applies even to oscillations too fine for the screen to draw.
 
 This is a different proof strategy from simplifying a quotient. We do not need the exact oscillating value if we can trap it between two bounds that close in on the same number.
 
@@ -242,11 +256,11 @@ $$
 $$
 The sine still oscillates, but its amplitude shrinks to zero. A bounded signal multiplied by an envelope tending to zero therefore tends to zero.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/squeeze-theorem/" data-notes-embed="y1/elec1310/limits-continuity/squeeze-theorem" title="An oscillation inside a shrinking envelope" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/squeeze-theorem/" data-notes-embed="y1/elec1310/limits-continuity/squeeze-theorem" title="An oscillation inside a shrinking envelope" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ### Fundamental trigonometric limit
 
-The same trapping idea resolves another apparent $0/0$: $\sin x/x$. Unlike the factorisation examples, this requires a geometric inequality. Think of the lower and upper bounds as two jaws closing on the unknown limit. Their separation must tend to zero; it is not enough for one graph to look close to another at a few inputs.
+The same trapping idea resolves another apparent $0/0$: $\sin x/x$. Unlike the factorisation examples, this requires a geometric inequality. The separation of the upper and lower bounds tends to zero. This establishes the limit without relying on how close the curves happen to look on a screen.
 
 For angles in radians,
 $$
@@ -257,13 +271,15 @@ For $0<x<\pi/2$, the geometric inequality $\sin x<x<\tan x$ gives $\cos x<\sin x
 <details>
 <summary>Explore the two trigonometric bounds</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/trigonometric-limit/" data-notes-embed="y1/elec1310/limits-continuity/trigonometric-limit" title="Squeezing sine x over x in radians" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/trigonometric-limit/" data-notes-embed="y1/elec1310/limits-continuity/trigonometric-limit" title="Squeezing sine x over x in radians" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
 ## Infinite limits and asymptotes
 
-### Which quantity is going far away?
+<span id="which-quantity-is-going-far-away"></span>
+
+### Infinite outputs and infinite inputs
 
 So far the input has approached a finite point and we have looked for a finite output. There are two distinct extensions: a nearby input can make the **output** grow without bound, or an **input** can grow without bound while its output settles towards a finite value. Keep track of which quantity is tending to infinity.
 
@@ -292,31 +308,35 @@ This is the same behaviour explored in [[RC Transients|RC charging]]. At $t=RC$ 
 <details>
 <summary>Compare vertical and horizontal asymptotes</summary>
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/asymptotes/" data-notes-embed="y1/elec1310/limits-continuity/asymptotes" title="Infinite limits and horizontal asymptotes" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/asymptotes/" data-notes-embed="y1/elec1310/limits-continuity/asymptotes" title="Infinite limits and horizontal asymptotes" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 </details>
 
 ## Intermediate value theorem
 
-### What does continuity let us guarantee?
+<span id="what-does-continuity-let-us-guarantee"></span>
+
+### Locating a root without solving the equation
 
 Continuity does more than make a graph look unbroken. If a continuous function starts below a level and finishes above it, it cannot skip that level on the way. This turns information at two endpoints into an existence result somewhere between them.
 
-The opening limit experiments used nearby points to investigate a missing value. Here we use a whole continuous interval to establish a value that we have not located yet. The hypothesis is stronger, so the conclusion is stronger too.
+Here continuity is needed throughout the interval, not just at its endpoints. It lets us establish that a value occurs before we know exactly where it occurs.
 
 If $f$ is continuous on $[a,b]$, it takes every value between $f(a)$ and $f(b)$ somewhere on that interval. In particular, if the endpoint values have opposite signs, at least one root lies in $(a,b)$.[^2]
 
 For $f(x)=x^3-x-1$, $f(1)=-1$ and $f(2)=5$. Since a polynomial is continuous, a root exists between $1$ and $2$. The theorem guarantees existence, not the root's exact position or uniqueness. A discontinuous function can jump over zero, so opposite signs alone are insufficient.
 
-**Find a smaller guaranteed interval.** The midpoint splits the current bracket in half. Compare its sign with the two endpoint signs and retain the half with opposite signs. Each correct choice halves the uncertainty without losing the existence guarantee. Then compare the discontinuous step: the endpoints still have opposite signs, but the guarantee disappears.
+Bisection uses this result repeatedly. The midpoint splits the bracket into two halves; the half with opposite signs at its endpoints retains the guarantee of a root. Each step halves the interval. The discontinuous step provides the contrast: it has opposite signs at the endpoints but skips zero.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/intermediate-value/" data-notes-embed="y1/elec1310/limits-continuity/intermediate-value" title="Intermediate value theorem and bisection" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/intermediate-value/" data-notes-embed="y1/elec1310/limits-continuity/intermediate-value" title="Intermediate value theorem and bisection" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ## Formal definition
 
-### Turn the opening experiment into a promise
+<span id="turn-the-opening-experiment-into-a-promise"></span>
 
-Return to the output strip around a proposed limit. Moving two points into it was suggestive, but a limit demands much more: **every sufficiently close permitted input must produce an output inside any requested strip**, however narrow that strip is.
+### Making “close” precise
+
+In the first example, nearby inputs gave outputs close to $4$. To make that precise, we specify how close the output must be, then find an input interval small enough to guarantee it. The guarantee must hold for every permitted input in that interval, not just for the two plotted points.
 
 There are two choices, in a particular order:
 
@@ -325,13 +345,15 @@ There are two choices, in a particular order:
 
 We do not get to choose a generous output tolerance after seeing our input radius, nor select only the inputs that happen to work. In the first example, $|f(x)-4|=|x-2|$, so $\delta=\varepsilon$ would suffice. For $f(x)=2x+1$ near $3$, output errors are twice input errors: expect the input strip to need to be narrower.
 
-**Meet a tighter demand.** Start with an input radius that works, then reduce $\varepsilon$ while holding $\delta$ fixed. When the guarantee fails, the red point gives one actual counterexample. Repair the input radius and work out a rule that would succeed for *any* positive output tolerance, not just the slider's finite range.
+The diagram returns to the original fraction and its hole at $(2,4)$. The green strip shows the allowed output error; the amber strip shows the chosen input interval. For this function, $\delta\le\varepsilon$ works. If the input interval is too wide, a red point shows a permitted input whose output misses the required tolerance. The identity $|f(x)-4|=|x-2|$ proves the rule for every positive tolerance, beyond the finite range illustrated here.
 
 For every desired output tolerance $\varepsilon>0$, there must be an input tolerance $\delta>0$ such that every allowed $x$ with $0<|x-a|<\delta$ satisfies $|f(x)-L|<\varepsilon$.[^1]
 
 The exclusion $x\ne a$ is deliberate. The choice of $\delta$ may depend on $\varepsilon$, but must work for all inputs in the punctured neighbourhood, not just selected examples.
 
-To prove $\lim_{x\to3}(2x+1)=7$, observe
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/epsilon-delta/" data-notes-embed="y1/elec1310/limits-continuity/epsilon-delta" title="An analytic epsilon-delta neighbourhood" loading="lazy" scrolling="no" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
+For comparison, the line $2x+1$ doubles input errors, so it needs a narrower input interval. To prove $\lim_{x\to3}(2x+1)=7$, observe
 $$
 |(2x+1)-7|=2|x-3|.
 $$
@@ -343,13 +365,13 @@ For a non-constant linear function $mx+b$, the same argument uses $\delta=\varep
 
 Notice why equality $2\delta=\varepsilon$ is allowed: the input condition is strict, $|x-3|<\delta$, so the output error is still strictly less than $\varepsilon$. Smaller positive radii also work. If $m=0$, the function is constant and any positive radius works; division by $|m|$ is neither needed nor valid.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1310/limits-continuity/epsilon-delta/" data-notes-embed="y1/elec1310/limits-continuity/epsilon-delta" title="An analytic epsilon-delta neighbourhood" loading="lazy" height="660" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<span id="the-argument-we-have-built"></span>
 
-### The argument we have built
+### Putting the ideas together
 
 We started with an undefined fraction and learned to separate an input's actual value from its neighbours. Agreement from both sides gave a limit; agreement with the centre value gave continuity. Algebra and bounds justified what the experiments suggested. Continuity then guaranteed an intermediate value, and the epsilon–delta definition finally explained exactly what “can be made as close as we like” promises.
 
-A useful final check is to explain why these three statements differ: “the function is undefined at $a$”, “the limit does not exist at $a$”, and “the function is not continuous at $a$”. The first does not imply the second; the third may be repairable at one point, or may reflect a deeper failure nearby.
+“Undefined at $a$”, “no limit at $a$” and “not continuous at $a$” mean different things. The original fraction is undefined at $2$ but has a limit there. Filling its hole gives a continuous extension. A jump or persistent oscillation cannot be fixed by assigning a single point value.
 
 ### Reference: the three statements in symbols
 

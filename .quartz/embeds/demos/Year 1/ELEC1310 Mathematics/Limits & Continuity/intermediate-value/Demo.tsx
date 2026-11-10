@@ -1,34 +1,17 @@
 import { useState } from "react";
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
-  MathsSlider,
   Choices,
   Reading,
-  Approach,
 } from "~/toolkit/MathsCard";
-import {
-  MathsPlot,
-  Legend,
-  graph,
-  point,
-  segment,
-  band,
-  type Scene,
-} from "~/toolkit/MathsPlot";
+import { MathsPlot, graph, point, band, type Scene } from "~/toolkit/MathsPlot";
 import {
   correctBisectionHalf,
   rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
   cubic,
   bracket,
-  epsilonWorks,
   counterexample,
-  oscillationPair,
   n,
 } from "../models";
 const schema = {
@@ -91,13 +74,6 @@ export function Demo() {
   };
   return (
     <MathsCard>
-      <Investigation question="Which half still contains a guaranteed root?">
-        <p>
-          {
-            "Keep the half whose endpoint values have opposite signs. Continuity carries the existence guarantee into that smaller interval. A discontinuous jump can skip zero, despite opposite signs at the endpoints."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Continuity hypothesis"
         value={v.mode}

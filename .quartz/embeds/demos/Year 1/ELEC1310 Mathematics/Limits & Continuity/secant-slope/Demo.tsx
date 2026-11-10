@@ -1,6 +1,5 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -13,22 +12,9 @@ import {
   graph,
   point,
   segment,
-  band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, distance, secantSlope, n } from "../models";
 const schema = {
   p: rule("Approach", 0.2, 0, 3),
   side: rule("Side", 1, 0, 1, 1),
@@ -73,13 +59,6 @@ export function Demo() {
     step = h(v);
   return (
     <MathsCard>
-      <Investigation question="Do the slopes agree when h approaches zero from opposite sides?">
-        <p>
-          {
-            "For y = x² at x = 1, the secant slope is 2 + h. Positive h gives slopes above 2; negative h gives slopes below 2. Both approach 2 without ever requiring division by zero."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Side of approach"
         value={v.side}

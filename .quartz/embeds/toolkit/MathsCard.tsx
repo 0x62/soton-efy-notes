@@ -239,22 +239,3 @@ export function Approach({
     </button>
   );
 }
-
-/** A mathematical question and optional reasoning, rather than interface instructions. */
-export function Investigation({
-  question,
-  children,
-}: {
-  question: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="space-y-2 text-sm">
-      <p className="font-semibold">{question}</p>
-      <details>
-        <summary className="cursor-pointer">Why this happens</summary>
-        <div className="mt-2 space-y-2">{children}</div>
-      </details>
-    </div>
-  );
-}

@@ -1,11 +1,9 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
   Reading,
-  Approach,
 } from "~/toolkit/MathsCard";
 import {
   MathsPlot,
@@ -13,22 +11,9 @@ import {
   graph,
   point,
   segment,
-  band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, n } from "../models";
 const schema = {
   operation: rule("Operation", 0, 0, 3, 1),
   x: rule("x", 0.6, 0.5, 1.5, 0.001),
@@ -79,13 +64,6 @@ export function Demo() {
   const { values: v, set, theme } = useMathsModel(schema);
   return (
     <MathsCard>
-      <Investigation question="Can the limit be calculated from the limits of the pieces?">
-        <p>
-          {
-            "As x approaches 1, x² − 1 approaches 0 and x + 1 approaches 2. Combine these limits only when the rule applies; the quotient is valid because its denominator tends to 2, not zero."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Limit law"
         value={v.operation}

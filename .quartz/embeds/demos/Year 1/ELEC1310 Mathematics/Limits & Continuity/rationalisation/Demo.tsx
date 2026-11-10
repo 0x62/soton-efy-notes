@@ -1,34 +1,13 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
   Reading,
   Approach,
 } from "~/toolkit/MathsCard";
-import {
-  MathsPlot,
-  Legend,
-  graph,
-  point,
-  segment,
-  band,
-  type Scene,
-} from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { MathsPlot, graph, point, type Scene } from "~/toolkit/MathsPlot";
+import { rule, distance, rationalised, n } from "../models";
 const schema = {
   example: rule("Example", 0, 0, 1, 1),
   p: rule("Approach", 0.3, 0, 5),
@@ -64,13 +43,6 @@ export function Demo() {
     step = h(v);
   return (
     <MathsCard>
-      <Investigation question="Why can the transformed expression be evaluated at h = 0?">
-        <p>
-          {
-            "Multiplying by the conjugate exposes a factor h that cancels only for h ≠ 0. The remaining denominator tends to 2√a, which is non-zero. The original quotient still has a hole."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Square root example"
         value={v.example}

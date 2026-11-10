@@ -286,12 +286,20 @@ identified. Tests check these models, controls, routing and production isolation
 Quartz hover previews replace demo iframes with their titled links before inserting
 preview content, avoiding duplicate React/JSXGraph instances in hidden popovers.
 
-### Lesson investigations
+### Lesson progression and iframe sizing
 
-`Investigation` presents a conceptual question with optional reasoning. It does
-not prescribe interface gestures. Prefer a meaningful contrast or decision over
-an animation that merely displays the answer: the opening target experiment,
-unrepairable continuity jump, damped/undamped comparison, and signed bisection
-choices are examples. A single successful tolerance or finite sample is not a
-proof. Six transfer experiments and the algebra refresher use native disclosures
-in the note; their routes and original content remain available.
+The opening quotient uses one approach action and a visible value table. The same
+`HolePlot` and original fraction return in continuity and epsilon–delta; the
+piecewise continuity example and slope-two proof remain in the notes as worked
+extensions. Put explanations in the lesson rather than adding question panels or
+controls without a clear mathematical purpose.
+
+`installEmbedSizing` observes the intrinsic `#root` box independently of theme
+and React error-boundary lifecycle. A same-origin, parent-window handshake enables
+`overflow: clip`; the host sets `scrolling="no"` and the reported content height.
+Resize, disclosure and font changes trigger measurement; unchanged heights are
+not reposted. Zero-width hidden cards are ignored and remeasured when opened.
+Host messages must match both origin and the currently mounted iframe window.
+The published iframe URL includes a content hash of its HTML entry so a new note
+cannot silently load a stale card. React, JSXGraph and other hashed chunks remain
+shared and cacheable.

@@ -1,9 +1,10 @@
+import { installEmbedSizing } from "./sizing";
 import { createRoot } from "react-dom/client";
 import { Component, useEffect, useState, type ReactNode } from "react";
 export function mount(element: ReactNode) {
-  createRoot(document.getElementById("root")!).render(
-    <Boundary>{element}</Boundary>,
-  );
+  const root = document.getElementById("root")!;
+  installEmbedSizing(root);
+  createRoot(root).render(<Boundary>{element}</Boundary>);
 }
 export function useTheme() {
   const media = matchMedia("(prefers-color-scheme: dark)");
@@ -44,19 +45,8 @@ export function useTheme() {
     };
     window.addEventListener("message", receive);
     media.addEventListener("change", system);
-    const resize = new ResizeObserver(() =>
-      parent.postMessage(
-        {
-          type: "notes-embed:v1:height",
-          height: Math.ceil(document.body.getBoundingClientRect().height),
-        },
-        location.origin,
-      ),
-    );
-    resize.observe(document.body);
     parent.postMessage({ type: "notes-embed:v1:ready" }, location.origin);
     return () => {
-      resize.disconnect();
       window.removeEventListener("message", receive);
       media.removeEventListener("change", system);
     };

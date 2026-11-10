@@ -1,6 +1,5 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -12,23 +11,10 @@ import {
   Legend,
   graph,
   point,
-  segment,
   band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, distance, n } from "../models";
 const schema = {
   mode: rule("Envelope", 0, 0, 1, 1),
   p: rule("Neighbourhood", 0.1, 0, 2),
@@ -85,13 +71,6 @@ export function Demo() {
     d = distance(v.p);
   return (
     <MathsCard>
-      <Investigation question="Does a narrower input interval force a narrower output range?">
-        <p>
-          {
-            "Undamped sine still reaches both −1 and 1 arbitrarily close to zero. Multiplication by x² forces every output inside ±δ² for 0 < |x| < δ. The envelope proves the claim even where the oscillations cannot be drawn."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Oscillation envelope"
         value={v.mode}

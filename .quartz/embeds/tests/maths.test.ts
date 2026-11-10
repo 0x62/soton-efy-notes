@@ -1,9 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  targetErrors,
   continuityKind,
   correctBisectionHalf,
+  holeEpsilonWorks,
+  holeCounterexample,
   distance,
   secantSlope,
   sinc,
@@ -99,27 +100,6 @@ test("all twelve meaningful lesson examples are directly authored, titled and la
   );
 });
 
-test("a narrow sample pair cannot rescue a wrong target or establish all tolerances", () => {
-  for (const target of [3, 3.9, 4, 4.1, 5]) {
-    let previous = Infinity;
-    for (const radius of [1, 0.1, 0.01, 0.001]) {
-      const errors = targetErrors(target, radius);
-      const actual = Math.max(
-        Math.abs(4 - radius - target),
-        Math.abs(4 + radius - target),
-      );
-      assert.ok(Math.abs(actual - errors.sample) < 1e-14);
-      assert.ok(errors.sample < previous);
-      assert.equal(errors.residual === 0, target === 4);
-      previous = errors.sample;
-    }
-  }
-  assert.ok(targetErrors(3.9, 0.001).sample < 0.2);
-  assert.ok(
-    targetErrors(3.9, 0.001).residual > 0.02,
-    "passing one tolerance does not prove the proposed limit",
-  );
-});
 test("point repairs work only when the two side limits agree", () => {
   assert.equal(continuityKind(7, 0), "continuous");
   for (const k of [4, 6.9, 7.1, 10])
@@ -157,4 +137,27 @@ test("lesson retains original anchors and places secondary investigations in nat
   assert.equal((note.match(/<\/details>/g) || []).length, 7);
   assert.ok(note.indexOf("## Continuity") < note.indexOf("## Limit laws"));
   assert.ok(!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(note));
+});
+
+test("the original quotient approaches four from both sides but remains undefined at two", () => {
+  for (const step of [1, 2, 3, 4]) {
+    const d = distance(step);
+    for (const x of [2 - d, 2 + d]) {
+      assert.notEqual(x, 2);
+      assert.ok(Math.abs((x * x - 4) / (x - 2) - (x + 2)) < 1e-10);
+      assert.ok(Math.abs(Math.abs(x + 2 - 4) - d) < 1e-14);
+    }
+  }
+  assert.ok(Number.isNaN((2 * 2 - 4) / (2 - 2)));
+});
+test("the same hole has delta equals epsilon and strict counterexamples for wider radii", () => {
+  for (const e of [0.1, 0.5, 1])
+    for (const delta of [0.02, e, e + 0.01, 1.2]) {
+      assert.equal(holeEpsilonWorks(e, delta), delta <= e);
+      if (delta > e) {
+        const x = holeCounterexample(e, delta);
+        assert.ok(x > 2 && x - 2 < delta);
+        assert.ok(x + 2 - 4 > e);
+      }
+    }
 });

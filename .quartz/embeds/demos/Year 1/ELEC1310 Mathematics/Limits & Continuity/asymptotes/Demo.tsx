@@ -1,6 +1,5 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -9,26 +8,12 @@ import {
 } from "~/toolkit/MathsCard";
 import {
   MathsPlot,
-  Legend,
   graph,
   point,
   segment,
-  band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, distance, n } from "../models";
 const schema = {
   mode: rule("Example", 0, 0, 2, 1),
   p: rule("Approach", 0.3, 0, 3),
@@ -103,13 +88,6 @@ export function Demo() {
     far = 10 ** v.p;
   return (
     <MathsCard>
-      <Investigation question="Is the input growing, or is the output growing?">
-        <p>
-          {
-            "At a vertical asymptote the input approaches a finite location while the output grows without bound. At a horizontal asymptote the input tends to infinity while the output tends to a finite height."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Asymptote example"
         value={v.mode}

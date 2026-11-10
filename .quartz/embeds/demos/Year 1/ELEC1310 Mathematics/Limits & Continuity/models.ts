@@ -33,13 +33,6 @@ export const oscillationPair = (n: number) =>
   ] as const;
 export const n = (v: number) => Number(v.toPrecision(8)).toString();
 
-/** Errors at the two symmetric probes; not a proof for an arbitrary function. */
-export function targetErrors(target: number, radius: number) {
-  return {
-    sample: Math.abs(4 - target) + radius,
-    residual: Math.abs(4 - target),
-  };
-}
 export function continuityKind(k: number, jump: number) {
   return jump !== 0
     ? "jump"
@@ -51,3 +44,8 @@ export function correctBisectionHalf(iteration: number) {
   const { a, b } = bracket(iteration);
   return cubic((a + b) / 2) > 0 ? "left" : "right";
 }
+
+export const holeEpsilonWorks = (epsilon: number, delta: number) =>
+  delta <= epsilon;
+export const holeCounterexample = (epsilon: number, delta: number) =>
+  2 + (epsilon + delta) / 2;

@@ -1,6 +1,5 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -9,26 +8,12 @@ import {
 } from "~/toolkit/MathsCard";
 import {
   MathsPlot,
-  Legend,
   graph,
   point,
   segment,
-  band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, distance, n } from "../models";
 const schema = {
   p: rule("Approach", 0.3, 0, 4),
   side: rule("Side", 1, 0, 1, 1),
@@ -68,13 +53,6 @@ export function Demo() {
     input = x(v);
   return (
     <MathsCard>
-      <Investigation question="Does cancelling the factor also fill the hole?">
-        <p>
-          {
-            "The cancellation is valid only for x ≠ 5. It proves that nearby values equal x + 5, so they approach 10. It does not assign an original value at x = 5."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Side of approach to five"
         value={v.side}

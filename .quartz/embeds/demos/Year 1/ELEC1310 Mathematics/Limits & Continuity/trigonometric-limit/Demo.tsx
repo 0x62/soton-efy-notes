@@ -1,6 +1,5 @@
 import {
   MathsCard,
-  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -13,22 +12,9 @@ import {
   graph,
   point,
   segment,
-  band,
   type Scene,
 } from "~/toolkit/MathsPlot";
-import {
-  rule,
-  distance,
-  secantSlope,
-  sinc,
-  rationalised,
-  cubic,
-  bracket,
-  epsilonWorks,
-  counterexample,
-  oscillationPair,
-  n,
-} from "../models";
+import { rule, distance, sinc, n } from "../models";
 const schema = { p: rule("Approach", 0, 0, 3), side: rule("Side", 1, 0, 1, 1) };
 type V = { p: number; side: number };
 const x = (v: V) => (v.side === 0 ? -1 : 1) * 1.4 * distance(v.p);
@@ -66,13 +52,6 @@ export function Demo() {
     input = x(v);
   return (
     <MathsCard>
-      <Investigation question="Do both bounding functions force the same answer?">
-        <p>
-          {
-            "In radians, cos x < sin x / x < 1 for 0 < |x| < π/2. The two bounds approach 1. The ratio is even, so both sides agree, although the original expression is undefined at zero."
-          }
-        </p>
-      </Investigation>
       <Choices
         label="Sign of angle"
         value={v.side}
