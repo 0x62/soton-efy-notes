@@ -142,9 +142,6 @@ Therefore, power factor is equal to the cosine of the circuit phase angle. If th
 > [!WARNING] There will be a power factor question
 > Heavily hinted by Josh. Note that power factor equations are not given on the formula sheet.
 
-> [!figure] ![[Attachments/diagrams/foundation-power-triangle.svg]]
-> Power triangle for an inductive load: $P$ is horizontal, $Q$ is positive upwards, and $S$ is the hypotenuse. For a capacitive load, $Q$ points downwards; $S$ remains a positive magnitude.
-
 ## Bandwidth
 
 In a series RLC circuit, the current $I$ depends on the circuit impedance ($Z$). At resonant frequency $X_{L}=X_{C}$ impedance $Z$ is at its minimum (equal to just $R$, since inductive and capacitive reactance's cancel out).

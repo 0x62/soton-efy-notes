@@ -53,9 +53,6 @@ The time constant $\tau$ represents the time taken for the capacitor voltage to 
 > Practically, full charge is reached after about $5 \tau$
 
 
-> [!figure] ![[Attachments/diagrams/foundation-rc-transients.svg]]
-> Normalised ideal RC response with $\tau=RC$: charging voltage $V_C/E=1-e^{-t/\tau}$ rises to 0.632 at one time constant. Discharging voltage $V_C/V_0=e^{-t/\tau}$ falls to 0.368. At $5\tau$, the values are approximately 0.993 and 0.007, not exactly 1 and 0.
-
 ### RC Charging Transient Curves
 
 In an RC charging circuit, both voltage and current change exponentially over time:

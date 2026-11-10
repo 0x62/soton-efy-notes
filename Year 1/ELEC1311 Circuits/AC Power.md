@@ -87,10 +87,6 @@ If peak phasors are used instead, the correct expression is
 $$S=\frac12\underline V_m\underline I_m^*.$$
 The factor of $1/2$ disappears only when **both** phasors are RMS. These sinusoidal formulas do not make displacement factor $\cos\phi$ a universal description of power factor for distorted waveforms.[^1]
 
-![[circuits-complex-power.svg]]
-
-This is the worked $30+j40$ complex-power example above. The vertical direction records the **sign** of $Q$: a capacitive passive load would lie below the real-power axis. Apparent power is the sloping magnitude, not the horizontal component.
-
 ## Worked sinusoidal example
 
 Consider

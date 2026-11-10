@@ -179,10 +179,6 @@ v_C(t)=10(1-e^{-t/2})\,\mathrm{V},\qquad i_C(t)=e^{-t/2}\,\mathrm{A}
 $$
 At $t=1\,\mathrm{s}$, the exact values are approximately $3.93\,\mathrm{V}$ and $0.607\,\mathrm{A}$. At $t=2\,\mathrm{s}$, the voltage is approximately $6.32\,\mathrm{V}$.
 
-![[circuits-normalised-transient.svg]]
-
-These curves use zero-to-one charging and one-to-zero discharging. For a general initial value, apply the same exponential to the gap from the final value. At $t=\tau$, $e^{-1}\approx0.368$ of the original gap remains.
-
 ## Approximating the response in time steps
 
 A numerical approximation holds the current constant for a short interval, then recalculates it.[^3][^4] At step $n$:

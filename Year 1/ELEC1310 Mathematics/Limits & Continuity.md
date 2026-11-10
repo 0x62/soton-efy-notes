@@ -46,10 +46,6 @@ $$
 $$
 measures an average rate over a non-zero interval. Its limit as $h\to0$ gives the instantaneous rate used in [[Differentiation#First principles|differentiation]].
 
-![[maths-limit-hole.svg]]
-
-The open circle belongs to the original quotient $(x^2-4)/(x-2)$: the nearby line tends to $4$, but $x=2$ is excluded. Filling the hole with $f(2)=4$ would make this extension continuous.
-
 ## One-sided limits and non-existence
 
 $\lim_{x\to a^-}f(x)$ approaches from smaller inputs; $\lim_{x\to a^+}f(x)$ approaches from larger inputs. A finite two-sided limit exists only when both one-sided limits exist and agree.[^1]
