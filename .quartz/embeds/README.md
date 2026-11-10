@@ -219,7 +219,7 @@ The absolute Obsidian fallback must be updated if the published site moves.
 `demos/Year 1/ELEC1311 Circuits/AC Impedance/voltage-division/` implements the
 note's 20 V peak, −15° source, 60 Ω resistor and j100 Ω inductor. Since the note
 specifies reactance rather than frequency, defaults use 50 Hz and 318.31 mH.
-Controls vary source peak voltage, resistance, inductance and frequency. The
+Controls vary resistance, inductance and frequency. The
 source's cosine phase stays at −15°. Both solid voltage traces share one axis.
 
 The shared transient worker now supports differential voltage probes via
@@ -232,7 +232,6 @@ samples with signed analytic waveforms, KVL and the note's amplitudes/phases,
 including low/high-reactance control extremes. Initial samples are explicitly
 supplied, as with the RC demo. Existing notes and RC behavior stay independent.
 
-
 ### Teaching-note prose
 
 Do not overexplain demo controls or interface use. Readers can infer how inputs,
@@ -243,7 +242,8 @@ units, polarity and interpretation that are not evident from the figure.
 
 `patch-spice-ui.mjs` corrects the horizontal-only inductor symbol in
 `@spice-ts/ui@0.3.1`. Inductors now use vertical pins and a rotated symbol on
-vertical branches, while same-rank branches stay horizontal. Layout and React
+vertical and grounded branches; non-grounded same-rank branches stay horizontal.
+Layout and React
 rendering share the correction; no circuit topology or simulation is changed.
 The idempotent install/build/test hook validates the version and exact upstream
 code before patching the ESM and CommonJS bundles. Remove it when upgrading to
