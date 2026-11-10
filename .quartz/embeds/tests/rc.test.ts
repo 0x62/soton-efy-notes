@@ -1,8 +1,9 @@
+import { simulateTransient } from "../toolkit/simulation";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { calculate } from "../src/rc";
-import { readParams } from "../src/rc-params";
-import { writeParams } from "../src/params";
+import { request } from "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc";
+import { readParams } from "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc-params";
+import { writeParams } from "../toolkit/params";
 test("URL values are finite, bounded, SI quantities with stable roundtrip", () => {
   const defaults = readParams("");
   for (const input of [
@@ -24,7 +25,7 @@ for (const values of [
   test(
     "SPICE matches analytic RC response " + JSON.stringify(values),
     async () => {
-      const result = await calculate(values),
+      const result = await simulateTransient(request(values)),
         tau = values.resistance * values.capacitance;
       assert.equal(result.time[0], 0);
       for (const factor of [0.5, 1, 2, 5]) {
@@ -37,14 +38,14 @@ for (const values of [
         );
         assert.ok(
           Math.abs(
-            result.voltage[i] -
+            result.series.voltage[i] -
               values.voltage * (1 - Math.exp(-result.time[i] / tau)),
           ) <
             values.voltage * 0.003,
         );
         assert.ok(
           Math.abs(
-            result.current[i] -
+            result.series.current[i] -
               (values.voltage / values.resistance) *
                 Math.exp(-result.time[i] / tau),
           ) <
@@ -59,7 +60,9 @@ test("the cloned netlist IR renders a schematic with all RC components", async (
   const { createElement } = await import("react");
   const { renderToStaticMarkup } = await import("react-dom/server");
   const { SchematicView } = await import("@spice-ts/ui/react");
-  const result = structuredClone(await calculate(readParams("")));
+  const result = structuredClone(
+    await simulateTransient(request(readParams(""))),
+  );
   const svg = renderToStaticMarkup(
     createElement(SchematicView, { circuit: result.circuit, theme: "light" }),
   );

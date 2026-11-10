@@ -6,3 +6,5 @@ Coursework/*
 
 .quartz/embeds/node_modules/
 .quartz/embeds/dist/
+
+.quartz/embeds/.generated/

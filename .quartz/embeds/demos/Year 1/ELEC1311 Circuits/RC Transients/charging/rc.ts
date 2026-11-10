@@ -1,4 +1,5 @@
-import { simulateTransient } from "./simulation";
+import { runTransientWorker } from "../../../../../toolkit/worker-client";
+import type { simulateTransient } from "../../../../../toolkit/simulation";
 import type { Values } from "./rc-params";
 export function netlist(v: Values) {
   const tau = v.resistance * v.capacitance;
@@ -9,8 +10,8 @@ C1 out 0 ${v.capacitance} IC=0
 .tran ${tau / 200} ${5 * tau} 0 ${tau / 200} UIC
 .end`;
 }
-export async function calculate(values: Values) {
-  const result = await simulateTransient({
+export function request(values: Values) {
+  return {
     netlist: netlist(values),
     signals: [
       { id: "voltage", quantity: "voltage", source: "out" },
@@ -21,13 +22,10 @@ export async function calculate(values: Values) {
       time: 0,
       values: { voltage: 0, current: values.voltage / values.resistance },
     },
-  });
-  return {
-    time: result.time,
-    voltage: result.series.voltage,
-    current: result.series.current,
-    circuit: result.circuit,
-  };
+  } as const;
 }
 
-export type Result = Awaited<ReturnType<typeof calculate>>;
+export type Result = Awaited<ReturnType<typeof simulateTransient>>;
+
+export const simulate = (values: Values, signal: AbortSignal) =>
+  runTransientWorker(request(values), signal);

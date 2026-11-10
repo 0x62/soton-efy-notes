@@ -7,9 +7,14 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
       url: "https://notes.example/_embed/rc/",
     }),
     window = dom.window;
-  const { calculate } = await import("../src/rc");
-  const { readParams } = await import("../src/rc-params");
-  const result = await calculate(readParams(""));
+  const { request } = await import(
+    "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc"
+  );
+  const { readParams } = await import(
+    "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/rc-params"
+  );
+  const { simulateTransient } = await import("../toolkit/simulation");
+  const result = await simulateTransient(request(readParams("")));
   const globals = {
     window,
     document: window.document,
@@ -48,7 +53,9 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     });
   const { createElement, act } = await import("react");
   const { createRoot } = await import("react-dom/client");
-  const { RCTransientCircuit } = await import("../src/RCTransientCircuit");
+  const { RCTransientCircuit } = await import(
+    "../demos/Year 1/ELEC1311 Circuits/RC Transients/charging/RCTransientCircuit"
+  );
   const root = createRoot(window.document.getElementById("root")!);
   try {
     await act(async () => root.render(createElement(RCTransientCircuit)));

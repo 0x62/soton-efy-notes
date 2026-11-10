@@ -67,12 +67,20 @@ await module.link(() => {
 });
 await module.evaluate();
 await context.self.onmessage({
-  data: { voltage: 10, resistance: 10, capacitance: 0.2 },
+  data: {
+    netlist:
+      "RC charging\nV1 in 0 DC 10\nR1 in out 10\nC1 out 0 0.2 IC=0\n.tran 0.01 10 0 0.01 UIC\n.end",
+    signals: [
+      { id: "voltage", quantity: "voltage", source: "out" },
+      { id: "current", quantity: "current", source: "V1", scale: -1 },
+    ],
+    initial: { time: 0, values: { voltage: 0, current: 1 } },
+  },
 });
 assert.ok(!response.error, response.error);
 assert.ok(response.result.time.length > 900);
-assert.ok(Math.abs(response.result.voltage.at(-1) - 9.93262) < 0.01);
-assert.ok(Math.abs(response.result.current.at(-1) - 0.006738) < 0.001);
+assert.ok(Math.abs(response.result.series.voltage.at(-1) - 9.93262) < 0.01);
+assert.ok(Math.abs(response.result.series.current.at(-1) - 0.006738) < 0.001);
 console.log(
   "PASS production worker execution, structured-clone result, shared runtime and root/subpath asset resolution",
 );

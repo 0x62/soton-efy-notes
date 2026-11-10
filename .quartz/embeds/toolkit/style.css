@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @source "./**/*.{ts,tsx}";
+@source "../demos/**/*.{ts,tsx}";
 :root {
   --light: #faf8f8;
   --lightgray: #e5e5e5;

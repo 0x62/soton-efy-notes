@@ -1,3 +1,5 @@
+import { useSimulation } from "./useSimulation";
+import type { Simulation } from "./worker-client";
 import { useEffect, useState, type ReactNode } from "react";
 import { CircuitSchematic } from "./CircuitSchematic";
 import { DARK_THEME, LIGHT_THEME } from "@spice-ts/ui";
@@ -13,7 +15,7 @@ export type CircuitCardProps<
   title?: string;
   description?: string;
   schema: S;
-  createWorker: () => Worker;
+  simulate: Simulation<Record<keyof S, number>, R>;
   renderResult: (
     result: R,
     values: Record<keyof S, number>,
@@ -30,7 +32,7 @@ export function CircuitCard<
   title,
   description,
   schema,
-  createWorker,
+  simulate,
   renderResult,
   summary,
   debounceMs = 200,
@@ -40,43 +42,16 @@ export function CircuitCard<
   const keys = Object.keys(schema) as (keyof S & string)[];
   const theme = useTheme(),
     [values, setValues] = useState(() => readParams(location.search)),
-    [resetVersion, setResetVersion] = useState(0),
-    [result, setResult] = useState<R>(),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(true);
+    [resetVersion, setResetVersion] = useState(0);
+  const { result, error, busy } = useSimulation(
+    simulate,
+    values,
+    debounceMs,
+    timeoutMs,
+  );
   useEffect(() => {
-    setBusy(true);
-    setError("");
     history.replaceState(null, "", "?" + writeParams(values, location.search));
-    let worker: Worker | undefined, timeout: ReturnType<typeof setTimeout>;
-    const timer = setTimeout(() => {
-      worker = createWorker();
-      timeout = setTimeout(() => {
-        worker?.terminate();
-        setError("Simulation timed out. Try resetting the values.");
-        setBusy(false);
-      }, timeoutMs);
-      worker.onmessage = (e) => {
-        clearTimeout(timeout);
-        setResult(e.data.result);
-        setError(e.data.error || "");
-        setBusy(false);
-        worker?.terminate();
-      };
-      worker.onerror = () => {
-        clearTimeout(timeout);
-        setError("Unable to run simulation. Try reloading this card.");
-        setBusy(false);
-        worker?.terminate();
-      };
-      worker.postMessage(values);
-    }, debounceMs);
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(timeout);
-      worker?.terminate();
-    };
-  }, [values, createWorker, debounceMs, timeoutMs]);
+  }, [values]);
   const plotTheme = {
     ...(theme === "dark" ? DARK_THEME : LIGHT_THEME),
     background: chartPalette[theme].background,

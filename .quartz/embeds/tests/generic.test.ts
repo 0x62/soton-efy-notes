@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readNumericParams, writeParams } from "../src/params";
-import { simulateTransient } from "../src/simulation";
-import { chartDomains } from "../src/ResponseChart";
+import { readNumericParams, writeParams } from "../toolkit/params";
+import { simulateTransient } from "../toolkit/simulation";
+import { chartDomains } from "../toolkit/ResponseChart";
 import { readFileSync } from "node:fs";
 
 test("a resistor divider uses its own names, limits, netlist and three signals", async () => {
@@ -112,7 +112,7 @@ test("shared layers do not import RC demo or encode its parameter bounds", () =>
     "simulation.ts",
   ]) {
     const text = readFileSync(
-      new URL(`../src/${file}`, import.meta.url),
+      new URL(`../toolkit/${file}`, import.meta.url),
       "utf8",
     );
     assert.doesNotMatch(
