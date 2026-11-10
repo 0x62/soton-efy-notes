@@ -70,23 +70,32 @@ The preview workflow now performs these steps. For standalone development use
 
 ## Validation and known limits
 
-- Nine tests cover defaults/invalid parameters, analytic RC agreement at 0.5, 1,
+- Eleven tests cover defaults/invalid parameters, analytic RC agreement at 0.5, 1,
   2 and 5 time constants across four parameter sets, structured-clone schematic
   rendering, current units, invalid-draft resets at unchanged defaults, and host
-  origin/source/height/theme/SPA handling.
+  origin/source/height/theme/SPA handling, plus light/dark trace contrast.
 - The production-worker smoke test executes the built worker in a browser-like
   VM context, checks returned numerical data and structured cloning, and verifies
   shared runtime imports plus relative asset resolution at root and Pages subpaths.
 - Quartz typecheck/build and its existing checks passed: 71 canonical routes,
   73 legacy redirects, 5,183 SPA route pairs, 436 Year 1 heading destinations.
-- Full browser QA remains outstanding. Chromium launch in this workspace fails
-  on an OS socket restriction; the available separate browser cannot connect to
-  the workspace server. The browser-download service also returned a truncated
-  archive. Run `npx playwright install chromium`, then
+- Live Chromium QA on the public Pages preview verified circuit simulation,
+  voltage/resistance/capacitance edits, invalid-draft reset, keyboard sliders,
+  keyboard access to the numeric table, theme propagation, and SPA navigation
+  away and back. The card fits desktop (823 px inner width), narrow (468 px)
+  and phone-size (301 px) frames without horizontal overflow. Native window
+  resizing plus browser zoom supplied an effective 333 px phone viewport.
+  Light-mode trace contrast and dark JSXGraph axis labels were corrected during QA.
+- Local headless-browser launch remains restricted by the workspace OS. For a
+  repeatable local browser suite, run `npx playwright install chromium`, then
   `QUARTZ_PUBLIC=/absolute/path/to/quartz/public npm run test:browser` in a normal
-  environment. Set `CHROMIUM_PATH` to use an existing browser. This exercises the
-  production iframe, worker, controls, mobile width, theme and maths entry; inspect
-  the layout and keyboard interactions before publication. No visual QA is claimed.
+  environment, or set `CHROMIUM_PATH` to an existing browser. Live checks were
+  performed through the available browser UI; this local suite was not claimed
+  as passed. Safari/Firefox and touch-device testing remain future checks.
+- The existing Quartz Graph View reports `CanvasRenderer is not yet implemented`
+  in the cloud browser after navigation (outside the React iframe); the circuit
+  canvas plots render successfully. Browser-extension metadata errors are also
+  unrelated to the embed. No Quartz Graph View change is included here.
 - `@spice-ts/ui@0.3.1` hardcodes volts for transient axes/cursors. `unit-patch.mjs`
   applies a narrowly checked build transform so explicit `I(...)` probes use A.
   Tests exercise the patched renderer. An upstream layout change fails the build;
@@ -104,5 +113,5 @@ The preview workflow now performs these steps. For standalone development use
   lazy loading avoids initializing every card at page load. Charts remain mounted
   while recalculating so inputs do not cause large height jumps.
 
-No push, PR, merge or deployment was performed. Review the local diff and complete
-browser QA before publishing through the existing preview branch workflow.
+Published with explicit approval to the existing `experiment/quartz-pages` preview
+branch and PR #15. No merge or production-domain change was performed.
