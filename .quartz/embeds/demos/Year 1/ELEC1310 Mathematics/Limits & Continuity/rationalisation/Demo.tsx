@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -63,6 +64,13 @@ export function Demo() {
     step = h(v);
   return (
     <MathsCard>
+      <Investigation question="Why can the transformed expression be evaluated at h = 0?">
+        <p>
+          {
+            "Multiplying by the conjugate exposes a factor h that cancels only for h ≠ 0. The remaining denominator tends to 2√a, which is non-zero. The original quotient still has a hole."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Square root example"
         value={v.example}

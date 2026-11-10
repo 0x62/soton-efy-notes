@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -86,6 +87,13 @@ export function Demo() {
     w = counterexample(v.epsilon, v.delta);
   return (
     <MathsCard>
+      <Investigation question="Can your input radius meet every requested output tolerance?">
+        <p>
+          {
+            "For this line, output error is twice input error. Any 0 < δ ≤ ε/2 works for every allowed input. Equality is safe because the input neighbourhood is open. A few successful samples would not prove that guarantee."
+          }
+        </p>
+      </Investigation>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <MathsSlider
           label="Output tolerance ε"

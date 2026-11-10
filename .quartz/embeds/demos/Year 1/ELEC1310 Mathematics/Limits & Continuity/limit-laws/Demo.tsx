@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -78,6 +79,13 @@ export function Demo() {
   const { values: v, set, theme } = useMathsModel(schema);
   return (
     <MathsCard>
+      <Investigation question="Can the limit be calculated from the limits of the pieces?">
+        <p>
+          {
+            "As x approaches 1, x² − 1 approaches 0 and x + 1 approaches 2. Combine these limits only when the rule applies; the quotient is valid because its denominator tends to 2, not zero."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Limit law"
         value={v.operation}

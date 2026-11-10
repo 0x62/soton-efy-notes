@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -102,6 +103,13 @@ export function Demo() {
     far = 10 ** v.p;
   return (
     <MathsCard>
+      <Investigation question="Is the input growing, or is the output growing?">
+        <p>
+          {
+            "At a vertical asymptote the input approaches a finite location while the output grows without bound. At a horizontal asymptote the input tends to infinity while the output tends to a finite height."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Asymptote example"
         value={v.mode}

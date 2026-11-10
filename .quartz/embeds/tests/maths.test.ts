@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  targetErrors,
+  continuityKind,
+  correctBisectionHalf,
   distance,
   secantSlope,
   sinc,
@@ -94,4 +97,64 @@ test("all twelve meaningful lesson examples are directly authored, titled and la
       .size,
     12,
   );
+});
+
+test("a narrow sample pair cannot rescue a wrong target or establish all tolerances", () => {
+  for (const target of [3, 3.9, 4, 4.1, 5]) {
+    let previous = Infinity;
+    for (const radius of [1, 0.1, 0.01, 0.001]) {
+      const errors = targetErrors(target, radius);
+      const actual = Math.max(
+        Math.abs(4 - radius - target),
+        Math.abs(4 + radius - target),
+      );
+      assert.ok(Math.abs(actual - errors.sample) < 1e-14);
+      assert.ok(errors.sample < previous);
+      assert.equal(errors.residual === 0, target === 4);
+      previous = errors.sample;
+    }
+  }
+  assert.ok(targetErrors(3.9, 0.001).sample < 0.2);
+  assert.ok(
+    targetErrors(3.9, 0.001).residual > 0.02,
+    "passing one tolerance does not prove the proposed limit",
+  );
+});
+test("point repairs work only when the two side limits agree", () => {
+  assert.equal(continuityKind(7, 0), "continuous");
+  for (const k of [4, 6.9, 7.1, 10])
+    assert.equal(continuityKind(k, 0), "removable");
+  for (let k = 4; k <= 10; k += 0.1) assert.equal(continuityKind(k, 1), "jump");
+});
+test("learner bisection choices retain the signed bracket and reject the other half", () => {
+  for (let i = 0; i < 12; i++) {
+    const { a, b } = bracket(i),
+      m = (a + b) / 2;
+    const left = correctBisectionHalf(i) === "left";
+    assert.ok((left ? cubic(a) * cubic(m) : cubic(m) * cubic(b)) < 0);
+    assert.ok((left ? cubic(m) * cubic(b) : cubic(a) * cubic(m)) > 0);
+    assert.deepEqual(bracket(i + 1), left ? { a, b: m } : { a: m, b });
+  }
+});
+test("lesson retains original anchors and places secondary investigations in native disclosures", () => {
+  const note = readFileSync(
+    resolve("../../Year 1/ELEC1310 Mathematics/Limits & Continuity.md"),
+    "utf8",
+  );
+  for (const h of [
+    "Meaning of a limit",
+    "One-sided limits and non-existence",
+    "Continuity",
+    "Limit laws",
+    "Algebraic evaluation",
+    "Squeeze theorem",
+    "Infinite limits and asymptotes",
+    "Intermediate value theorem",
+    "Formal definition",
+  ])
+    assert.ok(note.includes("## " + h));
+  assert.equal((note.match(/<details>/g) || []).length, 7);
+  assert.equal((note.match(/<\/details>/g) || []).length, 7);
+  assert.ok(note.indexOf("## Continuity") < note.indexOf("## Limit laws"));
+  assert.ok(!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(note));
 });

@@ -32,3 +32,22 @@ export const oscillationPair = (n: number) =>
     1 / ((3 * Math.PI) / 2 + 2 * Math.PI * n),
   ] as const;
 export const n = (v: number) => Number(v.toPrecision(8)).toString();
+
+/** Errors at the two symmetric probes; not a proof for an arbitrary function. */
+export function targetErrors(target: number, radius: number) {
+  return {
+    sample: Math.abs(4 - target) + radius,
+    residual: Math.abs(4 - target),
+  };
+}
+export function continuityKind(k: number, jump: number) {
+  return jump !== 0
+    ? "jump"
+    : Math.abs(k - 7) < 1e-10
+      ? "continuous"
+      : "removable";
+}
+export function correctBisectionHalf(iteration: number) {
+  const { a, b } = bracket(iteration);
+  return cubic((a + b) / 2) > 0 ? "left" : "right";
+}

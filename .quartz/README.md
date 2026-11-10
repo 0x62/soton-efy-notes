@@ -1,8 +1,8 @@
 # Experimental Quartz publishing
 
 This is an independent GitHub Pages preview. It does not change the Obsidian
-vault, `publish.css`, `uni.bl.je`, DNS, or the default branch. Teaching-note
-changes are not part of this experiment.
+vault, `publish.css`, `uni.bl.je`, DNS, or the default branch. Approved teaching-note and interactive-demo changes also live on this branch;
+they do not alter the default branch or production Obsidian site.
 
 ## Deployment
 

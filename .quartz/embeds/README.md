@@ -285,3 +285,13 @@ identified. Tests check these models, controls, routing and production isolation
 
 Quartz hover previews replace demo iframes with their titled links before inserting
 preview content, avoiding duplicate React/JSXGraph instances in hidden popovers.
+
+### Lesson investigations
+
+`Investigation` presents a conceptual question with optional reasoning. It does
+not prescribe interface gestures. Prefer a meaningful contrast or decision over
+an animation that merely displays the answer: the opening target experiment,
+unrepairable continuity jump, damped/undamped comparison, and signed bisection
+choices are examples. A single successful tolerance or finite sample is not a
+proof. Six transfer experiments and the algebra refresher use native disclosures
+in the note; their routes and original content remain available.

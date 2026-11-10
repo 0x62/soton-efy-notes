@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -67,6 +68,13 @@ export function Demo() {
     input = x(v);
   return (
     <MathsCard>
+      <Investigation question="Does cancelling the factor also fill the hole?">
+        <p>
+          {
+            "The cancellation is valid only for x ≠ 5. It proves that nearby values equal x + 5, so they approach 10. It does not assign an original value at x = 5."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Side of approach to five"
         value={v.side}

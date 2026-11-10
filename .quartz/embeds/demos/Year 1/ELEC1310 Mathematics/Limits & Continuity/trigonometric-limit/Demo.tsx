@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -65,6 +66,13 @@ export function Demo() {
     input = x(v);
   return (
     <MathsCard>
+      <Investigation question="Do both bounding functions force the same answer?">
+        <p>
+          {
+            "In radians, cos x < sin x / x < 1 for 0 < |x| < π/2. The two bounds approach 1. The ratio is even, so both sides agree, although the original expression is undefined at zero."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Sign of angle"
         value={v.side}

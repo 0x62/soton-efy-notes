@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -72,6 +73,13 @@ export function Demo() {
     step = h(v);
   return (
     <MathsCard>
+      <Investigation question="Do the slopes agree when h approaches zero from opposite sides?">
+        <p>
+          {
+            "For y = x² at x = 1, the secant slope is 2 + h. Positive h gives slopes above 2; negative h gives slopes below 2. Both approach 2 without ever requiring division by zero."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Side of approach"
         value={v.side}

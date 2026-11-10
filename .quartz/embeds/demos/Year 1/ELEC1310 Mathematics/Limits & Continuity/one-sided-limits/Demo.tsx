@@ -1,5 +1,6 @@
 import {
   MathsCard,
+  Investigation,
   useMathsModel,
   MathsSlider,
   Choices,
@@ -112,6 +113,13 @@ export function Demo() {
     pair = oscillationPair(v.index);
   return (
     <MathsCard>
+      <Investigation question="Is the problem disagreement, a domain boundary, or no settled output?">
+        <p>
+          {
+            "A jump has two different one-sided limits. At the square-root endpoint, only the right-hand domain exists. The oscillation sequences retain opposite outputs arbitrarily close to zero, disproving a common limit."
+          }
+        </p>
+      </Investigation>
       <Choices
         label="Type of limit"
         value={v.mode}
