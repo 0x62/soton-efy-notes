@@ -1,14 +1,14 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { SchematicView } from "@spice-ts/ui/react";
 import { layoutSchematic, type ThemeConfig } from "@spice-ts/ui";
-import type { Result } from "./rc";
+import type { ComponentProps } from "react";
 
 /** Add keyboard/touch inspection to the pinned UI's pointer-only component tooltips. */
 export function CircuitSchematic({
   circuit,
   theme,
 }: {
-  circuit: Result["circuit"];
+  circuit: ComponentProps<typeof SchematicView>["circuit"];
   theme: ThemeConfig;
 }) {
   const ref = useRef<HTMLDivElement>(null),

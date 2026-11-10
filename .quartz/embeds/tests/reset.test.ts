@@ -43,11 +43,11 @@ test("Reset example clears invalid drafts at unchanged default values", async ()
   // Import after installing the DOM so React enables its input event handling.
   const { createElement, act } = await import("react");
   const { createRoot } = await import("react-dom/client");
-  const { CircuitCard } = await import("../src/CircuitCard");
-  const { schema } = await import("../src/params");
+  const { RCTransientCircuit } = await import("../src/RCTransientCircuit");
+  const { schema } = await import("../src/rc-params");
   const root = createRoot(window.document.getElementById("root")!);
   try {
-    await act(async () => root.render(createElement(CircuitCard)));
+    await act(async () => root.render(createElement(RCTransientCircuit)));
     const reset = [...window.document.querySelectorAll("button")].find(
       (button) => button.textContent === "Reset example",
     )!;

@@ -94,7 +94,7 @@ The preview workflow now performs these steps. For standalone development use
   as passed. Safari/Firefox and touch-device testing remain future checks.
 - The existing Quartz Graph View reports `CanvasRenderer is not yet implemented`
   in the cloud browser after navigation (outside the React iframe); the circuit
-  canvas plots render successfully. Browser-extension metadata errors are also
+  SVG plot renders successfully. Browser-extension metadata errors are also
   unrelated to the embed. No Quartz Graph View change is included here.
 - `@spice-ts/ui@0.3.1` hardcodes volts for transient axes/cursors. `unit-patch.mjs`
   applies a narrowly checked build transform so explicit `I(...)` probes use A.
@@ -121,7 +121,7 @@ branch and PR #15. No merge or production-domain change was performed.
 
 `CircuitCard` accepts optional `title` and `description`; both default to absent.
 The compact default shows controls, a netlist-derived schematic and a dual-axis
-SVG chart. Voltage is a solid blue trace (left axis); current is a dashed amber
+SVG chart. Voltage is a solid blue trace (left axis); current is a solid amber
 trace (right axis), with a visible legend. Charts do not intercept wheel events,
 zoom or pan. Pointer/touch inspection puts a tooltip next to the contact point;
 arrow keys and Home/End inspect the same data. Escape dismisses tooltips.
@@ -129,3 +129,35 @@ arrow keys and Home/End inspect the same data. Escape dismisses tooltips.
 and focusable component targets; its DOM-shape contract is regression tested.
 Numeric readings and simulation status are screen-reader-only. Physical touch
 hardware testing remains distinct from DOM pointer-event and browser emulation.
+
+## Reusable circuit API
+
+`CircuitCard<S, R>` owns parameter controls, URL round trips, reset, debouncing,
+worker cancellation/timeouts, theme and schematic. Supply `schema`, a stable
+`createWorker` factory, and `renderResult(result, values, theme)`; optional
+`summary(values)`, title and description default to absent. Workers receive the
+schema's values and reply with `{ result }` (including a `circuit` IR) or `{ error }`.
+Keep schema and worker factory stable for the lifetime of an embed.
+
+`simulateTransient({ netlist, signals, initial? })` accepts any transient netlist.
+Signals specify a unique ID, voltage node/current branch and optional scale.
+It returns `{ time, series, circuit }` and disposes the solver even on failure.
+Known initial conditions belong to the demo. Other analyses can supply their own
+worker/result type without changing CircuitCard.
+
+`ResponseChart` accepts an arbitrary increasing x grid with label/formatter,
+one or two named axes with units/formatters and optional domains, and any number
+of series referencing those axes. Colors and optional dash styles are supplied
+by the caller; both RC traces are solid. Automatic domains include negative data.
+The chart has no SPICE, RC, voltage/current or time-specific assumptions.
+
+`readNumericParams(schema, query)` and `writeParams(values, query)` are shared;
+there is no global parameter schema or resistance limit. `rc-params.ts` owns the
+RC demo's SI-unit ranges. `RCTransientCircuit.tsx` composes the generic pieces,
+RC summary, trace mapping and accessible sample table; `rc.ts` owns its netlist,
+initial state and current sign convention.
+
+`tests/generic.test.ts` demonstrates a distinct -12 V resistor divider with
+10 kΩ/20 kΩ resistors and three signals, verifies analytic divider results, and
+checks frequency/gain plotting with explicit signed dB axes. Shared modules are
+also checked for accidental imports of the RC demo.

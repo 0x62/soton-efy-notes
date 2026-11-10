@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { calculate } from "../src/rc";
-import { readParams, writeParams } from "../src/params";
+import { readParams } from "../src/rc-params";
+import { writeParams } from "../src/params";
 test("URL values are finite, bounded, SI quantities with stable roundtrip", () => {
   const defaults = readParams("");
   for (const input of [

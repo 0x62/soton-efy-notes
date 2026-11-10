@@ -1,20 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { CircuitSchematic } from "./CircuitSchematic";
-import { ResponseChart } from "./ResponseChart";
 import { DARK_THEME, LIGHT_THEME } from "@spice-ts/ui";
-import { readParams, writeParams, keys, schema } from "./params";
-import type { Result } from "./rc";
+import { readNumericParams, writeParams, type NumericRule } from "./params";
+import type { ComponentProps } from "react";
 import { useTheme } from "./runtime";
 import { Button, Card, Parameter } from "./ui";
 import { chartPalette } from "./palette";
-export function CircuitCard({
-  title,
-  description,
-}: { title?: string; description?: string } = {}) {
+export type CircuitCardProps<S extends Record<string, NumericRule>, R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] }> = {
+  title?: string;
+  description?: string;
+  schema: S;
+  createWorker: () => Worker;
+  renderResult: (result: R, values: Record<keyof S, number>, theme: "light" | "dark") => ReactNode;
+  summary?: (values: Record<keyof S, number>) => ReactNode;
+  debounceMs?: number;
+  timeoutMs?: number;
+};
+export function CircuitCard<S extends Record<string, NumericRule>, R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] }>({
+  title, description, schema, createWorker, renderResult, summary, debounceMs = 200, timeoutMs = 10000,
+}: CircuitCardProps<S, R>) {
+  const readParams = (query: string) => readNumericParams(schema, query);
+  const keys = Object.keys(schema) as (keyof S & string)[];
   const theme = useTheme(),
     [values, setValues] = useState(() => readParams(location.search)),
     [resetVersion, setResetVersion] = useState(0),
-    [result, setResult] = useState<Result>(),
+    [result, setResult] = useState<R>(),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(true);
   useEffect(() => {
@@ -23,14 +33,12 @@ export function CircuitCard({
     history.replaceState(null, "", "?" + writeParams(values, location.search));
     let worker: Worker | undefined, timeout: ReturnType<typeof setTimeout>;
     const timer = setTimeout(() => {
-      worker = new Worker(new URL("./worker.ts", import.meta.url), {
-        type: "module",
-      });
+      worker = createWorker();
       timeout = setTimeout(() => {
         worker?.terminate();
         setError("Simulation timed out. Try resetting the values.");
         setBusy(false);
-      }, 10000);
+      }, timeoutMs);
       worker.onmessage = (e) => {
         clearTimeout(timeout);
         setResult(e.data.result);
@@ -45,13 +53,13 @@ export function CircuitCard({
         worker?.terminate();
       };
       worker.postMessage(values);
-    }, 200);
+    }, debounceMs);
     return () => {
       clearTimeout(timer);
       clearTimeout(timeout);
       worker?.terminate();
     };
-  }, [values]);
+  }, [values, createWorker, debounceMs, timeoutMs]);
   const plotTheme = {
     ...(theme === "dark" ? DARK_THEME : LIGHT_THEME),
     background: chartPalette[theme].background,
@@ -61,8 +69,6 @@ export function CircuitCard({
     grid: theme === "dark" ? "#393639" : "#e5e5e5",
     font: "system-ui, sans-serif",
   };
-  const tau = values.resistance * values.capacitance;
-  const format = (n: number) => Number(n.toPrecision(4)).toString();
   return (
     <Card>
       {(title || description) && (
@@ -84,9 +90,7 @@ export function CircuitCard({
         ))}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p>
-          τ = RC = <strong>{format(tau)} s</strong>
-        </p>
+        {summary?.(values)}
         <Button
           onClick={() => {
             setValues(readParams(""));
@@ -107,38 +111,7 @@ export function CircuitCard({
       {result && !error && (
         <div aria-busy={busy} className="space-y-5">
           <CircuitSchematic circuit={result.circuit} theme={plotTheme} />
-          <ResponseChart result={result} theme={theme} />
-          <div className="sr-only">
-            <table className="w-full text-sm">
-              <caption>SPICE samples nearest each time constant</caption>
-              <thead>
-                <tr>
-                  <th>Time (s)</th>
-                  <th>Voltage (V)</th>
-                  <th>Current (A)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[0, 1, 2, 3, 4, 5].map((n) => {
-                  const i = result.time.reduce(
-                    (best, t, j) =>
-                      Math.abs(t - n * tau) <
-                      Math.abs(result.time[best] - n * tau)
-                        ? j
-                        : best,
-                    0,
-                  );
-                  return (
-                    <tr key={n}>
-                      <td>{format(result.time[i])}</td>
-                      <td>{format(result.voltage[i])}</td>
-                      <td>{format(result.current[i])}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          {renderResult(result, values, theme)}
         </div>
       )}
     </Card>

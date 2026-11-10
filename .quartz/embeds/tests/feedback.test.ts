@@ -8,7 +8,7 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     }),
     window = dom.window;
   const { calculate } = await import("../src/rc");
-  const { readParams } = await import("../src/params");
+  const { readParams } = await import("../src/rc-params");
   const result = await calculate(readParams(""));
   const globals = {
     window,
@@ -48,10 +48,10 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     });
   const { createElement, act } = await import("react");
   const { createRoot } = await import("react-dom/client");
-  const { CircuitCard } = await import("../src/CircuitCard");
+  const { RCTransientCircuit } = await import("../src/RCTransientCircuit");
   const root = createRoot(window.document.getElementById("root")!);
   try {
-    await act(async () => root.render(createElement(CircuitCard)));
+    await act(async () => root.render(createElement(RCTransientCircuit)));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 250));
     });
@@ -75,7 +75,8 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
       voltage.getAttribute("stroke"),
       current.getAttribute("stroke"),
     );
-    assert.ok(current.getAttribute("stroke-dasharray"));
+    assert.equal(current.getAttribute("stroke-dasharray"), null);
+    assert.equal(voltage.getAttribute("stroke-dasharray"), null);
     const chart = doc.querySelector('svg[role="slider"]')!;
     await act(async () =>
       chart.dispatchEvent(
@@ -85,7 +86,7 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     assert.equal(chart.getAttribute("aria-valuenow"), "10");
     assert.match(
       doc.querySelector('[role="tooltip"]')!.textContent!,
-      /Voltage:.*Current:/,
+      /Voltage \(V\):.*Current \(A\):/,
     );
     const before = [voltage.getAttribute("d"), current.getAttribute("d")];
     const wheel = new window.WheelEvent("wheel", {
@@ -149,7 +150,7 @@ test("minimal card has dual axes, non-zooming pointer/keyboard chart and compone
     }
     await act(async () =>
       root.render(
-        createElement(CircuitCard, {
+        createElement(RCTransientCircuit, {
           title: "Optional title",
           description: "Optional description",
         }),
