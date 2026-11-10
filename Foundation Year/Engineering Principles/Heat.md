@@ -141,6 +141,19 @@ $$
 L_{F}=79.5\ cal/g = 333\ kJ/kg
 $$
 
+### Choosing the heat equation
+
+```mermaid
+flowchart TD
+    A["Split the heating process into stages"] --> B{"Does this stage change phase?"}
+    B -->|"No: one phase, temperature changes"| C["Use Q = mc times temperature change"]
+    B -->|"Yes: phase change at transition temperature"| D["Use Q = mL"]
+    C --> E["Add the heat for all stages"]
+    D --> E
+```
+
+For a pure substance at fixed pressure, temperature stays constant during a phase-change stage. Use the appropriate specific heat $c$ for each phase and latent heat $L$ for each transition.
+
 ## Heat Transfer
 
 There are three transfer mechanisms that allow heat to be transferred between two objects: conduction, convection, and radiation.

@@ -255,6 +255,21 @@ To solve these problems, there is a process to follow:
 
 If there seems to be more unknowns than equations, don't forget to include things like friction and reaction forces.
 
+### From forces to motion
+
+```mermaid
+flowchart TD
+    A["Choose one body and draw its free-body diagram"] --> B["Choose positive axes and resolve all forces"]
+    B --> C["Apply sum of forces = mass times acceleration on each axis"]
+    C --> D["Add constraints: friction, shared acceleration or tension as appropriate"]
+    D --> E["Solve for forces and acceleration"]
+    E --> F{"Acceleration constant?"}
+    F -->|"Yes"| G["Use constant-acceleration kinematics"]
+    F -->|"No"| H["Use a time-dependent model"]
+```
+
+For connected bodies, repeat the force balance for each body. Do not place an action-reaction pair on the same body: the two forces act on different bodies.
+
 ## Projectiles
 
 A projectile is a moving body on which the only force acting is the force of gravity. Consider a body with mass $m$ that is launched from some point at angle $\theta$ to the horizontal. We'd like toe be able to predict:

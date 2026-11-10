@@ -43,6 +43,21 @@ A $k$-input LUT can implement any single-output Boolean function of those $k$ in
 
 The implementation tools must decide which logic goes into which blocks, where those blocks are placed, and how connections are routed. Two logically equivalent descriptions can produce different resource usage or timing.
 
+A simplified configurable block can select the LUT result directly or pass it through a register. The drawing illustrates the distinction, not a device-specific FPGA architecture.
+
+```mermaid
+flowchart LR
+    I["Logic inputs"] --> L["LUT<br/>combinational function"]
+    L -->|D| R["Register"]
+    C["Clock"] --> R
+    L -->|direct result| M["Output selection"]
+    R -->|stored Q| M
+    S["Configuration bit"] -.-> M
+    M --> O["Routing to other blocks"]
+```
+
+Choosing the direct path does not make the LUT clocked. The register path retains the value sampled at its active edge.
+
 ## Hardware description languages
 
 A **hardware description language (HDL)** describes a circuit. SystemVerilog can describe signals, combinational logic and clocked state, and can be used for both simulation and synthesis.

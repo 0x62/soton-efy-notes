@@ -48,6 +48,19 @@ A PMOS above the output and NMOS below it share input $A$:
 
 Therefore $F=\bar A$. Ideally, neither stable input state creates a direct conducting path from supply to ground.
 
+The switch-level inverter model makes the two alternative supply paths explicit. The dashed lines are gate-control connections, not conducting paths through the input.
+
+```mermaid
+flowchart TD
+    V["VDD"] --- P["PMOS switch<br/>on when A = 0"]
+    P --- F["Output F"]
+    F --- N["NMOS switch<br/>on when A = 1"]
+    N --- G["Ground"]
+    A["Input A"] -.-> P
+    A -.-> N
+```
+
+
 ### NAND
 
 Two NMOS devices in series pull the output low only when both inputs are high. Two PMOS devices in parallel pull the output high when either input is low:

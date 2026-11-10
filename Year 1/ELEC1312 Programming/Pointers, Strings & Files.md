@@ -35,6 +35,19 @@ int *p = &count;
 
 `p` is the pointer's value; `&p` is the address of the pointer object itself; `*p` is the integer object it points to. To print an object pointer, use `printf("%p\n", (void *)p)`.
 
+### A pointer and its target are different objects
+
+After the example's assignment `*p = 9`:
+
+```mermaid
+flowchart LR
+    P["Pointer object p: stores the address of count"] -->|"dereference *p"| C["Integer object count: value 9"]
+    AP["&p: address of the pointer object"] -.-> P
+    AC["&count: address of the integer object"] -.-> C
+```
+
+Both `count` and `*p` access the same integer. Assigning through `*p` changes that integer, not the address stored in `p`. The boxes are conceptual objects, not a claim about their physical order or byte size.
+
 Initialising a pointer to `NULL` gives it a known null value, not a usable object. Dereferencing `NULL`, an uninitialised pointer, an out-of-range pointer or a pointer to an object whose lifetime has ended is invalid. A pointer does not automatically allocate storage for the object it might later point to.
 
 Pointers also support **memory-mapped hardware**: an embedded system can expose device registers at documented addresses. This is why direct address access matters beyond ordinary variables. Arbitrary addresses are not safe to access; the hardware platform and its interfaces determine which accesses are valid.[^2]
@@ -188,6 +201,25 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 ```
+
+### Read first, then interpret the result
+
+```mermaid
+flowchart TD
+    O["Open input stream"] --> OK{"fopen returned NULL?"}
+    OK -->|Yes| FAIL["Report open failure; stop"]
+    OK -->|No| R["Read: ch = fgetc(input), stored as int"]
+    R --> EOFTEST{"ch == EOF?"}
+    EOFTEST -->|No| C["Process the character; count newline if present"]
+    C --> R
+    EOFTEST -->|Yes| ERR["Save ferror(input) result"]
+    ERR --> CLOSE["Close input; check fclose result"]
+    CLOSE --> STATUS{"Any read or close failure?"}
+    STATUS -->|Yes| BAD["Report failure"]
+    STATUS -->|No| DONE["Report newline count"]
+```
+
+`EOF` ends the read loop, but is not by itself proof of successful completion: inspect the error state before closing the stream. This follows the example's cleanup path even when a read fails.
 
 This counts newline characters, not necessarily all logical lines: an unterminated final line adds no newline character. The distinction between the measurement and the desired result matters even when the program compiles and runs correctly.
 

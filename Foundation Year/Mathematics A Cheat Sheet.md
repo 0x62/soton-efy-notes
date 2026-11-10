@@ -1186,6 +1186,21 @@ Both answers are correct, but the first one is more compact.
 ## Solving triangle problems
 
 A triangle $\Delta ABC$ has angles $\angle B=21^\circ,\ \angle C=46^\circ$ and side $AB=9$ cm. Find the side $AC$ (to 3dp).
+### Choosing a triangle method
+
+```mermaid
+flowchart TD
+    A["Mark known sides and angles"] --> B{"Right-angled triangle?"}
+    B -->|"Yes"| C["Consider Pythagoras or sine, cosine and tangent ratios"]
+    B -->|"No"| D{"Known opposite side-angle pair?"}
+    D -->|"Yes"| E["Sine rule; check both angle candidates for SSA"]
+    D -->|"No"| F{"SAS or SSS known?"}
+    F -->|"Yes"| G["Cosine rule"]
+    F -->|"No"| H["Use angle sum or look for more information"]
+```
+
+SAS means two sides and their included angle; SSS means three sides. SSA may give zero, one or two valid triangles. When two angles are known, find the third first if it creates a useful opposite pair.
+
 ### Rules of Triangles
 
 **Standard Labelling:** Side $a$ is opposite Angle $A$. Side $b$ is opposite Angle $B$. Side $c$ is opposite Angle $C$.

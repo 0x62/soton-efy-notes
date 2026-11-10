@@ -64,6 +64,20 @@ The second derivative gives a shorter test when $f'(c)=0$:
 
 Here $f''=2x-5$, so $f''(1)=-3$ and $f''(4)=3$, agreeing with the sign-change test. At zero, $x^4$, $-x^4$ and $x^3$ all have first and second derivatives zero but have different behaviour.
 
+```mermaid
+flowchart TD
+    A["Critical point in the domain"] --> B["Inspect derivative signs on either side"]
+    B -->|"Positive then negative"| C["Local maximum"]
+    B -->|"Negative then positive"| D["Local minimum"]
+    B -->|"Same sign on both sides"| E["Neither by this sign test"]
+    A --> F["Stationary point with second derivative available"]
+    F -->|"Second derivative positive"| D
+    F -->|"Second derivative negative"| C
+    F -->|"Second derivative zero"| G["Inconclusive: use another test"]
+```
+
+The sign test assumes the function is continuous at the critical point and the indicated derivative signs hold on neighbouring intervals. A zero second derivative is not a verdict: $x^4$, $-x^4$ and $x^3$ at zero give different outcomes.
+
 ## Concavity and inflection
 
 $f''>0$ means the gradient is increasing, so the graph is concave up. $f''<0$ means the gradient is decreasing, so it is concave down. Concavity is independent of whether the function itself is increasing: a negative gradient becoming less negative is concave up.[^1]

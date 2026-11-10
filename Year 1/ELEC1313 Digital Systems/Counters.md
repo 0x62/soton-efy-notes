@@ -129,6 +129,18 @@ Hold is a separate minimum-delay constraint. With the same ideal zero-skew assum
 $$t_{\mathrm{CQ,min}}+t_{\mathrm{logic,min}}\geq t_{\mathrm{hold}}.$$
 Slowing the clock does not generally repair a hold violation because hold concerns changes just after the **same** edge. Real timing analysis must also account for clock skew and uncertainty.
 
+A register-to-register timing path runs from a launching Q output through combinational logic to a receiving D input. The clock connects to the registers, not to the logic block.
+
+```mermaid
+flowchart LR
+    L["Launching flip-flop"] -->|Q after clock-to-Q delay| G["Combinational logic<br/>path delay"]
+    G -->|D stable before capture| R["Receiving flip-flop"]
+    C["Common clock"] --> L
+    C --> R
+```
+
+The setup check follows data launched on one edge to capture on the next. The hold check concerns the earliest new data following the same edge.
+
 ## Worked maximum-frequency calculation
 
 Suppose a synchronous counter has the following delays:[^timingexample]

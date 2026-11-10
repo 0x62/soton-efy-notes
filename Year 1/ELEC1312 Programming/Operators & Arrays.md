@@ -61,6 +61,20 @@ A range check requires two comparisons: `x >= 0 && x <= 10`. The mathematical-lo
 
 Logical operators are not the same as bitwise `&` and `|`. Use the logical versions to combine truth conditions.
 
+### Short-circuit evaluation of AND
+
+For `denominator != 0 && numerator / denominator > 2`:
+
+```mermaid
+flowchart TD
+    D{"denominator != 0?"} -->|No| F["Result: false; do not divide"]
+    D -->|Yes| Q{"numerator / denominator > 2?"}
+    Q -->|No| F2["Result: false"]
+    Q -->|Yes| T["Result: true"]
+```
+
+The first test guards the division. Reversing the operands would lose that protection; other arithmetic requirements still apply, including representability of an integer quotient.
+
 ## Precedence
 
 Precedence controls grouping: `a + b * c` means `a + (b * c)`, while `(a + b) * c` changes the calculation. Parentheses clarify intent, especially when arithmetic and comparisons are combined.

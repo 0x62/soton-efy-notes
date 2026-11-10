@@ -19,6 +19,19 @@ $$
 
 Where $M$ is **mass**, $L$ is **length**, $T$ is **time**. Adding or subtracting quantities is only meaningful if their dimensions are the same. The dimensions of a product are the product of the dimensions.
 
+### Dimensional check
+
+```mermaid
+flowchart LR
+    A["Write each quantity in base dimensions"] --> B["Apply powers, products and quotients"]
+    B --> C["Compare dimensions of every added term and both sides"]
+    C --> D{"Do they match?"}
+    D -->|"No"| E["Equation cannot be dimensionally correct"]
+    D -->|"Yes"| F["Necessary check passed; still check constants and physics"]
+```
+
+Matching dimensions can rule out errors, but cannot prove an equation is correct or determine dimensionless numerical factors.
+
 ### Worked example
 
 A pascal, $Pa$ is defined as the pressure caused by a force of $1N$ over $1m^2$. What are its dimensions?

@@ -104,6 +104,17 @@ Flash retains its contents without power. SRAM does not. EEPROM provides persist
 
 The flash also includes a boot section. A **bootloader** is a program that supports loading an application into flash; it consumes part of the device's program-memory capacity. The application cannot assume that the entire advertised flash capacity is free for its own instructions.
 
+### Separate memory spaces, different roles
+
+```mermaid
+flowchart LR
+    F["Program flash: instructions, including bootloader"] -->|"instruction fetch"| CPU["AVR CPU"]
+    CPU <-->|"runtime data access"| D["Data address space: CPU registers, I/O registers and SRAM"]
+    CPU <-->|"device-specific EEPROM access"| E["EEPROM: persistent data"]
+```
+
+This is a conceptual access diagram, not a bus-level schematic. The spaces are distinct: flash word address `0x0000` and EEPROM byte address `0x0000` do not name the same storage. EEPROM access follows the device's mechanism rather than ordinary SRAM addressing.
+
 ## SRAM layout and capacity
 
 The data address space begins with 32 CPU registers, 64 I/O registers and 160 extended I/O registers. SRAM begins at `0x0100`, after these regions. Its capacity is therefore[^1]
@@ -118,6 +129,18 @@ Within SRAM:
 - The **stack** supports calls, return information and automatic storage as required by the compiled program.
 
 The heap grows towards higher addresses and the stack towards lower addresses in this memory arrangement. Both use the same finite SRAM: free space between them must accommodate runtime use. Successful compilation alone does not prove that worst-case stack use is safe.
+
+### Two growing demands share the SRAM budget
+
+```mermaid
+flowchart TD
+    LOW["Low SRAM addresses: .data and .bss"] --- HEAP["Heap: grows toward higher addresses"]
+    HEAP --> GAP["Remaining free space"]
+    STACK["Stack: grows toward lower addresses"] --> GAP
+    HIGH["High SRAM addresses"] --- STACK
+```
+
+Read the labels for address direction: the arrows show the heap and stack consuming the **same free space**, not control flow. The layout is schematic and not to scale; safe sizing must allow for the worst-case runtime demand from both sides.
 
 For example, a buffer of 1000 `uint16_t` samples requires $1000\times2=2000$ bytes. It occupies about $48.8\%$ of a 4096-byte SRAM before other variables, stack or heap overhead. At 2000 samples the payload alone is 4000 bytes, leaving only 96 bytes for everything else—an unsuitable budget for most real applications.
 

@@ -107,6 +107,18 @@ After five terms, $S_5=4(1-(1/2)^5)/(1-1/2)=7.75$. The remaining tail is $8-7.75
 > [!WARNING] Bounded does not mean convergent
 > $1,-1,1,-1,\ldots$ is bounded but has no single limit. Its partial sums also oscillate. Do not classify oscillation as a third alternative to convergence/divergence: failure to converge is divergence.
 
+```mermaid
+flowchart TD
+    A["Sequence of terms a_n"] --> B["Does a_n tend to zero?"]
+    B -->|"No"| C["The infinite series diverges"]
+    B -->|"Yes"| D["Still need a convergence argument"]
+    D --> E["Study partial sums S_N"]
+    E -->|"Finite limit"| F["Series converges to that limit"]
+    E -->|"No finite limit"| G["Series diverges"]
+```
+
+This is a test for the **series** $\sum a_n$, not a classification of the sequence alone. The harmonic series is the key warning: $a_n\to0$ does not settle what $S_N$ does.
+
 ## Binomial expansion
 
 For nonnegative integer $n$:[^1]

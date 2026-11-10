@@ -50,6 +50,23 @@ The first inserted bit reaches $Q_0$ on the fourth edge. The pattern illustrates
 
 With zero fill, shifting an unsigned word toward its least significant end divides it by two and discards any remainder. Shifting toward the most significant end multiplies by two only if the discarded high bit does not cause overflow. A shift is fundamentally a bit movement; its numerical interpretation depends on the representation and fill bit.
 
+For the shift toward $Q_0$ above, the physical data connections are:
+
+```mermaid
+flowchart LR
+    I["Serial input"] -->|D3| F3["D flip-flop<br/>Q3"]
+    F3 -->|Q3 to D2| F2["D flip-flop<br/>Q2"]
+    F2 -->|Q2 to D1| F1["D flip-flop<br/>Q1"]
+    F1 -->|Q1 to D0| F0["D flip-flop<br/>Q0"]
+    F0 --> O["Serial output"]
+    C["Common rising-edge clock"] --> F3
+    C --> F2
+    C --> F1
+    C --> F0
+```
+
+Every stage samples simultaneously. One edge moves a bit by one stage, not along the entire chain.
+
 ### Serial input at the least significant end
 
 For the opposite wiring, where the serial input enters $Q_0$ and each stage feeds the next higher-indexed stage,
