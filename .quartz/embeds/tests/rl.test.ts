@@ -63,42 +63,41 @@ test("source amplitude is fixed and cannot be overridden by URL parameters", () 
   assert.ok(!("peak" in schema));
 });
 
-test("series R and L have aligned vertical pins", async () => {
-  const { layoutSchematic } = await import("@spice-ts/ui");
-  const { circuit } = await simulateTransient(request(defaults));
-  const layout = layoutSchematic(circuit);
-  const resistor = layout.components.find((c) => c.component.name === "R1")!;
-  const inductor = layout.components.find((c) => c.component.name === "L1")!;
-  assert.equal(inductor.pins[0].x, inductor.pins[1].x);
-  assert.notEqual(inductor.pins[0].y, inductor.pins[1].y);
-  assert.equal(
-    resistor.pins.find((p) => p.net === "out")!.x,
-    inductor.pins.find((p) => p.net === "out")!.x,
+test("authored series layout renders normal horizontal R and L with a connected ground", async () => {
+  const { schematic } = await import(
+    "~/demos/Year 1/ELEC1311 Circuits/AC Impedance/voltage-division/schematic"
   );
-});
-
-test("rendered inductor path reaches both vertical pins without SVG transforms", async () => {
   const { createElement } = await import("react");
   const { renderToStaticMarkup } = await import("react-dom/server");
   const { SchematicView } = await import("@spice-ts/ui/react");
-  const { layoutSchematic } = await import("@spice-ts/ui");
   const { JSDOM } = await import("jsdom");
-  const { circuit } = await simulateTransient(request(defaults));
-  const coil = layoutSchematic(circuit).components.find(
-    (c) => c.component.name === "L1",
-  )!;
+  const result = await simulateTransient(request(defaults));
+  const layout = schematic(result);
+  const circuit = { ...result.circuit, notesSchematicLayout: layout };
   const doc = new JSDOM(
     renderToStaticMarkup(createElement(SchematicView, { circuit })),
   ).window.document;
-  const path = doc.querySelector(
-    `g[transform="translate(${coil.x},${coil.y})"] path`,
-  )!;
-  assert.ok(path);
-  const d = path.getAttribute("d")!;
-  assert.ok(
-    d.startsWith(`M${coil.pins[0].x - coil.x},${coil.pins[0].y - coil.y} `),
+  for (const pc of layout.components.slice(1)) {
+    assert.equal(pc.pins[0].y, pc.pins[1].y);
+    const path = doc.querySelector(
+      `g[transform="translate(${pc.x},${pc.y})"] path`,
+    )!;
+    const d = path.getAttribute("d")!;
+    assert.ok(d.startsWith(`M${pc.pins[0].x - pc.x},${pc.pins[0].y - pc.y} `));
+    assert.ok(d.endsWith(`L${pc.pins[1].x - pc.x},${pc.pins[1].y - pc.y}`));
+  }
+  // The ordinary renderer connects the inductor's right pin down to ground.
+  assert.ok(doc.querySelector('line[x1="200"][y1="40"][x2="200"][y2="80"]'));
+  assert.deepEqual(
+    layout.wires.map((w) => w.net),
+    ["in", "out"],
   );
-  assert.ok(
-    d.endsWith(`L${coil.pins[1].x - coil.x},${coil.pins[1].y - coil.y}`),
+  assert.deepEqual(
+    layout.components.map((c) => c.pins.map((p) => p.net)),
+    [
+      ["in", "0"],
+      ["in", "out"],
+      ["out", "0"],
+    ],
   );
 });

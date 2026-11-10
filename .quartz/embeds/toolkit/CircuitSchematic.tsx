@@ -1,21 +1,31 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { SchematicView } from "@spice-ts/ui/react";
-import { layoutSchematic, type ThemeConfig } from "@spice-ts/ui";
+import {
+  layoutSchematic,
+  type SchematicLayout,
+  type ThemeConfig,
+} from "@spice-ts/ui";
 import type { ComponentProps } from "react";
 
 /** Add keyboard/touch inspection to the pinned UI's pointer-only component tooltips. */
 export function CircuitSchematic({
   circuit,
   theme,
+  layout,
 }: {
   circuit: ComponentProps<typeof SchematicView>["circuit"];
   theme: ThemeConfig;
+  layout?: SchematicLayout;
 }) {
   const ref = useRef<HTMLDivElement>(null),
     id = useId();
+  const renderedCircuit = useMemo(
+    () => (layout ? { ...circuit, notesSchematicLayout: layout } : circuit),
+    [circuit, layout],
+  );
   const components = useMemo(
-    () => layoutSchematic(circuit).components,
-    [circuit],
+    () => layoutSchematic(renderedCircuit).components,
+    [renderedCircuit],
   );
   const [tip, setTip] = useState<{
     label: string;
@@ -99,7 +109,7 @@ export function CircuitSchematic({
       }}
     >
       <div className="schematic-renderer">
-        <SchematicView circuit={circuit} theme={theme} height={220} />
+        <SchematicView circuit={renderedCircuit} theme={theme} height={220} />
       </div>
       {tip && (
         <div

@@ -238,17 +238,18 @@ Do not overexplain demo controls or interface use. Readers can infer how inputs,
 sliders and reset work. Keep surrounding prose to essential physical assumptions,
 units, polarity and interpretation that are not evident from the figure.
 
-### Pinned schematic compatibility patch
+### Authored schematic layouts
 
-`patch-spice-ui.mjs` corrects the horizontal-only inductor symbol in
-`@spice-ts/ui@0.3.1`. Inductors now use vertical pins and a vertical coil path on
-vertical and grounded branches; non-grounded same-rank branches stay horizontal.
-Layout and React
-rendering share the correction; no circuit topology or simulation is changed.
-The idempotent install/build/test hook validates the version and exact upstream
-code before patching the ESM and CommonJS bundles. Remove it when upgrading to
-an upstream release with equivalent orientation support, retaining the geometry
-regression test.
+`CircuitCard.schematicLayout` optionally supplies a `SchematicLayout` for a demo;
+`CircuitSchematic.layout` exposes the same hook directly. Components, pins and
+wires must describe the same electrical nets as the simulation. The RL demo uses
+this to place the normal resistor and inductor horizontally with ground after L.
+
+`patch-spice-ui.mjs` adds a small opt-in layout hook to `@spice-ts/ui@0.3.1`, which
+exports layout types but does not accept authored layouts. All upstream symbols
+and default automatic layouts remain unchanged. The idempotent install/build/test
+hook checks the pinned version and exact code; review it when upgrading. Tests
+check rendered path endpoints and the connected downward ground wire.
 
 The RL example fixes the source at the worked example's 20 V peak; only R, L and
 frequency are adjustable.

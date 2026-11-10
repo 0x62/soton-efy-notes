@@ -7,10 +7,12 @@ import {
 import { formatTime, formatVoltage, formatNumber } from "~/toolkit/format";
 import { chartPalette } from "~/toolkit/palette";
 import { schema, simulate, phasors, type Result } from "./rl";
+import { schematic } from "./schematic";
 export function RLVoltageDivider() {
   return (
     <CircuitCard<typeof schema, Result>
       schema={schema}
+      schematicLayout={schematic}
       simulate={simulate}
       summary={(v) => (
         <p className="text-sm">

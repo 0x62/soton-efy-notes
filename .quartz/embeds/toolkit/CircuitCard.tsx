@@ -2,7 +2,7 @@ import { useSimulation } from "./useSimulation";
 import type { Simulation } from "./worker-client";
 import { useEffect, useState, type ReactNode } from "react";
 import { CircuitSchematic } from "./CircuitSchematic";
-import { DARK_THEME, LIGHT_THEME } from "@spice-ts/ui";
+import { DARK_THEME, LIGHT_THEME, type SchematicLayout } from "@spice-ts/ui";
 import { readNumericParams, writeParams, type NumericRule } from "./params";
 import type { ComponentProps } from "react";
 import { useTheme } from "./runtime";
@@ -12,6 +12,7 @@ export type CircuitCardProps<
   S extends Record<string, NumericRule>,
   R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] },
 > = {
+  schematicLayout?: (result: R) => SchematicLayout;
   title?: string;
   description?: string;
   schema: S;
@@ -30,6 +31,7 @@ export function CircuitCard<
   R extends { circuit: ComponentProps<typeof CircuitSchematic>["circuit"] },
 >({
   title,
+  schematicLayout,
   description,
   schema,
   simulate,
@@ -102,7 +104,11 @@ export function CircuitCard<
       {error && <p role="alert">{error}</p>}
       {result && !error && (
         <div aria-busy={busy} className="space-y-5">
-          <CircuitSchematic circuit={result.circuit} theme={plotTheme} />
+          <CircuitSchematic
+            circuit={result.circuit}
+            theme={plotTheme}
+            layout={schematicLayout?.(result)}
+          />
           {renderResult(result, values, theme)}
         </div>
       )}
