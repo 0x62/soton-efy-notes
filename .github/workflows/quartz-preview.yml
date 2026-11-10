@@ -51,7 +51,6 @@ jobs:
           node ../social-covers.mjs public
           node ../verify.mjs public
           node ../permalinks.mjs public
-          node ../verify-permalinks.mjs public
           node --import tsx ../test-permalinks.mjs .
       - name: Build interactive note embeds
         working-directory: .quartz/embeds
@@ -61,6 +60,7 @@ jobs:
           EMBED_OUT="$GITHUB_WORKSPACE/.quartz/engine/public/_embed" npm run build
           node --experimental-vm-modules tests/build.mjs ../engine/public/_embed
           node publish.mjs ../engine/public
+          node ../verify-permalinks.mjs ../engine/public
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .quartz/engine/public
