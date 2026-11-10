@@ -61,7 +61,7 @@ const scene: Scene<V> = (b, v, c) => {
     );
     b.create(
       "curve",
-      [xs, () => xs.map((x) => (v().mode ? x * x : 1) * Math.sin(1 / x))],
+      [xs, (x: number) => (v().mode ? x * x : 1) * Math.sin(1 / x)],
       {
         strokeColor: c.blue,
         strokeWidth: 2,
