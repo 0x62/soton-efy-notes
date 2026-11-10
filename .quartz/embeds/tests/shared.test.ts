@@ -104,7 +104,11 @@ test("filesystem routing follows note permalinks and preserves existing public r
   const routes = discoverRoutes(resolve("demos"), resolve("../.."));
   assert.deepEqual(
     routes.map((r) => r.route),
-    ["maths-demo", "y1/elec1311/rc-transients/charging"],
+    [
+      "maths-demo",
+      "y1/elec1311/ac-impedance/voltage-division",
+      "y1/elec1311/rc-transients/charging",
+    ],
   );
   const root = mkdtempSync(resolve(tmpdir(), "embed-routes-"));
   try {

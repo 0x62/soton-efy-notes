@@ -213,3 +213,21 @@ query in `src` (legacy `data-notes-params` remains supported). Thus local hostin
 root domains and GitHub Pages subpaths stay same-origin. The host script remains
 on every page for SPA navigation, theme propagation and automatic resizing.
 The absolute Obsidian fallback must be updated if the published site moves.
+
+## RL complex voltage division
+
+`demos/Year 1/ELEC1311 Circuits/AC Impedance/voltage-division/` implements the
+note's 20 V peak, −15° source, 60 Ω resistor and j100 Ω inductor. Since the note
+specifies reactance rather than frequency, defaults use 50 Hz and 318.31 mH.
+Controls vary source peak voltage, resistance, inductance and frequency. The
+source's cosine phase stays at −15°. Both solid voltage traces share one axis.
+
+The shared transient worker now supports differential voltage probes via
+`reference`. V_R = V(in) − V(out), V_L = V(out) − V(0), following passive polarity.
+The demo initializes inductor current to the analytical periodic solution, then
+SPICE integrates two cycles with at most T/400 steps. This suppresses switch-on
+transients without a long warm-up and keeps phasor comparison meaningful. The
+source uses SIN phase +75°, equivalent to COS phase −15°. Tests compare all
+samples with signed analytic waveforms, KVL and the note's amplitudes/phases,
+including low/high-reactance control extremes. Initial samples are explicitly
+supplied, as with the RC demo. Existing notes and RC behavior stay independent.

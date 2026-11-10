@@ -6,6 +6,7 @@ const out = resolve(process.argv[2] || "dist");
 const manifest = JSON.parse(
   await readFile(resolve(out, ".vite/manifest.json"), "utf8"),
 );
+const rl = manifest["y1/elec1311/ac-impedance/voltage-division/index.html"];
 const circuit = manifest["y1/elec1311/rc-transients/charging/index.html"],
   maths = manifest["maths-demo/index.html"];
 assert.ok(
@@ -17,7 +18,11 @@ assert.ok(
   !(circuit.css || []).some((x) => (maths.css || []).includes(x)),
   "Maths stylesheet must stay isolated",
 );
-for (const route of ["y1/elec1311/rc-transients/charging", "maths-demo"]) {
+for (const route of [
+  "y1/elec1311/rc-transients/charging",
+  "y1/elec1311/ac-impedance/voltage-division",
+  "maths-demo",
+]) {
   const html = await readFile(resolve(out, route, "index.html"), "utf8");
   for (const [, url] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
     assert.ok(
@@ -36,7 +41,31 @@ for (const route of ["y1/elec1311/rc-transients/charging", "maths-demo"]) {
       );
   }
 }
-const workerFile = circuit.assets.find((x) => /\/worker-/.test(x));
+function assets(entry, seen = new Set()) {
+  if (seen.has(entry)) return [];
+  seen.add(entry);
+  return [
+    ...(entry.assets || []),
+    ...(entry.imports || []).flatMap((key) => assets(manifest[key], seen)),
+  ];
+}
+const workerFile = assets(circuit).find((x) => /\/worker-/.test(x));
+assert.ok(workerFile);
+assert.equal(
+  assets(rl).find((x) => /\/worker-/.test(x)),
+  workerFile,
+  "Both circuit demos cache the same worker",
+);
+assert.ok(
+  !assets(maths).includes(workerFile),
+  "Maths does not load the SPICE worker",
+);
+assert.ok(
+  rl.imports.some(
+    (x) => circuit.imports.includes(x) && x.includes("worker-client"),
+  ),
+  "Circuit UI and transport share a hashed chunk",
+);
 let response;
 const context = createContext({
   self: {
@@ -83,4 +112,33 @@ assert.ok(Math.abs(response.result.series.voltage.at(-1) - 9.93262) < 0.01);
 assert.ok(Math.abs(response.result.series.current.at(-1) - 0.006738) < 0.001);
 console.log(
   "PASS production worker execution, structured-clone result, shared runtime and root/subpath asset resolution",
+);
+
+const omega = 2 * Math.PI * 50,
+  inductance = 0.31831;
+const phase = -Math.PI / 12 - Math.atan2(omega * inductance, 60);
+const i0 = (20 / Math.hypot(60, omega * inductance)) * Math.cos(phase);
+await context.self.onmessage({
+  data: {
+    netlist: `RL divider\nV1 in 0 SIN(0 20 50 0 0 75)\nR1 in out 60\nL1 out 0 ${inductance} IC=${i0}\n.tran 0.00005 0.04 0 0.00005 UIC\n.end`,
+    signals: [
+      { id: "resistor", quantity: "voltage", source: "in", reference: "out" },
+      { id: "inductor", quantity: "voltage", source: "out" },
+    ],
+  },
+});
+assert.ok(!response.error, response.error);
+for (let i = 0; i < response.result.time.length; i++) {
+  const t = response.result.time[i];
+  assert.ok(
+    Math.abs(
+      response.result.series.resistor[i] +
+        response.result.series.inductor[i] -
+        20 * Math.cos(omega * t - Math.PI / 12),
+    ) < 1e-6,
+  );
+}
+assert.ok(response.result.series.inductor.some((v) => v < 0));
+console.log(
+  "PASS shared production worker runs RL differential probes and signed waveforms",
 );
