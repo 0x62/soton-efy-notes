@@ -8,3 +8,6 @@ Coursework/*
 .quartz/embeds/dist/
 
 .quartz/embeds/.generated/
+
+# Disposable embed build destinations (never source)
+.quartz/embeds/engine/

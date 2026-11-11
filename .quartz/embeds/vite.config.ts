@@ -19,7 +19,7 @@ export default defineConfig({
   base: "./",
   plugins: [spiceUnits(), tailwindcss()],
   build: {
-    outDir: process.env.EMBED_OUT || "../dist",
+    outDir: process.env.EMBED_OUT ? resolve(process.env.EMBED_OUT) : "../dist",
     emptyOutDir: true,
     manifest: true,
     rollupOptions: { input: entries },
