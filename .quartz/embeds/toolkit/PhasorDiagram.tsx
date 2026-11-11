@@ -31,7 +31,7 @@ export function PhasorDiagram({ vectors, reference, unit, convention, theme, ang
           {length > 0 && length < 12 && <circle cx={x2} cy={y2} r="2" fill={v.color} />}</g>;
       })}
       {angle !== null && Math.abs(angle) > 0.05 && <path d={arc} fill="none" stroke={ink} strokeWidth="1.2" />}
-      {angle !== null && <text x={160 + 57 * Math.cos(theta / 2)} y={160 - 57 * Math.sin(theta / 2) - (Math.abs(angle) < 10 ? 12 : 0)} fill={ink} fontSize="12" textAnchor="middle">{angle > 0 ? "+" : ""}{angle.toFixed(1)}°</text>}
+      {angle !== null && <text x="24" y="42" fill={ink} fontSize="12" textAnchor="start">{vectors[angleIndex].label}: {angle > 0 ? "+" : ""}{angle.toFixed(1)}°</text>}
     </svg>
     <div className="space-y-2 text-sm" aria-label="Phasor magnitudes and signed phases">
       {vectors.map((v, i) => { const p = polar(v.value); return <div key={i} className="flex flex-wrap items-center gap-2">
