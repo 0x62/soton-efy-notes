@@ -28,7 +28,8 @@ export function PhasorTriangle({
       </figcaption>
       <svg
         viewBox="0 0 300 230"
-        className="w-full max-w-sm mx-auto"
+        className="block w-full mx-auto"
+        style={{ maxWidth: "24rem" }}
         role="img"
         aria-label={`${realLabel} ${real.toPrecision(4)} volts along the current; ${imaginaryLabel} ${imaginary.toPrecision(4)} volts in quadrature. The diagonal is their source-voltage sum.`}
       >
