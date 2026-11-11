@@ -1,3 +1,4 @@
+import { Latex } from "~/toolkit/Latex";
 import { MathsPlot, graph, point, type Scene } from "~/toolkit/MathsPlot";
 export type HoleValues = { distance: number; point: number; samples: boolean };
 const scene: Scene<HoleValues> = (b, v, c) => {
@@ -32,16 +33,8 @@ const scene: Scene<HoleValues> = (b, v, c) => {
 };
 export function HoleFormula() {
   return (
-    <p
-      className="flex flex-wrap items-center gap-2"
-      aria-label="f of x equals x squared minus four divided by x minus two, for x not equal to two"
-    >
-      <span aria-hidden="true">f(x) =</span>
-      <span aria-hidden="true" className="inline-flex flex-col text-center">
-        <span className="border-b border-current px-2">x² − 4</span>
-        <span>x − 2</span>
-      </span>
-      <span aria-hidden="true">, x ≠ 2</span>
+    <p>
+      <Latex latex={String.raw`f(x)=\frac{x^2-4}{x-2},\quad x\ne2`} />
     </p>
   );
 }

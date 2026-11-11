@@ -303,3 +303,9 @@ Host messages must match both origin and the currently mounted iframe window.
 The published iframe URL includes a content hash of its HTML entry so a new note
 cannot silently load a stale card. React, JSXGraph and other hashed chunks remain
 shared and cacheable.
+
+### Mathematical readouts
+
+Use `Latex` from `~/toolkit/Latex` in either card: `<Latex latex={String.raw`\tau=${latexNumber(tau)}\,\mathrm{s}`} />`. `latexNumber` formats finite live values, including scientific notation. KaTeX supplies visual HTML and accessible MathML; unsafe HTML and URL commands remain disabled. Default inline rendering can wrap at mathematical relations. Split long derivations into short equations for narrow embeds; reserve `display` for standalone formulas. Keep prose outside LaTeX, and use approximation signs for rounded numerical readouts. The same hashed renderer chunk is cached across maths and circuit entries.
+
+The IVT demo's Step button applies one bisection step, retaining the opposite-sign bracket. Reset restores the original interval; the discontinuous comparison does not offer bisection.

@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -23,13 +24,22 @@ export function Demo() {
         theme={theme}
       />
       <Reading>
-        <p>The nearby limit is always 4.</p>
         <p>
-          {values.point === 0
-            ? "f(2) is undefined: the function is not continuous at 2."
-            : values.point === 1
-              ? "Assigning f(2) = 4 makes the extended function continuous at 2."
-              : "f(2) = 1 does not match the limit: the function is still discontinuous."}
+          <Latex latex={String.raw`\lim_{x\to2}f(x)=4`} />
+        </p>
+        <p>
+          <Latex
+            latex={
+              values.point === 0
+                ? String.raw`f(2)\text{ is undefined}`
+                : `f(2)=${values.point === 1 ? 4 : 1}`
+            }
+          />
+        </p>
+        <p>
+          {values.point === 1
+            ? "The extended function is continuous at 2."
+            : "The function is not continuous at 2."}
         </p>
       </Reading>
     </MathsCard>

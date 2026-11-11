@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import { HoleFormula } from "../HolePlot";
 import {
   MathsCard,
@@ -111,17 +112,42 @@ export function Demo() {
       <Reading>
         <p>
           <strong>
-            {works ? "Works for every allowed x" : "δ is too large"}
-          </strong>{" "}
-          · δ {works ? "≤" : " >"} ε = {n(v.epsilon)}
+            {works
+              ? "Works for every allowed input"
+              : "The input radius is too large"}
+          </strong>
+        </p>
+        <p>
+          <Latex
+            latex={String.raw`\delta=${latexNumber(v.delta)}${works ? String.raw`\le` : ">"}\varepsilon=${latexNumber(v.epsilon)}`}
+          />
         </p>
         {works ? (
-          <p>|f(x) − 4| = |x − 2| &lt; δ ≤ ε. The centre x = 2 is excluded.</p>
+          <>
+            <p>
+              <Latex latex={String.raw`|f(x)-4|=|x-2|<\delta\le\varepsilon`} />
+            </p>
+            <p>
+              The centre <Latex latex="x=2" /> is excluded.
+            </p>
+          </>
         ) : (
-          <p>
-            Counterexample X: x = {n(w)}, |x − 2| = {n(w - 2)} &lt; δ, but |f(x)
-            − 4| = {n(w - 2)} &gt; ε.
-          </p>
+          <>
+            <p>
+              Counterexample X:{" "}
+              <Latex latex={String.raw`x\approx ${latexNumber(w)}`} />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`|x-2|\approx ${latexNumber(w - 2)}<\delta`}
+              />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`|f(x)-4|\approx ${latexNumber(w - 2)}>\varepsilon`}
+              />
+            </p>
+          </>
         )}
       </Reading>
       <button type="button" onClick={() => set("delta", v.epsilon)}>

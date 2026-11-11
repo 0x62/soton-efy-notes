@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -6,14 +6,7 @@ import {
   Reading,
 } from "~/toolkit/MathsCard";
 import { MathsPlot, graph, point, band, type Scene } from "~/toolkit/MathsPlot";
-import {
-  correctBisectionHalf,
-  rule,
-  cubic,
-  bracket,
-  counterexample,
-  n,
-} from "../models";
+import { correctBisectionHalf, rule, cubic, bracket, n } from "../models";
 const schema = {
   iteration: rule("Bisection steps", 0, 0, 12, 1),
   mode: rule("Function", 0, 0, 1, 1),
@@ -59,19 +52,9 @@ const scene: Scene<V> = (b, v, c) => {
 export function Demo() {
   const { values: v, set, theme } = useMathsModel(schema),
     { a, b } = bracket(v.iteration);
-  const [feedback, setFeedback] = useState("");
   const m = (a + b) / 2;
-  const choose = (left: boolean) => {
-    if (left === (correctBisectionHalf(v.iteration) === "left")) {
-      setFeedback(
-        `Retained ${left ? "left" : "right"} half: its endpoint signs are opposite, so continuity still guarantees a root.`,
-      );
-      set("iteration", v.iteration + 1);
-    } else
-      setFeedback(
-        `That half has two ${left ? "negative" : "positive"} endpoint values. Those signs do not guarantee a root; keep the other half.`,
-      );
-  };
+  const previous = v.iteration > 0 ? bracket(v.iteration - 1) : null;
+  const previousMidpoint = previous ? (previous.a + previous.b) / 2 : null;
   return (
     <MathsCard>
       <Choices
@@ -80,7 +63,6 @@ export function Demo() {
         options={["Continuous polynomial", "Jump counterexample"]}
         onChange={(x) => {
           set("mode", x);
-          setFeedback("");
         }}
       />
       <MathsPlot
@@ -94,60 +76,78 @@ export function Demo() {
         {v.mode === 0 ? (
           <>
             <p>
-              f(x) = x³ − x − 1 · f(a) = {n(cubic(a))} · f(b) = {n(cubic(b))}
+              <Latex latex="f(x)=x^3-x-1" />
             </p>
             <p>
-              Midpoint m = {n(m)} · f(m) = {n(cubic(m))}. Which half retains
-              opposite endpoint signs?
+              <Latex
+                latex={String.raw`a\approx ${latexNumber(a)},\quad b\approx ${latexNumber(b)}`}
+              />
             </p>
             <p>
-              At least one root lies in ({n(a)}, {n(b)}). Width {n(b - a)}.
+              <Latex
+                latex={String.raw`f(a)\approx ${latexNumber(cubic(a))}<0`}
+              />
             </p>
             <p>
-              Continuity + opposite signs guarantee existence, not uniqueness.
+              <Latex
+                latex={String.raw`f(b)\approx ${latexNumber(cubic(b))}>0`}
+              />
             </p>
+            <p>
+              <Latex
+                latex={String.raw`m=\frac{a+b}{2}\approx ${latexNumber(m)}`}
+              />
+            </p>
+            <p>
+              <Latex latex={String.raw`f(m)\approx ${latexNumber(cubic(m))}`} />
+            </p>
+            <p>
+              The next step keeps the {correctBisectionHalf(v.iteration)} half,
+              whose endpoints have opposite signs.
+            </p>
+            <p>
+              <Latex latex={String.raw`b-a\approx ${latexNumber(b - a)}`} />
+            </p>
+            <p>
+              Continuity guarantees at least one root in this interval, not
+              uniqueness.
+            </p>
+            {previousMidpoint !== null && (
+              <p>
+                Step {v.iteration}: the previous midpoint{" "}
+                <Latex
+                  latex={String.raw`m\approx ${latexNumber(previousMidpoint)}`}
+                />{" "}
+                replaced the {cubic(previousMidpoint) < 0 ? "left" : "right"}{" "}
+                endpoint.
+              </p>
+            )}
           </>
         ) : (
           <>
-            <p>f(1) = −1 and f(2) = 5, but the jump skips 0.</p>
-            <p>Without continuity, the IVT does not apply.</p>
+            <p>
+              <Latex latex="f(1)=-1,\quad f(2)=5" />
+            </p>
+            <p>
+              The jump skips zero. Without continuity, the IVT does not apply.
+            </p>
           </>
         )}
       </Reading>
-      {feedback && (
-        <p role="status" className="text-sm">
-          {feedback}
-        </p>
-      )}
       {v.mode === 0 && (
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
             disabled={v.iteration >= 12}
-            onClick={() => choose(true)}
+            onClick={() => set("iteration", v.iteration + 1)}
           >
-            Keep left half
-          </button>
-          <button
-            type="button"
-            disabled={v.iteration >= 12}
-            onClick={() => choose(false)}
-          >
-            Keep right half
-          </button>
-          <button
-            type="button"
-            disabled={v.iteration >= 12}
-            onClick={() => choose(correctBisectionHalf(v.iteration) === "left")}
-          >
-            Show a worked step
+            Step
           </button>
           <button
             type="button"
             disabled={v.iteration === 0}
             onClick={() => {
               set("iteration", 0);
-              setFeedback("");
             }}
           >
             Reset interval

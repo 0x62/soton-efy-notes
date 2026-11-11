@@ -1,8 +1,6 @@
 ---
 permalink: y1/elec1310/limits-continuity
 ---
-#### Limits & Continuity
-
 - [[#Meaning of a limit]]
 - [[#One-sided limits and non-existence]]
 - [[#Continuity]]
@@ -12,6 +10,20 @@ permalink: y1/elec1310/limits-continuity
 - [[#Infinite limits and asymptotes]]
 - [[#Intermediate value theorem]]
 - [[#Formal definition]]
+
+#### Limits & Continuity
+
+$$
+\lim_{x\to a}f(x)=L\iff\lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L
+$$
+$$
+f\text{ continuous at }a\iff\lim_{x\to a}f(x)=f(a)
+$$
+$$
+\lim_{x\to0}\frac{\sin x}{x}=1\qquad(x\text{ in radians})
+$$
+
+## Introduction
 
 A limit describes what the values of a function approach. It is especially useful when direct substitution fails: a formula can be undefined at one input while its nearby values still approach a definite number.
 

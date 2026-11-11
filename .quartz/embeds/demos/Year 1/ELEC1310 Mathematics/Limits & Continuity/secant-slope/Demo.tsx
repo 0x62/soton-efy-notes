@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -91,10 +92,16 @@ export function Demo() {
       />
       <Reading>
         <p>
-          Secant slope = ((1 + h)² − 1)/h = 2 + h ={" "}
-          <strong>{n(secantSlope(step))}</strong>
+          <Latex latex={String.raw`h=${latexNumber(step)},\quad h\ne0`} />
         </p>
-        <p>h ≠ 0 · tangent slope = 2</p>
+        <p>
+          <Latex
+            latex={String.raw`\frac{(1+h)^2-1}{h}=2+h\approx ${latexNumber(secantSlope(step))}`}
+          />
+        </p>
+        <p>
+          Tangent slope: <Latex latex={String.raw`\lim_{h\to0}(2+h)=2`} />.
+        </p>
       </Reading>
       <Approach value={v.p} target={3} onChange={(x) => set("p", x)} />
     </MathsCard>

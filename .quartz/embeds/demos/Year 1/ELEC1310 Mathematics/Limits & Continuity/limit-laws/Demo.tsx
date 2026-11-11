@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -102,24 +103,39 @@ export function Demo() {
       />
       <Reading>
         <p>
-          f({n(v.x)}) = {n(f(v.x))}
-          {v.operation !== 3 && (
+          <Latex
+            latex={String.raw`x=${latexNumber(v.x)},\quad f(x)\approx ${latexNumber(f(v.x))}`}
+          />
+        </p>
+        {v.operation !== 3 && (
+          <p>
+            <Latex latex={String.raw`g(x)\approx ${latexNumber(g(v.x))}`} />
+          </p>
+        )}
+        <p>
+          <Latex
+            latex={String.raw`${["f(x)+g(x)", "f(x)g(x)", String.raw`\frac{f(x)}{g(x)}`, "e^{f(x)}"][v.operation]}\approx ${latexNumber(combined(v.x, v.operation))}`}
+          />
+        </p>
+        <p>
+          <Latex
+            latex={String.raw`\lim_{x\to1}${["(f(x)+g(x))", "f(x)g(x)", String.raw`\frac{f(x)}{g(x)}`, "e^{f(x)}"][v.operation]}=${limits[v.operation]}`}
+          />
+        </p>
+        <p>
+          {v.operation === 2 ? (
             <>
-              {" "}
-              · g({n(v.x)}) = {n(g(v.x))}
+              The denominator tends to <Latex latex={String.raw`2\ne0`} />, so
+              the quotient law applies.
             </>
+          ) : v.operation === 3 ? (
+            <>
+              The inner limit is zero; the exponential is continuous there, with{" "}
+              <Latex latex="e^0=1" />.
+            </>
+          ) : (
+            "Both component limits are finite."
           )}
-        </p>
-        <p>
-          {names[v.operation]} = {n(combined(v.x, v.operation))} →{" "}
-          <strong>{limits[v.operation]}</strong> as x → 1.
-        </p>
-        <p>
-          {v.operation === 2
-            ? "The denominator tends to 2 ≠ 0, so the quotient law applies."
-            : v.operation === 3
-              ? "The inner limit is 0; exp is continuous at 0, so the limit is exp(0) = 1."
-              : "Both component limits are finite."}
         </p>
       </Reading>
     </MathsCard>

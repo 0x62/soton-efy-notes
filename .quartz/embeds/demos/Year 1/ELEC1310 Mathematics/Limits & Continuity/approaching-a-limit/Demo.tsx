@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import { MathsCard, useMathsModel, Reading } from "~/toolkit/MathsCard";
 import { HoleFormula, HolePlot } from "../HolePlot";
 import { rule, distance, n } from "../models";
@@ -39,8 +40,10 @@ export function Demo() {
       </table>
       <Reading>
         <p>
-          The nearby outputs approach <strong>4</strong>. The original fraction
-          still has no value at x = 2.
+          <Latex latex={String.raw`\lim_{x\to2}\frac{x^2-4}{x-2}=4`} />
+        </p>
+        <p>
+          The original fraction is undefined at <Latex latex="x=2" />.
         </p>
       </Reading>
       <div className="flex flex-wrap gap-2">

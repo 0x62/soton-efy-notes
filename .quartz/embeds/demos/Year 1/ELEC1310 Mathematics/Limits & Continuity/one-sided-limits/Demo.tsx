@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -134,26 +135,57 @@ export function Demo() {
       <Reading>
         {v.mode === 0 ? (
           <>
-            <p>f(x) = |x − 2|/(x − 2) · left limit −1 · right limit +1</p>
+            <p>
+              <Latex latex={String.raw`f(x)=\frac{|x-2|}{x-2}`} />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`f(${latexNumber(2 - d)})=-1,\quad f(${latexNumber(2 + d)})=1`}
+              />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`\lim_{x\to2^-}f(x)=-1\ne1=\lim_{x\to2^+}f(x)`}
+              />
+            </p>
             <p>The two-sided limit does not exist.</p>
           </>
         ) : v.mode === 1 ? (
           <>
             <p>
-              f(x) = √x · x = {n(d)} · f(x) = {n(Math.sqrt(d))}
+              <Latex
+                latex={String.raw`f(x)=\sqrt{x},\quad x\approx ${latexNumber(d)}`}
+              />
             </p>
-            <p>Right-hand limit 0. No real domain to the left.</p>
+            <p>
+              <Latex
+                latex={String.raw`f(x)\approx ${latexNumber(Math.sqrt(d))},\quad\lim_{x\to0^+}\sqrt{x}=0`}
+              />
+            </p>
+            <p>No real domain to the left of zero.</p>
           </>
         ) : (
           <>
-            <p>P: xₙ = 1/(π/2 + 2πn) = {n(pair[0])}, f(xₙ) = +1</p>
-            <p>Q: yₙ = 1/(3π/2 + 2πn) = {n(pair[1])}, f(yₙ) = −1</p>
             <p>
-              Both sequences tend to 0; their outputs disagree. The limit fails.
+              <Latex
+                latex={String.raw`x_n=\frac1{\pi/2+2\pi n}\approx ${latexNumber(pair[0])}`}
+              />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`y_n=\frac1{3\pi/2+2\pi n}\approx ${latexNumber(pair[1])}`}
+              />
+            </p>
+            <p>
+              <Latex latex={String.raw`f(x_n)=1,\quad f(y_n)=-1`} />
+            </p>
+            <p>
+              Both sequences tend to zero; their outputs disagree. The limit
+              fails.
             </p>
             <p className="text-xs">
-              The curve omits |x| &lt; 0.025; the exact sequence points continue
-              inside.
+              The curve omits <Latex latex={String.raw`|x|<0.025`} />; the exact
+              sequence points continue inside.
             </p>
           </>
         )}

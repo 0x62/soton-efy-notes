@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -77,13 +78,22 @@ export function Demo() {
       />
       <Reading>
         <p>
-          (x² − 25)/(x − 5) = (x − 5)(x + 5)/(x − 5) = x + 5,{" "}
-          <strong>x ≠ 5</strong>
+          <Latex
+            latex={String.raw`\frac{x^2-25}{x-5}=\frac{(x-5)(x+5)}{x-5}`}
+          />
         </p>
         <p>
-          x = {n(input)} · value = {n(input + 5)} → 10
+          <Latex latex={String.raw`f(x)=x+5\quad(x\ne5)`} />
         </p>
-        <p>The original expression is still undefined at x = 5.</p>
+        <p>
+          <Latex
+            latex={String.raw`x\approx ${latexNumber(input)},\quad f(x)\approx ${latexNumber(input + 5)}`}
+          />
+        </p>
+        <p>
+          <Latex latex={String.raw`\lim_{x\to5}f(x)=10`} />. The original
+          expression is undefined at <Latex latex="x=5" />.
+        </p>
       </Reading>
       <Approach value={v.p} target={4} onChange={(x) => set("p", x)} />
     </MathsCard>

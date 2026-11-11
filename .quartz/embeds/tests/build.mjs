@@ -175,3 +175,8 @@ for (const [key, entry] of lessonEntries) {
 console.log(
   "PASS twelve isolated maths entries share JSXGraph and exclude SPICE",
 );
+
+assert.ok(sharedMaths.some(file => file.includes("Latex") && chunks(circuit).has(file)),
+  "Maths lessons and RC card cache one LaTeX renderer");
+assert.ok(![...chunks(circuit)].some(file => file.includes("jsxgraph")),
+  "Circuit LaTeX must not pull in JSXGraph");

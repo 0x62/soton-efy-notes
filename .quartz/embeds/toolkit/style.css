@@ -1,3 +1,4 @@
+@import "katex/dist/katex.min.css";
 @import "tailwindcss";
 @source "./**/*.{ts,tsx}";
 @source "../demos/**/*.{ts,tsx}";
@@ -85,8 +86,6 @@ td {
   font-family: var(--bodyFont), sans-serif !important;
 }
 .math-reading {
-  border-left: 3px solid var(--secondary);
-  padding: 0.35rem 0 0.35rem 0.8rem;
   min-height: 3rem;
 }
 .math-choice[aria-pressed="true"] {
@@ -114,3 +113,8 @@ html[data-notes-embedded="true"] body {
   overflow: clip;
 }
 html[data-notes-embedded="true"] { touch-action: pan-y; }
+
+.latex { line-height: 1.8; overflow-wrap: normal; }
+.latex-display { display: block; max-width: 100%; overflow-x: auto; }
+.latex .katex { font-size: 1.08em; }
+.math-reading p { margin: 0.5rem 0; }

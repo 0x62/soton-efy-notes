@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -106,25 +107,31 @@ export function Demo() {
         ]}
       />
       <Reading>
-        <p>
-          {v.mode ? (
-            <>
-              0 &lt; |x| &lt; {n(d)} ⇒ |x² sin(1/x)| ≤ x² &lt;{" "}
-              <strong>{n(d * d)}</strong>
-            </>
-          ) : (
-            <>
-              Inside 0 &lt; |x| &lt; {n(d)}, sine still reaches −1 and +1. Its
-              range does not shrink.
-            </>
-          )}
-        </p>
-        <p>
-          The bound controls every input in the interval, even unseen
-          oscillations.
-        </p>
+        {v.mode ? (
+          <>
+            <p>
+              <Latex latex={String.raw`0<|x|<${latexNumber(d)}`} />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`|x^2\sin(1/x)|\le x^2<${latexNumber(d * d)}`}
+              />
+            </p>
+            <p>
+              The bound controls every input in the interval, even unseen
+              oscillations.
+            </p>
+          </>
+        ) : (
+          <p>
+            Inside <Latex latex={String.raw`0<|x|<${latexNumber(d)}`} />, sine
+            still reaches <Latex latex="-1" /> and <Latex latex="1" />. Its
+            range does not shrink.
+          </p>
+        )}
         <p className="text-xs">
-          Curve inside |x| &lt; 0.01 omitted; the envelope still bounds it.
+          Curve inside <Latex latex={String.raw`|x|<0.01`} /> omitted; the
+          envelope still bounds it.
         </p>
       </Reading>
       <Approach value={v.p} target={2} onChange={(x) => set("p", x)} />

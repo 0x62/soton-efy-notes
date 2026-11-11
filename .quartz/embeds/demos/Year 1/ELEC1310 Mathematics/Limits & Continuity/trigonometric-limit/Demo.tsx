@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -84,10 +85,29 @@ export function Demo() {
       />
       <Reading>
         <p>
-          {Math.cos(input).toFixed(8)} &lt; {sinc(input).toFixed(8)} &lt; 1
+          <Latex
+            latex={String.raw`x\approx ${latexNumber(input)}\ \mathrm{rad}`}
+          />
         </p>
-        <p>cos x &lt; sin x/x &lt; 1 for 0 &lt; |x| &lt; π/2, in radians.</p>
-        <p>Both bounds approach 1; the original ratio is undefined at 0.</p>
+        <p>
+          <Latex
+            latex={String.raw`\cos x<\frac{\sin x}{x}<1\quad(0<|x|<\pi/2)`}
+          />
+        </p>
+        <p>
+          <Latex
+            latex={String.raw`\cos x\approx ${latexNumber(Math.cos(input))}`}
+          />
+        </p>
+        <p>
+          <Latex
+            latex={String.raw`\frac{\sin x}{x}\approx ${latexNumber(sinc(input))}`}
+          />
+        </p>
+        <p>
+          Both bounds approach one; the original ratio is undefined at zero.
+          Values shown are rounded.
+        </p>
       </Reading>
       <Approach value={v.p} target={3} onChange={(x) => set("p", x)} />
     </MathsCard>

@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -73,14 +74,24 @@ export function Demo() {
       />
       <Reading>
         <p>
-          (√({base} + h) − {Math.sqrt(base)})/h = 1/(√({base} + h) +{" "}
-          {Math.sqrt(base)}), h ≠ 0
+          <Latex
+            latex={String.raw`\frac{\sqrt{${base}+h}-${Math.sqrt(base)}}{h}=\frac1{\sqrt{${base}+h}+${Math.sqrt(base)}}`}
+          />
         </p>
         <p>
-          Value = {n(rationalised(base, step))} → 1/{2 * Math.sqrt(base)} ={" "}
-          {n(1 / (2 * Math.sqrt(base)))}
+          <Latex
+            latex={String.raw`h\approx ${latexNumber(step)},\quad f(h)\approx ${latexNumber(rationalised(base, step))}`}
+          />
         </p>
-        <p>The horizontal coordinate is h; the hole at h = 0 remains.</p>
+        <p>
+          <Latex
+            latex={String.raw`\lim_{h\to0}f(h)=\frac1{${2 * Math.sqrt(base)}}=${latexNumber(1 / (2 * Math.sqrt(base)))}`}
+          />
+        </p>
+        <p>
+          The horizontal coordinate is <Latex latex="h" />; the hole at{" "}
+          <Latex latex="h=0" /> remains.
+        </p>
       </Reading>
     </MathsCard>
   );

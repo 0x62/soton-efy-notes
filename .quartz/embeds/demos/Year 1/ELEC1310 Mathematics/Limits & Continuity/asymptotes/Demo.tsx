@@ -1,3 +1,4 @@
+import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   MathsCard,
   useMathsModel,
@@ -118,21 +119,45 @@ export function Demo() {
         {v.mode === 2 ? (
           <>
             <p>
-              f({n(far)}) = {n(horizontal(far))} → 2.5 · gap ={" "}
-              {n(2.5 - horizontal(far))}
+              <Latex
+                latex={String.raw`f(${latexNumber(far)})\approx ${latexNumber(horizontal(far))}`}
+              />
             </p>
-            <p>The function is even, so the limit at −∞ is also 2.5.</p>
+            <p>
+              <Latex
+                latex={String.raw`2.5-f(x)\approx ${latexNumber(2.5 - horizontal(far))}`}
+              />
+            </p>
+            <p>
+              <Latex latex={String.raw`\lim_{x\to\pm\infty}f(x)=2.5`} />; the
+              function is even.
+            </p>
           </>
         ) : (
           <>
             <p>
-              Left value {n(v.mode === 0 ? 1 / d ** 2 : -1 / d)} · right value{" "}
-              {n(v.mode === 0 ? 1 / d ** 2 : 1 / d)}
+              <Latex
+                latex={String.raw`f(-${latexNumber(d)})\approx ${latexNumber(v.mode === 0 ? 1 / d ** 2 : -1 / d)}`}
+              />
+            </p>
+            <p>
+              <Latex
+                latex={String.raw`f(${latexNumber(d)})\approx ${latexNumber(v.mode === 0 ? 1 / d ** 2 : 1 / d)}`}
+              />
+            </p>
+            <p>
+              <Latex
+                latex={
+                  v.mode === 0
+                    ? String.raw`\lim_{x\to0}x^{-2}=+\infty`
+                    : String.raw`\lim_{x\to0^-}x^{-1}=-\infty,\quad\lim_{x\to0^+}x^{-1}=+\infty`
+                }
+              />
             </p>
             <p>
               {v.mode === 0
-                ? "Both sides grow to +∞. This is not a finite real limit."
-                : "Left → −∞; right → +∞. No common two-sided limit."}
+                ? "This is not a finite real limit."
+                : "There is no common two-sided limit."}
             </p>
             {(v.mode === 0 ? 1 / d ** 2 : 1 / d) > 11 && (
               <p className="text-xs">
