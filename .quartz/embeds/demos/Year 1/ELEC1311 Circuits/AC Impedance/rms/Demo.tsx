@@ -91,8 +91,9 @@ export function Demo() {
           />
         </p>
         <p>
-          Both waveforms have zero mean voltage. The square wave spends the
-          whole period at its peak magnitude.
+          This bipolar square wave spends equal time at +20 V and −20 V, so its
+          mean is zero and its RMS is 20 V. A unipolar 0–20 V pulse at 50% duty
+          has RMS 20/√2 V; for duty D its RMS is 20√D V.
         </p>
       </Reading>
     </MathsCard>

@@ -14,10 +14,11 @@ export function schematic({
         component: component("V1"),
         x: 20,
         y: 40,
+        stretchH: 80,
         rotation: 0,
         pins: [
           { net: "in", x: 40, y: 40 },
-          { net: "0", x: 40, y: 80 },
+          { net: "0", x: 40, y: 120 },
         ],
       },
       {
@@ -44,12 +45,13 @@ export function schematic({
       },
       {
         component: component("C1"),
-        x: 210,
+        x: 220,
         y: 40,
+        stretchH: 80,
         rotation: 0,
         pins: [
           { net: "out", x: 230, y: 40 },
-          { net: "0", x: 230, y: 80 },
+          { net: "0", x: 230, y: 120 },
         ],
       },
     ],
@@ -59,6 +61,6 @@ export function schematic({
       { net: "out", segments: [{ x1: 200, y1: 40, x2: 230, y2: 40 }] },
     ],
     junctions: [],
-    bounds: { width: 260, height: 110 },
+    bounds: { width: 260, height: 150 },
   };
 }

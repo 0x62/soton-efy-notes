@@ -97,7 +97,7 @@ test("phasor arrow tips share exact endpoints and explicit theme colors", async 
       const doc = new JSDOM(renderToStaticMarkup(createElement(PhasorTriangle, {
         real: 7.2, imaginary, realLabel: "VR", imaginaryLabel: "VL−VC", theme,
       }))).window.document;
-      const [real, imag, sum] = [...doc.querySelectorAll("svg > line")];
+      const [real, imag, sum] = [...doc.querySelectorAll("g[data-phasor] > line")];
       for (const coordinate of ["x", "y"]) {
         assert.equal(real.getAttribute(`${coordinate}2`), imag.getAttribute(`${coordinate}1`));
         assert.equal(imag.getAttribute(`${coordinate}2`), sum.getAttribute(`${coordinate}2`));

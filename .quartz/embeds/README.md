@@ -317,3 +317,16 @@ The overview convention is `#### <page title>`, then the TOC and key equations; 
 AC Impedance follows measurement → phasor representation → component laws → worked circuits → frequency response. Its maths-only entries compare RMS heating and project a fixed peak phasor into a real waveform. The existing RL divider and the worked series RLC card combine calculated phasors, a current-reference voltage triangle and SPICE waveforms for one shared parameter set. The frequency card reuses the RL solver and trace component; its analytical curve is distinct from its selected-frequency SPICE run. All source phasors use peak cosine convention.
 
 `PhasorTriangle` draws a fixed real-plus-imaginary voltage sum relative to current. `MathsPlot.equalScale` preserves geometric angles in Argand diagrams after resizing. Circuit result rendering uses the input that produced the result while an updated worker request is pending, keeping the formula, schematic and traces consistent.
+
+`PhasorDiagram` renders static complex vectors in any quadrant. Each vector supplies
+its value, optional translated start (for head-to-tail sums), label and color.
+Callers must state the reference, unit and peak/RMS convention. One shared scale
+includes every translated endpoint; signed phases use atan2, zero has undefined
+phase, and very short vectors use a dot rather than an oversized arrowhead.
+`PhasorTriangle` is the voltage/current-reference adapter used by the RL and RLC
+lessons. Its angle is relative to current, not the source's time-origin phase.
+
+Authored circuit layouts must match the pinned spice-ts symbol terminal offsets:
+the vertical capacitor's centre is x + 10, while the source's is x + 20.
+Use stretchH to extend leads without distorting the symbol. The schematic tests
+check rendered terminals, wire endpoints and common return levels for every demo.

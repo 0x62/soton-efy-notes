@@ -1,3 +1,4 @@
+import { schematic } from "./schematic";
 import { Latex, latexNumber } from "~/toolkit/Latex";
 import {
   AccessibleDataTable,
@@ -15,6 +16,7 @@ export function RCTransientCircuit(
   return (
     <CircuitCard<typeof schema, Result>
       {...props}
+      schematicLayout={schematic}
       schema={schema}
       simulate={simulate}
       summary={(values) => (
