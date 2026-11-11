@@ -34,16 +34,13 @@ export function PhasorTriangle({
         aria-label={`${realLabel} ${real.toPrecision(4)} volts along the current; ${imaginaryLabel} ${imaginary.toPrecision(4)} volts in quadrature. The diagonal is their source-voltage sum.`}
       >
         <defs>
-          <marker
-            id={id}
-            markerWidth="6"
-            markerHeight="6"
-            refX="5"
-            refY="3"
-            orient="auto-start-reverse"
-          >
-            <path d="M0 0L6 3L0 6Z" fill="context-stroke" />
-          </marker>
+          {[c.voltage, c.current, theme === "dark" ? "#ebebec" : "#2b2b2b"].map((color, index) => (
+            <marker key={color} id={`${id}-${index}`} markerUnits="userSpaceOnUse"
+              markerWidth="9" markerHeight="10" refX="8" refY="5" orient="auto">
+              <path d="M1 1L8 5L1 9" fill="none" stroke={color}
+                strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+            </marker>
+          ))}
         </defs>
         <line
           x1="40"
@@ -52,7 +49,7 @@ export function PhasorTriangle({
           y2={y}
           stroke={c.voltage}
           strokeWidth="2.5"
-          markerEnd={`url(#${id})`}
+          markerEnd={`url(#${id}-0)`}
         />
         <line
           x1={x}
@@ -61,7 +58,7 @@ export function PhasorTriangle({
           y2={z}
           stroke={c.current}
           strokeWidth="2.5"
-          markerEnd={`url(#${id})`}
+          markerEnd={`url(#${id}-1)`}
         />
         <line
           x1="40"
@@ -70,7 +67,7 @@ export function PhasorTriangle({
           y2={z}
           stroke="currentColor"
           strokeWidth="2"
-          markerEnd={`url(#${id})`}
+          markerEnd={`url(#${id}-2)`}
         />
         <g fill="currentColor" fontSize="13">
           <text x={(40 + x) / 2} y={y + 20} textAnchor="middle">

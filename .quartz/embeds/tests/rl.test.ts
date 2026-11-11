@@ -87,7 +87,7 @@ test("authored series layout renders normal horizontal R and L with a connected 
     assert.ok(d.endsWith(`L${pc.pins[1].x - pc.x},${pc.pins[1].y - pc.y}`));
   }
   // The ordinary renderer connects the inductor's right pin down to ground.
-  assert.ok(doc.querySelector('line[x1="200"][y1="40"][x2="200"][y2="80"]'));
+  assert.ok(doc.querySelector('line[x1="200"][y1="40"][x2="200"][y2="120"]'));
   assert.deepEqual(
     layout.wires.map((w) => w.net),
     ["in", "out"],

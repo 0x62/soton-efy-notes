@@ -86,3 +86,29 @@ test("AC lesson retains worked source values, anchors and modest number of demos
     assert.ok(s.includes("## " + heading));
   assert.ok(!/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(s));
 });
+
+test("phasor arrow tips share exact endpoints and explicit theme colors", async () => {
+  const { createElement } = await import("react");
+  const { renderToStaticMarkup } = await import("react-dom/server");
+  const { JSDOM } = await import("jsdom");
+  const { PhasorTriangle } = await import("~/toolkit/PhasorTriangle");
+  for (const theme of ["light", "dark"] as const) {
+    for (const imaginary of [-9.6, 0, 9.6]) {
+      const doc = new JSDOM(renderToStaticMarkup(createElement(PhasorTriangle, {
+        real: 7.2, imaginary, realLabel: "VR", imaginaryLabel: "VL−VC", theme,
+      }))).window.document;
+      const [real, imag, sum] = [...doc.querySelectorAll("svg > line")];
+      for (const coordinate of ["x", "y"]) {
+        assert.equal(real.getAttribute(`${coordinate}2`), imag.getAttribute(`${coordinate}1`));
+        assert.equal(imag.getAttribute(`${coordinate}2`), sum.getAttribute(`${coordinate}2`));
+      }
+      for (const marker of doc.querySelectorAll("marker")) {
+        assert.equal(marker.getAttribute("refX"), "8");
+        const path = marker.querySelector("path")!;
+        assert.equal(path.getAttribute("fill"), "none");
+        assert.match(path.getAttribute("stroke")!, /^#[a-f0-9]{6}$/);
+        assert.equal(path.getAttribute("d"), "M1 1L8 5L1 9");
+      }
+    }
+  }
+});

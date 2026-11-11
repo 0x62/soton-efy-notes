@@ -18,18 +18,19 @@ const voltage = (x: number, v: V) =>
       : -20
     : 20 * Math.cos(2 * Math.PI * x);
 const scene: Scene<V> = (b, v, c) => {
-  // Split at the square wave's jumps: no invented connecting samples.
-  for (const [a, z] of [
-    [0, 0.25],
-    [0.25, 0.75],
-    [0.75, 1],
-  ])
-    graph(b, (x) => voltage(x, v()), c.blue, a + 1e-7, z - 1e-7);
-  graph(b, () => rms(20, !!v().square), c.amber, 0, 1);
+  const sinusoid = graph(b, (x) => voltage(x, v()), c.blue, 0, 1);
+  sinusoid.setAttribute({ visible: () => !v().square });
+  // Explicit ideal steps avoid adaptive interpolation across a discontinuity.
+  b.create("curve", [[0, 0.25, 0.25, 0.75, 0.75, 1], [20, 20, -20, -20, 20, 20]], {
+    strokeColor: c.blue, strokeWidth: 2.5, highlight: false, fixed: true,
+    visible: () => !!v().square,
+  });
+  // The square-wave RMS equals its positive peak: dashes keep both traces visible.
+  graph(b, () => rms(20, !!v().square), c.amber, 0, 1, true);
 };
 const power: Scene<V> = (b, v, c) => {
   graph(b, (x) => voltage(x, v()) ** 2 / 20, c.green, 0, 1);
-  graph(b, () => rms(20, !!v().square) ** 2 / 20, c.amber, 0, 1);
+  graph(b, () => rms(20, !!v().square) ** 2 / 20, c.amber, 0, 1, true);
 };
 export function Demo() {
   const { values, set, theme } = useMathsModel(schema);
