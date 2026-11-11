@@ -57,7 +57,7 @@ export function Demo() {
             theme={theme}
             items={[
               ["Voltage", "blue"],
-              ["RMS voltage", "amber"],
+              ["RMS voltage", "amber", true],
             ]}
           />
         </div>
@@ -74,7 +74,7 @@ export function Demo() {
             theme={theme}
             items={[
               ["Power", "green"],
-              ["Average power", "amber"],
+              ["Average power", "amber", true],
             ]}
           />
         </div>

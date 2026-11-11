@@ -249,7 +249,7 @@ export function Legend({
   items,
   theme,
 }: {
-  items: readonly (readonly [string, keyof Palette])[];
+  items: readonly (readonly [string, keyof Palette, boolean?])[];
   theme: "light" | "dark";
 }) {
   return (
@@ -257,14 +257,14 @@ export function Legend({
       className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs"
       aria-label="Graph legend"
     >
-      {items.map(([label, color]) => (
+      {items.map(([label, color, dashed]) => (
         <span className="inline-flex items-center gap-2" key={label}>
           <span
             aria-hidden="true"
             style={{
-              background: mathsPalette[theme][color],
+              borderTop: `3px ${dashed ? "dashed" : "solid"} ${mathsPalette[theme][color]}`,
               width: 22,
-              height: 3,
+              height: 0,
             }}
           />
           {label}
