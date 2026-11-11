@@ -1,0 +1,103 @@
+@use "./base.scss";
+
+// Adapt the original Obsidian publish.css figure/caption treatment to Quartz.
+// Only figure callouts are affected; information and warning boxes stay intact.
+.callout[data-callout="figure"] {
+  --callout-icon: none;
+  --bg: transparent;
+  --border: transparent;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  max-width: 40rem;
+  margin: 1.5rem auto;
+  text-align: center;
+
+  > .callout-title {
+    justify-content: center;
+    padding: 0;
+    color: var(--darkgray);
+  }
+
+  .callout-icon {
+    display: none;
+  }
+
+  .callout-title-inner {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .callout-title-inner > p {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  > .callout-content {
+    font-size: 0.75em;
+    text-align: center;
+    color: var(--darkgray);
+
+    > p,
+    > :first-child {
+      margin: 0.5rem 0 0;
+    }
+  }
+}
+
+// Give the tree one bounded scroll area. In particular, the mobile overlay's
+// padding must not be added below a list sized to 100% of the viewport.
+.page #quartz-body .sidebar.left .explorer-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+
+  > .explorer-ul {
+    flex: 1 1 0;
+    min-height: 0;
+    max-height: none;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-gutter: stable;
+    padding-bottom: 0.5rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (min-width: 801px) {
+  .page #quartz-body .sidebar.left {
+    height: 100dvh;
+    min-height: 0;
+
+    > :not(.explorer) { flex-shrink: 0; }
+    > .explorer {
+      flex: 1 1 0;
+      min-height: 0;
+      > .explorer-content { flex: 1 1 0; }
+    }
+  }
+}
+
+.explorer-ul:focus-visible {
+  outline: 2px solid var(--secondary);
+  outline-offset: -2px;
+}
+
+// Nested folder lists only clip the collapse animation; they must not become
+// scroll containers or stop wheel/touch scroll chaining over their links.
+.page #quartz-body .sidebar.left .explorer-content .folder-outer > ul {
+  min-height: 0;
+  overflow: clip;
+  overscroll-behavior: auto;
+}

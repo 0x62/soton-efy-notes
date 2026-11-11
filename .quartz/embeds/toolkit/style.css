@@ -1,0 +1,120 @@
+@import "katex/dist/katex.min.css";
+@import "tailwindcss";
+@source "./**/*.{ts,tsx}";
+@source "../demos/**/*.{ts,tsx}";
+:root {
+  --light: #faf8f8;
+  --lightgray: #e5e5e5;
+  --gray: #b8b8b8;
+  --darkgray: #4e4e4e;
+  --dark: #2b2b2b;
+  --secondary: #284b63;
+  --tertiary: #84a59d;
+  --bodyFont: system-ui;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --light: #161618;
+  --lightgray: #393639;
+  --gray: #646464;
+  --darkgray: #d4d4d4;
+  --dark: #ebebec;
+  --secondary: #7b97aa;
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--bodyFont), sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+button,
+input {
+  font: inherit;
+  accent-color: var(--secondary);
+}
+button,
+input[type="number"] {
+  border: 1px solid var(--gray);
+  border-radius: 0.4rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--light);
+}
+button {
+  cursor: pointer;
+}
+:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 3px;
+}
+canvas,
+svg {
+  max-width: 100%;
+}
+th,
+td {
+  padding: 0.4rem;
+  text-align: right;
+}
+
+/* The wrapper supplies one tooltip for pointer, touch and keyboard use. */
+.schematic-renderer > div > div {
+  display: none;
+}
+/* Upstream fades the whole schematic to 55%, including keyboard outlines. */
+.schematic-renderer svg {
+  opacity: 1 !important;
+}
+
+/* Maths and circuit cards share their shell, typography, controls and tokens. */
+.math-board {
+  width: 100%;
+  height: clamp(265px, 56vw, 330px);
+  border: 0;
+  overflow: hidden;
+  background: var(--light);
+  touch-action: pan-y;
+}
+.math-figure {
+  margin: 0;
+  min-width: 0;
+}
+.math-board .JXGtext {
+  font-family: var(--bodyFont), sans-serif !important;
+}
+.math-reading {
+  min-height: 3rem;
+}
+.math-choice[aria-pressed="true"] {
+  background: var(--secondary);
+  color: var(--light);
+  border-color: var(--secondary);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+@media (prefers-reduced-motion: reduce) {
+  .math-board * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Intrinsic root size can grow AND shrink independently of the parent viewport. */
+#root { display: flow-root; min-width: 0; }
+html[data-notes-embedded="true"],
+html[data-notes-embedded="true"] body {
+  height: auto;
+  min-height: 0;
+  overflow: clip;
+}
+html[data-notes-embedded="true"] { touch-action: pan-y; }
+
+.latex { line-height: 1.8; overflow-wrap: normal; }
+.latex-display { display: block; max-width: 100%; overflow-x: auto; }
+.latex .katex { font-size: 1.08em; }
+.math-reading p { margin: 0.5rem 0; }

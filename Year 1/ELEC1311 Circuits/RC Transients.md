@@ -179,6 +179,8 @@ v_C(t)=10(1-e^{-t/2})\,\mathrm{V},\qquad i_C(t)=e^{-t/2}\,\mathrm{A}
 $$
 At $t=1\,\mathrm{s}$, the exact values are approximately $3.93\,\mathrm{V}$ and $0.607\,\mathrm{A}$. At $t=2\,\mathrm{s}$, the voltage is approximately $6.32\,\mathrm{V}$.
 
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/rc-transients/charging/?voltage=10&amp;resistance=10&amp;capacitance=0.2" data-notes-embed="y1/elec1311/rc-transients/charging" title="Interactive RC charging circuit, voltage and current" loading="lazy" height="1100" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 ## Approximating the response in time steps
 
 A numerical approximation holds the current constant for a short interval, then recalculates it.[^3][^4] At step $n$:

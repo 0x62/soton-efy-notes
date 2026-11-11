@@ -1,0 +1,81 @@
+name: Quartz experimental Pages preview
+
+on:
+  push:
+    branches: [experiment/quartz-pages]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quartz-preview-${{ github.event_name == 'pull_request' && github.ref || 'pages' }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check out pinned Quartz 4.5.2
+        uses: actions/checkout@v4
+        with:
+          repository: jackyzha0/quartz
+          ref: 4923affa7722dfc751f1074348e6dad214fe0c08
+          path: .quartz/engine
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: .quartz/engine/package-lock.json
+      - name: Prepare public tracked notes
+        run: |
+          rm -rf .quartz/engine/content
+          node .quartz/prepare.mjs
+      - name: Install locked Quartz dependencies
+        working-directory: .quartz/engine
+        run: npm ci --no-audit --no-fund
+      - name: Build and test
+        working-directory: .quartz/engine
+        env:
+          QUARTZ_BASE_URL: 0x62.github.io/soton-efy-notes
+        run: |
+          npx tsc --noEmit
+          npx quartz build
+          node ../finish.mjs public
+          node ../social-covers.mjs public
+          node ../verify.mjs public
+          node ../permalinks.mjs public
+          node --import tsx ../test-permalinks.mjs .
+      - name: Build interactive note embeds
+        working-directory: .quartz/embeds
+        run: |
+          npm ci --no-audit --no-fund
+          npm test
+          EMBED_OUT="$GITHUB_WORKSPACE/.quartz/engine/public/_embed" npm run build
+          node --experimental-vm-modules tests/build.mjs ../engine/public/_embed
+          node publish.mjs ../engine/public
+          node ../verify-permalinks.mjs ../engine/public
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .quartz/engine/public
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/experiment/quartz-pages'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy experimental preview
+        id: deployment
+        uses: actions/deploy-pages@v4
