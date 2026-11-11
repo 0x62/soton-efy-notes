@@ -36,6 +36,7 @@ export function MathsPlot<V>({
   bounds,
   label,
   children,
+  equalScale = false,
 }: {
   values: V;
   theme: "light" | "dark";
@@ -43,6 +44,7 @@ export function MathsPlot<V>({
   bounds: Bounds;
   label: string;
   children?: ReactNode;
+  equalScale?: boolean;
 }) {
   const host = useRef<HTMLDivElement>(null),
     board = useRef<Board | null>(null),
@@ -93,7 +95,7 @@ export function MathsPlot<V>({
         factorX: 1,
         factorY: 1,
       },
-      keepaspectratio: false,
+      keepaspectratio: equalScale,
       showInfobox: false,
       renderer: "svg",
     });
@@ -129,7 +131,7 @@ export function MathsPlot<V>({
       const { width, height } = host.current!.getBoundingClientRect();
       if (width > 0 && height > 0) {
         b.resizeContainer(width, height, true);
-        b.setBoundingBox(box.current, false);
+        b.setBoundingBox(box.current, equalScale);
       }
     });
     resize.observe(host.current!);
@@ -138,10 +140,10 @@ export function MathsPlot<V>({
       board.current = null;
       JXG.JSXGraph.freeBoard(b);
     };
-  }, [ready, scene, theme]);
+  }, [ready, scene, theme, equalScale]);
   useEffect(() => {
-    board.current?.setBoundingBox(bounds, false);
-  }, [...bounds]);
+    board.current?.setBoundingBox(bounds, equalScale);
+  }, [...bounds, equalScale]);
   useEffect(() => {
     board.current?.update();
   }, [values]);

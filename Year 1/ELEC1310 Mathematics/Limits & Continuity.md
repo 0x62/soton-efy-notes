@@ -1,6 +1,8 @@
 ---
 permalink: y1/elec1310/limits-continuity
 ---
+#### Limits & Continuity
+
 - [[#Meaning of a limit]]
 - [[#One-sided limits and non-existence]]
 - [[#Continuity]]
@@ -10,8 +12,6 @@ permalink: y1/elec1310/limits-continuity
 - [[#Infinite limits and asymptotes]]
 - [[#Intermediate value theorem]]
 - [[#Formal definition]]
-
-#### Limits & Continuity
 
 $$
 \lim_{x\to a}f(x)=L\iff\lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L

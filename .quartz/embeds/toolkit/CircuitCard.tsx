@@ -45,7 +45,7 @@ export function CircuitCard<
   const theme = useTheme(),
     [values, setValues] = useState(() => readParams(location.search)),
     [resetVersion, setResetVersion] = useState(0);
-  const { result, error, busy } = useSimulation(
+  const { result, resultInput, error, busy } = useSimulation(
     simulate,
     values,
     debounceMs,
@@ -109,7 +109,7 @@ export function CircuitCard<
             theme={plotTheme}
             layout={schematicLayout?.(result)}
           />
-          {renderResult(result, values, theme)}
+          {renderResult(result, resultInput ?? values, theme)}
         </div>
       )}
     </Card>

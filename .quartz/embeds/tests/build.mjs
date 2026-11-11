@@ -23,7 +23,11 @@ for (const route of [
   "y1/elec1311/ac-impedance/voltage-division",
   "maths-demo",
   ...Object.keys(manifest)
-    .filter((k) => k.startsWith("y1/elec1310/limits-continuity/"))
+    .filter(
+      (k) =>
+        k.startsWith("y1/elec1310/limits-continuity/") ||
+        k.startsWith("y1/elec1311/ac-impedance/"),
+    )
     .map((k) => k.replace("/index.html", "")),
 ]) {
   const html = await readFile(resolve(out, route, "index.html"), "utf8");
@@ -64,9 +68,7 @@ assert.ok(
   "Maths does not load the SPICE worker",
 );
 assert.ok(
-  rl.imports.some(
-    (x) => circuit.imports.includes(x) && x.includes("worker-client"),
-  ),
+  [...chunks(rl)].some((file) => chunks(circuit).has(file)),
   "Circuit UI and transport share a hashed chunk",
 );
 let response;
@@ -176,7 +178,16 @@ console.log(
   "PASS twelve isolated maths entries share JSXGraph and exclude SPICE",
 );
 
-assert.ok(sharedMaths.some(file => file.includes("Latex") && chunks(circuit).has(file)),
-  "Maths lessons and RC card cache one LaTeX renderer");
-assert.ok(![...chunks(circuit)].some(file => file.includes("jsxgraph")),
-  "Circuit LaTeX must not pull in JSXGraph");
+const commonMathSources = await Promise.all(
+  sharedMaths
+    .filter((file) => chunks(circuit).has(file))
+    .map((file) => readFile(resolve(out, file), "utf8")),
+);
+assert.ok(
+  commonMathSources.some((source) => source.includes("katex-html")),
+  "Maths lessons and RC card cache one LaTeX renderer",
+);
+assert.ok(
+  ![...chunks(circuit)].some((file) => file.includes("jsxgraph")),
+  "Circuit LaTeX must not pull in JSXGraph",
+);

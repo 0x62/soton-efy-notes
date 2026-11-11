@@ -7,7 +7,7 @@ export function useSimulation<I, O>(
   debounceMs = 200,
   timeoutMs = 10000,
 ) {
-  const [result, setResult] = useState<O>(),
+  const [result, setResult] = useState<{ value: O; input: I }>(),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(true);
   useEffect(() => {
@@ -28,7 +28,7 @@ export function useSimulation<I, O>(
         .then(
           (value) => {
             if (active) {
-              setResult(value);
+              setResult({ value, input });
               setBusy(false);
             }
           },
@@ -50,5 +50,5 @@ export function useSimulation<I, O>(
       controller.abort();
     };
   }, [simulate, input, debounceMs, timeoutMs]);
-  return { result, error, busy };
+  return { result: result?.value, resultInput: result?.input, error, busy };
 }

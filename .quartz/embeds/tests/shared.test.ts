@@ -119,6 +119,10 @@ test("filesystem routing follows note permalinks and preserves existing public r
       "y1/elec1310/limits-continuity/squeeze-theorem",
       "y1/elec1310/limits-continuity/trigonometric-limit",
 
+      "y1/elec1311/ac-impedance/phasor-projection",
+      "y1/elec1311/ac-impedance/rl-frequency",
+      "y1/elec1311/ac-impedance/rms",
+      "y1/elec1311/ac-impedance/series-rlc",
       "y1/elec1311/ac-impedance/voltage-division",
       "y1/elec1311/rc-transients/charging",
     ],

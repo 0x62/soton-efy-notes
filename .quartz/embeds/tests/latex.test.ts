@@ -76,7 +76,7 @@ test("all lesson readouts render valid LaTeX across modes and boundary parameter
   hooks.deregister();
 });
 
-test("overview section contains equations only and introduction stays in the lesson", () => {
+test("overview section contains the TOC and equations and introduction stays in the lesson", () => {
   const note = readFileSync(
     new URL(
       "../../../Year 1/ELEC1310 Mathematics/Limits & Continuity.md",
@@ -87,10 +87,16 @@ test("overview section contains equations only and introduction stays in the les
   const overview = note
     .split("#### Limits & Continuity\n")[1]
     .split("## Introduction")[0];
-  assert.equal(overview.replace(/\$\$[\s\S]*?\$\$/g, "").trim(), "");
+  assert.equal(
+    overview
+      .replace(/\$\$[\s\S]*?\$\$/g, "")
+      .replace(/^- \[\[[^\n]+$/gm, "")
+      .trim(),
+    "",
+  );
   assert.ok(
-    note.indexOf("[[#Formal definition]]") <
-      note.indexOf("#### Limits & Continuity"),
+    note.indexOf("#### Limits & Continuity") <
+      note.indexOf("[[#Formal definition]]"),
   );
   assert.ok(
     note.includes("A limit describes what the values of a function approach."),

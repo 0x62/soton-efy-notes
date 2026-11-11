@@ -309,3 +309,11 @@ shared and cacheable.
 Use `Latex` from `~/toolkit/Latex` in either card: `<Latex latex={String.raw`\tau=${latexNumber(tau)}\,\mathrm{s}`} />`. `latexNumber` formats finite live values, including scientific notation. KaTeX supplies visual HTML and accessible MathML; unsafe HTML and URL commands remain disabled. Default inline rendering can wrap at mathematical relations. Split long derivations into short equations for narrow embeds; reserve `display` for standalone formulas. Keep prose outside LaTeX, and use approximation signs for rounded numerical readouts. The same hashed renderer chunk is cached across maths and circuit entries.
 
 The IVT demo's Step button applies one bisection step, retaining the opposite-sign bracket. Reset restores the original interval; the discontinuous comparison does not offer bisection.
+
+### AC Impedance lesson
+
+The overview convention is `#### <page title>`, then the TOC and key equations; all prose starts under a subsequent section. Year 1 transcludes that complete overview. Preserve the heading when editing it.
+
+AC Impedance follows measurement → phasor representation → component laws → worked circuits → frequency response. Its maths-only entries compare RMS heating and project a fixed peak phasor into a real waveform. The existing RL divider and the worked series RLC card combine calculated phasors, a current-reference voltage triangle and SPICE waveforms for one shared parameter set. The frequency card reuses the RL solver and trace component; its analytical curve is distinct from its selected-frequency SPICE run. All source phasors use peak cosine convention.
+
+`PhasorTriangle` draws a fixed real-plus-imaginary voltage sum relative to current. `MathsPlot.equalScale` preserves geometric angles in Argand diagrams after resizing. Circuit result rendering uses the input that produced the result while an updated worker request is pending, keeping the formula, schematic and traces consistent.

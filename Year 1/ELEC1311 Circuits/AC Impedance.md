@@ -28,11 +28,21 @@ $$Z_s=\sum_kZ_k,\qquad\frac{1}{Z_p}=\sum_k\frac{1}{Z_k}$$
 **[[#Frequency response|RL high-pass response]]**
 $$H(j\omega)=\frac{j\omega L}{R+j\omega L},\qquad \omega_c=\frac RL,\qquad f_c=\frac{R}{2\pi L}$$
 
+## Introduction
+
+A DC resistor calculation connects one voltage to one current. With a sinusoidal supply, voltage and current change throughout the cycle and may reach their peaks at different times. AC analysis must account for both their amplitudes and their relative timing.
+
+We will first measure a waveform, then represent its amplitude and phase by a complex number. The component laws will give that number a circuit meaning. A series RL divider ties the calculations to simulated voltages; adding a capacitor shows how reactive contributions cancel. Finally, varying the frequency of the RL circuit turns the same divider into a filter.
+
+The examples use **peak, cosine-reference phasors** unless a quantity is explicitly labelled RMS. The diagrams show ideal sinusoidal steady state; switch-on transients are treated in [[RC Transients]] and [[RL and Complete Response]].
+
 ## Linear systems
 
 A system is **linear** when it obeys both scaling (homogeneity) and addition. If inputs $x_1,x_2$ produce outputs $y_1,y_2$, then input $a x_1+b x_2$ produces $a y_1+b y_2$. This is the basis of superposition. Time invariance means delaying an input delays its response by the same amount without changing its shape. Causality means the present output depends on current and past inputs, not future inputs.[^2]
 
 Ideal fixed-value RLC networks are linear and time invariant. The sinusoidal steady-state response to one frequency has that same frequency, with a changed amplitude and phase. Different-frequency inputs can be analysed separately and their **time-domain** responses added; phasors at different frequencies cannot be treated as one common-frequency phasor calculation.
+
+The shared frequency is what makes a compact calculation possible. Before separating out the time dependence, we need to distinguish the measurements used to describe a sinusoid.
 
 ## RMS and sinusoidal measurements
 
@@ -46,6 +56,12 @@ For a sinusoid, $\cos^2\theta=(1+\cos2\theta)/2$. The cosine term averages to ze
 $$V_{\mathrm{rms}}=\frac{V_m}{\sqrt2}.$$
 RMS measures the equivalent DC heating effect in a resistor: $P_{\mathrm{avg}}=V_{\mathrm{rms}}^2/R$. The ordinary average of a centred sinusoid is zero, but its mean-square and RMS values are not. The factor $1/\sqrt2$ is specific to a sinusoidal waveform, not a universal peak-to-RMS conversion.[^2]
 
+The two waveforms below have the same 20 V peak and zero mean voltage. Their heating effects differ because the square wave remains at full magnitude throughout the cycle. The power plot uses a fixed 20 Ω resistor. Its average is the power that a DC source equal to the RMS voltage would deliver.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/rms/" data-notes-embed="y1/elec1311/ac-impedance/rms" title="Peak, RMS and resistor heating for sine and square waves" loading="lazy" scrolling="no" height="760" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
+RMS describes the heating effect, but it does not record when the peaks occur. Phase supplies that timing information. To solve a circuit, we need a representation that keeps both amplitude and phase.
+
 ## Sinusoids and phasors
 
 ![[AC Theory (1)#Phasors]]
@@ -54,9 +70,15 @@ A phasor stores amplitude and phase while leaving out the common time dependence
 $$v(t)=\Re\{\underline V e^{j\omega t}\}.$$
 All phasors in a calculation must use the **same frequency, reference and amplitude convention**. Peak phasors are used here; RMS phasors give the same impedance relationships, but peak and RMS values must not be mixed. A sine can be converted using $\sin\theta=\cos(\theta-90^\circ)$.
 
+Take the source used later in the RL divider: $v_s(t)=20\cos(\omega t-15^\circ)\,\mathrm V$. Its fixed phasor is $20\angle(-15^\circ)\,\mathrm V$. Multiplying by $e^{j\omega t}$ rotates the complex waveform; taking its real part gives the measured voltage. The two views below follow the same point through one cycle.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/phasor-projection/" data-notes-embed="y1/elec1311/ac-impedance/phasor-projection" title="A fixed phasor and the real projection of its rotating time factor" loading="lazy" scrolling="no" height="760" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
 Differentiation becomes multiplication by $j\omega$ because
 $$\frac{d}{dt}e^{j\omega t}=j\omega e^{j\omega t}.$$
 This turns differential equations into algebraic equations for sinusoidal steady state. It does not include the switch-on transient; [[RC Transients]] describes the decaying part separately.[^1]
+
+The factor $j\omega$ carries the effect of differentiation into the complex calculation. We can check that shortcut against an ordinary differential equation before using it as a component rule.
 
 ## Deriving the sinusoidal RL response
 
@@ -77,6 +99,8 @@ Division reduces the amplitude by $|R+j\omega L|$ and subtracts the impedance an
 
 The complex exponential is a mathematical representation; the measurable waveform is its real part for a cosine reference, or its imaginary part for a sine reference. Cancelling $e^{j\omega t}$ does not mean the physical current has stopped varying. It removes a common factor so only amplitude and relative phase need to be solved.[^3]
 
+The current amplitude and lag depend on frequency through $\omega L$. A calculation at one frequency therefore gives one part of a circuit’s behaviour. The next distinction explains how those separate calculations fit together.
+
 ## Time and frequency descriptions
 
 A time-domain plot shows how a signal varies with time. A frequency-domain spectrum shows which frequencies contribute to it. An ideal single sinusoid gives one frequency component; a nonsinusoidal periodic waveform generally contains harmonics as well as its fundamental. A centred ideal square wave, for example, requires a series of odd harmonics rather than just one sine wave.
@@ -93,6 +117,8 @@ flowchart LR
 
 Keep either peak or RMS magnitude consistently throughout the calculation. This phasor route describes the steady sinusoidal response; switching transients require a separate time-domain solution.
 
+We now have the method: solve for amplitude and phase at a chosen frequency. Impedance packages each component’s differential law into the voltage-to-current ratio needed for that calculation.
+
 ## Component impedances
 
 ![[AC Theory (1)#Reactance]]
@@ -106,6 +132,8 @@ $R$ is resistance and $X$ is reactance, both in ohms. The imaginary part describ
 - Capacitor: $i=C\,dv/dt$ gives $Z_C=1/(j\omega C)=-j/(\omega C)$. Current leads voltage by $90^\circ$; $|Z_C|$ decreases with frequency.
 
 For ideal components, the low-frequency limits are an inductor short circuit and capacitor open circuit. At very high frequency these roles reverse. These are limiting models, not permission to ignore finite impedance at an arbitrary frequency.[^1]
+
+The signs of the reactive impedances encode the lead and lag just described. Deriving them from the component laws also fixes which quantity leads, without relying on a memorised diagram.
 
 ## Deriving capacitor and inductor impedance
 
@@ -140,6 +168,8 @@ $$\underline V=j\omega L\underline I
 \quad\Rightarrow\quad\boxed{Z_L=j\omega L}.$$
 Here voltage has the $+90^\circ$ phase relative to current. The cancellation removes common time dependence, not voltage/current phase information.[^1][^3]
 
+With each component expressed as a complex ratio, the circuit topology supplies the remaining equations. The same KVL and KCL used for DC now relate phasors.
+
 ## Combining impedances
 
 KVL and KCL still apply to complex phasors. Series components carry the same current:
@@ -154,6 +184,8 @@ The usual divider relationships become
 $$\underline V_2=\underline V_s\frac{Z_2}{Z_1+Z_2},\qquad \underline I_1=\underline I_s\frac{Z_2}{Z_1+Z_2}.$$
 The current-divider numerator is the **other** branch impedance. The result includes both amplitude and phase.
 
+Series combinations naturally add voltage drops. For parallel branches, summing currents suggests working with the reciprocal ratio instead.
+
 ## Admittance
 
 Admittance is the reciprocal of impedance:
@@ -163,6 +195,8 @@ where $G$ is conductance, $B$ is susceptance and the unit is the siemens (S). Pa
 For $Z=R+jX$, multiply by the conjugate:
 $$Y=\frac{R-jX}{R^2+X^2},\qquad G=\frac{R}{R^2+X^2},\qquad B=-\frac{X}{R^2+X^2}.$$
 Thus $G=1/R$ only for a purely resistive impedance. It is not generally the reciprocal of the real part of $Z$.[^1]
+
+We can now solve a complete divider. This example returns to the 20 V peak source used in the phasor projection. Its resistor and inductor share a current, so the resistor voltage follows that current while the inductor voltage leads it by a quarter-cycle.
 
 ## Complex voltage division
 
@@ -175,9 +209,13 @@ Hence $\underline V_L=17.15e^{j15.96^\circ}\,\mathrm V$. With peak, cosine-refer
 
 The interactive example uses $f=50\,\mathrm{Hz}$ and $L=100/(2\pi f)\approx318.31\,\mathrm{mH}$ to realise the stated $j100\,\Omega$. The source is $20\,\mathrm V$ **peak** ($14.14\,\mathrm V$ RMS), with the same $-15^\circ$ cosine phase. The plot shows two steady-state cycles: $v_R$ is measured from the source to the R–L junction, and $v_L$ from that junction to ground, so $v_R+v_L=v_s$.
 
-<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/voltage-division/" data-notes-embed="y1/elec1311/ac-impedance/voltage-division" title="Series RL circuit and steady-state resistor and inductor voltages" loading="lazy" height="1000" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/voltage-division/" data-notes-embed="y1/elec1311/ac-impedance/voltage-division" title="Series RL circuit, calculated phasors and simulated voltages" loading="lazy" scrolling="no" height="1000" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
+
+The live phasor calculation and the SPICE traces use the same component values and source. Their voltage sum follows KVL at every instant. The voltage peaks occur at different times, so their magnitudes do not add to the source magnitude.
 
 ## Worked RLC and dependent-source circuits
+
+The RL divider required one complex sum and one division. The following examples develop that method in stages: checking the quadrant, combining opposite reactances, handling a parallel load, and keeping a dependent source tied to its control current.
 
 ### Rectangular to polar form: check the quadrant
 
@@ -207,6 +245,12 @@ Let $v_s(t)=12\cos(1000t+15^\circ)\,\mathrm V$, $R=30\,\Omega$, $L=65\,\mathrm{m
    $$\boxed{i(t)=0.24\cos(1000t-38.13^\circ)\,\mathrm A.}$$
 
 The current lags the source by $53.13^\circ$, not $38.13^\circ$: the latter is its phase relative to the chosen time origin. The net positive reactance is an independent check on the lag.[^5]
+
+The circuit below keeps the worked values of $R$, $L$, $C$ and the 12 V peak source. Only angular frequency changes. At the worked value, the inductor contributes $+j65\,\Omega$ and the capacitor $-j25\,\Omega$, leaving $+j40\,\Omega$.
+
+As frequency decreases, $X_L$ falls while $X_C$ rises. They cancel at $\omega_0=1/\sqrt{LC}\approx620.17\,\mathrm{rad\,s^{-1}}$ ($f_0\approx98.70\,\mathrm{Hz}$). The impedance then equals $R$, so current and source voltage are in phase. Below that frequency, the net reactance is capacitive and current leads. The formulas are calculated from the impedances; the time traces come from SPICE with steady-state initial conditions.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/series-rlc/" data-notes-embed="y1/elec1311/ac-impedance/series-rlc" title="Worked series RLC impedance, current phasor and SPICE waveforms" loading="lazy" scrolling="no" height="1000" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 ### Series inductor feeding a parallel RC load
 
@@ -244,6 +288,8 @@ A source $v_s(t)=12\cos(1000t+45^\circ)\,\mathrm V$ is connected across a $25\,\
 
 The dependent source remains active: its value is calculated from the controlling quantity, not set to zero. The controlling current and output-loop current are different variables.[^5]
 
+The worked examples each solve a circuit at one frequency. Repeating the divider calculation across frequencies reveals which parts of a signal the circuit passes strongly and which it attenuates. We return to the earlier RL divider so that only frequency changes.
+
 ## Frequency response
 
 ![[AC Theory (4)#Filter Bands]]
@@ -260,6 +306,10 @@ $$|H|=\frac{\omega L}{\sqrt{R^2+(\omega L)^2}}=\frac1{\sqrt{1+(R/\omega L)^2}}\q
 This is a **high-pass filter**. The cutoff is specified in radians per second by $\omega_c=R/L$, or in hertz by $f_c=R/(2\pi L)$. At cutoff, the output amplitude is not half the input: its square is half. The phase is
 $$\arg H=90^\circ-\tan^{-1}(\omega L/R),$$
 so the output leads the input by $45^\circ$ at cutoff.[^1][^4]
+
+With the earlier $R=60\,\Omega$ and $L=100/(2\pi50)\,\mathrm H$, the cutoff is $30\,\mathrm{Hz}$. The curve below is the analytical gain; the waveforms are a SPICE simulation at the selected frequency. At cutoff, the inductor voltage has peak $20/\sqrt2\approx14.14\,\mathrm V$ and leads the source by $45^\circ$. The source remains 20 V peak with phase $-15^\circ$ throughout.
+
+<iframe src="https://0x62.github.io/soton-efy-notes/_embed/y1/elec1311/ac-impedance/rl-frequency/" data-notes-embed="y1/elec1311/ac-impedance/rl-frequency" title="RL high-pass gain and SPICE voltages at the selected frequency" loading="lazy" scrolling="no" height="1100" style="width:100%;border:0" referrerpolicy="same-origin"></iframe>
 
 In decibels this amplitude ratio is $20\log_{10}(1/\sqrt2)=-3.0103\,\mathrm{dB}$. [[AC Power#Decibels and the half-power point|Decibels and the half-power point]] distinguishes the voltage-amplitude ratio from the corresponding power ratio.
 
