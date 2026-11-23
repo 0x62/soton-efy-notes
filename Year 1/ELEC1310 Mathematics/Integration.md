@@ -14,6 +14,8 @@ permalink: y1/elec1310/integration
 - [[#Capacitance from an electric field]]
 - [[#Choosing and checking a method]]
 
+**Related methods:** [[Rational Functions & Improper Integrals]] explains partial fractions and convergence. [[Convolution & Integration Applications]] develops convolution, the RL step response and quadratic drag.
+
 **[[#Fundamental theorem of calculus|Evaluation]]**
 $$
 \int_a^b f(x)\,dx=F(b)-F(a),\qquad F'=f

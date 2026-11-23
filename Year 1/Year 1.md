@@ -23,6 +23,14 @@ permalink: y1
 
 ![[Integration#Integration]]
 
+![[Rational Functions & Improper Integrals#Rational Functions & Improper Integrals]]
+
+![[Convolution & Integration Applications#Convolution & Integration Applications]]
+
+![[First-Order Ordinary Differential Equations#First-Order Ordinary Differential Equations]]
+
+![[Second-Order Ordinary Differential Equations#Second-Order Ordinary Differential Equations]]
+
 ### ELEC 1311 - Circuits
 
 ![[Circuit Basics#Circuit Basics]]
@@ -34,6 +42,12 @@ permalink: y1
 ![[AC Impedance#AC Impedance]]
 
 ![[AC Power#AC Power]]
+
+![[LC Resonance#LC Resonance]]
+
+![[RLC Resonance and Bandwidth#RLC Resonance and Bandwidth]]
+
+![[Three-Phase Sources and Power#Three-Phase Sources and Power]]
 
 ![[From Impedance Triangles to Complex Numbers#From Impedance Triangles to Complex Numbers]]
 
@@ -57,9 +71,19 @@ permalink: y1
 
 ![[Embedded Programming & Architecture#Embedded Programming & Architecture]]
 
+![[Digital Input & Output#Digital Input & Output]]
+
+![[Serial Communication#Serial Communication]]
+
+![[Timers & Counters#Timers & Counters]]
+
+![[Analogue Input#Analogue Input]]
+
 ### ELEC1313 - Digital Systems
 
 ![[Computer Arithmetic#Computer Arithmetic]]
+
+![[Signed Numbers and Binary Arithmetic#Signed Numbers and Binary Arithmetic]]
 
 ![[Combinational Logic#Combinational Logic]]
 
@@ -78,3 +102,9 @@ permalink: y1
 ![[Counters#Counters]]
 
 ![[Algorithmic State Machines#Algorithmic State Machines]]
+
+![[SystemVerilog Sequential Design#SystemVerilog Sequential Design]]
+
+![[Controller and Datapath#Controller and Datapath]]
+
+![[Microprocessor Datapath and Instruction Cycle#Microprocessor Datapath and Instruction Cycle]]
