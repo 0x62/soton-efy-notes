@@ -5,6 +5,8 @@ permalink: y1
 
 ### ELEC1310 - Mathematics
 
+[[Maths Formula Book]]
+
 ![[Numbers & Algebra#Numbers & Algebra]]
 
 ![[Functions#Functions]]
