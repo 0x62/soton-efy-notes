@@ -1,3 +1,7 @@
+---
+permalink: fy/engineering-principles/units
+---
+
 
 ![[SI Units]]
 

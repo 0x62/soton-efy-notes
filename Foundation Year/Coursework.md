@@ -1,3 +1,7 @@
+---
+permalink: fy/coursework
+---
+
 
 Both reports were typeset in LaTeX, using BibLaTeX for bibliography, amsmath, and pgfplots. They are shared here as a reference following completion of the year.
 

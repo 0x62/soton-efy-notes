@@ -1,11 +1,11 @@
 ---
 permalink: y1
 ---
+[[Year 1/Revision/Revision|Revision]]: formula books and exam-style practice.
+
 ## Modules
 
 ### ELEC1310 - Mathematics
-
-[[Maths Formula Book]]
 
 ![[Numbers & Algebra#Numbers & Algebra]]
 

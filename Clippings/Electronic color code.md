@@ -1,4 +1,5 @@
 ---
+permalink: clippings/electronic-color-code
 title: "Electronic color code - Wikipedia"
 source: "https://en.wikipedia.org/wiki/Electronic_color_code#Color_band_system"
 author:
