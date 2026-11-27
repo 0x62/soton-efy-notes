@@ -33,6 +33,8 @@ permalink: y1
 
 ![[Second-Order Ordinary Differential Equations#Second-Order Ordinary Differential Equations]]
 
+![[Linear Algebra#Linear Algebra]]
+
 ### ELEC 1311 - Circuits
 
 ![[Circuit Basics#Circuit Basics]]
