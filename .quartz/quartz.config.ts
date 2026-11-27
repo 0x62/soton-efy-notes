@@ -14,7 +14,7 @@ const config: QuartzConfig = {
     enablePopovers: true,
     analytics: { provider: "google", tagId: "G-D40KX3W54H" },
     locale: "en-GB",
-    baseUrl: process.env.QUARTZ_BASE_URL ?? "0x62.github.io/soton-efy-notes",
+    baseUrl: process.env.QUARTZ_BASE_URL ?? "uni.bl.je",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {

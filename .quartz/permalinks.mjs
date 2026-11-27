@@ -30,7 +30,10 @@ const movedPages = {
 
 export async function installPermalinks(engine, sources) {
   const routes = sourcePermalinks(sources);
-  const navigation = { ...routes };
+  // The vault's existing README permalink remains a public bookmark, not the homepage.
+  if (routes.README !== 'notes') throw new Error('Expected README permalink to be notes');
+  routes.README = 'index';
+  const navigation = { ...routes, notes: 'index' };
   const publicRoutes = new Set(Object.values(routes));
   for (const [old, target] of Object.entries(movedPages)) {
     if (routes[old] || publicRoutes.has(old) || !publicRoutes.has(target)) {
@@ -93,14 +96,20 @@ export async function installPermalinks(engine, sources) {
   }
 }
 
+export function publicPath(slug) {
+  return slug === 'index' ? './' : slug;
+}
+
 export async function publishPermalinks(out) {
   const { routes, navigation } = JSON.parse(await readFile(resolve(out, '../permalink-map.json'), 'utf8'));
   const files = (await readdir(out, { recursive: true })).filter(f => f.endsWith('.html'));
   const originals = Object.fromEntries(await Promise.all(files.map(async f => [f, await readFile(resolve(out, f), 'utf8')])));
-  const base = new URL(`https://${process.env.QUARTZ_BASE_URL ?? '0x62.github.io/soton-efy-notes'}/`);
+  const base = new URL(`https://${process.env.QUARTZ_BASE_URL ?? 'uni.bl.je'}/`);
   function mapped(path) {
     const key = decodeURIComponent(path).replace(/\.html$/, '').replace(/\/$/, '/index');
-    return navigation[key] ?? path;
+    const dest = navigation[key];
+    if (dest === 'index' || key === 'index') return '';
+    return dest ?? path;
   }
   function rewriteURL(value, old, dest) {
     if (!value || value.startsWith('#') || /^(?:mailto:|tel:|data:|javascript:)/i.test(value)) return value;
@@ -111,7 +120,8 @@ export async function publishPermalinks(out) {
     const suffix = url.search + url.hash;
     if (/^https?:/.test(value)) return new URL(path, base).href + suffix;
     const relative = posix.relative(posix.dirname(dest), path) || '.';
-    return (relative.startsWith('.') ? relative : './' + relative) + suffix;
+    const href = relative.startsWith('.') ? relative : './' + relative;
+    return href + (path === '' ? '/' : '') + suffix;
   }
   function relocate(html, old, dest) {
     return html.replace(/\b(href|src|action)="([^"]*)"/g, (_, attr, url) => `${attr}="${rewriteURL(url, old, dest)}"`)
@@ -129,14 +139,23 @@ export async function publishPermalinks(out) {
     if (!originals[old]?.includes('data-slug=')) throw new Error(`Missing source page ${old}`);
     await mkdir(dirname(resolve(out, dest)), { recursive: true });
     let html = relocate(originals[old], old, dest);
-    const canonical = new URL(target, base).href;
+    const canonical = new URL(publicPath(target), base).href;
+    if (target === 'index') {
+      // Quartz omits og:url for notes lacking a social description; the home
+      // route still needs explicit metadata pointing to /, not the source slug.
+      if (!html.includes('property="og:url"')) {
+        html = html.replace('</head>', `<meta property="og:url" content="${canonical}"></head>`);
+      }
+    }
     html = html.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`);
     await writeFile(resolve(out, dest), html);
   }
   for (const [source, target] of Object.entries(navigation)) {
     const file = source + '.html';
-    const href = rewriteURL(new URL(target, base).href, file, file);
-    const redirect = './' + posix.relative(posix.dirname(file), target);
+    const href = rewriteURL(new URL(publicPath(target), base).href, file, file);
+    const redirect = target === 'index'
+      ? rewriteURL('./index.html', file, file)
+      : './' + posix.relative(posix.dirname(file), target);
     const social = (originals[(Object.keys(routes).find(k => routes[k] === target) ?? source) + '.html']?.match(/<meta\b[^>]*(?:property|name)="(?:og:|twitter:)[^"]*"[^>]*>/g) ?? []).join('');
     // Preserve incoming fragment/query on legacy bookmarks, including SPA entry.
     await mkdir(dirname(resolve(out, file)), { recursive: true });

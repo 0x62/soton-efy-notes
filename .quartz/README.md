@@ -1,25 +1,24 @@
 # Experimental Quartz publishing
 
-This is an independent GitHub Pages preview. It does not change the Obsidian
-vault, `publish.css`, `uni.bl.je`, DNS, or the default branch. Approved teaching-note and interactive-demo changes also live on this branch;
-they do not alter the default branch or production Obsidian site.
+Quartz renders this vault at https://uni.bl.je via GitHub Pages. The `master`
+branch is the source of truth for both the vault and its Quartz site.
 
 ## Deployment
 
-`.github/workflows/quartz-preview.yml` builds pushes to `experiment/quartz-pages`
-and deploys them to the repository's GitHub Pages site. Pull requests build and
-test without deploying. The `github-pages` environment only grants the deploy
-job Pages/OIDC permissions; the build has read-only repository access.
+`.github/workflows/quartz-preview.yml` builds pushes to `master`. Pull requests
+targeting `master` build and test without deploying. The `github-pages`
+environment only grants the deploy job Pages/OIDC permissions; the build has
+read-only repository access.
 
 Quartz is pinned to the released **4.5.2**, commit
 `4923affa7722dfc751f1074348e6dad214fe0c08`. Its own lockfile is installed using
 `npm ci`. This deliberately uses the established v4 TypeScript configuration
 and Explorer API rather than the newer v5 plugin migration.
 
-GitHub Pages must use **GitHub Actions** as its source. The workflow publishes
-only this experimental branch, never unrelated PR heads. Do not enable a custom
-domain for this preview. Before later switching the production site, review the
-rendered notes, links, transclusions, diagrams and publishing scope.
+GitHub Pages uses **GitHub Actions** as its source and `uni.bl.je` as its
+custom domain. DNS points `uni.bl.je` to `0x62.github.io`. Keep the workflow's
+`QUARTZ_BASE_URL` and Quartz configuration aligned with that domain.
+Obsidian remains the editor, not the publishing service.
 
 ## Sidebar
 
@@ -54,7 +53,7 @@ date-based permalink in the build copy. Obsidian wikilinks,
 section transclusions, callouts, KaTeX, syntax highlighting and Mermaid use
 Quartz's native support. Referenced attachments retain their source paths.
 
-The home URL redirects to README. The title and footer use Ben’s branding; Google Analytics uses the existing site’s verified `G-D40KX3W54H` property, and the preview has a disallow-all robots file with no sitemap or
+The root URL renders the vault README as the homepage; the old `/notes` and `/README` URLs redirect back to `/`. The title and footer use Ben’s branding; Google Analytics uses the existing site’s verified `G-D40KX3W54H` property, and the site has a disallow-all robots file with no sitemap or
 RSS. This discourages indexing, but is **not access control**: Pages is public.
 
 The current GitHub notes may be newer than the Obsidian published snapshot.
@@ -99,7 +98,7 @@ The Google Analytics measurement ID `G-D40KX3W54H` was verified from the rendere
 Google tag script on https://uni.bl.je/README on 9 November 2026. Quartz’s native
 GA integration records an initial page view and subsequent SPA navigations,
 with automatic duplicate page views disabled. These visits go to the existing
-Google Analytics property and may be distinguished by the preview hostname.
+Google Analytics property after the cutover.
 No credentials or Analytics account settings are changed. Existing visitor
 privacy/consent obligations still apply; this does not install a consent manager.
 

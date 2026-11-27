@@ -107,13 +107,6 @@ console.log(
   `Verified ${Object.keys(index).length} content pages, root/custom sidebar order, aliases and preview safeguards`,
 );
 
-assert(
-  (await readFile(resolve(out, "index.html"), "utf8")).includes(
-    'rel="canonical" href="./README.html"',
-  ),
-  "SPA home redirect missing canonical target",
-);
-
 const arithmetic = await readFile(
   resolve(out, "Year-1/ELEC1313-Digital-Systems/Computer-Arithmetic.html"),
   "utf8",
@@ -155,7 +148,7 @@ for (const cover of covers) {
   );
   assert(
     !html.includes(
-      'content="https://0x62.github.io/soton-efy-notes/static/og-image.png"',
+      `content="https://${process.env.QUARTZ_BASE_URL ?? 'uni.bl.je'}/static/og-image.png"`,
     ),
     "Stock image metadata remains",
   );

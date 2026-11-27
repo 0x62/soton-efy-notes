@@ -15,7 +15,7 @@ const sourceDir = dirname(fileURLToPath(import.meta.url));
 const require = createRequire(resolve(out, "../package.json"));
 const satori = require("satori").default;
 const sharp = require("sharp");
-const base = `https://${process.env.QUARTZ_BASE_URL ?? "0x62.github.io/soton-efy-notes"}`;
+const base = `https://${process.env.QUARTZ_BASE_URL ?? "uni.bl.je"}`;
 const content = JSON.parse(
   await readFile(resolve(out, "static/contentIndex.json"), "utf8"),
 );

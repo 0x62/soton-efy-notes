@@ -1,11 +1,22 @@
 import assert from 'node:assert/strict';
 import { readFile, access, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { publicPath } from './permalinks.mjs';
 const out = resolve(process.argv[2]);
 const { routes, navigation } = JSON.parse(await readFile(resolve(out, 'permalinks.json'), 'utf8'));
-const base = new URL(`https://${process.env.QUARTZ_BASE_URL ?? '0x62.github.io/soton-efy-notes'}/`);
+const base = new URL(`https://${process.env.QUARTZ_BASE_URL ?? 'uni.bl.je'}/`);
 const covers = JSON.parse(await readFile(resolve(out, 'social-covers.json'), 'utf8'));
 const decode = s => s.replace(/&amp;/g, '&');
+assert.equal(routes.README, 'index');
+assert.equal(navigation.notes, 'index');
+const home = await readFile(resolve(out, 'index.html'), 'utf8');
+assert(home.includes('These are my notes for'));
+assert(home.includes('View on GitHub') && home.includes('/blob/master/README.md'));
+assert(home.includes('href="./y1"'));
+for (const source of ['notes', 'README']) {
+  const legacy = await readFile(resolve(out, source + '.html'), 'utf8');
+  assert(legacy.includes('content="0;url=./"'), `${source} must redirect directly to /`);
+}
 assert.equal(routes['Year-1/Year-1'], 'y1');
 assert.equal(routes['Foundation-Year/Foundation-Year'], 'fy');
 const manifest = JSON.parse(await readFile(resolve(out, '../source-manifest.json'), 'utf8'));
@@ -44,14 +55,14 @@ for (const [source, target] of Object.entries(routes)) {
   const page = await readFile(resolve(out, target + '.html'), 'utf8');
   assert(page.includes(`data-slug="${source}"`), `Missing content identity ${target}`);
   assert(!page.includes('http-equiv="refresh"'), `Permalink still redirects: ${target}`);
-  assert(page.includes(`rel="canonical" href="${new URL(target, base)}"`));
-  assert(page.includes(`property="og:url" content="${new URL(target, base)}"`));
+  assert(page.includes(`rel="canonical" href="${new URL(publicPath(target), base)}"`));
+  assert(page.includes(`property="og:url" content="${new URL(publicPath(target), base)}"`));
   assert(page.includes(covers.find(c => c.page === source + '.html').image), `Cover changed: ${target}`);
   assert(page.includes('Ben Lewis</p>'));
   const fetch = page.match(/const fetchData = fetch\("([^"]+)"\)/)?.[1];
-  assert.equal(new URL(fetch, new URL(target, base)).href, new URL('static/contentIndex.json', base).href);
+  assert.equal(new URL(fetch, new URL(publicPath(target), base)).href, new URL('static/contentIndex.json', base).href);
   for (const match of page.matchAll(/\b(href|src)="([^"]+)"/g)) {
-    const url = new URL(decode(match[2]), new URL(target, base));
+    const url = new URL(decode(match[2]), new URL(publicPath(target), base));
     if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) continue;
     const local = decodeURIComponent(url.pathname.slice(base.pathname.length));
     const key = local.replace(/\.html$/, '').replace(/\/$/, '/index');
@@ -61,7 +72,7 @@ for (const [source, target] of Object.entries(routes)) {
 }
 for (const [source, target] of Object.entries(navigation)) {
   const page = await readFile(resolve(out, source + '.html'), 'utf8');
-  assert(page.includes(`rel="canonical" href="${new URL(target, base)}"`));
+  assert(page.includes(`rel="canonical" href="${new URL(publicPath(target), base)}"`));
   assert(page.includes('location.search + location.hash'));
 }
 for (const file of await readdir(out, {recursive:true})) {

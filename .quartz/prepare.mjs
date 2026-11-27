@@ -70,7 +70,8 @@ for (const name of [
 ]) {
   await copyFile(resolve(root, ".quartz", name), resolve(engine, name));
 }
-// The source README stays untouched and remains first in the sidebar.
+// Quartz expects an index at build time. Publishing replaces this stub with the
+// rendered README, whose source slug stays intact for the explorer and GitHub link.
 await writeFile(
   resolve(content, "index.md"),
   '---\ntitle: "Ben’s Notes"\n---\n\nSee [[README|the notes home page]].\n',

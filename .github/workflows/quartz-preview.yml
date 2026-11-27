@@ -1,8 +1,8 @@
-name: Quartz experimental Pages preview
+name: Deploy Quartz notes
 
 on:
   push:
-    branches: [experiment/quartz-pages]
+    branches: [master]
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -43,7 +43,7 @@ jobs:
       - name: Build and test
         working-directory: .quartz/engine
         env:
-          QUARTZ_BASE_URL: 0x62.github.io/soton-efy-notes
+          QUARTZ_BASE_URL: uni.bl.je
         run: |
           npx tsc --noEmit
           npx quartz build
@@ -66,7 +66,7 @@ jobs:
           path: .quartz/engine/public
 
   deploy:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/experiment/quartz-pages'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -76,6 +76,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy experimental preview
+      - name: Deploy Quartz notes
         id: deployment
         uses: actions/deploy-pages@v4

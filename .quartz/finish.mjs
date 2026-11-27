@@ -3,13 +3,6 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 const out = resolve(process.argv[2] ?? ".quartz/engine/public");
-await writeFile(
-  resolve(out, "index.html"),
-  `<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><link rel="canonical" href="./README.html"><meta name="robots" content="noindex,nofollow">
-<meta http-equiv="refresh" content="0;url=./README.html"><title>Ben’s Notes</title>
-</head><body><a href="./README.html">Open Ben’s Notes</a></body></html>\n`,
-);
 await writeFile(resolve(out, "robots.txt"), "User-agent: *\nDisallow: /\n");
 await writeFile(resolve(out, ".nojekyll"), "");
 

@@ -2,15 +2,15 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { sourcePermalinks } from './permalinks.mjs';
+import { publicPath, sourcePermalinks } from './permalinks.mjs';
 const engine = resolve(process.argv[2] ?? '.');
 const { routes, navigation } = JSON.parse(await readFile(resolve(engine, 'permalink-map.json')));
 const { resolveRelative, normalizeHastElement } = await import(pathToFileURL(resolve(engine, 'quartz/util/path.ts')));
 globalThis.document = {};
 for (const [source, canonical] of Object.entries(routes)) {
   for (const [target, dest] of Object.entries(navigation)) {
-    const url = new URL(resolveRelative(source, target), `https://example.test/notes/${canonical}`);
-    assert.equal(url.pathname, '/notes/' + dest);
+    const url = new URL(resolveRelative(source, target), new URL(publicPath(canonical), 'https://example.test/notes/'));
+    assert.equal(url.pathname, new URL(publicPath(dest), 'https://example.test/notes/').pathname);
   }
 }
 delete globalThis.document;
