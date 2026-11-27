@@ -193,3 +193,21 @@ const sidebarStyles = await readFile(resolve(out, 'index.css'), 'utf8');
 assert(sidebarStyles.includes('scrollbar-gutter:stable'), 'Bounded sidebar scroll styles missing');
 console.log('Verified focusable notes navigation and sidebar scroll stylesheet');
 assert(sidebarStyles.includes('overflow:clip') && sidebarStyles.includes('overscroll-behavior:auto'), 'Nested folders must allow wheel/touch scroll to reach the outer list');
+
+// A collapsed class alone does not hide multi-block answers with Quartz's
+// default first-child grid rule. Keep the whole content hidden on first paint.
+assert.match(
+  sidebarStyles,
+  /\.callout\.is-collapsed\s*>\s*\.callout-content\s*\{[^}]*\bdisplay:\s*none\s*[;}]/,
+  "Collapsed callouts must hide the entire content wrapper",
+);
+for (const [module, count] of [
+  ["Maths", 44], ["Circuits", 28], ["Programming", 24], ["Digital-Systems", 29],
+]) {
+  const html = await readFile(resolve(out, `Year-1/Revision/${module}/Practice-Questions.html`), "utf8");
+  const answers = html.match(/<blockquote\b[^>]*\bdata-callout="answer"[^>]*>/g) ?? [];
+  assert.equal(answers.length, count, `${module}: wrong number of answer callouts`);
+  assert(answers.every((tag) => /\bis-collapsed\b/.test(tag)),
+    `${module}: answers must start collapsed`);
+}
+console.log("Verified default collapse of all 125 revision answers");

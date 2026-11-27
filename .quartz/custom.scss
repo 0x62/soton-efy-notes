@@ -117,3 +117,9 @@
   min-width: 0;
   max-width: 100%;
 }
+
+// Quartz's grid animation folds only the first child. Answers with display
+// maths, lists or several paragraphs can have multiple direct children.
+.callout.is-collapsed > .callout-content {
+  display: none;
+}
