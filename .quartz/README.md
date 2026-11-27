@@ -1,0 +1,127 @@
+# Experimental Quartz publishing
+
+Quartz renders this vault at https://uni.bl.je via GitHub Pages. The `master`
+branch is the source of truth for both the vault and its Quartz site.
+
+## Deployment
+
+`.github/workflows/quartz-preview.yml` builds pushes to `master`. Pull requests
+targeting `master` build and test without deploying. The `github-pages`
+environment only grants the deploy job Pages/OIDC permissions; the build has
+read-only repository access.
+
+Quartz is pinned to the released **4.5.2**, commit
+`4923affa7722dfc751f1074348e6dad214fe0c08`. Its own lockfile is installed using
+`npm ci`. This deliberately uses the established v4 TypeScript configuration
+and Explorer API rather than the newer v5 plugin migration.
+
+GitHub Pages uses **GitHub Actions** as its source and `uni.bl.je` as its
+custom domain. DNS points `uni.bl.je` to `0x62.github.io`. Keep the workflow's
+`QUARTZ_BASE_URL` and Quartz configuration aligned with that domain.
+Obsidian remains the editor, not the publishing service.
+
+## Sidebar
+
+`sidebar-order.json` records every expanded navigation entry observed at
+https://uni.bl.je/README on 9 November 2026. `sidebar.ts` reproduces the root
+ordering and the custom Circuit Theory → Electronics → AC Theory sequence.
+Year 1 teaching pages follow the curriculum order in the Year 1 overview; update
+the manifest when adding a topic at a specific position. Unranked entries fall
+back to folders-first natural order. Short navigation labels in
+`sidebar-labels.json` do not rename source files or published destinations.
+Daily Brief is removed from navigation only; its individual pages keep their
+links. Clippings, templates, attachments and generated tags also stay out of
+the navigation. Root-level
+additions require an explicit entry in the navigation manifest.
+
+## Revision
+
+The Year 1 Revision area groups 125 original exam-style questions and answers
+by module. Native Obsidian/Quartz callouts allow revealing each answer
+individually. The Maths and Circuits formula books sit alongside the question
+banks. The earlier Maths Formula Book URL redirects to the new location.
+
+## Content and preview safeguards
+
+`prepare.mjs` copies Git-tracked Markdown and supported assets into a disposable
+Quartz checkout, never untracked notes, `.obsidian`, credentials or private
+folders. Vault source files and frontmatter are not edited. Figure-title image wikilinks
+are normalized only in disposable build copies so @2x filenames render correctly.
+Figure styling follows the original publish.css, with centered captions, no box
+background or border, and a responsive 40rem maximum width. Tracked public notes supply a `permalink` (including `fy` and `y1`). Future daily briefs without frontmatter get a
+date-based permalink in the build copy. Obsidian wikilinks,
+section transclusions, callouts, KaTeX, syntax highlighting and Mermaid use
+Quartz's native support. Referenced attachments retain their source paths.
+
+The root URL renders the vault README as the homepage; the old `/notes` and `/README` URLs redirect back to `/`. The title and footer use Ben’s branding; Google Analytics uses the existing site’s verified `G-D40KX3W54H` property, and the site has a disallow-all robots file with no sitemap or
+RSS. This discourages indexing, but is **not access control**: Pages is public.
+
+The current GitHub notes may be newer than the Obsidian published snapshot.
+Missing links already present in the source and renderer differences require
+content review; the generator does not silently rewrite teaching material.
+
+## Reproduce locally (Node 22+, npm 10.9.2+)
+
+```sh
+git clone https://github.com/jackyzha0/quartz.git .quartz/engine
+git -C .quartz/engine checkout 4923affa7722dfc751f1074348e6dad214fe0c08
+rm -rf .quartz/engine/content
+node .quartz/prepare.mjs
+cd .quartz/engine
+npm ci
+npx tsc --noEmit
+npx quartz build
+node ../finish.mjs public
+node ../social-covers.mjs public
+node ../verify.mjs public
+# Optional local development server:
+npx quartz build --serve
+```
+
+The development command rebuilds `index.html`; the deployed post-build redirect
+is reapplied by `finish.mjs`. To update the renderer, change the pinned commit in
+the workflow and this document, then rerun build, typecheck and browser QA.
+
+To stop the experiment, disable this workflow or stop pushing its branch. Do
+not delete or change the production Obsidian site as part of that cleanup.
+
+
+## Social previews and analytics
+
+`social-covers.mjs` uses Vercel Satori (from the pinned Quartz lockfile) to render
+1200×630 SVGs and PNGs for each output page, with its title and section. Bundled
+DejaVu fonts and their license keep the build independent of font services.
+Open Graph/Twitter tags use content-addressed image URLs; the stock fallback is
+also replaced. No external image-rendering service receives the notes.
+
+The Google Analytics measurement ID `G-D40KX3W54H` was verified from the rendered
+Google tag script on https://uni.bl.je/README on 9 November 2026. Quartz’s native
+GA integration records an initial page view and subsequent SPA navigations,
+with automatic duplicate page views disabled. These visits go to the existing
+Google Analytics property after the cutover.
+No credentials or Analytics account settings are changed. Existing visitor
+privacy/consent obligations still apply; this does not install a consent manager.
+
+## Canonical Obsidian permalinks
+
+The build publishes each source frontmatter `permalink` as its full content URL,
+not a redirect back to the filename. Source-file URLs (and matching folder
+landing pages) redirect to the permalink, preserving query strings and anchors.
+Source notes and content-index identities remain unchanged, preserving explorer
+ordering, search and graph data. Static links/assets are rebased during output;
+client navigation resolves source identities through the generated route map.
+Full-page canonical metadata is distinguished from redirect documents in Quartz's
+fetch helper. The pinned-engine patches fail fast if expected signatures change.
+
+The workflow verifies all configured routes, legacy redirects, cover metadata,
+assets, static links, and every pair of SPA routes. Script filenames are hashed
+so old cached navigation code cannot mix with new HTML. Local checks additionally
+run `node .quartz/permalinks.mjs ENGINE/public`,
+`node .quartz/verify-permalinks.mjs ENGINE/public`, and (from ENGINE)
+`node --import tsx /path/to/.quartz/test-permalinks.mjs .` after existing checks.
+
+Embedded hash-only links are rebased to the original note before permalink
+mapping. Display-math delimiters are normalized in disposable build copies,
+retaining list indentation and fenced code, because Obsidian's same-line and
+multi-line delimiter syntax can otherwise swallow subsequent headings in
+remark-math. All 436 Year 1 cross-note heading destinations are tested.

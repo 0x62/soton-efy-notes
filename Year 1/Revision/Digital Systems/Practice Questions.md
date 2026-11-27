@@ -59,11 +59,21 @@ Four inputs ABCD represent an unsigned number, A most significant. Give (i) E fo
 
 ## D6. Gate restrictions (10 marks)
 
-Implement \(F=AB+\overline AC\) (a) NAND only and (b) OR/NOT only. Give a NOR-only network for two-input XOR.
+Implement \(F=AB+\overline AC\) using:
+
+(a) NAND only.
+
+(b) OR/NOT only.
+
+Give a NOR-only network for two-input XOR.
 
 > [!answer]- Answer
 >
-> NAND: \(N_A=\operatorname{NAND}(A,A)\), \(X=\operatorname{NAND}(A,B)\), \(Y=\operatorname{NAND}(N_A,C)\), \(F=\operatorname{NAND}(X,Y)\). The outer NAND negates both complementary products and implements their OR. OR/NOT: \(AB=\overline{\overline A+\overline B}\), \(\overline AC=\overline{A+\overline C}\), then OR. XOR using NOR: let \(n=\operatorname{NOR}(A,B)\), \(p=\operatorname{NOR}(A,n)=\overline AB\), \(q=\operatorname{NOR}(B,n)=A\overline B\); \(r=\operatorname{NOR}(p,q)\) is XNOR, and \(\operatorname{NOR}(r,r)\) is XOR. If asked for circuits, label each of those gate connections, not merely the final expression.
+> (a) NAND: \(N_A=\operatorname{NAND}(A,A)\), \(X=\operatorname{NAND}(A,B)\), \(Y=\operatorname{NAND}(N_A,C)\), \(F=\operatorname{NAND}(X,Y)\). The outer NAND negates both complementary products and implements their OR.
+>
+> (b) OR/NOT: \(AB=\overline{\overline A+\overline B}\), \(\overline AC=\overline{A+\overline C}\), then OR.
+>
+> XOR using NOR: let \(n=\operatorname{NOR}(A,B)\), \(p=\operatorname{NOR}(A,n)=\overline AB\), \(q=\operatorname{NOR}(B,n)=A\overline B\); \(r=\operatorname{NOR}(p,q)\) is XNOR, and \(\operatorname{NOR}(r,r)\) is XOR. If asked for circuits, label each of those gate connections, not merely the final expression.
 
 ## D7. Decoder/MUX realisations (7 marks)
 

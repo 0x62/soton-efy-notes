@@ -177,11 +177,19 @@ An ideal parallel tank has $R_p=2\,\mathrm{k}\Omega$, $L=0.1\,\mathrm H$, and $C
 
 ## C13. Ideal LC, free and exactly driven
 
-An ideal series LC has $L=0.1\,\mathrm H$, $C=10\,\mu\mathrm F$. Let $i=q'$. (a) With no source, $q(0)=20\,\mu\mathrm C$, $i(0)=0$, find $q(t)$ and $i(t)$. (b) Restart at zero state and drive with $v_s(t)=2\cos(1000t)\,\mathrm V$. Find the resonant charge response and explain its growing envelope.
+An ideal series LC has $L=0.1\,\mathrm H$, $C=10\,\mu\mathrm F$. Let $i=q'$.
+
+(a) With no source, $q(0)=20\,\mu\mathrm C$, $i(0)=0$, find $q(t)$ and $i(t)$.
+
+(b) Restart at zero state and drive with $v_s(t)=2\cos(1000t)\,\mathrm V$. Find the resonant charge response and explain its growing envelope.
 
 > [!answer]- Answer
 >
-> Charge satisfies $q''+\omega_0^2q=v_s/L$ with $\omega_0=1000\,\mathrm{rad/s}$. (a) Two initial conditions select $q=20\,\mu\mathrm C\,\cos(1000t)$ and $i=-20\,\mathrm{mA}\sin(1000t)$. (b) For the drive, the right side is $20\cos(1000t)$. A bare cosine is already a homogeneous solution. Instead,
+> Charge satisfies $q''+\omega_0^2q=v_s/L$ with $\omega_0=1000\,\mathrm{rad/s}$.
+>
+> (a) Two initial conditions select $q=20\,\mu\mathrm C\,\cos(1000t)$ and $i=-20\,\mathrm{mA}\sin(1000t)$.
+>
+> (b) For the drive, the right side is $20\cos(1000t)$. A bare cosine is already a homogeneous solution. Instead,
 >
 > $$
 > (D^2+\omega_0^2)[t\sin(\omega_0t)]=2\omega_0\cos(\omega_0t).
@@ -257,26 +265,46 @@ A diode anode is supplied by $V_s$ through $1\,\mathrm{k}\Omega$; its cathode is
 
 ## C20. Rectification and effective load heating
 
-A $10\,\mathrm V$ peak sine drives a $100\,\Omega$ load through (a) an ideal half-wave rectifier and (b) an ideal full-wave bridge. Derive average voltage, RMS voltage and average load power for each, and give ripple frequency relative to input frequency. In the bridge, replace each ideal diode by a constant $0.7\,\mathrm V$ drop: find the peak load voltage and first conduction angle.
+A $10\,\mathrm V$ peak sine drives a $100\,\Omega$ load. Derive average voltage, RMS voltage and average load power, and give ripple frequency relative to input frequency, for each of:
+
+(a) An ideal half-wave rectifier.
+
+(b) An ideal full-wave bridge.
+
+In the bridge, replace each ideal diode by a constant $0.7\,\mathrm V$ drop: find the peak load voltage and first conduction angle.
 
 > [!answer]- Answer
 >
-> Let $\theta$ run through one full $2\pi$ input period. An ideal half-wave output equals $10\sin\theta$ for $0\le\theta\le\pi$ and zero for the other half. Hence
+> Let $\theta$ run through one full $2\pi$ input period.
+>
+> (a) An ideal half-wave output equals $10\sin\theta$ for $0\le\theta\le\pi$ and zero for the other half. Hence
 >
 > $$
 > V_{\rm avg}=\frac{10}{2\pi}\int_0^\pi\sin\theta\,d\theta=\frac{10}{\pi},\quad
 > V_{\rm rms}=\sqrt{\frac{100}{2\pi}\int_0^\pi\sin^2\theta\,d\theta}=5\,\mathrm V.
 > $$
 >
-> Average load power $=V_{\rm rms}^2/100=0.25$ W. The waveform repeats once per input period. The full-wave bridge folds the other half over: both integrals double, so $V_{\rm avg}=20/\pi$ V, $V_{\rm rms}=5\sqrt2$ V and $P_{\rm avg}=0.50$ W. The output repeats at twice the input frequency. With fixed drops, two diodes conduct at a time, so $v_{\rm out}=\max(0,10|\sin\theta|-1.4)$ V. Peak is $8.6$ V; first conduction begins at $\sin^{-1}(1.4/10)\approx8.05^\circ$.
+> Average load power $=V_{\rm rms}^2/100=0.25$ W. The waveform repeats once per input period.
+>
+> (b) The full-wave bridge folds the other half over: both integrals double, so $V_{\rm avg}=20/\pi$ V, $V_{\rm rms}=5\sqrt2$ V and $P_{\rm avg}=0.50$ W. The output repeats at twice the input frequency.
+>
+> With fixed drops, two diodes conduct at a time, so $v_{\rm out}=\max(0,10|\sin\theta|-1.4)$ V. Peak is $8.6$ V; first conduction begins at $\sin^{-1}(1.4/10)\approx8.05^\circ$.
 
 ## C21. Storage elements.
 
-(a) The passive voltage of an unknown ideal element rises from 0 to $6\,\mathrm V$ in $3\,\mathrm{ms}$ at constant current $4\,\mathrm{mA}$, then holds, then falls from $6$ to $-2\,\mathrm V$ over $2\,\mathrm{ms}$. Identify the element and value and find its current in the final ramp. (b) A $10\,\mathrm V$ source feeds node A through $2\,\mathrm{k}\Omega$; two branches connect A to ground: $4\,\mathrm{k}\Omega$ in series with an ideal inductor, and $1\,\mathrm{k}\Omega$ in series with an ideal capacitor. Find source current after a long time. (c) Two series capacitors $6$ and $3\,\mu\mathrm F$ have signed drops along the left-to-right path of $8$ and $-2\,\mathrm V$. At zero a $1\,\mathrm{k}\Omega$ resistor connects across the outside terminals. Find the voltage of left relative to right at $2\,\mathrm{ms}$ and just after switching. (d) In a source-free series LC, $L=20\,\mathrm{mH}$, $C=5\,\mu\mathrm F$, $v_C(0)=2\,\mathrm V$, and $i(0)=0.1\,\mathrm A$ enters the positive capacitor terminal. Find $i(t)$.
+(a) The passive voltage of an unknown ideal element rises from 0 to $6\,\mathrm V$ in $3\,\mathrm{ms}$ at constant current $4\,\mathrm{mA}$, then holds, then falls from $6$ to $-2\,\mathrm V$ over $2\,\mathrm{ms}$. Identify the element and value and find its current in the final ramp.
+
+(b) A $10\,\mathrm V$ source feeds node A through $2\,\mathrm{k}\Omega$; two branches connect A to ground: $4\,\mathrm{k}\Omega$ in series with an ideal inductor, and $1\,\mathrm{k}\Omega$ in series with an ideal capacitor. Find source current after a long time.
+
+(c) Two series capacitors $6$ and $3\,\mu\mathrm F$ have signed drops along the left-to-right path of $8$ and $-2\,\mathrm V$. At zero a $1\,\mathrm{k}\Omega$ resistor connects across the outside terminals. Find the voltage of left relative to right at $2\,\mathrm{ms}$ and just after switching.
+
+(d) In a source-free series LC, $L=20\,\mathrm{mH}$, $C=5\,\mu\mathrm F$, $v_C(0)=2\,\mathrm V$, and $i(0)=0.1\,\mathrm A$ enters the positive capacitor terminal. Find $i(t)$.
 
 > [!answer]- Answer
 >
-> (a) A constant nonzero current produces a voltage ramp, with no current to maintain its level. That is a capacitor: $i=C\,dv/dt$, hence $C=0.004/(6/0.003)=2\,\mu\mathrm F$. On the falling segment $i=2\times10^{-6}(-8/0.002)=-8\,\mathrm{mA}$. (b) At DC steady state, $v_L=L\,di/dt=0$ and $i_C=C\,dv/dt=0$. Replace the inductor by a short and the capacitor by an open **before** reducing the remaining network. The source current is $10/(2+4)\,\mathrm{mA}=1.667\,\mathrm{mA}$.
+> (a) A constant nonzero current produces a voltage ramp, with no current to maintain its level. That is a capacitor: $i=C\,dv/dt$, hence $C=0.004/(6/0.003)=2\,\mu\mathrm F$. On the falling segment $i=2\times10^{-6}(-8/0.002)=-8\,\mathrm{mA}$.
+>
+> (b) At DC steady state, $v_L=L\,di/dt=0$ and $i_C=C\,dv/dt=0$. Replace the inductor by a short and the capacitor by an open **before** reducing the remaining network. The source current is $10/(2+4)\,\mathrm{mA}=1.667\,\mathrm{mA}$.
 >
 > (c) The terminal voltage initially is $8-2=6\,\mathrm V$. The two capacitor drops have equal rates of charge in series, so $C_{\rm eq}=(1/6+1/3)^{-1}=2\,\mu\mathrm F$. The differential terminal voltage cannot jump under finite resistor current, hence it is $6\,\mathrm V$ at $0^+$ and $6e^{-2/2}=2.207\,\mathrm V$ at $2\,\mathrm{ms}$. The individual capacitor voltages need not decay to zero: the floating midpoint can retain net charge, while the *terminal difference* decays to zero.
 >
@@ -290,7 +318,9 @@ A $10\,\mathrm V$ peak sine drives a $100\,\Omega$ load through (a) an ideal hal
 
 ## C22. Nonconstant excitation.
 
-(a) A series RC has $R=1\,\mathrm{k}\Omega$, $C=2\,\mu\mathrm F$, and no initial capacitor voltage. At $t=0$ it is driven by $v_s=6e^{-200t}\,\mathrm V$. Derive $v_C(t)$ and its initial slope. (b) A series $4\,\Omega$, $10\,\mathrm{mH}$, $100\,\mu\mathrm F$ branch instead carries prescribed $i=200t\,\mathrm A$ for $0\le t<5\,\mathrm{ms}$, then $1\,\mathrm A$; capacitor starts uncharged. Give $v_R,v_L,v_C$ during both intervals.
+(a) A series RC has $R=1\,\mathrm{k}\Omega$, $C=2\,\mu\mathrm F$, and no initial capacitor voltage. At $t=0$ it is driven by $v_s=6e^{-200t}\,\mathrm V$. Derive $v_C(t)$ and its initial slope.
+
+(b) A series $4\,\Omega$, $10\,\mathrm{mH}$, $100\,\mu\mathrm F$ branch instead carries prescribed $i=200t\,\mathrm A$ for $0\le t<5\,\mathrm{ms}$, then $1\,\mathrm A$; capacitor starts uncharged. Give $v_R,v_L,v_C$ during both intervals.
 
 > [!answer]- Answer
 >
@@ -306,7 +336,11 @@ A $10\,\mathrm V$ peak sine drives a $100\,\Omega$ load through (a) an ideal hal
 
 ## C23. AC nodal analysis and gains.
 
-(a) Derive $V_L/V_s$ for a series RLC. (b) Node $V$ connects to $V_1=8\angle0^\circ$ via $j4\,\Omega$, to $V_2=2\angle90^\circ$ via $-j4\,\Omega$, and to ground via $4\,\Omega$. Sources are RMS at the same $\omega$. Find node phasor and time-domain current through the inductor from $V_1$ toward the node. (c) Find the input impedance if the two sources are shorted and the input port is now at $V$ to ground. Explain the result.
+(a) Derive $V_L/V_s$ for a series RLC.
+
+(b) Node $V$ connects to $V_1=8\angle0^\circ$ via $j4\,\Omega$, to $V_2=2\angle90^\circ$ via $-j4\,\Omega$, and to ground via $4\,\Omega$. Sources are RMS at the same $\omega$. Find node phasor and time-domain current through the inductor from $V_1$ toward the node.
+
+(c) Find the input impedance if the two sources are shorted and the input port is now at $V$ to ground. Explain the result.
 
 > [!answer]- Answer
 >
@@ -316,17 +350,23 @@ A $10\,\mathrm V$ peak sine drives a $100\,\Omega$ load through (a) an ideal hal
 > H_L=\frac{j\omega L}{R+j\omega L+1/(j\omega C)}.
 > $$
 >
-> This is a voltage divider in complex impedance, not a ratio of impedance magnitudes. (b) From KCL, with currents out of $V$,
+> This is a voltage divider in complex impedance, not a ratio of impedance magnitudes.
+>
+> (b) From KCL, with currents out of $V$,
 >
 > $$
 > \frac{V-V_1}{j4}+\frac{V-V_2}{-j4}+\frac{V}{4}=0.
 > $$
 >
-> The reactive coefficients of $V$ cancel, giving $V=j(V_2-V_1)=-2-j8\,\mathrm V$. Then $I_L=(8-V)/(j4)=2-j2.5=3.202\angle-51.34^\circ\,\mathrm A$ RMS. Thus $i_L(t)=4.528\cos(\omega t-51.34^\circ)\,\mathrm A$. (c) The input admittance is $1/4+1/(j4)+1/(-j4)=1/4\,\mathrm S$, so $Z_{\rm in}=4\,\Omega$. Equal and opposite branch susceptances cancel at that frequency; current can still flow in the reactive branches.
+> The reactive coefficients of $V$ cancel, giving $V=j(V_2-V_1)=-2-j8\,\mathrm V$. Then $I_L=(8-V)/(j4)=2-j2.5=3.202\angle-51.34^\circ\,\mathrm A$ RMS. Thus $i_L(t)=4.528\cos(\omega t-51.34^\circ)\,\mathrm A$.
+>
+> (c) The input admittance is $1/4+1/(j4)+1/(-j4)=1/4\,\mathrm S$, so $Z_{\rm in}=4\,\Omega$. Equal and opposite branch susceptances cancel at that frequency; current can still flow in the reactive branches.
 
 ## C24. AC power forward and backward.
 
-(a) A current $i(t)=2\sqrt2\cos(400t-30^\circ)\,\mathrm A$ enters the positive terminal of a parallel $4\,\Omega$ and $C=625\,\mu\mathrm F$ load. Find its absorbed complex power and instantaneous power. (b) At the same current phasor a *different* load absorbs $12+j8\,\mathrm{VA}$. Find its RMS voltage phasor and explain why this is not the same parallel RC.
+(a) A current $i(t)=2\sqrt2\cos(400t-30^\circ)\,\mathrm A$ enters the positive terminal of a parallel $4\,\Omega$ and $C=625\,\mu\mathrm F$ load. Find its absorbed complex power and instantaneous power.
+
+(b) At the same current phasor a *different* load absorbs $12+j8\,\mathrm{VA}$. Find its RMS voltage phasor and explain why this is not the same parallel RC.
 
 > [!answer]- Answer
 >
@@ -382,8 +422,12 @@ An ideal emf in series with an internal resistance gives $7.2\,\mathrm V$ across
 
 ## C28. Which quantity can jump?
 
-(a) A $10\,\mu\mathrm F$ capacitor is at $5\,\mathrm V$ at $t=0^-$. A switch then connects its positive terminal through $1\,\mathrm{k}\Omega$ to an ideal $2\,\mathrm V$ source sharing the capacitor ground. Find passive capacitor current for $t>0$, $i_C(0^+)$ and whether it is legitimate to equate it to $i_C(0^-)$. Before switching the capacitor had been unexcited for a long time except for the charging DC network. (b) An inductor $L=10\,\mathrm{mH}$ initially at $0.10\,\mathrm A$ is connected at zero to a new Thévenin equivalent of $8\,\mathrm V$ and $20\,\Omega$, aligned with that current. Find $i_L$ and $v_L$ for $t>0$, and their right limits. Assume steady DC before the switch.
+(a) A $10\,\mu\mathrm F$ capacitor is at $5\,\mathrm V$ at $t=0^-$. A switch then connects its positive terminal through $1\,\mathrm{k}\Omega$ to an ideal $2\,\mathrm V$ source sharing the capacitor ground. Find passive capacitor current for $t>0$, $i_C(0^+)$ and whether it is legitimate to equate it to $i_C(0^-)$. Before switching the capacitor had been unexcited for a long time except for the charging DC network.
+
+(b) An inductor $L=10\,\mathrm{mH}$ initially at $0.10\,\mathrm A$ is connected at zero to a new Thévenin equivalent of $8\,\mathrm V$ and $20\,\Omega$, aligned with that current. Find $i_L$ and $v_L$ for $t>0$, and their right limits. Assume steady DC before the switch.
 
 > [!answer]- Answer
 >
-> (a) Continuous capacitor voltage yields $v_C(t)=2+3e^{-100t}\,\mathrm V$ for $t>0$. The current entering its positive terminal is $(2-v_C)/1000=-3e^{-100t}\,\mathrm{mA}$. The right limit $-3\,\mathrm{mA}$ and the old DC current $0$ differ. The formula extends to the *right-hand value* at zero, not to the pre-switch value. (b) $\tau=L/R=0.5\,\mathrm{ms}$ and $i_\infty=8/20=0.40\,\mathrm A$. Continuity gives $i_L=0.40-0.30e^{-2000t}\,\mathrm A$. Then $v_L=L\,di_L/dt=6e^{-2000t}\,\mathrm V$ and $i_L(0^+)=0.10\,\mathrm A$, $v_L(0^+)=6\,\mathrm V$. Inductor current is continuous but its voltage can jump from the old steady-state zero.
+> (a) Continuous capacitor voltage yields $v_C(t)=2+3e^{-100t}\,\mathrm V$ for $t>0$. The current entering its positive terminal is $(2-v_C)/1000=-3e^{-100t}\,\mathrm{mA}$. The right limit $-3\,\mathrm{mA}$ and the old DC current $0$ differ. The formula extends to the *right-hand value* at zero, not to the pre-switch value.
+>
+> (b) $\tau=L/R=0.5\,\mathrm{ms}$ and $i_\infty=8/20=0.40\,\mathrm A$. Continuity gives $i_L=0.40-0.30e^{-2000t}\,\mathrm A$. Then $v_L=L\,di_L/dt=6e^{-2000t}\,\mathrm V$ and $i_L(0^+)=0.10\,\mathrm A$, $v_L(0^+)=6\,\mathrm V$. Inductor current is continuous but its voltage can jump from the old steady-state zero.

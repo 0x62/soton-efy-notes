@@ -2,3 +2,12 @@
 .DS_Store
 Private/*
 Coursework/*
+.quartz/engine/
+
+.quartz/embeds/node_modules/
+.quartz/embeds/dist/
+
+.quartz/embeds/.generated/
+
+# Disposable embed build destinations (never source)
+.quartz/embeds/engine/
