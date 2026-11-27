@@ -1,3 +1,7 @@
+---
+permalink: notes
+---
+
 These are my notes for **Aerospace Electronic Engineering** at the University of Southampton, starting from Engineering Foundation Year in 2025. 
 
 > [!INFO] Incorrect or missing information

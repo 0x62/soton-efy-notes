@@ -1,3 +1,7 @@
+---
+permalink: useful-resources
+---
+
 
 ## Foundation Year
 

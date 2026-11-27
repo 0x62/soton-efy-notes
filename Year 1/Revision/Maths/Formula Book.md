@@ -1,4 +1,7 @@
-# Maths Formula Book
+---
+title: "Formula Book"
+permalink: y1/revision/elec1310/formula-book
+---
 
 ELEC1310 Mathematics · Year 1 · Semester 1
 
