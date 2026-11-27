@@ -2,7 +2,22 @@
 
 ELEC1310 Mathematics · Year 1 · Semester 1
 
-**Learn the core rules first:** the chain, product and quotient rules; the scaled standard integrals; the three core Maclaurin series; complex-number conversions and Cauchy–Riemann; the ODE solution patterns; and the matrix tests for kernel, image and invertibility. Some equations were supplied on individual past papers, but that is not a promise for a future paper. This is a revision reference, not an official list of what will be supplied.
+## What to memorise first
+
+**The tables are a reference, not a list to memorise row by row.** The syllabus gives topics rather than a prescribed formula list. Some past-paper questions supplied a rule (the sine series, Cauchy–Riemann equations or RMS definition in 2025/26), but don't count on that next time.
+
+| Topic | Recall first, then practise using it |
+| --- | --- |
+| Differentiation | Chain, product and quotient rules; derivatives of powers, $e^x$, $\ln x$, $\sin x$, $\cos x$ and $\tan x$. Practise applying the same rules to partial, implicit, logarithmic and parametric questions. |
+| Integration | Power rule and its $1/x$ exception; primitives of $e^x$, $\sin x$, $\cos x$ and $\sec^2 x$; the two inverse-trig patterns $1/(1+x^2)$ and $1/\sqrt{1-x^2}$. Learn substitution and integration by parts, then practise choosing between them. |
+| Series and limits | Taylor coefficient $f^{(n)}(a)/n!$; Maclaurin series for $e^x$, $\sin x$ and $\cos x$; matching left/right limits at a join. |
+| Complex numbers | Conjugate division, Euler’s formula, the $n$th-root angle rule and the two Cauchy–Riemann comparisons. |
+| ODEs and matrices | Recognise separable, linear and exact first-order equations; recall the integrating factor and three characteristic-root cases. Practise forming a matrix, finding its kernel and image, and testing invertibility. |
+| RMS | Square, average over the interval, then take the square root. Derive the sine or square-wave result if needed. |
+
+**Derive the variants.** For example, if you remember $\int\sec^2 x\,dx=\tan x+C$, you can work out $\int\sec^2(4x+1)\,dx=\tan(4x+1)/4+C$: differentiation would bring down a $4$, so dividing by $4$ cancels it. Don't memorise the shifted example as another rule. Likewise, get $\int\ln x\,dx$ by parts, and get the $\sin^2 x$ integral from the double-angle identity. Use the less common reciprocal, hyperbolic and quadratic forms below as reference until practice shows which ones you need.
+
+### Jump to a topic
 
 - [[#Differentiation]]
 - [[#Integration]]
@@ -44,23 +59,23 @@ In the tables, $u=u(x)$ and $u'=du/dx$. Use radians for trigonometric calculus. 
 | $\cot u$ | $-\csc^2(u)\,u'$ |
 | $\sec u$ | $\sec(u)\tan(u)\,u'$ |
 | $\csc u$ | $-\csc(u)\cot(u)\,u'$ |
-| $\arcsin u$ | $\dfrac{u'}{\sqrt{1-u^2}}$ for $\lvert u\rvert<1$ |
-| $\arccos u$ | $-\dfrac{u'}{\sqrt{1-u^2}}$ for $\lvert u\rvert<1$ |
-| $\arctan u$ | $\dfrac{u'}{1+u^2}$ |
+| $\sin^{-1} u$ | $\dfrac{u'}{\sqrt{1-u^2}}$ for $\lvert u\rvert<1$ |
+| $\cos^{-1} u$ | $-\dfrac{u'}{\sqrt{1-u^2}}$ for $\lvert u\rvert<1$ |
+| $\tan^{-1} u$ | $\dfrac{u'}{1+u^2}$ |
 | $\sinh u$ | $\cosh(u)\,u'$ |
 | $\cosh u$ | $\sinh(u)\,u'$ |
 | $\tanh u$ | $\operatorname{sech}^2(u)\,u'$ |
 | $\coth u$ | $-\operatorname{csch}^2(u)\,u'$ |
 | $\operatorname{sech}u$ | $-\operatorname{sech}(u)\tanh(u)\,u'$ |
 | $\operatorname{csch}u$ | $-\operatorname{csch}(u)\coth(u)\,u'$ |
-| $\operatorname{arsinh}u$ | $\dfrac{u'}{\sqrt{1+u^2}}$ |
-| $\operatorname{arcosh}u$ | $\dfrac{u'}{\sqrt{u^2-1}}$ for $u>1$ |
-| $\operatorname{artanh}u$ | $\dfrac{u'}{1-u^2}$ for $\lvert u\rvert<1$ |
-| $\operatorname{arccot}u$ | $-\dfrac{u'}{1+u^2}$ for the branch taking values in $(0,\pi)$ |
-| $\operatorname{arcsec}u$ | $\dfrac{u'}{\lvert u\rvert\sqrt{u^2-1}}$ for $\lvert u\rvert>1$, using $\operatorname{arcsec}u=\arccos(1/u)$ |
-| $\operatorname{arccsc}u$ | $-\dfrac{u'}{\lvert u\rvert\sqrt{u^2-1}}$ for $\lvert u\rvert>1$, using $\operatorname{arccsc}u=\arcsin(1/u)$ |
+| $\sinh^{-1}u$ | $\dfrac{u'}{\sqrt{1+u^2}}$ |
+| $\cosh^{-1}u$ | $\dfrac{u'}{\sqrt{u^2-1}}$ for $u>1$ |
+| $\tanh^{-1}u$ | $\dfrac{u'}{1-u^2}$ for $\lvert u\rvert<1$ |
+| $\cot^{-1}u$ | $-\dfrac{u'}{1+u^2}$ for the branch taking values in $(0,\pi)$ |
+| $\sec^{-1}u$ | $\dfrac{u'}{\lvert u\rvert\sqrt{u^2-1}}$ for $\lvert u\rvert>1$, using $\sec^{-1}u=\cos^{-1}(1/u)$ |
+| $\csc^{-1}u$ | $-\dfrac{u'}{\lvert u\rvert\sqrt{u^2-1}}$ for $\lvert u\rvert>1$, using $\csc^{-1}u=\sin^{-1}(1/u)$ |
 
-In particular, $\arctan u$ means inverse tangent, not $1/\tan u$. The reciprocal functions are $\sec u=1/\cos u$, $\csc u=1/\sin u$, $\cot u=\cos u/\sin u$, $\operatorname{sech}u=1/\cosh u$, $\operatorname{csch}u=1/\sinh u$, and $\coth u=\cosh u/\sinh u$.
+Here $\tan^{-1}(u)$ means the angle whose tangent is $u$. It is not $1/\tan(u)$, which is $\cot(u)$. The same convention applies to the other inverse functions. The reciprocal functions are $\sec u=1/\cos u$, $\csc u=1/\sin u$, $\cot u=\cos u/\sin u$, $\operatorname{sech}u=1/\cosh u$, $\operatorname{csch}u=1/\sinh u$, and $\coth u=\cosh u/\sinh u$.
 
 ### Derivative methods and applications
 
@@ -140,30 +155,30 @@ The $1/a$ cancels the factor $a$ that differentiation would bring down. If $a=0$
 | $\operatorname{csch}^2u$ | $-\coth(u)/a$ |
 | $\operatorname{sech}u\,\tanh u$ | $-\operatorname{sech}(u)/a$ |
 | $\operatorname{csch}u\,\coth u$ | $-\operatorname{csch}(u)/a$ |
-| $\operatorname{sech}u$ | $\arctan(\sinh u)/a$ |
+| $\operatorname{sech}u$ | $\tan^{-1}(\sinh u)/a$ |
 | $\operatorname{csch}u$ | $\ln\lvert\tanh(u/2)\rvert/a$ |
 
 ### Standard antiderivatives: quadratics, roots and inverse functions
 
-Here $c>0$ is a scale, independent of the slope $a$ in $u=ax+b$. In particular, **arctan goes with a sum of squares; arcsin goes with a square root of a difference of squares**.
+Here $c>0$ is a scale, independent of the slope $a$ in $u=ax+b$. In particular, **Use $\tan^{-1}$ for a sum of squares and $\sin^{-1}$ for a square root of a difference of squares.**
 
 | Integrand | Antiderivative, before adding $C$ |
 | --- | --- |
-| $\dfrac{1}{c^2+u^2}$ | $\dfrac{1}{ac}\arctan(u/c)$ |
-| $\dfrac{1}{\sqrt{c^2-u^2}}$ | $\dfrac{1}{a}\arcsin(u/c)$, $\lvert u\rvert<c$ |
-| $\dfrac{1}{\sqrt{c^2+u^2}}$ | $\dfrac{1}{a}\operatorname{arsinh}(u/c)=\dfrac{1}{a}\ln\big((u+\sqrt{u^2+c^2})/c\big)$ |
+| $\dfrac{1}{c^2+u^2}$ | $\dfrac{1}{ac}\tan^{-1}(u/c)$ |
+| $\dfrac{1}{\sqrt{c^2-u^2}}$ | $\dfrac{1}{a}\sin^{-1}(u/c)$, $\lvert u\rvert<c$ |
+| $\dfrac{1}{\sqrt{c^2+u^2}}$ | $\dfrac{1}{a}\sinh^{-1}(u/c)=\dfrac{1}{a}\ln\big((u+\sqrt{u^2+c^2})/c\big)$ |
 | $\dfrac{1}{\sqrt{u^2-c^2}}$ | $\dfrac{1}{a}\ln\big\lvert (u+\sqrt{u^2-c^2})/c\big\rvert$, $\lvert u\rvert>c$ |
 | $\dfrac{1}{c^2-u^2}$ | $\dfrac{1}{2ac}\ln\left\lvert\dfrac{c+u}{c-u}\right\rvert$ |
 | $\dfrac{1}{u^2-c^2}$ | $\dfrac{1}{2ac}\ln\left\lvert\dfrac{u-c}{u+c}\right\rvert$ |
-| $\sqrt{c^2-u^2}$ | $\dfrac{u\sqrt{c^2-u^2}+c^2\arcsin(u/c)}{2a}$ |
-| $\sqrt{u^2+c^2}$ | $\dfrac{u\sqrt{u^2+c^2}+c^2\operatorname{arsinh}(u/c)}{2a}$ |
+| $\sqrt{c^2-u^2}$ | $\dfrac{u\sqrt{c^2-u^2}+c^2\sin^{-1}(u/c)}{2a}$ |
+| $\sqrt{u^2+c^2}$ | $\dfrac{u\sqrt{u^2+c^2}+c^2\sinh^{-1}(u/c)}{2a}$ |
 | $\sqrt{u^2-c^2}$ | $\dfrac{u\sqrt{u^2-c^2}-c^2\ln\big\lvert(u+\sqrt{u^2-c^2})/c\big\rvert}{2a}$ |
-| $\arcsin u$ | $\dfrac{u\arcsin u+\sqrt{1-u^2}}a$ |
-| $\arccos u$ | $\dfrac{u\arccos u-\sqrt{1-u^2}}a$ |
-| $\arctan u$ | $\dfrac{u\arctan u-\frac12\ln(1+u^2)}a$ |
-| $1/(1-u^2)$ | $\dfrac{1}{2a}\ln\left\lvert\dfrac{1+u}{1-u}\right\rvert$, equal to $\operatorname{artanh}(u)/a$ for $\lvert u\rvert<1$ |
+| $\sin^{-1} u$ | $\dfrac{u\sin^{-1} u+\sqrt{1-u^2}}a$ |
+| $\cos^{-1} u$ | $\dfrac{u\cos^{-1} u-\sqrt{1-u^2}}a$ |
+| $\tan^{-1} u$ | $\dfrac{u\tan^{-1} u-\frac12\ln(1+u^2)}a$ |
+| $1/(1-u^2)$ | $\dfrac{1}{2a}\ln\left\lvert\dfrac{1+u}{1-u}\right\rvert$, equal to $\tanh^{-1}(u)/a$ for $\lvert u\rvert<1$ |
 
-The first two rows include the familiar $1/(1+x^2)$ and $1/\sqrt{1-x^2}$ cases. For example, $\int dx/[9+(2x-1)^2]=\frac16\arctan((2x-1)/3)+C$: the $2$ comes from the inner slope and the $3$ from the quadratic scale.
+The first two rows include the familiar $1/(1+x^2)$ and $1/\sqrt{1-x^2}$ cases. For example, $\int dx/[9+(2x-1)^2]=\frac16\tan^{-1}((2x-1)/3)+C$: the $2$ comes from the inner slope and the $3$ from the quadratic scale.
 
 ### Method choice, bounds and numerical integration
 
@@ -175,7 +190,7 @@ The first two rows include the familiar $1/(1+x^2)$ and $1/\sqrt{1-x^2}$ cases. 
 | Quadratic under a square root | For $\sqrt{c^2-u^2}$ try $u=c\sin\theta$; for $\sqrt{c^2+u^2}$ try $u=c\tan\theta$; for $\sqrt{u^2-c^2}$ on $u\ge c$ try $u=c\sec\theta$. Choose a range for $\theta$ that fixes the square-root sign. |
 | Rational functions | Divide polynomials first if numerator degree $\ge$ denominator degree. Factor. For a repeated linear factor $(x-r)^m$, include $\sum_{k=1}^m A_k/(x-r)^k$. For repeated irreducible quadratics $q(x)^m$, include $\sum_{k=1}^m(B_kx+C_k)/q(x)^k$. |
 | Simple partial-fraction factors (also complex) | If $R(x)=P(x)/[(x-r)Q(x)]$ with $Q(r)\ne0$, the coefficient of $1/(x-r)$ is $P(r)/Q(r)$. For two conjugate poles and real coefficients, the two coefficients are conjugates. |
-| Complete the square | $Ax^2+Bx+C=A[(x+B/(2A))^2+(4AC-B^2)/(4A^2)]$ for $A\ne0$. Split a linear numerator into a multiple of the denominator derivative plus a constant. Then use log and arctan/log-root forms as appropriate. |
+| Complete the square | $Ax^2+Bx+C=A[(x+B/(2A))^2+(4AC-B^2)/(4A^2)]$ for $A\ne0$. Split a linear numerator into a multiple of the denominator derivative plus a constant. Then use log and $\tan^{-1}$ or log-root forms as appropriate. |
 | Fundamental theorem | $\int_p^q f(x)\,dx=F(q)-F(p)$ when $F'=f$ and $f$ is continuous on the interval; an antiderivative subject to $F(x_0)=y_0$ is $F(x)=y_0+\int_{x_0}^{x} f(t)\,dt$. |
 | Variable limits | $\dfrac{d}{dx}\int_{g(x)}^{h(x)} f(t)\,dt=f(h(x))h'(x)-f(g(x))g'(x)$. |
 | Symmetry | $\int_{-L}^L f(x)\,dx=0$ for odd $f$; $=2\int_0^L f(x)\,dx$ for even $f$, when integrable. |
@@ -255,7 +270,7 @@ The public syllabus names Taylor and Maclaurin but does not list a required set 
 | $\ln(1+x)$ | $x-x^2/2+x^3/3-x^4/4+\cdots$, $-1<x\le1$ |
 | $\ln(1-x)$ | $-x-x^2/2-x^3/3-\cdots$, $-1\le x<1$ |
 | $(1+x)^p$ | $1+px+\dfrac{p(p-1)}{2!}x^2+\dfrac{p(p-1)(p-2)}{3!}x^3+\cdots$ for $\lvert x\rvert<1$; terminates for non-negative integer $p$. |
-| $\arctan x$ | $x-x^3/3+x^5/5-x^7/7+\cdots$, $-1\le x\le1$ |
+| $\tan^{-1} x$ | $x-x^3/3+x^5/5-x^7/7+\cdots$, $-1\le x\le1$ |
 | $\sinh x$ | $x+x^3/3!+x^5/5!+\cdots$ for all real $x$ |
 | $\cosh x$ | $1+x^2/2!+x^4/4!+\cdots$ for all real $x$ |
 
@@ -286,7 +301,7 @@ See [[Limits & Continuity]].
 | --- | --- |
 | Conjugate and modulus | $z=x+jy$, $j^2=-1$, $\bar z=x-jy$, $z\bar z=x^2+y^2$, $\lvert z\rvert=\sqrt{x^2+y^2}$. In particular $z\bar z$ is always real and non-negative. |
 | Division | $\dfrac{z_1}{z_2}=\dfrac{z_1\bar z_2}{\lvert z_2\rvert^2}$ for $z_2\ne0$; $1/j=-j$. |
-| Polar form | $z=re^{j\theta}=r(\cos\theta+j\sin\theta)$, with $r=\lvert z\rvert$, $\theta=\operatorname{atan2}(y,x)$ modulo $2\pi$. $z=0$ has no argument. |
+| Polar form | $z=re^{j\theta}=r(\cos\theta+j\sin\theta)$, with $r=\lvert z\rvert$, $\theta=\operatorname{atan2}(y,x)$ modulo $2\pi$. This is the quadrant-aware angle calculation; using $\tan^{-1}(y/x)$ alone can give the wrong quadrant. $z=0$ has no argument. |
 | Product and quotient | Multiply/divide moduli; add/subtract arguments. For $G=k\prod N_i/\prod D_i$ with non-zero factors: $\lvert G\rvert=\lvert k\rvert\prod\lvert N_i\rvert/\prod\lvert D_i\rvert$; $\arg G=\arg k+\sum \arg N_i-\sum \arg D_i$ modulo $2\pi$. A pole at $\omega=0$ can have a one-sided phase limit; that is not the value at the pole. |
 | Exponentials and trig | $e^{x+jy}=e^x(\cos y+j\sin y)$; $\cos z=(e^{jz}+e^{-jz})/2$ and $\sin z=(e^{jz}-e^{-jz})/(2j)$. |
 | Hyperbolic functions | $\cosh z=(e^z+e^{-z})/2$, $\sinh z=(e^z-e^{-z})/2$, $\tanh z=\sinh z/\cosh z$; $\cosh^2z-\sinh^2z=1$, $\cos(jz)=\cosh z$, $\sin(jz)=j\sinh z$. |
