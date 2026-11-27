@@ -1,4 +1,5 @@
 ---
+permalink: clippings/e-series-of-preferred-numbers
 title: "E series of preferred numbers - Wikipedia"
 source: "https://en.wikipedia.org/wiki/E_series_of_preferred_numbers"
 author:
