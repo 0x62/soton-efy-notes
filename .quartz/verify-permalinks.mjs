@@ -19,6 +19,12 @@ for (const source of ['notes', 'README']) {
 }
 assert.equal(routes['Year-1/Year-1'], 'y1');
 assert.equal(routes['Foundation-Year/Foundation-Year'], 'fy');
+for (const year of ['fy', 'y1']) {
+  assert.equal(navigation[`${year}/index`], year);
+  const html = await readFile(resolve(out, year, 'index.html'), 'utf8');
+  const refresh = html.match(/http-equiv="refresh" content="0;url=([^"]+)"/)?.[1];
+  assert.equal(new URL(refresh, new URL(`${year}/`, base)).href, new URL(year, base).href);
+}
 const manifest = JSON.parse(await readFile(resolve(out, '../source-manifest.json'), 'utf8'));
 assert.equal(Object.keys(routes).length, manifest.filter((path) => path.endsWith('.md')).length,
   'Every tracked published note needs a unique canonical permalink');

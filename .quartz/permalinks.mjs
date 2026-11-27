@@ -23,6 +23,8 @@ export function sourcePermalinks(sources) {
 
 // Keep old bookmarks when a note moves between vault folders.
 const movedPages = {
+  'fy/index': 'fy',
+  'y1/index': 'y1',
   'Year-1/ELEC1310-Mathematics/Maths-Formula-Book': 'y1/revision/elec1310/formula-book',
   'y1/elec1310/maths-formula-book': 'y1/revision/elec1310/formula-book',
   'y1/elec1310/formula-book': 'y1/revision/elec1310/formula-book',
