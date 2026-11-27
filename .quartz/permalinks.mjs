@@ -157,7 +157,7 @@ export async function publishPermalinks(out) {
     const href = rewriteURL(new URL(publicPath(target), base).href, file, file);
     const redirect = target === 'index'
       ? rewriteURL('./index.html', file, file)
-      : './' + posix.relative(posix.dirname(file), target);
+      : './' + posix.relative(posix.dirname(file), target + '.html').slice(0, -5);
     const social = (originals[(Object.keys(routes).find(k => routes[k] === target) ?? source) + '.html']?.match(/<meta\b[^>]*(?:property|name)="(?:og:|twitter:)[^"]*"[^>]*>/g) ?? []).join('');
     // Preserve incoming fragment/query on legacy bookmarks, including SPA entry.
     await mkdir(dirname(resolve(out, file)), { recursive: true });
