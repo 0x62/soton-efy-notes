@@ -43,6 +43,7 @@ const decode = (text) =>
 const opts = JSON.parse(decode(home.match(/data-data-fns="([^"]+)"/)[1]));
 const sort = new Function(`return (${opts.sortFn})`)();
 const filter = new Function(`return (${opts.filterFn})`)();
+const map = new Function(`return (${opts.mapFn})`)();
 const node = (slug, name, isFolder = false) => ({
   slug,
   displayName: name,
@@ -81,6 +82,24 @@ assert.deepEqual(
   ["Circuit Theory (1)", "Electronics (1)", "AC Theory (1)"],
 );
 assert(filter(node("Year-1/ELEC1310-Mathematics/New-Topic", "New Topic")));
+assert(!filter(node("Year-1/Daily-Brief/index", "Daily Brief", true)));
+assert(!filter(node("Year-1/Daily-Brief/2026-11-26", "26 November")));
+const maths = "Year-1/ELEC1310-Mathematics/";
+const mathsSequence = [
+  "Second-Order-Ordinary-Differential-Equations",
+  "First-Order-Ordinary-Differential-Equations",
+  "Integration",
+  "Complex-Algebra",
+  "Numbers--and--Algebra",
+  "Limits--and--Continuity",
+].map((slug) => node(maths + slug, slug));
+mathsSequence.forEach(map);
+assert.deepEqual(mathsSequence.sort(sort).map((entry) => entry.slug.slice(maths.length)), [
+  "Numbers--and--Algebra", "Complex-Algebra", "Limits--and--Continuity", "Integration",
+  "First-Order-Ordinary-Differential-Equations", "Second-Order-Ordinary-Differential-Equations",
+]);
+assert.deepEqual(mathsSequence.slice(-2).map((entry) => entry.displayName),
+  ["First-Order ODEs", "Second-Order ODEs"]);
 assert(!filter(node("Clippings/index", "Clippings", true)));
 assert(!filter(node("tags/index", "tags", true)));
 assert(!filter(node("index", "index")));

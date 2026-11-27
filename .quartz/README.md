@@ -26,10 +26,21 @@ rendered notes, links, transclusions, diagrams and publishing scope.
 `sidebar-order.json` records every expanded navigation entry observed at
 https://uni.bl.je/README on 9 November 2026. `sidebar.ts` reproduces the root
 ordering and the custom Circuit Theory → Electronics → AC Theory sequence.
-Other sections keep the original folders-first, natural alphabetical order.
-New tracked notes in those sections appear automatically. Clippings, templates,
-attachments and generated tag pages do not appear in the sidebar. Root-level
+Year 1 teaching pages follow the curriculum order in the Year 1 overview; update
+the manifest when adding a topic at a specific position. Unranked entries fall
+back to folders-first natural order. Short navigation labels in
+`sidebar-labels.json` do not rename source files or published destinations.
+Daily Brief is removed from navigation only; its individual pages keep their
+links. Clippings, templates, attachments and generated tags also stay out of
+the navigation. Root-level
 additions require an explicit entry in the navigation manifest.
+
+## Revision
+
+The Year 1 Revision area groups 125 original exam-style questions and answers
+by module. Native Obsidian/Quartz callouts allow revealing each answer
+individually. The Maths and Circuits formula books sit alongside the question
+banks. The earlier Maths Formula Book URL redirects to the new location.
 
 ## Content and preview safeguards
 
@@ -38,8 +49,8 @@ Quartz checkout, never untracked notes, `.obsidian`, credentials or private
 folders. Vault source files and frontmatter are not edited. Figure-title image wikilinks
 are normalized only in disposable build copies so @2x filenames render correctly.
 Figure styling follows the original publish.css, with centered captions, no box
-background or border, and a responsive 40rem maximum width. Existing `permalink`
-frontmatter creates alias redirects (including `fy` and `y1`). Obsidian wikilinks,
+background or border, and a responsive 40rem maximum width. Tracked public notes supply a `permalink` (including `fy` and `y1`). Future daily briefs without frontmatter get a
+date-based permalink in the build copy. Obsidian wikilinks,
 section transclusions, callouts, KaTeX, syntax highlighting and Mermaid use
 Quartz's native support. Referenced attachments retain their source paths.
 

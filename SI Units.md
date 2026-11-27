@@ -1,3 +1,7 @@
+---
+permalink: si-units
+---
+
 
 SI (Système International) units form the standard measurement system used in engineering. The base units relevant to electrical engineering include the meter (m), kilogram (kg), second (s), ampere (A), and kelvin (K).
 

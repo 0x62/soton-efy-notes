@@ -34,13 +34,22 @@ const files = tracked.filter(
     allowed.has(extname(path).toLowerCase()),
 );
 
+function withBriefPermalink(path, text) {
+  const date = path.match(/^Year 1\/Daily Brief\/(\d{4}-\d{2}-\d{2})\.md$/)?.[1];
+  if (!date || /^permalink:/m.test(text)) return text;
+  const frontmatter = `permalink: y1/daily-brief/${date}\n`;
+  return /^---\r?\n/.test(text)
+    ? text.replace(/^---\r?\n/, "---\n" + frontmatter)
+    : "---\n" + frontmatter + "---\n\n" + text;
+}
+
 // Copy only Git-tracked public source files. Never scan the working directory
 // for private files, Obsidian settings, credentials or uncommitted notes.
 for (const path of files) {
   const target = resolve(content, path);
   await mkdir(dirname(target), { recursive: true });
   if (extname(path) === ".md") {
-    const source = await readFile(resolve(root, path), "utf8");
+    const source = withBriefPermalink(path, await readFile(resolve(root, path), "utf8"));
     await writeFile(
       target,
       normalizeDisplayMath(
@@ -56,6 +65,7 @@ for (const name of [
   "quartz.layout.ts",
   "sidebar.ts",
   "sidebar-order.json",
+  "sidebar-labels.json",
   "NotesFooter.tsx",
 ]) {
   await copyFile(resolve(root, ".quartz", name), resolve(engine, name));
@@ -81,7 +91,7 @@ await installPermalinks(
   await Promise.all(
     files
       .filter((p) => extname(p) === ".md")
-      .map(async (p) => [p, await readFile(resolve(root, p), "utf8")]),
+      .map(async (p) => [p, withBriefPermalink(p, await readFile(resolve(root, p), "utf8"))]),
   ),
 );
 

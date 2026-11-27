@@ -21,9 +21,23 @@ export function sourcePermalinks(sources) {
   return routes;
 }
 
+// Keep old bookmarks when a note moves between vault folders.
+const movedPages = {
+  'Year-1/ELEC1310-Mathematics/Maths-Formula-Book': 'y1/revision/elec1310/formula-book',
+  'y1/elec1310/maths-formula-book': 'y1/revision/elec1310/formula-book',
+  'y1/elec1310/formula-book': 'y1/revision/elec1310/formula-book',
+};
+
 export async function installPermalinks(engine, sources) {
   const routes = sourcePermalinks(sources);
   const navigation = { ...routes };
+  const publicRoutes = new Set(Object.values(routes));
+  for (const [old, target] of Object.entries(movedPages)) {
+    if (routes[old] || publicRoutes.has(old) || !publicRoutes.has(target)) {
+      throw new Error(`Invalid moved-page alias: ${old} -> ${target}`);
+    }
+    navigation[old] = target;
+  }
   for (const [source, target] of Object.entries(routes)) {
     const parts = source.split('/');
     if (parts.at(-1) === parts.at(-2)) navigation[parts.slice(0,-1).join('/') + '/index'] = target;
@@ -125,6 +139,7 @@ export async function publishPermalinks(out) {
     const redirect = './' + posix.relative(posix.dirname(file), target);
     const social = (originals[(Object.keys(routes).find(k => routes[k] === target) ?? source) + '.html']?.match(/<meta\b[^>]*(?:property|name)="(?:og:|twitter:)[^"]*"[^>]*>/g) ?? []).join('');
     // Preserve incoming fragment/query on legacy bookmarks, including SPA entry.
+    await mkdir(dirname(resolve(out, file)), { recursive: true });
     await writeFile(resolve(out, file), `<!doctype html><html><head><meta charset="utf-8">${relocate(social, source + '.html', file)}<link rel="canonical" href="${href}"><meta http-equiv="refresh" content="0;url=${redirect}"><meta name="robots" content="noindex"><script>location.replace(${JSON.stringify(redirect)} + location.search + location.hash)</script></head><body><a href="${href}">Open note</a></body></html>`);
   }
   await writeFile(resolve(out, 'permalinks.json'), JSON.stringify({ routes, navigation }, null, 2));
