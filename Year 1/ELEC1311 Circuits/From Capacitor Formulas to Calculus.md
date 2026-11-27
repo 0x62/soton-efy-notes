@@ -336,3 +336,15 @@ This shortcut applies to the **sinusoidal steady-state part** of the solution at
 > $q=Cv$, $i=C\,dv/dt$, the integral for voltage, the RC charging formula, and $Z_C=1/(j\omega C)$ are not five competing rules. They describe the same ideal capacitor with different information supplied and different circuit conditions.
 
 For a more complicated first-order network, the effective resistance is the resistance seen by the storage element after switching, not necessarily a single labelled resistor. Continue with [[RL and Complete Response#Equivalent resistance]] and [[RL and Complete Response#Switching method]]. For AC calculations, return to [[From Impedance Triangles to Complex Numbers]] and [[AC Impedance]].
+
+```mermaid
+flowchart TD
+    A["Ideal capacitor with fixed C"] --> B["Given voltage as a function of time"]
+    A --> C["Given current and initial voltage"]
+    A --> D["Single-frequency sinusoidal steady state"]
+    B --> E["Differentiate voltage, then multiply by C to find current"]
+    C --> F["Integrate current, divide by C, then add initial voltage"]
+    D --> G["Use capacitor impedance 1 / (j omega C)"]
+```
+
+All three routes follow from $q=Cv$ with current entering the positive voltage terminal. The integration route must retain the initial voltage; an integral does not automatically mean charging from zero.

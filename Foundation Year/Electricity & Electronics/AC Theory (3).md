@@ -63,6 +63,18 @@ $$
 
 
 
+### Series RLC behaviour at a glance
+
+```mermaid
+flowchart TD
+    A["Compare reactances at the supply frequency"] --> B{"X_L compared with X_C?"}
+    B -->|"X_L greater"| C["Net inductive: current lags voltage"]
+    B -->|"Equal"| D["Resonance: Z = R; current and voltage in phase"]
+    B -->|"X_L smaller"| E["Net capacitive: current leads voltage"]
+```
+
+For the ideal series RLC model, the resistor sets the minimum impedance at resonance.
+
 ## Power in AC
 
 For a purely resistive AC circuit, voltage and current are in phase so electrical energy is continuously converted into heat. Therefore, the average power dissipated, $P$ is given by:

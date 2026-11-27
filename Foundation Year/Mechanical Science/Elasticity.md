@@ -94,6 +94,18 @@ The total force is: $F_{total} = F_1 + F_2 + F_3 + ...$
 * For $n$ identical springs in parallel: $k_{eff} = n \times k$
 
 
+### Combining ideal springs
+
+```mermaid
+flowchart TD
+    A["How are the springs connected?"] --> B["Series: same force through each spring"]
+    A --> C["Parallel: same extension of each spring"]
+    B --> D["Extensions add: 1/k_eff = 1/k_1 + 1/k_2"]
+    C --> E["Forces add: k_eff = k_1 + k_2"]
+```
+
+These relations assume ideal linear springs and the usual aligned series or parallel arrangement. A series combination is softer than either spring; a parallel combination is stiffer.
+
 ## Stress & Strain
 
 **Stresses** $\sigma$ are forces applied to an elastic body that cause deformation. There are three main types of stresses:

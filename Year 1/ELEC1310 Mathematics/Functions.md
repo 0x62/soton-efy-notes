@@ -101,6 +101,15 @@ $$
 (g\circ h)^{-1}=h^{-1}\circ g^{-1}.
 $$
 
+```mermaid
+flowchart LR
+    A["x"] -->|"h: square"| B["x squared"]
+    B -->|"g: add 1"| C["x squared + 1"]
+    D["x"] -->|"g: add 1"| E["x + 1"]
+    E -->|"h: square"| F["(x + 1) squared"]
+```
+
+Read each path from left to right. The upper path is $g\circ h$; the lower is $h\circ g$. At $x=2$ they give $5$ and $9$, so reversing the operations changes the function.
 
 ## Polynomial functions
 

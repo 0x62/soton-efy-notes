@@ -837,6 +837,18 @@ T_2 = 293\left(\frac{0.001}{0.002}\right)^{0.4}
 $$
 
 
+### Ideal-gas process map
+
+```mermaid
+flowchart TD
+    A["Identify the process constraint"] --> B["Constant volume: W = 0; Q = change in U"]
+    A --> C["Constant pressure: W = p times change in V"]
+    A --> D["Constant temperature: change in U = 0; Q = W"]
+    A --> E["Adiabatic: Q = 0; change in U = -W"]
+```
+
+Using the convention in these notes, $Q$ is heat supplied to the gas and $W$ is work done by the gas. The isothermal internal-energy statement assumes an ideal gas; pressure-volume work is evaluated along the process path.
+
 ## Processes & Cycles
 
 

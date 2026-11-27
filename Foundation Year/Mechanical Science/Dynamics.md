@@ -223,6 +223,21 @@ $$
 
 Where $u$ is the initial velocity of the bodies, and $v$ is the final velocity (see [[Motion]]). 
 
+### What can be conserved in a collision?
+
+```mermaid
+flowchart TD
+    A["Choose the system of colliding bodies"] --> B{"External impulse negligible during collision?"}
+    B -->|"No"| C["Include external impulse in momentum balance"]
+    B -->|"Yes"| D["Total momentum conserved"]
+    D --> E{"Collision model?"}
+    E -->|"Elastic"| F["Kinetic energy also conserved"]
+    E -->|"Perfectly inelastic"| G["Bodies stick: common final velocity"]
+    E -->|"Other inelastic"| H["Use restitution or other collision data"]
+```
+
+Momentum conservation concerns the whole chosen system, not each body separately. Inelastic collisions convert some kinetic energy into other forms; total energy is still conserved.
+
 ### Inelastic Collisions
 
 Consider two bodies having masses $m_{1}$ and $m_{2}$.

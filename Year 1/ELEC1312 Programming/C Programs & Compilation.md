@@ -71,7 +71,7 @@ Enable warnings to catch likely mistakes:
 gcc -std=c11 -Wall -Wextra -Werror -pedantic message.c -o message
 ```
 
-These options select C11 and treat the enabled warnings as errors.
+These options select C11 and treat the enabled warnings as errors. `-Wall` enables a useful collection of warnings, not every possible warning; `-Wextra` adds further checks. Start with the first diagnostic and rebuild after fixing it, because later messages may be consequences of the first error. A warning can identify a likely mistake even when the compiler can produce an executable.[^5]
 
 ## Four translation stages
 
@@ -85,6 +85,25 @@ The word **compilation** is often used for the entire build. More precisely, the
 The `gcc` command acts as a driver for the toolchain, so one command can arrange all four. Intermediate files need not be visible in a normal one-command build.
 
 For the example, preprocessing makes `return SUCCESS;` effectively `return 0;`. The compiler then translates the program's operations. Linking resolves the reference to `printf` using the standard library. On systems using dynamic libraries, some library resolution is completed when the program is loaded/run rather than copying every library into the executable.
+
+### Following one source file through the toolchain
+
+```mermaid
+flowchart TD
+    C["message.c: C source"] --> P["Preprocess: expand includes and macros"]
+    H["Headers and macro definitions"] --> P
+    P --> I["Preprocessed C"]
+    I --> CC["Compile: translate for the target"]
+    CC --> S["Assembly instructions"]
+    S --> A["Assemble"]
+    A --> O["message.o: object code"]
+    O --> L["Link: resolve references"]
+    LIB["Other objects and libraries"] --> L
+    L --> E["Executable"]
+    E --> R["Run separately on a compatible target"]
+```
+
+The arrows show translation and execution order, not extra commands that must be typed. A single `gcc` invocation can arrange the four build stages; running the result is still a separate step.
 
 ## Headers and separate files
 
@@ -135,3 +154,5 @@ A successful build proves only that the translation checks passed. A program can
 
 [^3]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=db9ffe17-c2c1-431e-8ace-b4cb013c2d0a — ELEC1312_Week1, Xu Fang. Separate compilation: 23:26–24:00; diagnostic locations: 30:31–30:53. The laboratory walkthrough is excluded.
 [^4]: https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2cdd445d-36c4-490f-82a4-b4cc00f86721 — Lecture 1: Introduction, 21 September 2026, Steve Gunn. Compile-time checking: 18:29–19:04; same-week recording assignment: 31:06–31:31 and 43:54–44:03.
+
+[^5]: Steve Gunn, [Week 6 — 26 October 2026 recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2162fa3b-e37f-4d61-8973-b4ef01082623), diagnostic order and compiler warnings 1:19–2:36.

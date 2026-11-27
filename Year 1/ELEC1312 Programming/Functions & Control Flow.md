@@ -95,6 +95,19 @@ for (int step = 0; step < 4; step++) {
 
 Execution order is: initialise once → test → body → update → test again. The printed values are `0`, `1`, `2`, `3`; the value `4` fails the test. The loop variable declared here is scoped to the loop.
 
+### Tracing the `for` loop
+
+```mermaid
+flowchart TD
+    I["Initialise once: step = 0"] --> T{"step < 4?"}
+    T -->|Yes| B["Print step"]
+    B --> U["Update: step++"]
+    U --> T
+    T -->|No| N["Continue after the loop"]
+```
+
+Trace the test with `step` equal to `0`, `1`, `2`, `3`, then `4`. The final test fails, so `4` is never printed. If the first test fails, the body and update are both skipped.
+
 A `while` loop expresses repetition until a condition changes:
 
 ```c

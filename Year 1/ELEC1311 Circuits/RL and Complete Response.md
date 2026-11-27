@@ -77,6 +77,18 @@ For example, let $L=20\,\mathrm{mH}$, $R=10\,\Omega$, $V_S=5\,\mathrm V$ and $I_
 $$i(t)=0.5-0.4e^{-t/(2\,\mathrm{ms})}\;\mathrm A.$$
 At $0^+$, $v_L=5-10(0.1)=4\,\mathrm V$, so $di/dt=4/0.02=200\,\mathrm{A\,s^{-1}}$, agreeing with differentiation of the solution.
 
+```mermaid
+flowchart TD
+    A["Pre-switch circuit: find stored state"] --> B["Carry capacitor voltage or inductor current through the switch"]
+    B --> C["Post-switch circuit: find final DC state"]
+    C --> D["Find resistance seen by the storage element"]
+    D --> E["Find time constant: RC or L/R"]
+    E --> F["Combine initial state, final state and exponential transient"]
+    F --> G["Check initial value, final value and initial slope"]
+```
+
+Use this for a stable first-order circuit and a constant input on the interval. A later switch starts a new interval with the state carried over, not with zero stored energy. Dependent sources remain active when finding the equivalent resistance.
+
 ## Equivalent resistance
 
 ![[Circuit Theory (7)#Thevenin's Theorem]]

@@ -113,6 +113,24 @@ where the power is defined and differentiable. The inner derivative is not optio
 
 For $y=f(u)$ and $u=g(x)$, the notation $dy/dx=(dy/du)(du/dx)$ expresses the same rule.[^2]
 
+```mermaid
+flowchart TD
+    A["Inspect the outermost operation"] --> B["Sum or difference"]
+    A --> C["Product of functions"]
+    A --> D["Quotient of functions"]
+    A --> E["Function inside a function"]
+    B --> F["Differentiate each term"]
+    C --> G["Product rule"]
+    D --> H["Quotient rule where denominator is nonzero"]
+    E --> I["Chain rule: outer derivative times inner derivative"]
+    F --> J["Repeat within each remaining component"]
+    G --> J
+    H --> J
+    I --> J
+```
+
+A single expression may require several rules. For $x^2e^{3x}$, use the product rule at the outside, then the chain rule inside the exponential.
+
 ## Standard functions
 
 Trigonometric derivative formulas assume **radian measure**:[^2]

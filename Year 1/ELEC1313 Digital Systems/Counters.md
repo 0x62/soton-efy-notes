@@ -41,7 +41,7 @@ For a three-bit rising-edge implementation, connect each $D_i=\overline{Q_i}$ an
 $$\mathrm{clk}_0=\mathrm{clk},\qquad
 \mathrm{clk}_1=\overline{Q_0},\qquad
 \mathrm{clk}_2=\overline{Q_1}.$$
-The external rising edge toggles $Q_0$. A **falling** edge of $Q_0$ is a **rising** edge of $\overline{Q_0}$, so it toggles $Q_1$; a falling edge of $Q_1$ similarly toggles $Q_2$. These are the connections in the three-bit handwritten circuit.[^whiteboard]
+The external rising edge toggles $Q_0$. A **falling** edge of $Q_0$ is a **rising** edge of $\overline{Q_0}$, so it toggles $Q_1$; a falling edge of $Q_1$ similarly toggles $Q_2$.[^whiteboard]
 
 Starting at $000$, the settled count is $000,001,010,011,100,101,110,111,000$. Eight distinct states means **modulus 8**, not a largest stored value of 8: the largest value is 7.
 
@@ -129,6 +129,18 @@ Hold is a separate minimum-delay constraint. With the same ideal zero-skew assum
 $$t_{\mathrm{CQ,min}}+t_{\mathrm{logic,min}}\geq t_{\mathrm{hold}}.$$
 Slowing the clock does not generally repair a hold violation because hold concerns changes just after the **same** edge. Real timing analysis must also account for clock skew and uncertainty.
 
+A register-to-register timing path runs from a launching Q output through combinational logic to a receiving D input. The clock connects to the registers, not to the logic block.
+
+```mermaid
+flowchart LR
+    L["Launching flip-flop"] -->|Q after clock-to-Q delay| G["Combinational logic<br/>path delay"]
+    G -->|D stable before capture| R["Receiving flip-flop"]
+    C["Common clock"] --> L
+    C --> R
+```
+
+The setup check follows data launched on one edge to capture on the next. The hold check concerns the earliest new data following the same edge.
+
 ## Worked maximum-frequency calculation
 
 Suppose a synchronous counter has the following delays:[^timingexample]
@@ -146,6 +158,8 @@ $$T_{\min}=20+180+25=225\,\mathrm{ns},$$
 $$\boxed{f_{\max}\approx\frac1{225\times10^{-9}}=4.44\,\mathrm{MHz}}.$$
 A single-XOR path is shorter and does not determine this bound. Parallel AND terms feeding the same OR gate are not added serially to one another: only the gates traversed along one signal path contribute to that path's delay.
 
+In the corresponding simulation, the counter works at $4.3\,\mathrm{MHz}$ but fails at $4.5\,\mathrm{MHz}$: its most significant bit becomes stuck high while the shorter-path lower bits still operate. The longest AND–OR path cannot establish the required D value before the next capture.[^fridaytiming]
+
 This is an idealised setup-limited calculation using the stated delay bounds. A practical operating frequency also allows for the specified clock uncertainties and verifies all hold paths.
 
 [^counters]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), including ripple/synchronous-counter topics, the toggle-flip-flop supplementary topic and the enabled-counter circuit on page 12. Explicit state sequences and equations develop these circuit principles.
@@ -153,3 +167,5 @@ This is an idealised setup-limited calculation using the stated delay bounds. A 
 [^timingexample]: Geoff Merrett, [Sequential Logic Part 4: Counters](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=36340), page 10: circuit image and numerical delay specification; calculation derived from its longest AND–OR path.
 
 [^whiteboard]: Geoff Merrett, [L5 Counters handwritten notes](https://moodle.ecs.soton.ac.uk/mod/resource/view.php?id=45559), pp. 1, 3, 5 and 7: three-bit ripple circuit and timing; two-bit synchronous circuit and timing. [Replacement recording](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5c1cddeb-c819-4cb9-b9b6-b4ec01149560), 16:24–18:06, 20:26–23:42 and 29:10–33:24. This recording is explicitly from 2025–26, supplied for the failed 23 October 2026 capture in the [lecturer’s announcement](https://moodle.ecs.soton.ac.uk/mod/forum/discuss.php?d=2523); the handwritten pages are from the current lectures.
+
+[^fridaytiming]: [30 October 2026 Digital Systems lecture](https://southampton.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ee563343-ce08-42f4-8ebf-b4f300c5f78f), 4:26–6:07 setup/hold definitions, 11:28–13:51 critical-path calculation and 14:34–17:24 simulation. The final 25 ns term is setup time, notwithstanding a verbal slip calling it hold at 13:22.

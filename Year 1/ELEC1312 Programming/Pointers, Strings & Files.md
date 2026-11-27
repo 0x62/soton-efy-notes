@@ -35,6 +35,19 @@ int *p = &count;
 
 `p` is the pointer's value; `&p` is the address of the pointer object itself; `*p` is the integer object it points to. To print an object pointer, use `printf("%p\n", (void *)p)`.
 
+### A pointer and its target are different objects
+
+After the example's assignment `*p = 9`:
+
+```mermaid
+flowchart LR
+    P["Pointer object p: stores the address of count"] -->|"dereference *p"| C["Integer object count: value 9"]
+    AP["&p: address of the pointer object"] -.-> P
+    AC["&count: address of the integer object"] -.-> C
+```
+
+Both `count` and `*p` access the same integer. Assigning through `*p` changes that integer, not the address stored in `p`. The boxes are conceptual objects, not a claim about their physical order or byte size.
+
 Initialising a pointer to `NULL` gives it a known null value, not a usable object. Dereferencing `NULL`, an uninitialised pointer, an out-of-range pointer or a pointer to an object whose lifetime has ended is invalid. A pointer does not automatically allocate storage for the object it might later point to.
 
 Pointers also support **memory-mapped hardware**: an embedded system can expose device registers at documented addresses. This is why direct address access matters beyond ordinary variables. Arbitrary addresses are not safe to access; the hardware platform and its interfaces determine which accesses are valid.[^2]
@@ -50,6 +63,20 @@ If `p = a`, then `p + 1` points to the next integer, not necessarily the next by
 Pointer arithmetic is defined within an array and up to one position past its end. A one-past pointer is useful as an end marker but must not be dereferenced. Subtracting two pointers into the same array gives their distance in elements. Ordering unrelated object pointers is not a general way to compare arbitrary memory addresses.
 
 Use an index or a pointer with an explicit end condition; do not assume a pointer remembers the length of its array.
+
+For example:
+
+```c
+int values[3] = {10, 20, 30};
+int *p = values;
+```
+
+- `p[0]` is `10`; `*(p + 2)` is `30`.
+- `sizeof values` is `3 * sizeof(int)` because `values` is an array here.
+- `sizeof p` is the size of an `int *`, not the size of the array.
+- If `p` instead pointed to one standalone `int`, only `p[0]` would access that object. Indexing syntax does not create additional elements.
+
+Thus a pointer is **not automatically an array**. Indexing is valid only when the pointer and index refer to storage that actually exists with the appropriate type and lifetime.
 
 ## Changing a caller's object
 
@@ -88,6 +115,8 @@ char label[] = "Valve";
 The array contains six elements: `V`, `a`, `l`, `v`, `e`, `\0`. Its capacity is six bytes; its string length is five. A character literal such as `'V'` is distinct from a string literal such as `"V"`, which includes a terminator.
 
 An array initialised from a string literal can be edited within its bounds. A string literal itself must not be modified, so use `const char *label = "Valve";` when storing a pointer to literal text.
+
+`char` indexing accesses C bytes, not necessarily complete human-readable characters. In UTF-8, one Unicode code point can occupy several bytes, so `strlen` measures bytes before `\0`, not displayed characters. Splitting a UTF-8 string at an arbitrary byte can split an encoded character. The encoding and any Unicode-aware processing must be handled separately from ordinary byte-array indexing.
 
 Functions that expect strings generally search for the terminator. If a buffer has no terminator within its bounds, passing it as a string can read beyond the buffer. Keep capacity, current length and termination separate in reasoning.
 
@@ -172,6 +201,25 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 ```
+
+### Read first, then interpret the result
+
+```mermaid
+flowchart TD
+    O["Open input stream"] --> OK{"fopen returned NULL?"}
+    OK -->|Yes| FAIL["Report open failure; stop"]
+    OK -->|No| R["Read: ch = fgetc(input), stored as int"]
+    R --> EOFTEST{"ch == EOF?"}
+    EOFTEST -->|No| C["Process the character; count newline if present"]
+    C --> R
+    EOFTEST -->|Yes| ERR["Save ferror(input) result"]
+    ERR --> CLOSE["Close input; check fclose result"]
+    CLOSE --> STATUS{"Any read or close failure?"}
+    STATUS -->|Yes| BAD["Report failure"]
+    STATUS -->|No| DONE["Report newline count"]
+```
+
+`EOF` ends the read loop, but is not by itself proof of successful completion: inspect the error state before closing the stream. This follows the example's cleanup path even when a read fails.
 
 This counts newline characters, not necessarily all logical lines: an unterminated final line adds no newline character. The distinction between the measurement and the desired result matters even when the program compiles and runs correctly.
 

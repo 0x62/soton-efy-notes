@@ -204,6 +204,17 @@ Only $0000$ to $1001$ are valid ordinary 8421 BCD digit codes. The six patterns 
 
 BCD is useful at the interface with people: each four-bit group represents one decimal digit, so it can feed the decoder for one **seven-segment display**.[^3] The BCD bits are not themselves the seven segment-control signals; decoding determines which segments light for that digit. This is a reason to preserve decimal digit boundaries even though ordinary binary is often more compact.
 
+For the decimal value 59, each digit follows its own decoder path. The seven wires after each decoder control the segments; the four wires before it encode a digit.
+
+```mermaid
+flowchart LR
+    T["Tens digit 5<br/>BCD 0101"] -->|4 bits| DT["BCD-to-seven-segment<br/>decoder"]
+    DT -->|7 segment controls| ST["Tens display: 5"]
+    U["Units digit 9<br/>BCD 1001"] -->|4 bits| DU["BCD-to-seven-segment<br/>decoder"]
+    DU -->|7 segment controls| SU["Units display: 9"]
+```
+
+
 #### Example: encode and decode
 
 For example:
