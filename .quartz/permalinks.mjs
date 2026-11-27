@@ -121,7 +121,11 @@ export async function publishPermalinks(out) {
     // Absolute same-site metadata remains absolute. Relative assets are rebased.
     const suffix = url.search + url.hash;
     if (/^https?:/.test(value)) return new URL(path, base).href + suffix;
-    const relative = posix.relative(posix.dirname(dest), path) || '.';
+    const directory = posix.dirname(dest);
+    // /fy is a page even though /fy/ is also the directory of its child pages.
+    const relative = path && path === directory
+      ? '../' + posix.basename(path)
+      : posix.relative(directory, path) || '.';
     const href = relative.startsWith('.') ? relative : './' + relative;
     return href + (path === '' ? '/' : '') + suffix;
   }
