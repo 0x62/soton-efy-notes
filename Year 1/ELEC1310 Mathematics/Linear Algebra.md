@@ -120,6 +120,6 @@ This map is **not injective**: different inputs, such as $(0,0)$ and $(-2,1)$, g
 | Find coordinates in a basis | Put the basis vectors in the columns and solve for the coefficients. |
 | Find the matrix, kernel or image | Apply the map to the standard basis; solve $Ac=0$ for the kernel; use the column span for the image. |
 
-**Practice:** [[Year 1/Revision/Maths/Practice Questions|Maths Practice Questions]] (start with M17: coordinates and span) and the [[Year 1/Revision/Maths/Formula Book|Maths Formula Book]].
+**Practice:** [[Year 1/Revision/Maths/Practice Questions#Coordinates, span and uniqueness [9]|Coordinates, span and uniqueness]] in the Maths practice bank and the [[Year 1/Revision/Maths/Formula Book|Maths Formula Book]].
 
 **Module material:** [ELEC1310 Linear Algebra](https://moodle.ecs.soton.ac.uk/course/section.php?id=11470), first teaching block (notes §§1.1–1.4), lecture slides and recordings, and the first tutorial. The worked examples here are original.

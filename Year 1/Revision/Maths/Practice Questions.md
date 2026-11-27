@@ -7,7 +7,321 @@ Original exam-style questions. Try each one before opening **Answer** to see the
 
 [[Year 1/Revision/Maths/Formula Book|Formula Book]]
 
-## M01. Complex arithmetic [4]
+## Section A
+
+Short questions in the 2025/26 format: **four independent one-mark parts per group**. Each round covers the same five areas as that paper. The 2024/25 paper instead put its short questions in one block of two-mark parts; some of those skills are included here in one-mark form.
+
+### Round 1 [20]
+
+#### Complex numbers: arithmetic, roots and regions [4]
+
+(a) Expand $(3+2j)(1-4j)$ in rectangular form. **[1]**
+
+(b) Find the monic real quadratic with roots $-2\pm3j$. **[1]**
+
+(c) Find the two square roots of $-9$ in polar form. **[1]**
+
+(d) Does $1+j$ lie in both $|z-1|\le1$ and $|z-j|<1$? **[1]**
+
+> [!answer]- Answer
+>
+> (a) $11-10j$.
+>
+> (b) $(s+2)^2+9=s^2+4s+13$.
+>
+> (c) $3e^{j\pi/2}$ and $3e^{-j\pi/2}$.
+>
+> (d) No. Both distances are $1$; the second inequality excludes its boundary.
+
+#### Differentiation: a supplied series and three rules [4]
+
+(a) Given $\sin u=u-u^3/3!+u^5/5!-\cdots$, find $\lim_{x\to0}\sin(4x)/x$. **[1]**
+
+(b) Differentiate $\cos(3x^2)$ with respect to $x$. **[1]**
+
+(c) For $f(x)=xe^{2x}$, evaluate $f'(0)$. **[1]**
+
+(d) For $f(x,y)=3x^2y-2xy^3$, find $\partial f/\partial x$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) Divide by $x$: $4-4^3x^2/3!+\cdots\to4$.
+>
+> (b) $-6x\sin(3x^2)$.
+>
+> (c) $f'=e^{2x}+2xe^{2x}$, so $f'(0)=1$.
+>
+> (d) $6xy-2y^3$; keep $y$ fixed.
+
+#### Integration: recognise the pattern [4]
+
+(a) Find $\int\cos(5x-1)\,dx$. **[1]**
+
+(b) Find $\int x/(x^2+4)\,dx$. **[1]**
+
+(c) Find $\int 3^{2x}\,dx$. **[1]**
+
+(d) Given $F'(x)=6x^2+2$ and $F(1)=0$, find $F$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $\sin(5x-1)/5+C$.
+>
+> (b) $\frac12\ln(x^2+4)+C$.
+>
+> (c) $3^{2x}/(2\ln3)+C$.
+>
+> (d) $F=2x^3+2x-4$.
+
+#### ODEs: exactness, separation and roots [4]
+
+(a) Is $2x\,dx+3y^2\,dy=0$ exact? **[1]**
+
+(b) Find the general solution to $y'=6xy$. **[1]**
+
+(c) Give a basis of solutions of $y''+5y'+6y=0$. **[1]**
+
+(d) Solve $y''-6y'+9y=0$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) Yes: $M_y=N_x=0$.
+>
+> (b) $y=Ce^{3x^2}$, including $C=0$.
+>
+> (c) Roots $-2,-3$; basis $\{e^{-2x},e^{-3x}\}$.
+>
+> (d) Repeated root $3$: $y=(C_1+C_2x)e^{3x}$.
+
+#### Linear algebra: matrix, image and kernel [4]
+
+(a) Find $Av$ for $A=\begin{pmatrix}2&-1\\1&3\end{pmatrix}$ and $v=\begin{pmatrix}1\\2\end{pmatrix}$. **[1]**
+
+(b) Write the standard matrix of $T(x,y)=(2x+y,x-3y)$. **[1]**
+
+(c) Give a basis for the image of $\begin{pmatrix}2&4\\1&2\end{pmatrix}$. **[1]**
+
+(d) Find the kernel of $\begin{pmatrix}1&2\\0&1\end{pmatrix}$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $\begin{pmatrix}0\\7\end{pmatrix}$.
+>
+> (b) $\begin{pmatrix}2&1\\1&-3\end{pmatrix}$.
+>
+> (c) $\left\{\begin{pmatrix}2\\1\end{pmatrix}\right\}$; the second column is twice the first.
+>
+> (d) $\{(0,0)\}$, since the second row forces $y=0$, then the first forces $x=0$.
+
+### Round 2 [20]
+
+#### Complex numbers: conjugates and logarithms [4]
+
+(a) Evaluate $(2-5j)(2+5j)$. **[1]**
+
+(b) Simplify $(1+3j)/j$ into rectangular form. **[1]**
+
+(c) If $\log z=\ln2+j(\pi/2+2k\pi)$ for $k\in\mathbb Z$, give $z$ in rectangular form. **[1]**
+
+(d) Give the centre and radius of $|z-(2-3j)|=4$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $4+25=29$.
+>
+> (b) $3-j$, since $1/j=-j$.
+>
+> (c) $z=2e^{j\pi/2}=2j$.
+>
+> (d) Centre $(2,-3)$, radius $4$.
+
+#### Differentiation: limits and continuity [4]
+
+(a) Evaluate $\lim_{x\to+\infty}(5x^3-x)/(2x^3+7)$. **[1]**
+
+(b) A function equals $1+x$ for $x<0$ and $a+2x$ for $x\ge0$. Find $a$ for continuity. **[1]**
+
+(c) Differentiate $\log_2(1+x^2)$. **[1]**
+
+(d) Evaluate $\partial f/\partial y$ at $(1,2)$ for $f(x,y)=x^2y+xy^2$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $5/2$ by dividing above and below by $x^3$.
+>
+> (b) $a=1$ so the values match at $0$.
+>
+> (c) $2x/[(1+x^2)\ln2]$.
+>
+> (d) $x^2+2xy=5$ at $(1,2)$.
+
+#### Integration: substitution and parts [4]
+
+(a) Find $\int_0^1 2xe^{x^2}\,dx$. **[1]**
+
+(b) Find $\int x\cos x\,dx$. **[1]**
+
+(c) Find $\int 1/(1+4x^2)\,dx$. **[1]**
+
+(d) Find $\int\ln x\,dx$ for $x>0$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $[e^{x^2}]_0^1=e-1$.
+>
+> (b) $x\sin x+\cos x+C$ by parts.
+>
+> (c) $\frac12\tan^{-1}(2x)+C$.
+>
+> (d) $x\ln x-x+C$ by parts.
+
+#### ODEs: initial values and characteristic equations [4]
+
+(a) Solve $y'=-2xy$ with $y(0)=4$. **[1]**
+
+(b) Is $y\,dx+2x\,dy=0$ exact? **[1]**
+
+(c) If $e^{2t}$ and $e^{-3t}$ solve $y''+ay'+by=0$, find $a,b$. **[1]**
+
+(d) Give a real basis of solutions for $y''+2y'+5y=0$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $y=4e^{-x^2}$.
+>
+> (b) No: $M_y=1$ and $N_x=2$.
+>
+> (c) $(r-2)(r+3)=r^2+r-6$ gives $a=1$, $b=-6$.
+>
+> (d) Roots $-1\pm2j$; basis $\{e^{-t}\cos2t,e^{-t}\sin2t\}$.
+
+#### Linear algebra: products and independence [4]
+
+(a) Compute $\begin{pmatrix}1&2\\0&1\end{pmatrix}\begin{pmatrix}2&0\\1&3\end{pmatrix}$. **[1]**
+
+(b) Give a basis for the subspace of $\mathbb R^2$ defined by $2x+y=0$. **[1]**
+
+(c) Are $(1,3)$ and $(2,6)$ independent? **[1]**
+
+(d) For what $k$ is $\begin{pmatrix}k&2\\3&1\end{pmatrix}$ singular? **[1]**
+
+> [!answer]- Answer
+>
+> (a) $\begin{pmatrix}4&6\\1&3\end{pmatrix}$.
+>
+> (b) $\{(1,-2)\}$.
+>
+> (c) No; the second vector is twice the first.
+>
+> (d) Its determinant is $k-6$, so $k=6$.
+
+### Round 3 [20]
+
+#### Complex numbers: inverse, polar and loci [4]
+
+(a) Evaluate $1/(2-j)$ in rectangular form. **[1]**
+
+(b) Write $-1+j\sqrt3$ in polar form. **[1]**
+
+(c) Find all cube roots of $1$ in polar form. **[1]**
+
+(d) Which side of the circle $|z+2|=3$ does $z=2$ lie on? **[1]**
+
+> [!answer]- Answer
+>
+> (a) $(2+j)/5$.
+>
+> (b) $2e^{j2\pi/3}$.
+>
+> (c) $e^{j2\pi k/3}$ for $k=0,1,2$.
+>
+> (d) Outside: $|2+2|=4>3$.
+
+#### Differentiation: series, chain, product and partials [4]
+
+(a) Given $\cos u=1-u^2/2!+u^4/4!-\cdots$, evaluate $\lim_{x\to0}(1-\cos(2x))/x^2$. **[1]**
+
+(b) Differentiate $\sin(2x^3-x)$. **[1]**
+
+(c) If $f(x)=x^2e^x$, evaluate $f'(2)$. **[1]**
+
+(d) For $g(x,y)=x^3y+y^2$, find $\partial g/\partial y$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) The leading numerator term is $(2x)^2/2=2x^2$, so the limit is $2$.
+>
+> (b) $(6x^2-1)\cos(2x^3-x)$.
+>
+> (c) $f'=(2x+x^2)e^x$, so $f'(2)=8e^2$.
+>
+> (d) $x^3+2y$.
+
+#### Integration: standard forms and an initial condition [4]
+
+(a) Find $\int\sec^2(4x)\,dx$. **[1]**
+
+(b) Find $\int e^{-3x+2}\,dx$. **[1]**
+
+(c) Find $\int dx/\sqrt{9-x^2}$ on $-3<x<3$. **[1]**
+
+(d) Find $F$ if $F'(x)=2x-3$ and $F(-1)=2$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $\tan(4x)/4+C$.
+>
+> (b) $-e^{-3x+2}/3+C$.
+>
+> (c) $\sin^{-1}(x/3)+C$.
+>
+> (d) $F=x^2-3x-2$.
+
+#### ODEs: spotting the solution form [4]
+
+(a) Is $(2x+y)\,dx+(x+4y)\,dy=0$ exact? **[1]**
+
+(b) Find an integrating factor for $y'+4xy=x$. **[1]**
+
+(c) Solve $y''-y=0$. **[1]**
+
+(d) Solve $y''+4y'+4y=0$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) Yes: $M_y=N_x=1$.
+>
+> (b) $\mu=e^{2x^2}$.
+>
+> (c) $y=C_1e^x+C_2e^{-x}$.
+>
+> (d) Repeated root $-2$: $y=(C_1+C_2x)e^{-2x}$.
+
+#### Linear algebra: maps and solution spaces [4]
+
+(a) For $T(x,y,z)=(x+2y,z-y)$, find $T(1,2,3)$. **[1]**
+
+(b) Write the standard matrix of $T(x,y)=(y,-x)$. **[1]**
+
+(c) Find a basis for the kernel of $\begin{pmatrix}2&-1\\4&-2\end{pmatrix}$. **[1]**
+
+(d) Find the dimension of $\operatorname{span}\{(1,0,1),(0,1,1),(1,1,2)\}$. **[1]**
+
+> [!answer]- Answer
+>
+> (a) $(5,1)$.
+>
+> (b) $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$.
+>
+> (c) $\{(1,2)\}$, since $2x-y=0$.
+>
+> (d) $2$; the first two are independent and the third is their sum.
+
+## Section B
+
+Longer questions and multi-mark practice. The marks are practice guidance, not the official marking scheme.
+
+### Complex arithmetic [4]
 
 (a) Expand $(2-3j)(-1+4j)$ in rectangular form.
 
@@ -19,7 +333,7 @@ Original exam-style questions. Try each one before opening **Answer** to see the
 >
 > (b) Conjugate factors multiply to $[(s-2)-5j][(s-2)+5j]=(s-2)^2+25=s^2-4s+29$.
 
-## M02. Roots and regions [8]
+### Roots and regions [8]
 
 (a) Find all cube roots of $8j$ and all fourth roots of $-16$ in polar form.
 
@@ -31,7 +345,7 @@ Original exam-style questions. Try each one before opening **Answer** to see the
 >
 > (b) The first disc has centre $(2,0)$ and includes its circle; the second has centre $(0,2)$ and excludes its circle. Shade the common lens only. The two boundary circles meet at $(0,0)$ and $(2,2)$; these points are excluded by the second inequality. At $1+j$, both distances are $\sqrt2<2$, so it belongs.
 
-## M03. Frequency response [6]
+### Frequency response [6]
 
 For positive $\omega$, write magnitude and a continuous phase for $H(j\omega)=(3+j\omega)/[j\omega(2+j\omega)(5+j\omega)]$. Give both limits as $\omega\to0^+$ and $\omega\to+\infty$. Distinguish a phase limit from the value at a pole.
 
@@ -46,7 +360,7 @@ For positive $\omega$, write magnitude and a continuous phase for $H(j\omega)=(3
 >
 > At $0^+$, gain behaves as $3/(10\omega)$ and diverges; phase tends to $-\pi/2$. There is no finite value or phase at the pole $\omega=0$. At infinity the gain behaves as $1/\omega^2$ and tends to zero; the displayed continuous phase tends to $-\pi$ (equivalent to $+\pi$ modulo $2\pi$).
 
-## M04. Complex-pole decomposition [5]
+### Complex-pole decomposition [5]
 
 With $p=-3+2j$, decompose $(5s+19)/[(s-p)(s-\bar p)]$ into first-order terms over $\mathbb C$. Write the coefficients in rectangular form.
 
@@ -54,7 +368,7 @@ With $p=-3+2j$, decompose $(5s+19)/[(s-p)(s-\bar p)]$ into first-order terms ove
 >
 > The coefficient of $1/(s-p)$ is $(5p+19)/(p-\bar p)=(4+10j)/(4j)=5/2-j$. Real polynomial coefficients make the other coefficient its conjugate. Result: $(5/2-j)/(s+3-2j)+(5/2+j)/(s+3+2j)$. Multiplying out recovers numerator $5s+19$.
 
-## M05. Analyticity [7]
+### Analyticity [7]
 
 For $f(z)=(2-j)/z$, find $u(x,y)$ and $v(x,y)$. Establish exactly where the Cauchy–Riemann conditions prove analyticity.
 
@@ -69,7 +383,7 @@ For $f(z)=(2-j)/z$, find $u(x,y)$ and $v(x,y)$. Establish exactly where the Cauc
 >
 > These derivatives are continuous for $r>0$, so $f$ is analytic there. The origin is a pole and is not in the domain. The equalities alone at an isolated point would not suffice to prove analyticity.
 
-## M06. Short calculus [6]
+### Short calculus [6]
 
 (a) Use a Maclaurin expansion to determine $\lim_{x\to0}(1-\cos 3x)/x^2$.
 
@@ -89,7 +403,7 @@ For $f(z)=(2-j)/z$, find $u(x,y)$ and $v(x,y)$. Establish exactly where the Cauc
 >
 > (d) Hold $x$ constant: $x^3+6xy^2$.
 
-## M07. A variable exponent [7]
+### A variable exponent [7]
 
 For $f(x)=(x^2+4)^{2x}$, find $f'(x)$ by logarithmic differentiation, evaluate it exactly at $x=0$, and state the domains of $f$ and $f'$.
 
@@ -103,7 +417,7 @@ For $f(x)=(x^2+4)^{2x}$, find $f'(x)$ by logarithmic differentiation, evaluate i
 >
 > Multiply by $f$ to get the derivative. At zero $f(0)=1$, so $f'(0)=2\ln4$. Both domains are all real numbers.
 
-## M08. Parametric stationary points [10]
+### Parametric stationary points [10]
 
 The curve is $x=t^2$, $y=\cos t$, $0\le t\le3\pi/2$. Find $dy/dx$ for $t>0$ and interior stationary points. Compute $d^2y/dx^2$ and classify each. Finally, decide whether the right-hand slope at $t=0$ really fails to exist. Compare with the right-hand slope of the different curve $(x,y)=(t^2,e^t)$ at its start.
 
@@ -117,7 +431,7 @@ The curve is $x=t^2$, $y=\cos t$, $0\le t\le3\pi/2$. Find $dy/dx$ for $t>0$ and 
 >
 > At $\pi$ it is $1/(4\pi^2)>0$, so this is a minimum. At $t=0$ the parametric ratio is $0/0$, but the right-hand difference quotient is $(\cos t-1)/t^2\to-1/2$. A zero $x'(t)$ does not automatically mean there is no slope. For the second curve, $(e^t-1)/t^2=(1/t)[(e^t-1)/t]\to+\infty$ as $t\to0^+$, so the tangent is vertical and the finite derivative does not exist.
 
-## M09. Recognise the integral [8]
+### Recognise the integral [8]
 
 (a) Integrate $\tan(2x)$.
 
@@ -137,7 +451,7 @@ The curve is $x=t^2$, $y=\cos t$, $0\le t\le3\pi/2$. Find $dy/dx$ for $t>0$ and 
 >
 > (d) $F=x^4-x^3+2x+C$. At 2 the nonconstant part is $16-8+4=12$, so $C=-12$.
 
-## M10. Approximation and convergence [8]
+### Approximation and convergence [8]
 
 (a) Express the three-panel midpoint approximation to $\int_1^4\ln(2x)\,dx$ exactly.
 
@@ -153,7 +467,7 @@ The curve is $x=t^2$, $y=\cos t$, $0\le t\le3\pi/2$. Find $dy/dx$ for $t>0$ and 
 >
 > (c) Near zero $x\ln(2x)\to0$, so the part from 0 to 1 converges to $\ln2-1$. The part from 1 to infinity diverges to $+\infty$, so the full integral diverges.
 
-## M11. RMS as an integral [8]
+### RMS as an integral [8]
 
 A waveform is $+6$ V for the first third of a period and $-3$ V for the remaining two thirds. Calculate its RMS value and explain whether it is the same as its mean. Then show that $A\sin(\omega t+\phi)$ has RMS $|A|/\sqrt2$ across any complete period.
 
@@ -161,7 +475,7 @@ A waveform is $+6$ V for the first third of a period and $-3$ V for the remainin
 >
 > Mean square is $\frac13(6^2)+\frac23((-3)^2)=18\,\mathrm{V^2}$, giving $3\sqrt2$ V RMS. The mean is $\frac136+\frac23(-3)=0$ V; the positive and negative levels cancel in the mean, not in the mean square. For the sine use $\sin^2 u=(1-\cos2u)/2$. Across one full period, the cosine term integrates to zero regardless of phase; the mean square is $A^2/2$.
 
-## M12. Identify the ODE method [8]
+### Identify the ODE method [8]
 
 (a) Is $(2xy+3)\,dx+x^2\,dy=0$ exact?
 
@@ -181,7 +495,7 @@ A waveform is $+6$ V for the first third of a period and $-3$ V for the remainin
 >
 > (d) $(r-3)^2=0$ gives $(C_1+C_2x)e^{3x}$; simply duplicating $e^{3x}$ cannot accommodate two independent constants.
 
-## M13. Approach to a steady state [8]
+### Approach to a steady state [8]
 
 A probe temperature follows $T'+0.2T=12$ with $T(0)=30$. Find $T(t)$ and the time when $90\%$ of the change from initial to steady temperature has occurred.
 
@@ -189,7 +503,7 @@ A probe temperature follows $T'+0.2T=12$ with $T(0)=30$. Find $T(t)$ and the tim
 >
 > The steady value is $12/0.2=60$. Multiply the ODE by $e^{0.2t}$: $(e^{0.2t}T)'=12e^{0.2t}$, so $T=60+Ce^{-0.2t}$. Initially $C=-30$. A $90\%$ change leaves 10% of the initial gap, so $e^{-0.2t}=0.1$ and $t=5\ln10\approx11.51$ time units. This is $T=57$, not 90% of 60.
 
-## M14. Driven LC [8]
+### Driven LC [8]
 
 An ideal series LC has $L=2\,\mathrm H$, $C=0.5\,\mathrm F$ and source $E(t)=3\sin(2t)+\cos(2t)$ V. Starting with KVL and capacitor charge $q$, derive the current ODE and solve for its general sinusoidal-forced response.
 
@@ -197,7 +511,7 @@ An ideal series LC has $L=2\,\mathrm H$, $C=0.5\,\mathrm F$ and source $E(t)=3\s
 >
 > KVL gives $Li'+q/C=E$ and $q'=i$, so $Li''+i/C=E'$. With given values, $i''+i=3\cos2t-\sin2t$. Homogeneous solution: $C_1\cos t+C_2\sin t$. Try $a\cos2t+b\sin2t$; the operator multiplies both terms by $-3$, so $a=-1$, $b=1/3$. Thus $i=C_1\cos t+C_2\sin t-\cos2t+\frac13\sin2t$. If initial capacitor charge were supplied, the undifferentiated KVL would constrain the initial slope; no such value is imposed here.
 
-## M15. Matrices as maps [8]
+### Matrices as maps [8]
 
 (a) Calculate $\begin{pmatrix}2&-1\\1&3\end{pmatrix}(4,-2)^T$.
 
@@ -217,7 +531,7 @@ An ideal series LC has $L=2\,\mathrm H$, $C=0.5\,\mathrm F$ and source $E(t)=3\s
 >
 > (d) Subtracting the two homogeneous equations gives $x=0$, then $y=0$, so the kernel is $\{\mathbf0\}$.
 
-## M16. Construct maps from subspaces [8]
+### Construct maps from subspaces [8]
 
 Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, a matrix with exactly that kernel, another with a strictly larger kernel containing it, and a matrix with precisely that image.
 
@@ -225,7 +539,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > The constraints give $x=y=-z$, so use basis $\{(1,1,-1)^T\}$. The matrix $M=\begin{pmatrix}1&-1&0\\0&1&1\end{pmatrix}$ enforces both constraints. $M'=(1,-1,0)$ has all of the intersection in its kernel but also $(0,0,1)^T$, which is outside it. A matrix with precisely the required image is the single column $M''=(1,1,-1)^T$.
 
-## M17. Coordinates, span and uniqueness [9]
+### Coordinates, span and uniqueness [9]
 
 (a) In the ordered basis $(E_{11}+E_{12},E_{12},E_{21}+E_{22},E_{22})$ of $2\times2$ matrices, find the coordinates of $\begin{pmatrix}3&5\\-2&1\end{pmatrix}$.
 
@@ -241,7 +555,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (c) Determinant $2a-6\ne0$ iff $a\ne3$. At $a=3$ the second left-hand side triples the first but $8\ne9$, so there is no solution.
 
-## M18. Complex forms [8]
+### Complex forms [8]
 
 (a) Describe all values of $\log(-2j)$, including the principal value.
 
@@ -257,7 +571,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (c) $\cos(ju)=(e^{-u}+e^u)/2=\cosh u$. At $u=\ln2$ this gives $(1/2+2)/2=5/4$.
 
-## M19. Limits and continuity [8]
+### Limits and continuity [8]
 
 (a) Give both one-sided limits of $1/(x-2)$ at 2.
 
@@ -273,7 +587,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (c) Pick $\delta=\varepsilon/4$; then $0<|x-3|<\delta$ implies $|(4x-1)-11|=4|x-3|<\varepsilon$.
 
-## M20. Derivatives and tangents [7]
+### Derivatives and tangents [7]
 
 (a) Use the limit definition at $a$ to differentiate $x^2-3x$.
 
@@ -289,7 +603,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (c) Quotient rule gives $[(1+x)-x]/(1+x)^2=(1+x)^{-2}$. Chain rule gives second derivative $-2(1+x)^{-3}$.
 
-## M21. Applications [10]
+### Applications [10]
 
 (a) On $x^2+xy+y^2=7$, find the slope at $(1,2)$.
 
@@ -309,7 +623,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (d) $x_1=2-(4-3)/4=7/4$.
 
-## M22. FTC, partial fractions and substitution [9]
+### FTC, partial fractions and substitution [9]
 
 (a) Differentiate $F(x)=\int_1^{x^2}\cos(t^2)\,dt$.
 
@@ -325,7 +639,7 @@ Let $U=\{(x,y,z):x-y=0\}$ and $V=\{(x,y,z):y+z=0\}$. Find a basis of $U\cap V$, 
 >
 > (c) $u=1+x^2$, $du=2x\,dx$ gives $-1/[2(1+x^2)]+C$. The definite value is $(-1/4)-(-1/2)=1/4$.
 
-## M23. Direction fields, Euler and existence [7]
+### Direction fields, Euler and existence [7]
 
 For $y'=x-y$ with $y(0)=1$, locate the line where the direction field is horizontal, make two Euler steps of length $1/2$, and explain why the IVP is locally unique. Contrast with $y'=3y^{2/3}$, $y(0)=0$: give two solutions near zero.
 
@@ -333,7 +647,7 @@ For $y'=x-y$ with $y(0)=1$, locate the line where the direction field is horizon
 >
 > Horizontal slopes occur on $y=x$. Euler uses $y_{n+1}=y_n+h(x_n-y_n)$. Starting at $(0,1)$ gives $(0.5,0.5)$, then $(1,0.5)$ since the second slope is zero. For $f=x-y$, both $f$ and $f_y=-1$ are continuous; local uniqueness holds. In the second IVP both $y=0$ and $y=x^3$ solve the equation and meet the initial condition, since $3(x^3)^{2/3}=3x^2$.
 
-## M24. Exact equations and factors [7]
+### Exact equations and factors [7]
 
 Find the implicit solution of $(2xy+1)\,dx+x^2\,dy=0$. For $y\,dx+2x\,dy=0$ on $x>0$, find a factor depending only on $x$ that makes the equation exact and solve it.
 
@@ -341,7 +655,7 @@ Find the implicit solution of $(2xy+1)\,dx+x^2\,dy=0$. For $y\,dx+2x\,dy=0$ on $
 >
 > For the first equation $M_y=N_x=2x$. Integrating $M$ in $x$ gives $x^2y+x+g(y)$; comparison with $N$ makes $g$ constant. Thus $x^2y+x=C$. For the second equation want $(\mu y)_y=(2x\mu)_x$, or $\mu=2x\mu'+2\mu$. Then $\mu'/\mu=-1/(2x)$ and $\mu=x^{-1/2}$ works on $x>0$. A potential is $2\sqrt x\,y$, so $y=C/\sqrt x$.
 
-## M25. Two first-order substitutions [8]
+### Two first-order substitutions [8]
 
 (a) Solve $y'=y/x+1$ for $x>0$ by setting $y=xu$.
 
@@ -353,7 +667,7 @@ Find the implicit solution of $(2xy+1)\,dx+x^2\,dy=0$. For $y\,dx+2x\,dy=0$ on $
 >
 > (b) Set $v=1/y$, so $v'=-y'/y^2$. Divide the ODE by $y^2$ to get $v'-v=-x$. A particular solution is $v=x+1$, so $v=x+1+Ce^x$ and $y=1/(x+1+Ce^x)$ on intervals where the denominator is nonzero. The substitution excluded the valid solution $y=0$.
 
-## M26. Free oscillation and complex roots [7]
+### Free oscillation and complex roots [7]
 
 A mass–spring model has $m=1$, damping coefficient 2 and spring constant 5, with displacement initially 1 and velocity initially 0. Write the ODE and solve it. State whether it is over-, critically or underdamped.
 
@@ -361,7 +675,7 @@ A mass–spring model has $m=1$, damping coefficient 2 and spring constant 5, wi
 >
 > The equation is $x''+2x'+5x=0$, roots $-1\pm2j$. Hence $x=e^{-t}(C_1\cos2t+C_2\sin2t)$. At zero, $C_1=1$ and $-C_1+2C_2=0$, so $C_2=1/2$. The oscillation has a decaying envelope, hence underdamped.
 
-## M27. Euler–Cauchy and Wronskian [7]
+### Euler–Cauchy and Wronskian [7]
 
 Solve $x^2y''-xy'+y=0$ on $x>0$. Use the Wronskian to show the two functions in the complementary solution are independent there.
 
@@ -369,7 +683,7 @@ Solve $x^2y''-xy'+y=0$ on $x>0$. Use the Wronskian to show the two functions in 
 >
 > For trial $x^r$ the root equation is $r(r-1)-r+1=(r-1)^2=0$. Hence $y=C_1x+C_2x\ln x$. The Wronskian is $x(1+\ln x)-x\ln x=x>0$. Both functions solve the equation on $x>0$ and their Wronskian verifies independence there.
 
-## M28. Resonance and variation of parameters [9]
+### Resonance and variation of parameters [9]
 
 (a) Find a particular solution of $y''+4y=\cos2t$.
 
@@ -381,7 +695,7 @@ Solve $x^2y''-xy'+y=0$ on $x>0$. Use the Wronskian to show the two functions in 
 >
 > (b) Take $y_1=e^t$, $y_2=e^{-t}$, with $W=-2$. Then $u_1'=-y_2 e^t/W=1/2$ and $u_2'=y_1e^t/W=-e^{2t}/2$. Thus $y_p=(t/2)e^t-(1/4)e^t$, and the last term can be dropped because $e^t$ is homogeneous. The arbitrary constants from integrating $u_1',u_2'$ are likewise absorbed into the complementary function.
 
-## M29. Bases and map structure [9]
+### Bases and map structure [9]
 
 Let $B=((1,1),(1,-1))$. Find $[(5,1)^T]_B$. For $T(x,y)=(x-y,2x-2y)$, find kernel and image bases and decide injectivity/surjectivity over $\mathbb R^2$. Give the standard matrix for $R\circ T$, where $R(u,v)=(v,u)$.
 
@@ -389,7 +703,7 @@ Let $B=((1,1),(1,-1))$. Find $[(5,1)^T]_B$. For $T(x,y)=(x-y,2x-2y)$, find kerne
 >
 > Solve $c_1+c_2=5$, $c_1-c_2=1$: coordinates $(3,2)^T$. Kernel condition is $x=y$, so basis $\{(1,1)^T\}$. The output has second entry twice the first, so image basis $\{(1,2)^T\}$. The kernel is nontrivial and image proper; $T$ is neither injective nor surjective. The composite swaps the two output rows, giving $\begin{pmatrix}2&-2\\1&-1\end{pmatrix}$.
 
-## M30. Matrices, determinants and inverse [8]
+### Matrices, determinants and inverse [8]
 
 Let $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$ and $B=\begin{pmatrix}1&4\\0&-1\end{pmatrix}$. Compute $2A-B$, $\det A$, $A^{-1}$ and both $AB$ and $BA$.
 
@@ -397,7 +711,7 @@ Let $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$ and $B=\begin{pmatrix}1&4\\0&-1\end
 >
 > Entrywise calculation gives $2A-B=\begin{pmatrix}3&-2\\6&5\end{pmatrix}$. Determinant $4-3=1$, so $A^{-1}=\begin{pmatrix}2&-1\\-3&2\end{pmatrix}$. Row-by-column gives $AB=\begin{pmatrix}2&7\\3&10\end{pmatrix}$ and $BA=\begin{pmatrix}14&9\\-3&-2\end{pmatrix}$. The different first entries alone disprove commutativity.
 
-## M31. Foundation checks [7]
+### Foundation checks [7]
 
 (a) Solve $|2x-1|\le5$.
 
@@ -417,7 +731,7 @@ Let $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$ and $B=\begin{pmatrix}1&4\\0&-1\end
 >
 > (d) $e^{-2x}=1-2x+2x^2-\frac43x^3+O(x^4)$.
 
-## M32. Conjugates and inverse complex logarithms [7]
+### Conjugates and inverse complex logarithms [7]
 
 (a) For $z\ne0$, can $\bar z/z=2-j$ hold? Justify using magnitudes. For comparison, describe all $z\ne0$ for which $\bar z/z=-j$.
 
@@ -429,7 +743,7 @@ Let $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$ and $B=\begin{pmatrix}1&4\\0&-1\end
 >
 > (b) Exponentiating cancels all $2k\pi$ phases, so $z=3(\cos(-\pi/6)+j\sin(-\pi/6))=3\sqrt3/2-3j/2$.
 
-## M33. Behaviour at infinity and general chain rules [8]
+### Behaviour at infinity and general chain rules [8]
 
 (a) Find $\lim_{x\to+\infty}(7x^4-x^2)/(2x^4+3x+1)$.
 
@@ -445,7 +759,7 @@ Let $A=\begin{pmatrix}2&1\\3&2\end{pmatrix}$ and $B=\begin{pmatrix}1&4\\0&-1\end
 >
 > (c) Since $\log_5 u=\ln u/\ln 5$, the derivative is $2x/[(3+x^2)\ln5]$. For the cube, chain rule gives $6x[\ln(3+x^2)]^2/(3+x^2)$; a log base is not an outer exponent.
 
-## M34. Join a piecewise function [8]
+### Join a piecewise function [8]
 
 Let $p(x)=a+b\sin x$ for $x\ge0$, and $p(x)=4+3x+x^2$ for $x<0$. Determine the constraints on $a,b$ for continuity on $\mathbb R$ and separately for differentiability. Which values satisfy both?
 
@@ -453,7 +767,7 @@ Let $p(x)=a+b\sin x$ for $x\ge0$, and $p(x)=4+3x+x^2$ for $x<0$. Determine the c
 >
 > The limits at zero are 4 on the left and $a$ on the right; continuity requires $a=4$, with $b$ unrestricted. Differentiability first requires continuity, then equality of the one-sided slopes $3$ and $b\cos 0=b$. Therefore $(a,b)=(4,3)$. Elsewhere both formulas are differentiable on their own open domains.
 
-## M35. Mean value theorem [5]
+### Mean value theorem [5]
 
 Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses and find the interior point where the tangent slope matches the secant slope.
 
@@ -461,7 +775,7 @@ Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses an
 >
 > A polynomial is continuous on the closed interval and differentiable on its interior. The secant slope is $(f(3)-f(0))/3=(30-0)/3=10$. Setting $3c^2+1=10$ gives $c=\pm\sqrt3$, and only $c=\sqrt3$ lies in $(0,3)$.
 
-## M36. Rational and radical integrals [9]
+### Rational and radical integrals [9]
 
 (a) Find an antiderivative of $(2x-1)/[(x-4)(x+2)]$.
 
@@ -477,7 +791,7 @@ Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses an
 >
 > (c) Set $u=7-2x$. The antiderivative is $-\sqrt{7-2x}+C$, giving $\sqrt7-1$. Differentiate this expression to check the factor of 2 and the sign.
 
-## M37. Products by parts and an infinite interval [9]
+### Products by parts and an infinite interval [9]
 
 (a) Find antiderivatives of $x\sin(3x)$ and $x^2\ln x$ (take $x>0$ in the second).
 
@@ -489,7 +803,7 @@ Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses an
 >
 > (b) Integration by parts yields antiderivatives $-(x+3)e^{-x}$ and $(x+1)e^x$ respectively. For the first the boundary term at infinity tends to zero, so the value is 3. The second boundary term grows without bound, so it diverges to $+\infty$.
 
-## M38. An IVP and reconstructing an equation [7]
+### An IVP and reconstructing an equation [7]
 
 (a) Solve $y'=-4xy$, $y(0)=5$.
 
@@ -501,7 +815,7 @@ Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses an
 >
 > (b) The characteristic roots must be $-2,5$. Their product fixes $b=-10$ and minus their sum gives $a=-3$; equivalently $(r+2)(r-5)=r^2-3r-10$.
 
-## M39. Bases, a nontrivial kernel and a rectangular map [8]
+### Bases, a nontrivial kernel and a rectangular map [8]
 
 (a) Give a noncanonical basis for $\mathbb R^2$ and prove independence.
 
@@ -517,7 +831,7 @@ Apply the mean value theorem to $f(x)=x^3+x$ on $[0,3]$. Check the hypotheses an
 >
 > (c) Images of the canonical basis are $(2,0)$, $(0,1)$ and $(-1,3)$. As columns they give $\begin{pmatrix}2&0&-1\\0&1&3\end{pmatrix}$.
 
-## M40. Real-axis crossing at prescribed gain [10]
+### Real-axis crossing at prescribed gain [10]
 
 Let $H(j\omega)=K/[j\omega(1+j\omega)(4+j\omega)]$ with $\omega,K>0$. Expand the denominator and rationalise $H$ to find real and imaginary parts. Find the positive frequency where the imaginary part vanishes, then choose $K$ such that the complex point is $-1$. Give its polar form and verify $1+H=0$.
 
@@ -525,7 +839,7 @@ Let $H(j\omega)=K/[j\omega(1+j\omega)(4+j\omega)]$ with $\omega,K>0$. Expand the
 >
 > The denominator is $A+jB$, with $A=-5\omega^2$ and $B=\omega(4-\omega^2)$. Thus $\Re H=KA/(A^2+B^2)$ and $\Im H=-KB/(A^2+B^2)$. Since $K,\omega>0$, the imaginary part is zero when $\omega=2$. At that frequency $A=-20$, so $K=20$ gives $H=-1$. In polar form this is $e^{j\pi}$, and $1+e^{j\pi}=0$.
 
-## M41. From a quadratic to complex quartic roots [10]
+### From a quadratic to complex quartic roots [10]
 
 (a) Use de Moivre to express $\sin(5\theta)$ as a polynomial in $\sin\theta$.
 
@@ -541,7 +855,7 @@ Let $H(j\omega)=K/[j\omega(1+j\omega)(4+j\omega)]$ with $\omega,K>0$. Expand the
 >
 > (c) Each $u$ gives two square roots with radius $\sqrt2$ and angles $\pi/4,3\pi/4,5\pi/4,7\pi/4$ in total. They lie at $(1,1),(-1,1),(-1,-1),(1,-1)$.
 
-## M42. A singularity parameter [6]
+### A singularity parameter [6]
 
 For which real $\alpha$ does $A(\alpha)=\begin{pmatrix}\alpha+1&2\\1&\alpha-3\end{pmatrix}$ fail to be invertible? Explain why no parameter outside the ones found can make it singular.
 
@@ -549,7 +863,7 @@ For which real $\alpha$ does $A(\alpha)=\begin{pmatrix}\alpha+1&2\\1&\alpha-3\en
 >
 > The determinant is $(\alpha+1)(\alpha-3)-2=\alpha^2-2\alpha-5=(\alpha-1)^2-6$. It is zero exactly at $\alpha=1\pm\sqrt6$. A square matrix is invertible iff its determinant is nonzero.
 
-## M43. Forced mechanical IVP [10]
+### Forced mechanical IVP [10]
 
 A frictionless mass of 2 kg on a spring of stiffness 18 N/m is driven by $16\sin 2t+8\cos2t$ N. It starts at displacement 1 m and zero velocity. Derive the displacement equation and solve it subject to the initial conditions.
 
@@ -561,7 +875,7 @@ A frictionless mass of 2 kg on a spring of stiffness 18 N/m is driven by $16\sin
 > y(t)=\tfrac15\cos3t-\tfrac{16}{15}\sin3t+\tfrac85\sin2t+\tfrac45\cos2t.
 > $$
 
-## M44. Derive and solve a mixing model [10]
+### Derive and solve a mixing model [10]
 
 A well-stirred tank holds 120 L. Inflow and outflow are 6 L/min, the inflow salt concentration is 0.3 kg/L, and the tank starts with 2 kg of salt. Use a mass balance to derive the salt-amount ODE, solve it and find the time to complete 90% of the change from initial to steady salt amount.
 

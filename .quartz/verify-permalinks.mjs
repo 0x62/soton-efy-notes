@@ -31,16 +31,41 @@ assert.equal(Object.keys(routes).length, manifest.filter((path) => path.endsWith
 assert.equal(navigation['Year-1/ELEC1310-Mathematics/Maths-Formula-Book'],
   'y1/revision/elec1310/formula-book');
 assert.equal(routes['Year-1/Daily-Brief/2026-11-26'], 'y1/daily-brief/2026-11-26');
-const expectedPractice = {'elec1310': ['M', 44], 'elec1311': ['C', 28],
+const expectedPractice = {'elec1310': [null, 59], 'elec1311': ['C', 28],
   'elec1312': ['P', 24], 'elec1313': ['D', 29]};
 const revision = await readFile(resolve(out, 'y1/revision.html'), 'utf8');
 for (const [code, [prefix, count]] of Object.entries(expectedPractice)) {
   const target = `y1/revision/${code}/practice-questions`;
   assert(revision.includes(`href="./revision/${code}/practice-questions"`), `Missing revision link: ${code}`);
   const practice = await readFile(resolve(out, target + '.html'), 'utf8');
-  const questions = [...practice.matchAll(new RegExp(`<h2 id="(${prefix.toLowerCase()}[0-9]+)(?:-|")`, 'g'))];
-  assert.equal(questions.length, count, `Incorrect question count: ${code}`);
-  assert.equal(new Set(questions.map((match) => match[1])).size, count, `Duplicate IDs: ${code}`);
+  let questions;
+  if (code === 'elec1310') {
+    const a = practice.indexOf('<h2 id="section-a"');
+    const b = practice.indexOf('<h2 id="section-b"');
+    assert(a >= 0 && b > a, 'Maths practice must have Section A then Section B');
+    const short = practice.slice(a, b);
+    const topics = [...short.matchAll(/<h4 id="([^"]+)"[^>]*>/g)];
+    const rounds = [...short.matchAll(/<h3 id="round-[123]-20"[^>]*>/g)];
+    assert.equal(topics.length, 15, 'Expected five one-mark groups in each of three rounds');
+    assert.equal(rounds.length, 3);
+    for (let i = 0; i < topics.length; i++) {
+      const group = short.slice(topics[i].index, topics[i + 1]?.index ?? short.length);
+      const prompt = group.split('class="callout answer is-collapsible is-collapsed"')[0];
+      assert.deepEqual([...prompt.matchAll(/<p>\(([a-d])\)/g)].map(match => match[1]), ['a', 'b', 'c', 'd']);
+      assert.equal((prompt.match(/<strong>\[1\]<\/strong>/g) ?? []).length, 4);
+    }
+    const longer = [...practice.matchAll(/<h3 id="([^"]+)"[^>]*>/g)].filter(match => match.index > b);
+    assert.equal(longer.length, 44, 'The existing Section B bank must be preserved');
+    assert(longer.every(match => !/^m\d{2}-/.test(match[1])), 'Maths titles must not keep M-numbers');
+    questions = [
+      ...[...practice.matchAll(/<h4 id="([^"]+)"[^>]*>/g)].filter(match => match.index > a && match.index < b),
+      ...longer,
+    ];
+  } else {
+    questions = [...practice.matchAll(new RegExp('<h2 id="(' + prefix.toLowerCase() + '[0-9]+)(?:-|")', 'g'))];
+  }
+  assert.equal(questions.length, count, 'Incorrect question count: ' + code);
+  assert.equal(new Set(questions.map(match => match[1])).size, count, 'Duplicate IDs: ' + code);
   for (let i = 0; i < questions.length; i++) {
     const section = practice.slice(questions[i].index, questions[i + 1]?.index ?? practice.length);
     assert.equal((section.match(/class="callout answer is-collapsible is-collapsed"/g) ?? []).length,
@@ -55,7 +80,7 @@ for (const [code, [prefix, count]] of Object.entries(expectedPractice)) {
     assert(book.includes('class="katex"') && !book.includes('class="katex-error"'), `Formula rendering: ${code}`);
   }
 }
-console.log('Verified 125 question headings and their collapsed worked answers, module links, and formula books');
+console.log('Verified 140 question groups and their collapsed worked answers, module links, and formula books');
 
 for (const [source, target] of Object.entries(routes)) {
   const page = await readFile(resolve(out, target + '.html'), 'utf8');

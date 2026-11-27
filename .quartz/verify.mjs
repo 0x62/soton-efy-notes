@@ -195,7 +195,7 @@ assert.match(
   "Collapsed callouts must hide the entire content wrapper",
 );
 for (const [module, count] of [
-  ["Maths", 44], ["Circuits", 28], ["Programming", 24], ["Digital-Systems", 29],
+  ["Maths", 59], ["Circuits", 28], ["Programming", 24], ["Digital-Systems", 29],
 ]) {
   const html = await readFile(resolve(out, `Year-1/Revision/${module}/Practice-Questions.html`), "utf8");
   const answers = html.match(/<blockquote\b[^>]*\bdata-callout="answer"[^>]*>/g) ?? [];
@@ -203,4 +203,4 @@ for (const [module, count] of [
   assert(answers.every((tag) => /\bis-collapsed\b/.test(tag)),
     `${module}: answers must start collapsed`);
 }
-console.log("Verified default collapse of all 125 revision answers");
+console.log("Verified default collapse of all 140 revision answers");
