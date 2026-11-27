@@ -104,6 +104,7 @@ export function publicPath(slug) {
 
 export async function publishPermalinks(out) {
   const { routes, navigation } = JSON.parse(await readFile(resolve(out, '../permalink-map.json'), 'utf8'));
+  const pages = new Set(Object.values(routes));
   const files = (await readdir(out, { recursive: true })).filter(f => f.endsWith('.html'));
   const originals = Object.fromEntries(await Promise.all(files.map(async f => [f, await readFile(resolve(out, f), 'utf8')])));
   const base = new URL(`https://${process.env.QUARTZ_BASE_URL ?? 'uni.bl.je'}/`);
@@ -123,8 +124,8 @@ export async function publishPermalinks(out) {
     if (/^https?:/.test(value)) return new URL(path, base).href + suffix;
     const directory = posix.dirname(dest);
     // /fy is a page even though /fy/ is also the directory of its child pages.
-    const relative = path && path === directory
-      ? '../' + posix.basename(path)
+    const relative = pages.has(path)
+      ? posix.relative(directory, path + '.html').slice(0, -5)
       : posix.relative(directory, path) || '.';
     const href = relative.startsWith('.') ? relative : './' + relative;
     return href + (path === '' ? '/' : '') + suffix;
